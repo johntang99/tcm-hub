@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Locale } from '@/lib/types';
 import { getRequestSiteId, loadAllItems, loadItemBySlug, loadPageContent } from '@/lib/content';
 import { buildPageMetadata } from '@/lib/seo';
@@ -25,6 +26,7 @@ interface BlogPostData {
   title: string;
   excerpt?: string;
   image?: string;
+  imageAlt?: string;
   category: string;
   author: string;
   publishDate: string;
@@ -36,6 +38,9 @@ interface BlogPostData {
   relatedPosts?: string[];
   relatedServices?: string[];
   relatedConditions?: string[];
+  // SEO fields from Auto Publisher
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 interface BlogDetailPageProps {
@@ -87,8 +92,9 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
     siteId,
     locale,
     slug: 'blog',
-    title: post.title,
+    title: post.metaTitle || post.title,
     description:
+      post.metaDescription ||
       post.excerpt ||
       (post.contentMarkdown ? post.contentMarkdown.slice(0, 160) : ''),
     canonicalPath: `/${locale}/blog/${slug}`,
@@ -143,11 +149,32 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const normalizeMarkdown = (text: string) =>
     text
       .replace(/\r\n/g, '\n')
+      .replace(/\|\s+\|(?=(?:-+:?|:?-+|[A-Za-z0-9"']))/g, '|\n|')
       .replace(/([^\n])\n-\s+/g, '$1\n\n- ')
       .replace(/([^\n])\n\*\s+/g, '$1\n\n- ');
 
+  // Build JSON-LD Article schema for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.metaTitle || post.title,
+    description: post.metaDescription || post.excerpt || '',
+    image: post.image || undefined,
+    author: { '@type': 'Person', name: post.author || 'Staff' },
+    datePublished: post.publishDate || undefined,
+    publisher: {
+      '@type': 'Organization',
+      name: siteId.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+    },
+  };
+
   return (
     <main className="min-h-screen">
+      {/* JSON-LD structured data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section with Featured Image */}
       <section
         className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white pt-20 md:pt-24 px-4 overflow-hidden"
@@ -260,6 +287,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <div className="prose max-w-none">
               {post.contentMarkdown ? (
                 <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
                   components={{
                     h1: (props) => (
                       <h1 className="text-3xl font-bold text-gray-900 mt-10 mb-4" {...props} />
@@ -276,6 +304,19 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     ul: (props) => <ul className="list-disc pl-6 mb-5" {...props} />,
                     ol: (props) => <ol className="list-decimal pl-6 mb-5" {...props} />,
                     li: (props) => <li className="mb-2" {...props} />,
+                    table: (props) => (
+                      <div className="my-6 overflow-x-auto">
+                        <table className="min-w-full border border-gray-200 rounded-lg" {...props} />
+                      </div>
+                    ),
+                    thead: (props) => <thead className="bg-gray-50" {...props} />,
+                    tr: (props) => <tr className="border-b border-gray-200" {...props} />,
+                    th: (props) => (
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 align-top border-r border-gray-200 last:border-r-0" {...props} />
+                    ),
+                    td: (props) => (
+                      <td className="px-4 py-3 text-sm text-gray-700 align-top border-r border-gray-200 last:border-r-0" {...props} />
+                    ),
                   }}
                 >
                   {normalizeMarkdown(post.contentMarkdown)}
