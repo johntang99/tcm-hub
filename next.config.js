@@ -6,6 +6,7 @@ const supabaseUrls = [
   process.env.SUPABASE_URL,
   process.env.SUPABASE_PROD_URL,
   process.env.SUPABASE_STAGING_URL,
+  process.env.BAAM_SUPABASE_URL,
 ].filter(Boolean)
 
 const supabaseHostnames = Array.from(
