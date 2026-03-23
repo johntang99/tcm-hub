@@ -27,6 +27,8 @@ interface WhyChooseItem {
 interface FAQItem {
   question: string;
   answer: string;
+  linkText?: string;
+  linkHref?: string;
 }
 
 interface HourEntry {
@@ -128,6 +130,17 @@ function FAQAccordion({ items }: { items: FAQItem[] }) {
           {openIndex === i && (
             <div className="px-5 pb-5 text-small text-gray-600 leading-relaxed">
               {item.answer}
+              {item.linkHref && item.linkText && (
+                <>
+                  {' '}
+                  <Link
+                    href={item.linkHref}
+                    className="text-primary font-semibold hover:text-primary-dark"
+                  >
+                    {item.linkText} &rarr;
+                  </Link>
+                </>
+              )}
             </div>
           )}
         </div>
