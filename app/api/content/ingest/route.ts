@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
       author,
       seoData,
       relatedServices,
+      relatedConditions,
     } = body;
 
     if (!siteId || !rawSlug || !title || !content) {
@@ -69,6 +70,7 @@ export async function POST(req: NextRequest) {
       publishDate: new Date().toISOString().split('T')[0],
       contentMarkdown: content,
       relatedServices: relatedServices || [],
+      relatedConditions: relatedConditions || [],
       tags: tags || [],
     };
 

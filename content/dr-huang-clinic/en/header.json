@@ -19,6 +19,10 @@
         "text": "Home"
       },
       {
+        "url": "/en/acupuncture-middletown-ny",
+        "text": "Acupuncture"
+      },
+      {
         "url": "/en/services",
         "text": "Services"
       },
@@ -35,10 +39,6 @@
         "text": "Case Studies"
       },
       {
-        "url": "/en/gallery",
-        "text": "Gallery"
-      },
-      {
         "url": "/en/new-patients",
         "text": "New Visit"
       },
@@ -49,6 +49,10 @@
       {
         "url": "/en/blog",
         "text": "Blog"
+      },
+      {
+        "url": "/en/gallery",
+        "text": "Gallery"
       },
       {
         "url": "/en/contact",

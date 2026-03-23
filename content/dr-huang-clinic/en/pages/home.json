@@ -1,4 +1,14 @@
 {
+  "seo": {
+    "title": "Dr. Huang Clinic — Acupuncture & TCM in Middletown, NY",
+    "description": "Dr. Huang Clinic offers acupuncture, herbal medicine & TCM in Middletown, NY. Experienced care for pain, sleep, stress & more. Book today.",
+    "h1": "Acupuncture in Middletown, NY",
+    "canonicalUrl": "/en",
+    "schema": ["LocalBusiness", "MedicalClinic", "BreadcrumbList"],
+    "noindex": false,
+    "changefreq": "monthly",
+    "priority": 1.0
+  },
   "cta": {
     "title": "Ready to Begin Your Healing Journey?",
     "variant": "centered",
@@ -78,7 +88,7 @@
     ],
     "tagline": "Holistic Acupuncture & Traditional Chinese Medicine (TCM) Care",
     "variant": "split-photo-right",
-    "clinicName": "Acupuncture & Traditional Chinese Medicine in Middletown, NY ",
+    "clinicName": "Acupuncture in Middletown, NY ",
     "primaryCta": {
       "link": "/en/contact",
       "text": "Book Appointment"
@@ -224,6 +234,10 @@
       "fullDescription": "Regulates the body's internal organs and meridians by stimulating specific acupuncture points. It balances Yin and Yang, promotes the circulation of Qi and blood, and clears the meridians to prevent and treat various conditions.",
       "shortDescription": "Our primary treatment modality using fine needles to restore balance and promote healing"
     },
+    "seoLink": {
+      "url": "/en/acupuncture-middletown-ny",
+      "text": "Acupuncture in Middletown, NY"
+    },
     "moreLink": {
       "url": "/en/services",
       "text": "View All Modalities"
@@ -287,64 +301,134 @@
     "subtitle": "Traditional Chinese Medicine can help with a wide range of health concerns",
     "conditions": [
       {
-        "id": "back-pain",
+        "id": "pain-management-full",
         "icon": "Activity",
-        "link": "/en/conditions#back-pain",
-        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/gallery/acupuncture-needles.jpg",
-        "title": "Back Pain",
+        "link": "/en/conditions#pain",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1773775179335-adult-woman-feeling-acute-lower-back-pain-at-home-sbi-351527069.jpg",
+        "title": "Acute & Chronic Pain",
         "category": "Pain Management",
         "symptoms": [
-          "Lower back pain",
-          "Upper back stiffness",
-          "Sciatica",
-          "Herniated disc pain"
+          "Neck, shoulder, back & leg pain, Sciatica, Trigeminal neuralgia",
+          "Cervical & lumbar spondylosis, Osteoporosis, Non-healing fractures",
+          "Frozen shoulder, Tennis elbow, Tendonitis, Carpal tunnel syndrome",
+          "Rheumatoid arthritis, Knee osteoarthritis, Fasciitis, Heel pain"
         ],
-        "description": "Whether acute or chronic, acupuncture and TCM therapies provide effective relief without drugs or surgery"
+        "description": "Comprehensive treatment from orthopedics to neurological pain, using acupuncture and TCM to effectively relieve inflammation and repair damaged tissues."
       },
       {
-        "id": "headaches-migraines",
-        "icon": "Activity",
-        "link": "/en/conditions#headaches-migraines",
-        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-12.jpeg",
-        "title": "Headaches & Migraines",
-        "category": "Pain Management",
-        "symptoms": [
-          "Recurring headaches",
-          "Migraine attacks",
-          "Tension in temples",
-          "Light sensitivity"
-        ],
-        "description": "Effective treatment for tension headaches, migraines, and chronic head pain without medication"
-      },
-      {
-        "id": "anxiety",
-        "icon": "Brain",
-        "link": "/en/conditions#anxiety",
+        "id": "sleep-mental-full",
+        "icon": "Moon",
+        "link": "/en/conditions#sleep",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/anxiate-3.jpeg",
-        "title": "Anxiety & Panic Disorders",
+        "title": "Emotional & Sleep Medicine",
         "category": "Mental & Emotional Health",
         "symptoms": [
-          "Excessive worry",
-          "Racing thoughts",
-          "Panic attacks",
-          "Restlessness"
+          "Insomnia, Anxiety, Depression, OCD",
+          "Narcolepsy, Snoring, Sleep apnea",
+          "Abnormal sleep behavior, Stress-related migraines"
         ],
-        "description": "Natural, drug-free support for anxiety, panic attacks, and general nervousness"
+        "description": "Regulates neurotransmitters and internal organ Qi/blood, providing deep treatment for various mental and sleep disorders caused by high-pressure modern lifestyles."
       },
       {
-        "id": "ibs",
-        "icon": "Apple",
-        "link": "/en/conditions#ibs",
-        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-dietary-10.jpg",
-        "title": "IBS & Digestive Issues",
-        "category": "Digestive Health",
+        "id": "psychosomatic-full",
+        "icon": "HeartPulse",
+        "link": "/en/conditions#psychosomatic",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/headache-2.jpeg",
+        "title": "Psychosomatic Disorders",
+        "category": "Internal Medicine",
         "symptoms": [
-          "Abdominal pain",
-          "Bloating",
-          "Constipation or diarrhea",
-          "Gas"
+          "Irritable Bowel Syndrome (IBS), Various nodules",
+          "Precancerous condition management, Post-chemo/radiation recovery",
+          "Chronic Fatigue Syndrome, Endocrine disorders"
         ],
-        "description": "Effective relief for IBS, bloating, gas, and digestive discomfort"
+        "description": "Focuses on the overall coordination of internal organ functions, targeting complex psychosomatic conditions and functional reconstruction after major illnesses."
+      },
+      {
+        "id": "aesthetic-full",
+        "icon": "Sparkles",
+        "link": "/en/conditions#aesthetic",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/gua-sha-22.png",
+        "title": "Aesthetic TCM & Weight Management",
+        "category": "Beauty & Weight Loss",
+        "symptoms": [
+          "Simple obesity, Body contouring",
+          "Wrinkles, Skin sagging, Dullness & dark spots",
+          "Hair loss, Alopecia areata, Acne scarring"
+        ],
+        "description": "Combines TCM constitution differentiation with acupuncture to improve metabolism, achieving healthy weight loss and natural facial rejuvenation."
+      },
+      {
+        "id": "gynecology",
+        "icon": "Heart",
+        "link": "/en/conditions#gynecology",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-10.jpeg",
+        "title": "Gynecological Care",
+        "category": "Women's Health",
+        "symptoms": [
+          "Irregular menstruation, Dysmenorrhea, Premature ovarian failure",
+          "Infertility, Postpartum recovery, Uterine prolapse",
+          "Menopausal syndrome, Menopausal depression",
+          "Breast nodules, Mastitis"
+        ],
+        "description": "Tailored to physiological characteristics at different stages of a woman's life, regulating meridians and blood balance to solve reproductive and endocrine issues."
+      },
+      {
+        "id": "pediatrics",
+        "icon": "Baby",
+        "link": "/en/conditions#pediatrics",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1773777100867-smiling-kid-visiting-therapist-in-clinic-closeup-happy-doctor-giving-high-five-to-cute-sbi-351483755.jpg",
+        "title": "Pediatric Development",
+        "category": "Pediatrics",
+        "symptoms": [
+          "Food stagnation, Anorexia, Diarrhea, Indigestion",
+          "Growth retardation, Developmental delays",
+          "Precocious puberty, Weak immunity"
+        ],
+        "description": "Nurturing children's delicate constitutions through gentle pediatric Tui Na and herbs to improve digestion and promote healthy growth."
+      },
+      {
+        "id": "dermatology",
+        "icon": "Shield",
+        "link": "/en/conditions#dermatology",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1773777532809-birthmarks-on-skin-close-up-detail-of-the-bare-skin-sun-exposure-effect-on-skin-health-sbi-351352070.jpg",
+        "title": "Dermatology & Immunology",
+        "category": "Skin Management",
+        "symptoms": [
+          "Acne, Eczema, Urticaria (Hives)",
+          "Shingles, Psoriasis",
+          "Neurodermatitis, Pruritus, Melasma",
+          "Lyme Disease, Hay Fever (Allergic Rhinitis)"
+        ],
+        "description": "Addressing stubborn skin diseases and immune system allergies by regulating internal organ health and blood quality."
+      },
+      {
+        "id": "andrology",
+        "icon": "User",
+        "link": "/en/conditions#andrology",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-12.jpeg",
+        "title": "Andrology & Men's Health",
+        "category": "Men's Health",
+        "symptoms": [
+          "Prostatic hyperplasia (Enlarged prostate)",
+          "Erectile dysfunction, Premature ejaculation",
+          "Male infertility, Kidney essence tonification"
+        ],
+        "description": "Focusing on common urinary and reproductive issues in men, restoring health and confidence through syndrome-based TCM treatment."
+      },
+      {
+        "id": "internal-medicine",
+        "icon": "Stethoscope",
+        "link": "/en/conditions#internal",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1773778451917-senior-man-feeling-heartache-at-home-suffers-from-heart-pain-sitting-on-couch-unwell-o-sbi-349545701.jpg",
+        "title": "General Internal Medicine",
+        "category": "Comprehensive Care",
+        "symptoms": [
+          "Respiratory & Circulatory: Pneumonia, Asthma, Hypertension, Coronary heart disease",
+          "Digestive: Gastritis, Enteritis, Ulcers, Cholecystitis, Gallstones",
+          "Neurological: Post-stroke recovery, Parkinson's, Memory loss, Vertigo",
+          "Urological/Renal: Nephritis, Kidney syndrome, UTI, Kidney stones"
+        ],
+        "description": "Covering chronic diseases and difficult cases across all major body systems, including Myasthenia Gravis, Tinnitus, and functional recovery."
       }
     ]
   },

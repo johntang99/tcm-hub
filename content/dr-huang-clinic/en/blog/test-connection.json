@@ -1,0 +1,16 @@
+{
+  "slug": "test-connection",
+  "tags": [],
+  "image": null,
+  "title": "Test Connection",
+  "author": "Staff",
+  "excerpt": "",
+  "category": "blog",
+  "featured": false,
+  "imageAlt": "Test Connection",
+  "imageCredit": "",
+  "imageSource": null,
+  "publishDate": "2026-03-17",
+  "contentMarkdown": "This is a test connection from baam-platform. You can delete this entry.",
+  "relatedServices": []
+}

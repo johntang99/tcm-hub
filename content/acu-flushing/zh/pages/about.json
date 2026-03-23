@@ -13,7 +13,7 @@
     }
   },
   "hero": {
-    "title": "认识Dr. Jiang",
+    "title": "认识 Dr. Jiang",
     "variant": "centered",
     "subtitle": "致力於通過傳統中醫為您的健康和保健服務",
     "description": "以歷久彌新的智慧與個性化關懷，陪伴您的康復之路。",
@@ -53,7 +53,7 @@
       "寧靜、舒緩的環境"
     ],
     "description": [
-      "Smith 醫生診所成立於2010年，使命簡單：為米德爾敦（New York）社區提供便捷、高品質的傳統中醫護理。",
+      "",
       "從一個小診所開始，已經發展成為一個值得信賴的健康中心，幫助1,000多名患者自然實現更好的健康。"
     ],
     "environment": "我們的診所提供寧靜、溫馨的環境，旨在促進放鬆和癒合。從您進入的那一刻起，您就會感受到不同——寧靜的色彩、舒適的治療室和溫暖、友好的氛圍讓患者感到輕鬆自在。"
@@ -64,7 +64,7 @@
     "variant": "prose"
   },
   "profile": {
-    "bio": "Dr. Jiang began her journey in Traditional Chinese Medicine over two decades ago, earning her Master of Science in Traditional Chinese Medicine from the American College of Traditional Chinese Medicine in San Francisco in 2000. This prestigious program provided her with both classical TCM training and the clinical skills needed to practice effectively in the United States. She holds board certification from the National Certification Commission for Acupuncture and Oriental Medicine (NCCAOM), maintaining the highest standards of professional excellence.\n\nWith twenty years of clinical experience, Dr. Jiang has developed particular expertise in pain management, mental health support, and women's health issues. Her compassionate approach to treating anxiety and panic disorders has helped countless patients find peace and balance in their daily lives. She specializes in respiratory conditions and immune system strengthening, drawing upon time-tested herbal formulas and acupuncture protocols that address the root causes of illness rather than merely treating symptoms.\n\nDr. Jiang's treatment philosophy centers on the fundamental TCM principle that the body possesses an innate wisdom to heal itself when properly supported. She combines classical diagnostic methods—including pulse and tongue diagnosis—with personalized treatment plans that may incorporate acupuncture, custom herbal prescriptions, dietary guidance, and lifestyle recommendations. Her gentle, intuitive approach helps patients reconnect with their body's natural healing rhythms while addressing both physical symptoms and emotional wellbeing.",
+    "bio": "江醫師簡介\n\n江醫師早年於中國接受系統性的中醫醫學教育，畢業於北京中醫藥大學，完成五年制中醫本科專業課程，並於 1996 年順利畢業。該課程屬於正規醫學教育體系，內容涵蓋中醫基礎理論、中藥學、針灸學等多個醫學領域，奠定了她紮實而全面的中醫專業基礎。\n\n赴美之後，江醫師持續進修深造，研習分子生物學與生物統計學，並取得相關專業碩士學位。畢業後，她曾於大型製藥企業任職約五年，從事生物醫藥相關研究與專業工作，累積了現代生物科學與醫藥領域的實務經驗。\n\n儘管在生物醫藥領域擁有良好的職涯發展機會，江醫師始終對中醫、中藥與針灸治療懷抱深厚熱忱。經過審慎思考後，她最終選擇回歸自己最初熱愛的醫學道路，取得相關執照，專注於中醫與針灸臨床診療工作。\n\n江醫師融合中醫醫學與現代生物科學的學習背景與研究經驗，在臨床上重視整體調理與辨證施治的理念，期望透過中醫針灸與中藥調養，協助患者改善健康狀況，提升生活品質。\n\n經過多年臨床實踐，江醫師累積了豐富的診療經驗，對各類常見疾病及慢性疾病的調理，已形成成熟、穩健且具個人特色的診療思路。多年來，她已成功幫助許多患者改善健康、減輕症狀，甚至恢復良好生活狀態。眾多患者在治療後，對江醫師的醫術與醫德皆給予高度肯定與信任。\n\n在長期診療過程中，不少患者於康復之後，仍持續與江醫師保持聯繫，懷著感恩之心分享生活中的轉變，甚至成為彼此信任的朋友。來自患者的這份認可與信賴，也成為江醫師持續投入中醫事業、精進醫術的重要力量。\n\n江醫師始終相信，中醫不僅是一門醫學，更是一種幫助人們恢復身心平衡、提升整體生活品質的醫療理念。她希望憑藉自身的專業與經驗，幫助更多患者獲得健康、安心與更好的生活。",
     "name": "Dr. Jiang",
     "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/acu-flushing/onboarding-overrides/1773046663898-1771604339255-dr-jiang-acu-flushing-2.webp",
     "quote": "When we support the body's natural wisdom with ancient healing principles, profound transformation becomes possible.",

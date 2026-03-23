@@ -35,10 +35,6 @@
         "text": "案例分享"
       },
       {
-        "url": "/zh/gallery",
-        "text": "診所環境"
-      },
-      {
         "url": "/zh/new-patients",
         "text": "首次就診"
       },
@@ -49,6 +45,10 @@
       {
         "url": "/zh/blog",
         "text": "網誌"
+      },
+      {
+        "url": "/zh/gallery",
+        "text": "圖片集錦"
       },
       {
         "url": "/zh/contact",

@@ -1,4 +1,14 @@
 {
+  "seo": {
+    "title": "Contact Dr. Huang Clinic — Middletown, NY Acupuncture",
+    "description": "Book an acupuncture appointment at Dr. Huang Clinic in Middletown, NY. Call us, use our online form, or visit us at our Middletown location.",
+    "h1": "Get in Touch",
+    "canonicalUrl": "/en/contact",
+    "schema": ["ContactPage", "BreadcrumbList"],
+    "noindex": false,
+    "changefreq": "monthly",
+    "priority": 0.7
+  },
   "cta": {
     "title": "Need help getting started?",
     "subtitle": "Learn what to expect before your first appointment",

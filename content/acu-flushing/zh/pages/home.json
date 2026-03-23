@@ -63,7 +63,7 @@
       {
         "icon": "users",
         "label": "Happy Patients",
-        "number": "10,000+"
+        "number": "1,000+"
       },
       {
         "icon": "star",
@@ -76,10 +76,10 @@
         "number": "5"
       }
     ],
-    "title": "Flushing中医与针灸护理",
+    "title": "Flushing 中医与针灸护理",
     "tagline": "Flushing's Trusted Traditional Chinese Medicine Center",
     "variant": "split-photo-right",
-    "clinicName": "Flushing Acupuncture · Flushing",
+    "clinicName": "歡迎來到法拉盛中醫針灸- Natural Life Acupuncture",
     "primaryCta": {
       "link": "/zh/contact",
       "text": "預約"
@@ -102,7 +102,7 @@
         "text": "循證實踐"
       }
     ],
-    "description": "For nearly two decades, Dr. Jiang has served the diverse Flushing community with authentic acupuncture, Chinese herbal medicine, and holistic healing therapies. Our bilingual practice offers personalized TCM treatments in both English and Chinese.",
+    "description": "江醫師融合中醫醫學與現代生物科學的學習背景與研究經驗，在臨床上重視整體調理與辨證施治的理念，期望透過中醫針灸與中藥調養，協助患者改善健康狀況，提升生活品質。",
     "trustBadges": [
       "持牌針灸師",
       "委員會認證",
@@ -480,22 +480,22 @@
     "subtitle": "聽聽我們患者的康復之旅",
     "testimonials": [
       {
-        "name": "Jennifer M.",
+        "name": "老年患者",
         "image": "",
-        "quote": "經過多年的慢性背痛並嘗試了一切方法，黃醫生的針灸終於讓我得到了緩解。我現在無痛並恢復了活躍的生活方式！",
-        "condition": "慢性背痛"
+        "quote": "一位大约80岁的老年患者，因为脊椎骨折接受了手术治疗。手术之后虽然一直在服用止痛药，但仍然感到身体非常不适。大约经过两个疗程的调理（每个疗程约一周），患者整体状态明显好转。随着疼痛减轻、睡眠改善，情绪也自然变得更加平稳。",
+        "condition": "疼痛"
       },
       {
-        "name": "Robert T.",
+        "name": "长期使用电脑者",
         "image": "",
-        "quote": "黃醫生的整體方法幫助我在不用藥物的情況下管理焦慮。針灸和中藥的結合改變了我的生活。",
-        "condition": "壓力與焦慮"
+        "quote": "对于长期使用电脑导致的肩颈紧张和僵硬，通过中医传统疗法如拔罐和放血疗法，可以帮助缓解局部紧张，促进气血循环，从而改善不适症状。",
+        "condition": "紧张和僵硬"
       },
       {
-        "name": "Lisa K.",
+        "name": "香港電腦工程師",
         "image": "",
-        "quote": "我們永遠感激黃醫生。在與不孕症鬥爭後，我們現在是一個美麗女嬰的驕傲父母！",
-        "condition": "生育支持"
+        "quote": "在诊疗过程中，江医生根据患者的情况，为其采用针灸与推拿相结合的方式进行调理。经过一段时间的治疗后，患者明显感觉手部疼痛减轻，手部活动也变得更加轻松。",
+        "condition": "手部疼痛"
       }
     ]
   }

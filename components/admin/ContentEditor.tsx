@@ -36,6 +36,7 @@ import {
 } from '@/components/admin/panels/CaseStudiesItemPanel';
 import { CaseStudiesPanel } from '@/components/admin/panels/CaseStudiesPanel';
 import { PostsPanel } from '@/components/admin/panels/PostsPanel';
+import { PricingPanel } from '@/components/admin/panels/PricingPanel';
 import { SECTION_VARIANT_OPTIONS, SITE_SETTINGS_PATHS } from '@/components/admin/utils/editorConstants';
 import { getPathValue, toTitleCase } from '@/components/admin/utils/editorHelpers';
 import type { ThemePreset } from '@/lib/theme-presets';
@@ -1079,6 +1080,7 @@ export function ContentEditor({
   const isHeaderFile = activeFile?.path === 'header.json';
   const isThemeFile = activeFile?.path === 'theme.json';
   const isHomePageFile = activeFile?.path === 'pages/home.json';
+  const isPricingPageFile = activeFile?.path === 'pages/pricing.json';
   const isConditionsPageFile = activeFile?.path === 'pages/conditions.json';
   const isCaseStudiesPageFile = activeFile?.path === 'pages/case-studies.json';
   const allowCreateOrDuplicate =
@@ -1191,8 +1193,11 @@ export function ContentEditor({
         .map((category: any) => ({
           id: typeof category?.id === 'string' ? category.id : '',
           name: typeof category?.name === 'string' ? category.name : '',
+          icon: typeof category?.icon === 'string' ? category.icon : '',
+          description: typeof category?.description === 'string' ? category.description : '',
+          order: typeof category?.order === 'number' ? category.order : undefined,
         }))
-        .filter((category: any) => category.id && category.name)
+        .filter((category: any) => category.id || category.name)
     : [];
   const caseStudyCategories = Array.isArray(formData?.categories)
     ? formData.categories
@@ -1349,6 +1354,44 @@ export function ContentEditor({
     const images = [...formData.images];
     images.splice(index, 1);
     updateFormValue(['images'], images);
+  };
+
+  const addGalleryCategory = () => {
+    if (!formData) return;
+    const categories = Array.isArray(formData.categories) ? [...formData.categories] : [];
+    const nextIndex = categories.length + 1;
+    categories.push({
+      id: `category-${nextIndex}`,
+      name: '',
+      icon: 'Image',
+      description: '',
+      order: nextIndex,
+    });
+    updateFormValue(['categories'], categories);
+  };
+
+  const removeGalleryCategory = (index: number) => {
+    if (!formData || !Array.isArray(formData.categories)) return;
+    const categories = [...formData.categories];
+    const target = categories[index];
+    categories.splice(index, 1);
+    const next: Record<string, any> = { ...formData, categories };
+
+    if (target?.id && Array.isArray(formData.images)) {
+      const fallbackCategory =
+        categories.find((category: any) => category?.id && category.id !== 'all')?.id || '';
+      next.images = formData.images.map((image: any) => {
+        if (image?.category === target.id) {
+          return {
+            ...image,
+            category: fallbackCategory,
+          };
+        }
+        return image;
+      });
+    }
+
+    setFormData(next);
   };
 
   const addHeaderMenuItem = () => {
@@ -2485,6 +2528,8 @@ export function ContentEditor({
                 <GalleryPhotosPanel
                   images={formData.images}
                   galleryCategories={galleryCategories}
+                  addGalleryCategory={addGalleryCategory}
+                  removeGalleryCategory={removeGalleryCategory}
                   addGalleryImage={addGalleryImage}
                   removeGalleryImage={removeGalleryImage}
                   updateFormValue={updateFormValue}
@@ -2494,6 +2539,12 @@ export function ContentEditor({
 
               {showSharedPanels && formData?.cta && (
                 <CtaPanel cta={formData.cta} updateFormValue={updateFormValue} />
+              )}
+
+              {isPricingPageFile &&
+                formData &&
+                (formData?.individualTreatments || formData?.packages) && (
+                <PricingPanel formData={formData} updateFormValue={updateFormValue} />
               )}
 
               {isServicesItemsMode && formData?.servicesList && selectedService && (
@@ -2685,7 +2736,12 @@ export function ContentEditor({
                 </div>
               )}
 
-              {formData && !isSiteInfoFile && !formData.hero && !formData.introduction && !formData.cta && (
+              {formData &&
+                !isSiteInfoFile &&
+                !isPricingPageFile &&
+                !formData.hero &&
+                !formData.introduction &&
+                !formData.cta && (
                 <div className="text-sm text-gray-500">
                   No schema panels available for this file yet. Use the JSON tab.
                 </div>

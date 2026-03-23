@@ -1,4 +1,14 @@
 {
+  "seo": {
+    "title": "About Dr. Huang Clinic — Acupuncture in Middletown, NY",
+    "description": "Meet Dr. Huang — experienced acupuncturist and TCM practitioner in Middletown, NY. Learn about our approach to traditional Chinese medicine.",
+    "h1": "Meet Dr. Huang",
+    "canonicalUrl": "/en/about",
+    "schema": ["AboutPage", "BreadcrumbList"],
+    "noindex": false,
+    "changefreq": "monthly",
+    "priority": 0.8
+  },
   "cta": {
     "title": "Ready to Start Your Healing Journey?",
     "variant": "centered",

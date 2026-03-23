@@ -6,6 +6,7 @@ import { getBaseUrlFromHost } from '@/lib/seo';
 import { getDefaultSite, getSiteByHost } from '@/lib/sites';
 import { locales, type Locale } from '@/lib/i18n';
 import { isBlogPostVisible } from '@/lib/blog';
+import { getSEOPagesForSite } from '@/lib/seo-pages';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
@@ -93,6 +94,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       entries.push({
         url: new URL(`/${locale}/blog/${slug}`, baseUrl).toString(),
         lastModified: new Date(),
+      });
+    }
+  }
+
+  // SEO pages from site_seo_pages registry
+  const seoPages = await getSEOPagesForSite(site.id);
+  for (const page of seoPages) {
+    for (const locale of siteLocales) {
+      entries.push({
+        url: new URL(`/${locale}/${page.slug}`, baseUrl).toString(),
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: page.page_type === 'seo-local-landing' ? 0.9 : 0.8,
       });
     }
   }

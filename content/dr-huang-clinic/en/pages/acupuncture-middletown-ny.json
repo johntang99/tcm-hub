@@ -1,0 +1,214 @@
+{
+  "seo": {
+    "title": "Acupuncture in Middletown, NY | Dr. Huang Clinic",
+    "description": "Expert acupuncture & TCM in Middletown, NY. Back pain, insomnia, stress & more. Book your first visit with Dr. Huang today.",
+    "h1": "Acupuncture in Middletown, NY",
+    "canonicalUrl": "/en/acupuncture-middletown-ny",
+    "schema": ["LocalBusiness", "Service", "BreadcrumbList"],
+    "noindex": false,
+    "changefreq": "monthly",
+    "priority": 0.9
+  },
+  "hero": {
+    "title": "Acupuncture in Middletown, NY",
+    "subtitle": "Dr. Huang Clinic — Traditional Chinese Medicine & Acupuncture Care",
+    "description": "Experience expert acupuncture and Traditional Chinese Medicine at Dr. Huang Clinic in Middletown, NY. We offer personalized, holistic care for pain relief, stress management, sleep disorders, and a wide range of health conditions.",
+    "primaryCta": {
+      "text": "Book Your First Visit",
+      "link": "/en/contact"
+    },
+    "secondaryCta": {
+      "text": "Call (845) 381-1106",
+      "link": "tel:+18453811106"
+    },
+    "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/home/drhuang-photo-1.jpg",
+    "trustBar": [
+      {
+        "icon": "Award",
+        "label": "20+ Years Experience"
+      },
+      {
+        "icon": "ShieldCheck",
+        "label": "NCCAOM Certified"
+      },
+      {
+        "icon": "Users",
+        "label": "10,000+ Patients Helped"
+      },
+      {
+        "icon": "Globe",
+        "label": "English & Mandarin"
+      }
+    ]
+  },
+  "conditions": {
+    "title": "What Conditions Can Acupuncture Help With?",
+    "intro": "Acupuncture treats the root cause of your health concerns — not just the symptoms. At Dr. Huang Clinic, we use Traditional Chinese Medicine diagnostics to identify underlying imbalances and create a treatment plan that addresses the whole person.",
+    "items": [
+      {
+        "name": "Back Pain",
+        "icon": "Activity",
+        "link": "/en/acupuncture-for-back-pain-middletown-ny",
+        "description": "Lower back, upper back, sciatica, and disc-related pain"
+      },
+      {
+        "name": "Neck Pain",
+        "icon": "Activity",
+        "link": "/en/conditions#pain",
+        "description": "Cervical pain, stiffness, and tension headaches"
+      },
+      {
+        "name": "Insomnia",
+        "icon": "Moon",
+        "link": "/en/acupuncture-for-insomnia-middletown-ny",
+        "description": "Difficulty falling asleep, staying asleep, or waking too early"
+      },
+      {
+        "name": "Anxiety & Stress",
+        "icon": "Heart",
+        "link": "/en/acupuncture-for-anxiety-middletown-ny",
+        "description": "Racing thoughts, nervous tension, and chronic worry"
+      },
+      {
+        "name": "Fertility",
+        "icon": "Baby",
+        "link": "/en/conditions#gynecology",
+        "description": "Natural fertility support and reproductive health"
+      },
+      {
+        "name": "Digestive Issues",
+        "icon": "Stethoscope",
+        "link": "/en/conditions#internal",
+        "description": "IBS, acid reflux, bloating, and chronic digestive problems"
+      },
+      {
+        "name": "Headaches & Migraines",
+        "icon": "HeartPulse",
+        "link": "/en/conditions#pain",
+        "description": "Tension headaches, migraines, and cluster headaches"
+      },
+      {
+        "name": "Allergies",
+        "icon": "Shield",
+        "link": "/en/conditions#dermatology",
+        "description": "Seasonal allergies, hay fever, and sinus congestion"
+      }
+    ]
+  },
+  "services": {
+    "title": "Acupuncture & TCM Services at Dr. Huang Clinic",
+    "items": [
+      {
+        "name": "Acupuncture",
+        "icon": "Syringe",
+        "description": "Our primary modality — fine needles stimulate specific points to restore balance, relieve pain, and promote the body's natural healing response."
+      },
+      {
+        "name": "Chinese Herbal Medicine",
+        "icon": "Leaf",
+        "link": "/en/services#chinese-herbal-medicine",
+        "description": "Custom herbal formulas tailored to your unique constitution and health concerns, supporting lasting results between acupuncture sessions."
+      },
+      {
+        "name": "Cupping Therapy",
+        "icon": "Circle",
+        "description": "Suction cups release deep muscle tension, improve circulation, and help expel toxins — especially effective for back and shoulder pain."
+      },
+      {
+        "name": "Moxibustion",
+        "icon": "Flame",
+        "description": "Gentle warming therapy using dried mugwort to stimulate acupuncture points, strengthen vitality, and relieve cold-type pain."
+      },
+      {
+        "name": "Tui Na Medical Massage",
+        "icon": "Hand",
+        "description": "Traditional Chinese therapeutic massage combining acupressure, stretching, and joint mobilization for pain relief and improved mobility."
+      }
+    ]
+  },
+  "whyChooseUs": {
+    "title": "Why Patients Choose Dr. Huang Clinic in Middletown, NY",
+    "points": [
+      {
+        "icon": "Award",
+        "title": "20+ Years of Clinical Experience",
+        "description": "Dr. Huang brings over two decades of expertise in acupuncture and Traditional Chinese Medicine, with advanced training from Pacific College of Health and Science."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Board-Certified & Licensed",
+        "description": "NCCAOM nationally certified in both Acupuncture and Chinese Herbology. Licensed by the New York State Education Department."
+      },
+      {
+        "icon": "Heart",
+        "title": "Personalized Treatment Plans",
+        "description": "Every patient receives a customized treatment plan based on thorough TCM diagnosis — pulse reading, tongue diagnosis, and detailed health history."
+      },
+      {
+        "icon": "Globe",
+        "title": "Multilingual Care",
+        "description": "We serve our diverse Middletown community with care available in both English and Mandarin Chinese."
+      }
+    ],
+    "testimonial": {
+      "quote": "After years of chronic back pain, Dr. Huang's acupuncture treatments in Middletown changed my life. I went from daily pain medication to being pain-free in just 8 sessions. The personalized approach made all the difference.",
+      "name": "Steven D.",
+      "location": "Middletown, NY",
+      "condition": "Chronic Back Pain"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions About Acupuncture in Middletown, NY",
+    "items": [
+      {
+        "question": "How much does acupuncture cost in Middletown, NY?",
+        "answer": "At Dr. Huang Clinic, acupuncture sessions range from $75 to $150 depending on the type of visit. Initial consultations include a comprehensive TCM assessment and first treatment. We also offer package pricing for multiple sessions. For detailed pricing information, visit our <a href=\"/en/acupuncture-cost-middletown-ny\">acupuncture cost page</a>."
+      },
+      {
+        "question": "Is acupuncture painful?",
+        "answer": "Most patients feel little to no pain during acupuncture. The needles used are hair-thin — much finer than injection needles. You may feel a brief sensation upon insertion, but most patients describe the experience as deeply relaxing. Many even fall asleep during treatment."
+      },
+      {
+        "question": "How many acupuncture sessions will I need?",
+        "answer": "The number of sessions depends on your condition, how long you've had it, and how your body responds. Acute issues may improve in 3–6 sessions, while chronic conditions typically require 8–12 sessions or more. Dr. Huang will create a personalized treatment plan at your first visit."
+      },
+      {
+        "question": "Does insurance cover acupuncture in New York?",
+        "answer": "Many insurance plans in New York now include acupuncture coverage. We can provide a superbill for you to submit to your insurance company for potential reimbursement. We also accept HSA and FSA payments. Contact us to verify your specific coverage before your first visit."
+      },
+      {
+        "question": "What should I expect at my first acupuncture visit?",
+        "answer": "Your first visit includes a detailed health history review, TCM diagnostic assessment (pulse and tongue reading), and your first acupuncture treatment. The entire visit takes about 60–90 minutes. Come having eaten a light meal, wear comfortable clothing, and bring a list of any medications you take."
+      },
+      {
+        "question": "Do you speak Chinese or other languages?",
+        "answer": "Yes! Dr. Huang is fluent in both English and Mandarin Chinese. We welcome patients from all backgrounds and are happy to provide care in whichever language you're most comfortable with."
+      }
+    ]
+  },
+  "location": {
+    "title": "Visit Dr. Huang Clinic in Middletown, NY",
+    "clinicName": "Dr. Huang Clinic",
+    "address": "71 East Main Street",
+    "city": "Middletown",
+    "state": "NY",
+    "zip": "10940",
+    "phone": "(845) 381-1106",
+    "email": "sancai.acu@gmail.com",
+    "mapEmbedUrl": "https://www.google.com/maps?q=71+East+Main+Street,+Middletown,+NY+10940&output=embed",
+    "directionsUrl": "https://maps.google.com/?q=71+East+Main+Street+Middletown+NY+10940",
+    "hours": [
+      { "day": "Monday", "time": "9:00 AM – 6:00 PM" },
+      { "day": "Tuesday", "time": "9:00 AM – 6:00 PM" },
+      { "day": "Wednesday", "time": "9:00 AM – 7:00 PM" },
+      { "day": "Thursday", "time": "9:00 AM – 6:00 PM" },
+      { "day": "Friday", "time": "9:00 AM – 6:00 PM" },
+      { "day": "Saturday", "time": "9:00 AM – 2:00 PM" },
+      { "day": "Sunday", "time": "Closed" }
+    ],
+    "primaryCta": {
+      "text": "Book Your Appointment",
+      "link": "/en/contact"
+    }
+  }
+}

@@ -314,7 +314,7 @@ export default function Header({
               </Link>
               
               {/* Desktop Navigation - All in one line */}
-              <div className="hidden xl:flex items-center gap-4 2xl:gap-6 flex-1 justify-center">
+              <div className="hidden xl:flex items-center gap-2 2xl:gap-4 flex-1 justify-center">
                 {navigation.map((item) => (
                   <Link
                     key={item.url}
