@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { type Locale } from '@/lib/i18n';
 import { getRequestSiteId, loadPageContent, loadSiteInfo } from '@/lib/content';
 import { buildPageMetadata } from '@/lib/seo';
+import { getServiceSEOLinks } from '@/lib/seo-pages';
 import type { SiteInfo } from '@/lib/types';
 import HeroSection, { CredentialsSection } from '@/components/sections/HeroSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
@@ -122,6 +123,21 @@ export default async function HomePage({ params }: PageProps) {
     Boolean(content.topBar?.phone) ||
     Boolean(content.topBar?.email);
   const heroBusinessName = hero.businessName || hero.clinicName || 'Business';
+
+  // Resolve SEO service page links for homepage services section
+  const seoLinks = await getServiceSEOLinks(siteId, locale);
+  if (content.services?.services && seoLinks.size > 0) {
+    content.services.services = content.services.services.map((service: any) => {
+      const seoLink = seoLinks.get(service.id);
+      return seoLink ? { ...service, link: seoLink } : service;
+    });
+    if (content.services.featured) {
+      const featuredLink = seoLinks.get(content.services.featured.id);
+      if (featuredLink) {
+        content.services.featured = { ...content.services.featured, link: featuredLink };
+      }
+    }
+  }
   const defaultSections = [
     'hero',
     'credentials',

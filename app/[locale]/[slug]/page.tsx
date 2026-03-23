@@ -4,6 +4,7 @@ import { fetchContentEntry } from '@/lib/contentDb';
 import SEOLocalLandingLayout from '@/components/seo/SEOLocalLandingLayout';
 import SEOConditionLayout from '@/components/seo/SEOConditionLayout';
 import SEOResourceLayout from '@/components/seo/SEOResourceLayout';
+import SEOServiceLayout from '@/components/seo/SEOServiceLayout';
 import type { Metadata } from 'next';
 import type { Locale } from '@/lib/types';
 
@@ -51,6 +52,8 @@ export default async function SEOPage({ params }: Props) {
       return <SEOConditionLayout content={content} locale={locale} />;
     case 'seo-resource':
       return <SEOResourceLayout content={content} locale={locale} />;
+    case 'seo-service':
+      return <SEOServiceLayout content={content} locale={locale} />;
     default:
       notFound();
   }

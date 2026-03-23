@@ -225,15 +225,17 @@ Audit 3–5 top-performing local businesses in this industry nationally. Identif
 
 Based on the keyword universe and competitor audit, list which page types the master template must include to be competitive in this industry:
 
-| Page Type | Keyword Bucket | Required at Launch? |
-|-----------|---------------|---------------------|
-| Homepage | Brand / trust | Yes |
-| Core local landing page | Core service | Yes |
-| Service pages | Core service | Yes |
-| Condition / problem pages | Problem / condition | Yes |
-| Resource / decision pages | Decision / comparison | Phase 2 |
-| Near-location pages | Near-location | Phase 2 |
-| FAQ page | Decision / comparison | Phase 2 |
+| Page Type | Keyword Bucket | Required at Launch? | SEO Page Type |
+|-----------|---------------|---------------------|---------------|
+| Homepage | Brand / trust | Yes | — (seo object in page JSON) |
+| Core local landing page | Core service | Yes | `seo-local-landing` |
+| **Service landing pages** | **Service modality** | **Yes — one per service** | **`seo-service`** |
+| Condition / problem pages | Problem / condition | Yes | `seo-condition` |
+| Resource / decision pages | Decision / comparison | Phase 2 | `seo-resource` |
+| Near-location pages | Near-location | Phase 2 | `seo-near-location` |
+| FAQ page | Decision / comparison | Phase 2 | — |
+
+> **⚡ V3.9 Rule — Service Landing Pages:** Every service/modality offered by the client gets its own SEO landing page. The primary service (e.g., Acupuncture) maps to the `seo-local-landing` core page. All secondary services (e.g., Chinese Herbal Medicine, Cupping, Moxibustion) each get a dedicated `seo-service` page. Service list is driven by `intake.services.modalities[]`. All service pages are registered in the `site_seo_pages` DB table and rendered by the dynamic `[slug]` route.
 
 **Deliverable:** Industry Research Brief (3–5 pages) + Industry Keyword Universe document + SEO Competitor Audit gap map
 
@@ -787,18 +789,21 @@ All **6** must pass before any implementation prompt runs: ⚡ V3.8 adds P-Gate-
 | **P-Gate-5: Content Realism** | All text is real industry copy (no Lorem Ipsum). Phone/address/license/stats are realistic demo values. CTAs are action-labeled. **For SEO prototypes:** H1 must contain the real primary keyword + city. FAQs must be real "People Also Ask" questions for that industry. |
 | **P-Gate-6: SEO Compliance** ⚡ V3.8 | All 4 SEO pattern prototypes pass this checklist before approval: |
 
-**P-Gate-6 SEO Compliance Checklist (all 4 Group 2 files must pass):**
+**P-Gate-6 SEO Compliance Checklist (all 5 Group 2 files must pass):** ⚡ V3.9
 
-| Check | `seo-local-landing` | `seo-condition` | `seo-resource` | `seo-near-location` |
-|-------|--------------------|-----------------|-----------------|--------------------|
-| H1 contains primary keyword + city | ✓ required | ✓ required | ✓ required | ✓ required |
-| CTA visible above the fold | ✓ required | ✓ required | ✓ required | ✓ required |
-| FAQ section present and interactive | ✓ required | ✓ required | ✓ required | — |
-| NAP block in footer matches GBP format | ✓ required | ✓ required | ✓ required | ✓ required |
-| Internal links to related pages shown | ✓ required | ✓ required | — | ✓ required |
-| Testimonials mention service + city | ✓ required | ✓ one minimum | — | — |
-| No fake address for non-primary city | — | — | — | ✓ required |
-| Body copy ≥ 200 realistic words | ✓ required | ✓ required | ✓ required | ✓ required |
+| Check | `seo-local-landing` | `seo-condition` | `seo-service` | `seo-resource` | `seo-near-location` |
+|-------|--------------------|-----------------|-----------------|-----------------|--------------------|
+| H1 contains primary keyword + city | ✓ required | ✓ required | ✓ required | ✓ required | ✓ required |
+| CTA visible above the fold | ✓ required | ✓ required | ✓ required | ✓ required | ✓ required |
+| FAQ section present and interactive | ✓ required | ✓ required | ✓ required | ✓ required | — |
+| NAP block in footer matches GBP format | ✓ required | ✓ required | — | ✓ required | ✓ required |
+| Internal links to related pages shown | ✓ required | ✓ required | ✓ required | — | ✓ required |
+| Links back to core landing page | — | ✓ required | ✓ required | ✓ required | ✓ required |
+| Testimonials mention service + city | ✓ required | ✓ one minimum | — | — | — |
+| Conditions treated section | — | — | ✓ required | — | — |
+| No fake address for non-primary city | — | — | — | — | ✓ required |
+| Body copy ≥ 200 realistic words | ✓ required | ✓ required | ✓ required | ✓ required | ✓ required |
+| Registered in `site_seo_pages` table | ✓ required | ✓ required | ✓ required | ✓ required | ✓ required |
 
 ### How Prototypes Are Used in Each Phase
 

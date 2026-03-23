@@ -43,6 +43,100 @@
 
 ---
 
+## Dynamic Service Pages (Per-Site)
+
+> **Requirement (V3.9):** Every service/modality offered by a site **must** have its own SEO landing page. This is not optional — all services get pages at launch.
+>
+> - The **primary service** (e.g., Acupuncture) maps to the `seo-local-landing` core page
+> - Every **secondary service** gets a dedicated `seo-service` page
+> - All pages are registered in the `site_seo_pages` DB table
+> - The dynamic `[slug]` route renders all SEO pages
+> - The homepage and services page auto-link to SEO service pages via `getServiceSEOLinks()`
+> - Sites without `site_seo_pages` entries fall back to `/services#id` links (no broken links)
+
+### How It Works
+
+1. During onboarding, the intake form declares the site's services in `intake.services.modalities[]`
+2. The `seed-seo-pages.mjs` script generates one `seo-service` page per secondary modality (primary service = core landing page)
+3. Each page targets the keyword cluster `[service] [city] [state]`
+
+### Slug Pattern
+
+```
+/en/[service-slug]-[city-slug]-[state-lower]
+```
+
+### Example: Dr. Huang Clinic (5 services → 5 service pages)
+
+| Service | Slug | Title Tag | H1 |
+|---------|------|-----------|-----|
+| Acupuncture | `/en/acupuncture-middletown-ny` | Acupuncture in Middletown, NY \| Dr. Huang Clinic | Acupuncture in Middletown, NY |
+| Chinese Herbal Medicine | `/en/chinese-herbal-medicine-middletown-ny` | Chinese Herbal Medicine in Middletown, NY \| Dr. Huang | Chinese Herbal Medicine in Middletown, NY |
+| Cupping Therapy | `/en/cupping-therapy-middletown-ny` | Cupping Therapy in Middletown, NY \| Dr. Huang Clinic | Cupping Therapy in Middletown, NY |
+| Moxibustion | `/en/moxibustion-middletown-ny` | Moxibustion in Middletown, NY \| Dr. Huang Clinic | Moxibustion in Middletown, NY |
+| Tui Na Massage | `/en/tui-na-massage-middletown-ny` | Tui Na Massage in Middletown, NY \| Dr. Huang Clinic | Tui Na Massage in Middletown, NY |
+
+> **Note:** The core landing page (`acupuncture-middletown-ny`) already exists as `seo-local-landing`. The additional service pages use page type `seo-service` and cover the non-primary modalities.
+
+### SEO Object Template (Service Page)
+
+```json
+{
+  "seo": {
+    "title": "{{SERVICE_NAME}} in {{CITY_STATE}} | {{CLINIC_NAME}}",
+    "description": "{{SERVICE_NAME}} at {{CLINIC_NAME}} in {{CITY_STATE}}. [condition benefits]. Book today.",
+    "h1": "{{SERVICE_NAME}} in {{CITY_STATE}}",
+    "canonicalUrl": "/en/{{SERVICE_SLUG}}-{{CITY_SLUG}}-{{STATE_LOWER}}",
+    "schema": ["Service", "FAQPage", "BreadcrumbList"],
+    "noindex": false,
+    "priority": 0.8
+  }
+}
+```
+
+### Content Shape (seo-service)
+
+```
+{
+  pageType: 'seo-service',
+  service: string,             // e.g., 'chinese-herbal-medicine'
+  seo: { ... },
+  hero: { h1, description, ctaLabel, ctaHref },
+  whatIsIt: { heading, body },           // What is [service]?
+  whatItTreats: { heading, conditions[] },  // What conditions does [service] treat?
+  howItWorks: { heading, body },         // How does [service] work?
+  whatToExpect: { heading, body },       // What to expect during a session
+  faq: { heading, items[] },             // 4 FAQs specific to this service
+  cta: { label, href }
+}
+```
+
+### Pipeline B Behavior
+
+- `intake.services.modalities` lists all services offered
+- The primary service (usually Acupuncture) maps to the existing `seo-local-landing` page
+- Each additional service generates a new `seo-service` page
+- All service pages link back to the core landing page
+- Core landing page services section links to each service page
+
+### Intake Field
+
+```json
+{
+  "services": {
+    "primary": "acupuncture",
+    "modalities": [
+      { "name": "Chinese Herbal Medicine", "slug": "chinese-herbal-medicine" },
+      { "name": "Cupping Therapy", "slug": "cupping-therapy" },
+      { "name": "Moxibustion", "slug": "moxibustion" },
+      { "name": "Tui Na Massage", "slug": "tui-na-massage" }
+    ]
+  }
+}
+```
+
+---
+
 ## Internal Link Architecture
 
 ```
@@ -52,7 +146,10 @@ Homepage (/en)
         ├── Condition: Insomnia                                ← P1
         ├── Condition: Anxiety                                 ← P1
         ├── Condition: Fertility                               ← P2
-        ├── Service: Chinese Herbal Medicine                   ← P2
+        ├── Service: Chinese Herbal Medicine                   ← P2 (dynamic)
+        ├── Service: Cupping Therapy                           ← P2 (dynamic)
+        ├── Service: Moxibustion                               ← P2 (dynamic)
+        ├── Service: Tui Na Massage                            ← P2 (dynamic)
         ├── Resource: Cost                                     ← P2
         ├── Resource: First Visit                              ← P2
         ├── Near-location: Goshen                             ← P3
@@ -62,8 +159,10 @@ Homepage (/en)
 **Required link rules:**
 - Homepage → Core Landing Page: anchor = "Acupuncture in Middletown, NY"
 - Core Landing Page → all condition pages: anchor = condition name
+- Core Landing Page → all service pages: anchor = service name
 - All condition pages → Core Landing Page: anchor = "acupuncture in Middletown, NY"
-- All condition pages → /contact: anchor = "Book Your Appointment"
+- All service pages → Core Landing Page: anchor = "acupuncture in Middletown, NY"
+- All condition/service pages → /contact: anchor = "Book Your Appointment"
 - All pages → footer with NAP block matching GBP exactly
 
 ---

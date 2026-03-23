@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS site_seo_pages (
   slug        text NOT NULL,
   page_type   text NOT NULL CHECK (page_type IN (
                 'seo-local-landing','seo-condition',
-                'seo-resource','seo-near-location')),
+                'seo-resource','seo-service','seo-near-location')),
   active      boolean NOT NULL DEFAULT true,
   created_at  timestamptz DEFAULT now(),
   UNIQUE (site_id, slug)

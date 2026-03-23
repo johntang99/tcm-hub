@@ -1,0 +1,76 @@
+{
+  "cta": {
+    "href": "/zh/contact",
+    "label": "预约就诊"
+  },
+  "faq": {
+    "items": [
+      {
+        "answer": "轻度焦虑通常需要8-12次治疗，中重度焦虑可能需要15-20次或更多。我们会根据您的症状改善情况调整治疗频率和持续时间。",
+        "question": "针灸治疗焦虑需要多少次？"
+      },
+      {
+        "answer": "针灸对恐慌发作很有效果。通过调节自主神经系统，能够减少恐慌发作的频率和强度，同时提高您应对突发焦虑的能力。",
+        "question": "针灸能帮助恐慌发作吗？"
+      },
+      {
+        "answer": "针灸可以与抗焦虑药物同时使用，往往能增强治疗效果，有时还能帮助减少药物用量。请告知我们您正在服用的所有药物。",
+        "question": "针灸可以和抗焦虑药同时使用吗？"
+      },
+      {
+        "answer": "针灸治疗焦虑时您会感到深度放松，类似冥想状态。紧张的肌肉会松弛，呼吸变得深沉平缓，内心感到宁静平和，这种感觉通常持续数小时到数天。",
+        "question": "焦虑患者做针灸是什么感觉？"
+      }
+    ],
+    "heading": "焦虑针灸 — 常见问题"
+  },
+  "seo": {
+    "h1": "Middletown焦虑针灸治疗专家 - Dr. Huang Clinic",
+    "title": "Middletown焦虑针灸治疗 - Dr. Huang中医舒缓情绪",
+    "schema": [
+      "Service",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
+    "noindex": false,
+    "priority": 0.8,
+    "description": "Dr. Huang Clinic在Middletown专业治疗焦虑症。中医针灸调节情绪，缓解焦虑抑郁，无副作用。改善紧张、恐慌、心悸等症状。预约焦虑治疗。",
+    "canonicalUrl": "/zh/acupuncture-for-anxiety-middletown-ny"
+  },
+  "hero": {
+    "h1": "Middletown焦虑针灸治疗专家 - Dr. Huang Clinic",
+    "ctaHref": "/zh/contact",
+    "ctaLabel": "预约咨询",
+    "openingParagraph": "现代生活节奏快、压力大，焦虑已成为影响人们心理健康的重要问题。持续的焦虑不仅影响情绪状态，还可能导致失眠、心悸、消化不良等身体症状。Dr. Huang Clinic在Middletown为焦虑患者提供专业的中医针灸治疗，通过调节身心平衡来缓解焦虑症状。我们的治疗方法温和安全，没有西药可能带来的副作用和依赖性问题。无论是广泛性焦虑、社交焦虑还是恐慌障碍，我们都有丰富的治疗经验。通过个性化的治疗方案，帮助患者重建内心的宁静与平衡，提高生活质量和幸福感。"
+  },
+  "pageType": "seo-condition",
+  "condition": "anxiety",
+  "howItWorks": {
+    "body": "中医认为焦虑多与心神不安、肝气郁结、心肾不交、痰火扰心等因素有关。Dr. Huang运用传统中医理论，通过辨证论治确定患者的具体证型。针灸治疗主要选用神门、印堂、百会、太冲、内关等穴位，通过调节经络气血来安神定志。现代神经科学研究表明，针灸能够影响大脑边缘系统和下丘脑-垂体-肾上腺轴，调节神经递质如GABA、血清素的释放，从而产生抗焦虑效果。同时，针灸还能激活迷走神经，促进副交感神经活动，帮助身体进入放松状态。结合心理疏导和生活方式指导，能够更好地帮助患者管理焦虑情绪。",
+    "heading": "Middletown焦虑针灸治疗专家 - Dr. Huang Clinic"
+  },
+  "testimonial": {
+    "heading": "Middletown患者的真实反馈"
+  },
+  "whatToExpect": {
+    "body": "首次就诊时，Dr. Huang会了解您的焦虑症状、触发因素和身体反应。通过中医诊断确定治疗重点后开始针灸治疗。治疗过程中您会感到逐渐放松，心率趋于平缓，紧张感消退。每次治疗约40-50分钟，许多患者在治疗后立即感到心情平静。通常需要10-16次治疗来稳定情绪状态。我们还会教授简单的放松技巧和呼吸方法，帮助您在日常生活中更好地管理焦虑。定期治疗能够显著提高您的情绪稳定性和抗压能力。",
+    "heading": "Dr. Huang Clinic的治疗流程"
+  },
+  "relatedConditions": {
+    "links": [
+      {
+        "slug": "acupuncture-for-back-pain-middletown-ny",
+        "label": "针灸治疗腰痛"
+      },
+      {
+        "slug": "acupuncture-for-insomnia-middletown-ny",
+        "label": "针灸治疗失眠"
+      },
+      {
+        "slug": "conditions#gynecology",
+        "label": "助孕针灸"
+      }
+    ],
+    "heading": "Dr. Huang Clinic治疗的其他病症"
+  }
+}

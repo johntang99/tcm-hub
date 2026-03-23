@@ -119,12 +119,78 @@ async function main() {
   console.log(`  _sites.json:         ${ok(!!inSites)} ${inSites ? inSites.name : 'MISSING'}`);
   console.log(`  _site-domains.json:  ${ok(inDomains.length > 0)} ${inDomains.length} entries`);
 
+  // ── SEO Pages (V3.9) ──
+  console.log('── SEO Pages ──');
+  const seoPages = await fetchJson(`${SURL}/rest/v1/site_seo_pages?site_id=eq.${SITE}&active=eq.true&select=slug,page_type`);
+  const seoCount = seoPages.length;
+  const expectedSeoTypes = ['seo-local-landing', 'seo-condition', 'seo-condition', 'seo-condition', 'seo-resource'];
+  const hasCoreLP = seoPages.some(p => p.page_type === 'seo-local-landing');
+  const conditionCount = seoPages.filter(p => p.page_type === 'seo-condition').length;
+  const hasResource = seoPages.some(p => p.page_type === 'seo-resource');
+  const servicePageCount = seoPages.filter(p => p.page_type === 'seo-service').length;
+
+  // Check intake for expected service count
+  const intakePath = path.join(ROOT, 'content', SITE, 'intake.json');
+  let expectedServicePages = 0;
+  let intakeModalities = [];
+  try {
+    const intake = JSON.parse(fs.readFileSync(intakePath, 'utf-8'));
+    intakeModalities = intake.services?.modalities || [];
+    expectedServicePages = intakeModalities.length;
+  } catch { /* no intake */ }
+
+  console.log(`  site_seo_pages:   ${ok(seoCount >= 5)} ${seoCount} active rows`);
+  console.log(`  core landing:     ${ok(hasCoreLP)} ${hasCoreLP ? 'present' : 'MISSING'}`);
+  console.log(`  condition pages:  ${ok(conditionCount >= 3)} ${conditionCount} (need 3+)`);
+  console.log(`  resource pages:   ${ok(hasResource)} ${hasResource ? 'present' : 'MISSING'}`);
+  console.log(`  service pages:    ${ok(servicePageCount >= expectedServicePages)} ${servicePageCount}/${expectedServicePages} (from intake modalities)`);
+
+  // Check each intake modality has a corresponding seo-service page
+  if (expectedServicePages > 0) {
+    const serviceSlugs = seoPages.filter(p => p.page_type === 'seo-service').map(p => p.slug);
+    for (const mod of intakeModalities) {
+      const found = serviceSlugs.some(s => s.startsWith(mod.slug));
+      console.log(`    ${ok(found)} ${mod.name} (${mod.slug})`);
+    }
+  }
+
+  // Check SEO fields in content_entries
+  let seoFieldIssues = 0;
+  for (const sp of seoPages) {
+    const entries = await fetchJson(`${SURL}/rest/v1/content_entries?site_id=eq.${SITE}&locale=eq.en&path=eq.${sp.slug}&select=data`);
+    if (entries.length === 0) {
+      console.log(`  ✗ ${sp.slug}: NO content_entries row`);
+      seoFieldIssues++;
+      continue;
+    }
+    const seo = entries[0].data?.seo;
+    if (!seo?.title || !seo?.description || !seo?.h1) {
+      console.log(`  ✗ ${sp.slug}: incomplete seo object`);
+      seoFieldIssues++;
+    } else if (seo.title.length > 60) {
+      console.log(`  ⚠ ${sp.slug}: title ${seo.title.length} chars (>60)`);
+      seoFieldIssues++;
+    } else if (seo.description.length > 155) {
+      console.log(`  ⚠ ${sp.slug}: desc ${seo.description.length} chars (>155)`);
+      seoFieldIssues++;
+    } else {
+      console.log(`  ${ok(true)} ${sp.slug}: title=${seo.title.length} desc=${seo.description.length}`);
+    }
+  }
+
   const allOk = sites.length > 0 && contentCount === tplContent && mediaCount === tplMedia
     && domains.length >= 2 && contaminated.length === 0 && storageFiles.length === tplStorageFiles.length
     && localUploads > 0 && localContent > 0 && inSites && inDomains.length > 0;
 
+  const seoOk = seoCount >= 5 && hasCoreLP && conditionCount >= 3 && hasResource
+    && servicePageCount >= expectedServicePages && seoFieldIssues === 0;
+
   console.log('');
-  console.log(allOk ? '✓ ONBOARDING COMPLETE — all checks passed.' : '⚠️  SOME CHECKS NEED ATTENTION — see above.');
+  console.log(allOk && seoOk
+    ? '✓ ONBOARDING COMPLETE — all checks passed (including SEO).'
+    : allOk && !seoOk
+      ? '⚠️  ONBOARDING OK but SEO pages need attention — see above.'
+      : '⚠️  SOME CHECKS NEED ATTENTION — see above.');
   console.log('');
 }
 

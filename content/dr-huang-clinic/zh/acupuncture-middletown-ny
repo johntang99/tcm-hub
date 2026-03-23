@@ -1,0 +1,170 @@
+{
+  "faq": {
+    "items": [
+      {
+        "answer": "初诊费用通常在$120-180之间，复诊$80-120。具体费用取决于治疗方案和时长。我们接受多种保险，也提供自费优惠。",
+        "linkHref": "/zh/acupuncture-cost-middletown-ny",
+        "linkText": "查看详细费用",
+        "question": "在Middletown, NY做针灸要多少钱？"
+      },
+      {
+        "answer": "针灸治疗几乎无痛。您可能会感到轻微的针刺感或酸胀感，这是正常的得气反应，表明治疗正在起效。",
+        "question": "针灸会痛吗？"
+      },
+      {
+        "answer": "治疗次数因人而异，急性症状可能需要4-6次，慢性疾病通常需要8-12次或更多。我们会根据您的恢复情况调整治疗计划。",
+        "question": "我需要做多少次治疗？"
+      },
+      {
+        "answer": "我们接受大部分主要保险，包括一些医疗保险计划。请致电咨询您的具体保险覆盖情况，我们的工作人员会协助您确认。",
+        "question": "NY的保险覆盖针灸吗？"
+      },
+      {
+        "answer": "初诊包括详细的中医问诊、舌诊、脉诊，制定个性化治疗方案，然后进行首次针灸治疗，整个过程约60-90分钟。",
+        "question": "第一次就诊需要注意什么？"
+      },
+      {
+        "answer": "Dr. Huang精通中文和英文，能够用您熟悉的语言进行沟通，确保您充分理解治疗过程和注意事项。",
+        "question": "诊所提供中文服务吗？"
+      }
+    ],
+    "heading": "关于Middletown, NY针灸的常见问题"
+  },
+  "seo": {
+    "h1": "Middletown专业中医针灸治疗 - Dr. Huang Clinic",
+    "title": "Middletown中医诊所 - Dr. Huang专业针灸中医治疗",
+    "schema": [
+      "LocalBusiness",
+      "Service",
+      "BreadcrumbList"
+    ],
+    "noindex": false,
+    "priority": 0.9,
+    "description": "Dr. Huang Clinic位于Middletown, NY，提供专业中医针灸治疗。治疗腰痛、失眠、焦虑等症状。经验丰富的中医师，接受保险，预约便捷。",
+    "canonicalUrl": "/zh/acupuncture-middletown-ny"
+  },
+  "hero": {
+    "h1": "Middletown专业中医针灸治疗 - Dr. Huang Clinic",
+    "intro": "Dr. Huang Clinic为Middletown社区提供专业的中医针灸治疗服务。我们运用传统中医理论结合现代医学知识，为您的健康问题提供个性化的治疗方案。",
+    "ctaHref": "/zh/contact",
+    "ctaLabel": "预约首次就诊",
+    "subheading": "Dr. Huang Clinic — Traditional Chinese Medicine & Acupuncture",
+    "trustItems": []
+  },
+  "location": {
+    "nap": {
+      "zip": "10940",
+      "city": "Middletown",
+      "name": "Dr. Huang Clinic",
+      "email": "sancai.acu@gmail.com",
+      "phone": "(845) 381-1106",
+      "state": "NY",
+      "address": "71 East Main Street"
+    },
+    "hours": [
+      {
+        "day": "Monday",
+        "hours": "9:00 AM - 6:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "9:00 AM - 6:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "9:00 AM - 7:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "hours": "9:00 AM - 6:00 PM"
+      },
+      {
+        "day": "Friday",
+        "hours": "9:00 AM - 6:00 PM"
+      },
+      {
+        "day": "Saturday",
+        "hours": "9:00 AM - 2:00 PM"
+      },
+      {
+        "day": "Sunday",
+        "hours": "Closed"
+      }
+    ],
+    "intro": "我们的诊所位于Middletown, NY，交通便利，为周边华人社区提供优质的中医服务。",
+    "ctaHref": "/zh/contact",
+    "heading": "访问Middletown, NY的Dr. Huang Clinic",
+    "ctaLabel": "预约就诊",
+    "hoursLabel": "营业时间",
+    "mapEmbedUrl": "https://www.google.com/maps?q=71%20East%20Main%20Street%2C%20Middletown%2C%20NY%2010940&output=embed"
+  },
+  "pageType": "seo-local-landing",
+  "services": {
+    "items": [
+      {
+        "name": "针灸",
+        "description": "通过刺激特定穴位来恢复身体平衡、缓解疼痛。"
+      },
+      {
+        "name": "中药",
+        "description": "根据个人体质开具的中药方剂，支持治疗效果。"
+      },
+      {
+        "name": "拔罐",
+        "description": "促进血液循环、缓解肌肉紧张。"
+      },
+      {
+        "name": "艾灸",
+        "description": "温热疗法，使用艾草刺激穴位促进愈合。"
+      },
+      {
+        "name": "推拿",
+        "description": "中医治疗性按摩，针对经络和穴位。"
+      }
+    ],
+    "heading": "Dr. Huang Clinic的中医治疗项目"
+  },
+  "conditions": {
+    "intro": "针灸治疗根本原因，而不仅仅是缓解症状。",
+    "items": [
+      {
+        "name": "腰背疼痛",
+        "slug": "acupuncture-for-back-pain-middletown-ny"
+      },
+      {
+        "name": "失眠",
+        "slug": "acupuncture-for-insomnia-middletown-ny"
+      },
+      {
+        "name": "焦虑与压力",
+        "slug": "acupuncture-for-anxiety-middletown-ny"
+      },
+      {
+        "name": "助孕支持",
+        "slug": "conditions#gynecology"
+      },
+      {
+        "name": "颈部疼痛",
+        "slug": "acupuncture-middletown-ny"
+      },
+      {
+        "name": "消化问题",
+        "slug": "acupuncture-middletown-ny"
+      },
+      {
+        "name": "头痛",
+        "slug": "acupuncture-middletown-ny"
+      },
+      {
+        "name": "疲劳",
+        "slug": "acupuncture-middletown-ny"
+      }
+    ],
+    "heading": "针灸可以帮助哪些症状？"
+  },
+  "whyChooseUs": {
+    "items": [],
+    "heading": "为什么选择Middletown, NY的Dr. Huang Clinic",
+    "testimonial": null
+  }
+}

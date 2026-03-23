@@ -225,6 +225,46 @@ async function main() {
   fs.writeFileSync(domainsFile, JSON.stringify(domainsData, null, 2) + '\n');
   console.log('Updated content/_site-domains.json');
 
+  // ── SEO Pages (V3.9) ──────────────────────────────────────
+  // Delegates to seed-seo-pages.mjs which handles:
+  //   - EN + ZH content generation via Claude API
+  //   - Real site info (address, phone, hours, map) from site.json/contact.json
+  //   - Locale-aware labels (Chinese headings, condition names, CTA buttons)
+  //   - content_entries + site_seo_pages upserts
+  //   - SEO audit (title ≤60, desc ≤155)
+  console.log('\n── SEO Page Seeding ──');
+
+  const intakePath = path.join(CONTENT_DIR, SITE_ID, 'intake.json');
+  const hasIntake = fs.existsSync(intakePath);
+  const ANTHROPIC_KEY = getEnv('ANTHROPIC_API_KEY');
+
+  if (!hasIntake) {
+    console.log('⚠ No intake.json found — skipping SEO page generation.');
+    console.log(`  Create ${intakePath} and run: node scripts/seed-seo-pages.mjs ${SITE_ID}`);
+  } else if (!ANTHROPIC_KEY) {
+    console.log('⚠ No ANTHROPIC_API_KEY — skipping SEO page generation.');
+    console.log(`  Add ANTHROPIC_API_KEY to .env.local and run: node scripts/seed-seo-pages.mjs ${SITE_ID}`);
+  } else {
+    try {
+      const { execSync } = await import('child_process');
+      const seederPath = path.join(ROOT, 'scripts', 'seed-seo-pages.mjs');
+      console.log(`Running: node ${seederPath} ${SITE_ID}`);
+      execSync(`node "${seederPath}" "${SITE_ID}"`, {
+        cwd: ROOT,
+        stdio: 'inherit',
+        env: { ...process.env, ...Object.fromEntries(
+          envContent.split('\n')
+            .filter(l => l.includes('=') && !l.startsWith('#'))
+            .map(l => { const [k, ...v] = l.split('='); return [k.trim(), v.join('=').replace(/^"|"$/g, '').trim()]; })
+        )},
+        timeout: 300_000,
+      });
+    } catch (err) {
+      console.error(`SEO seeding failed: ${err.message}`);
+      console.log(`  You can retry with: node scripts/seed-seo-pages.mjs ${SITE_ID}`);
+    }
+  }
+
   console.log('\nRe-onboard O1 completed.\n');
 }
 

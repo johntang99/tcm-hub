@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getRequestSiteId, loadAllItems, loadContent, loadPageContent } from '@/lib/content';
 import { buildPageMetadata } from '@/lib/seo';
+import { getServiceSEOLinks } from '@/lib/seo-pages';
 import { ServicesPage, Locale } from '@/lib/types';
 import { Badge, Card, CardHeader, CardTitle, CardDescription, CardContent, Icon, Accordion } from '@/components/ui';
 import CTASection from '@/components/sections/CTASection';
@@ -70,7 +71,13 @@ export default async function ServicesPageComponent({ params }: ServicesPageProp
   }
 
   const { hero, overview, servicesList, faq, cta } = content;
-  const services = servicesList?.items || [];
+
+  // Resolve SEO service page links — override service.link when an SEO page exists
+  const seoLinks = await getServiceSEOLinks(siteId, locale);
+  const services = (servicesList?.items || []).map((service) => {
+    const seoLink = seoLinks.get(service.id);
+    return seoLink ? { ...service, link: seoLink } : service;
+  });
   const blogBySlug = new Map(blogPosts.map((post) => [post.slug, post]));
   const preferredSlugs = content.relatedReading?.preferredSlugs || [];
   const preferredPosts = preferredSlugs

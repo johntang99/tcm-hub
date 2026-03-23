@@ -7,6 +7,7 @@ export interface SEOPage {
     | 'seo-local-landing'
     | 'seo-condition'
     | 'seo-resource'
+    | 'seo-service'
     | 'seo-near-location';
   active: boolean;
 }
@@ -29,6 +30,76 @@ export async function getSEOPagesForSite(
   }
 
   return (data as SEOPage[]) ?? [];
+}
+
+/**
+ * Returns a Map of service-id → SEO page URL for the given site.
+ * Used by services page and homepage to link to SEO service pages
+ * when they exist, falling back to /services#id when they don't.
+ *
+ * Handles ID mismatches across pages — e.g., homepage uses "herbal-medicine"
+ * but services page uses "chinese-herbal-medicine" and the SEO slug is
+ * "chinese-herbal-medicine-middletown-ny". All aliases map to the same URL.
+ */
+export async function getServiceSEOLinks(
+  siteId: string,
+  locale: string
+): Promise<Map<string, string>> {
+  const pages = await getSEOPagesForSite(siteId);
+  const map = new Map<string, string>();
+
+  // Map the primary service (acupuncture) to the core landing page
+  const coreLanding = pages.find((p) => p.page_type === 'seo-local-landing');
+  if (coreLanding) {
+    const url = `/${locale}/${coreLanding.slug}`;
+    map.set('acupuncture', url);
+  }
+
+  const servicePages = pages.filter((p) => p.page_type === 'seo-service');
+
+  // Each entry: [canonical slug prefix, ...aliases used as service IDs in content JSON]
+  const serviceAliases: [string, string[]][] = [
+    ['chinese-herbal-medicine', ['chinese-herbal-medicine', 'herbal-medicine', 'herbs']],
+    ['cupping-therapy', ['cupping-therapy', 'cupping']],
+    ['moxibustion', ['moxibustion', 'moxa']],
+    ['tui-na-massage', ['tui-na-massage', 'tui-na', 'tuina', 'tuina-massage']],
+    ['gua-sha', ['gua-sha', 'guasha']],
+    ['acupressure', ['acupressure']],
+  ];
+
+  for (const page of servicePages) {
+    const url = `/${locale}/${page.slug}`;
+
+    // Find which alias group this slug belongs to
+    for (const [canonical, aliases] of serviceAliases) {
+      if (page.slug.startsWith(canonical)) {
+        // Map ALL aliases to this URL
+        for (const alias of aliases) {
+          map.set(alias, url);
+        }
+        break;
+      }
+    }
+
+    // Also try direct prefix match for unknown services
+    // e.g., "aromatherapy-middletown-ny" → map "aromatherapy"
+    if (!Array.from(map.values()).includes(url)) {
+      // Extract prefix before city slug (last two segments are city-state)
+      const parts = page.slug.split('-');
+      if (parts.length >= 3) {
+        // Try progressively shorter prefixes
+        for (let len = parts.length - 2; len >= 1; len--) {
+          const prefix = parts.slice(0, len).join('-');
+          if (prefix.length > 2) {
+            map.set(prefix, url);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  return map;
 }
 
 export async function registerSEOPage(

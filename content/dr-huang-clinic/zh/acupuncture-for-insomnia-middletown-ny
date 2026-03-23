@@ -1,0 +1,76 @@
+{
+  "cta": {
+    "href": "/zh/contact",
+    "label": "预约就诊"
+  },
+  "faq": {
+    "items": [
+      {
+        "answer": "多数患者在3-5次治疗后开始感到睡眠质量改善，入睡时间缩短。完整的治疗效果通常在6-8周后显现，但个体差异较大。",
+        "question": "针灸治疗失眠多快见效？"
+      },
+      {
+        "answer": "针灸可以帮助减少对安眠药的依赖，但停药需要在医生指导下逐步进行。我们会与您的主治医生协调，制定安全的减药计划。",
+        "question": "针灸能替代安眠药吗？"
+      },
+      {
+        "answer": "针灸起效更快，中药调理更深入。两者结合使用能取得最佳效果。针灸主要调节神经功能，中药主要调理脏腑气血，相互补充。",
+        "question": "针灸和中药哪个更适合治疗失眠？"
+      },
+      {
+        "answer": "常见证型包括心肾不交型、肝郁化火型、心脾两虚型、痰热内扰型等。不同证型的治疗方法和选穴会有所不同，需要个性化治疗。",
+        "question": "中医认为失眠的原因是什么？"
+      }
+    ],
+    "heading": "失眠针灸 — 常见问题"
+  },
+  "seo": {
+    "h1": "Middletown失眠针灸治疗专家 - Dr. Huang Clinic",
+    "title": "Middletown失眠针灸治疗 - Dr. Huang中医安神助眠",
+    "schema": [
+      "Service",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
+    "noindex": false,
+    "priority": 0.8,
+    "description": "Dr. Huang Clinic在Middletown专治失眠多梦。中医针灸调理睡眠，无依赖性，标本兼治。改善入睡困难、早醒、浅睡等问题。预约失眠治疗。",
+    "canonicalUrl": "/zh/acupuncture-for-insomnia-middletown-ny"
+  },
+  "hero": {
+    "h1": "Middletown失眠针灸治疗专家 - Dr. Huang Clinic",
+    "ctaHref": "/zh/contact",
+    "ctaLabel": "预约咨询",
+    "openingParagraph": "失眠是困扰现代人的常见问题，长期睡眠不足不仅影响日常生活质量，还可能导致免疫力下降、情绪波动等健康问题。Dr. Huang Clinic在Middletown为失眠患者提供专业的中医针灸治疗，帮助您重获优质睡眠。我们的治疗方法安全无副作用，不会产生药物依赖，从根本上调理身体的阴阳平衡。无论是入睡困难、睡眠浅、多梦易醒还是早醒等各种睡眠障碍，我们都有相应的治疗方案。多年来，我们已经帮助众多患者改善了睡眠质量，让他们重新拥有充沛的精力和健康的生活状态。"
+  },
+  "pageType": "seo-condition",
+  "condition": "insomnia",
+  "howItWorks": {
+    "body": "中医理论认为失眠主要由心肾不交、肝郁化火、痰热内扰、心脾两虚等因素引起。Dr. Huang通过望闻问切四诊确定失眠的中医证型，然后选择相应的治疗穴位。常用穴位包括神门、三阴交、百会、安眠穴等，通过调节神经系统功能来改善睡眠。现代研究显示，针灸能够调节大脑神经递质如血清素和褪黑素的分泌，帮助建立正常的睡眠-觉醒节律。同时，针灸还能激活副交感神经系统，降低压力激素水平，使身心进入放松状态。配合耳针和中药调理，能够更好地稳定治疗效果，让您享受自然深度的睡眠。",
+    "heading": "Middletown失眠针灸治疗专家 - Dr. Huang Clinic"
+  },
+  "testimonial": {
+    "heading": "Middletown患者的真实反馈"
+  },
+  "whatToExpect": {
+    "body": "初诊时Dr. Huang会详细了解您的睡眠模式、入睡时间、睡眠质量和相关症状。通过中医诊断确定治疗方案后开始针灸治疗。治疗过程中您可能感到全身放松，甚至在治疗台上就能感受到困意。每次治疗约45分钟，许多患者当晚就能体验到睡眠改善。通常需要8-15次治疗才能获得稳定的效果。我们还会提供睡眠卫生指导和生活方式建议，帮助您建立良好的睡眠习惯。",
+    "heading": "Dr. Huang Clinic的治疗流程"
+  },
+  "relatedConditions": {
+    "links": [
+      {
+        "slug": "acupuncture-for-back-pain-middletown-ny",
+        "label": "针灸治疗腰痛"
+      },
+      {
+        "slug": "acupuncture-for-anxiety-middletown-ny",
+        "label": "针灸治疗焦虑"
+      },
+      {
+        "slug": "conditions#gynecology",
+        "label": "助孕针灸"
+      }
+    ],
+    "heading": "Dr. Huang Clinic治疗的其他病症"
+  }
+}

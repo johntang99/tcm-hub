@@ -361,6 +361,85 @@
 
 ---
 
+## Brief 6 — Dynamic Service Pages
+
+> **This brief applies to ALL non-primary service modalities.** The number of service pages per site is driven by the intake form — not hardcoded. If a clinic offers 4 services beyond acupuncture, 4 service pages are generated.
+
+**Canonical URL pattern:** `/en/[service-slug]-[city-slug]-[state-lower]`
+**Page Type:** Service (`seo-service` in site_seo_pages)
+**Primary Keyword:** `[service name] [city] [state]`
+**Target Word Count:** 600–900 words
+**Schema:** Service, FAQPage, BreadcrumbList
+
+### SEO Object
+```json
+{
+  "title": "{{SERVICE_NAME}} in {{CITY_STATE}} | {{CLINIC_NAME}}",
+  "description": "[max 155 chars — service + city + key benefit + CTA]",
+  "h1": "{{SERVICE_NAME}} in {{CITY_STATE}}",
+  "canonicalUrl": "/en/{{SERVICE_SLUG}}-{{CITY_SLUG}}-{{STATE_LOWER}}",
+  "schema": ["Service", "FAQPage", "BreadcrumbList"],
+  "noindex": false,
+  "priority": 0.8
+}
+```
+
+### Page Section Structure
+
+**Section 1 — Hero**
+- H1: "{{SERVICE_NAME}} in {{CITY_STATE}}"
+- Opening paragraph (80–120 words): What is this service, who benefits from it, and why patients choose {{CLINIC_NAME}} in {{CITY_STATE}} for it. Mention {{PRACTITIONER_NAME}}.
+- CTA: "Book a {{SERVICE_NAME}} Consultation" → /contact
+
+**Section 2 — What Is {{SERVICE_NAME}}?**
+- H2: "What Is {{SERVICE_NAME}}?"
+- 2–3 paragraphs: Origin and principles, how it differs from other TCM modalities, what makes it unique. Write for a patient who has never tried it.
+
+**Section 3 — What Conditions Does It Treat?**
+- H2: "Conditions Treated with {{SERVICE_NAME}}"
+- List of 6–8 conditions this specific modality addresses
+- Each condition links to its condition page if one exists, otherwise to /conditions
+
+**Section 4 — How It Works / What to Expect**
+- H2: "What to Expect During {{SERVICE_NAME}} at {{CLINIC_NAME}}"
+- Step-by-step: consultation → treatment process → aftercare
+- Address common concerns specific to this modality (e.g., cupping marks, herbal taste, needle-free for Tui Na)
+
+**Section 5 — FAQ**
+- H2: "{{SERVICE_NAME}} — Common Questions"
+- 4 questions specific to this service modality:
+  1. How does [service] differ from acupuncture?
+  2. Is [service] painful / what does it feel like?
+  3. How many sessions of [service] will I need?
+  4. Can [service] be combined with other TCM treatments?
+
+**Section 6 — CTA**
+- Link back to core landing page: "Learn more about acupuncture in {{CITY_STATE}}"
+- Final CTA: "Book Your Appointment" → /contact
+
+### Internal Links Required
+- FROM core landing page services section → this page, anchor: service name
+- FROM this page → /en/acupuncture-{{CITY_SLUG}}-{{STATE_LOWER}}, anchor: "acupuncture in {{CITY_STATE}}"
+- FROM this page → /contact, anchor: "Book Your Appointment"
+
+### Pipeline B Behavior
+- **All services must have SEO landing pages** — this is a V3.9 requirement, not optional
+- `intake.services.primary` → maps to the `seo-local-landing` core page (e.g., Acupuncture = core landing)
+- `intake.services.modalities[]` → each generates a `seo-service` page in both EN and ZH locales
+- All pages registered in `site_seo_pages` DB table with `page_type = 'seo-service'`
+- Service slugs derived from service name: "Chinese Herbal Medicine" → `chinese-herbal-medicine`
+- Content generated per-service via Claude API with `seo-service-page.md` prompt
+- Homepage and services page auto-link to SEO pages via `getServiceSEOLinks()` — no manual link configuration needed
+- Sites without `site_seo_pages` entries safely fall back to `/services#id` links
+
+### Example Services by Industry
+
+**TCM Clinics:** Chinese Herbal Medicine, Cupping Therapy, Moxibustion, Tui Na Massage, Gua Sha, Acupressure
+**Dental Clinics:** Teeth Whitening, Dental Implants, Invisalign, Root Canal, Cosmetic Dentistry
+**Primary Care:** Annual Physicals, Vaccinations, Chronic Disease Management, Telehealth
+
+---
+
 ## Content Writing Rules (All Pages)
 
 1. **City appears naturally**: mention {{CITY_STATE}} in H1, first paragraph, location section, and 1–2 body paragraphs. Not mechanically repeated every sentence.
