@@ -7,6 +7,7 @@ import SEOResourceLayout from '@/components/seo/SEOResourceLayout';
 import SEOServiceLayout from '@/components/seo/SEOServiceLayout';
 import type { Metadata } from 'next';
 import type { Locale } from '@/lib/types';
+import { getBaseUrlFromRequest } from '@/lib/seo';
 
 export const dynamic = 'force-dynamic';
 
@@ -44,16 +45,18 @@ export default async function SEOPage({ params }: Props) {
   if (!entry?.data) notFound();
 
   const content = entry.data as Record<string, any>;
+  const base = getBaseUrlFromRequest();
+  const siteBaseOrigin = `${base.protocol}//${base.host}`;
 
   switch (content.pageType) {
     case 'seo-local-landing':
-      return <SEOLocalLandingLayout content={content} locale={locale} />;
+      return <SEOLocalLandingLayout content={content} locale={locale} siteBaseOrigin={siteBaseOrigin} />;
     case 'seo-condition':
-      return <SEOConditionLayout content={content} locale={locale} />;
+      return <SEOConditionLayout content={content} locale={locale} siteBaseOrigin={siteBaseOrigin} />;
     case 'seo-resource':
-      return <SEOResourceLayout content={content} locale={locale} />;
+      return <SEOResourceLayout content={content} locale={locale} siteBaseOrigin={siteBaseOrigin} />;
     case 'seo-service':
-      return <SEOServiceLayout content={content} locale={locale} />;
+      return <SEOServiceLayout content={content} locale={locale} siteBaseOrigin={siteBaseOrigin} />;
     default:
       notFound();
   }

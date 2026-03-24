@@ -3,6 +3,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Icon } from '@/components/ui';
+import {
+  absoluteUrlFromSiteOrigin,
+  resolveSeoCanonicalToAbsoluteUrl,
+} from '@/lib/seo-absolute-url';
 
 interface FAQItem {
   question: string;
@@ -62,6 +66,8 @@ interface SEOConditionContent {
 interface SEOConditionLayoutProps {
   content: Record<string, any>;
   locale: string;
+  /** e.g. https://drhuangclinic.com — required for valid BreadcrumbList absolute URLs */
+  siteBaseOrigin: string;
 }
 
 function FAQAccordion({ items }: { items: FAQItem[] }) {
@@ -106,6 +112,7 @@ function FAQAccordion({ items }: { items: FAQItem[] }) {
 export default function SEOConditionLayout({
   content,
   locale,
+  siteBaseOrigin,
 }: SEOConditionLayoutProps) {
   const c = content as unknown as SEOConditionContent;
   const {
@@ -138,30 +145,39 @@ export default function SEOConditionLayout({
     })),
   };
 
-  // BreadcrumbList JSON-LD
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: `/${locale}`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Acupuncture',
-        item: `/${locale}/acupuncture-middletown-ny`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: c.seo.h1,
-      },
-    ],
-  };
+  const origin =
+    (siteBaseOrigin || '').replace(/\/$/, '') ||
+    (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')) ||
+    '';
+
+  // BreadcrumbList JSON-LD — Google requires absolute URLs in `item` (not path-only).
+  const breadcrumbSchema =
+    origin.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: absoluteUrlFromSiteOrigin(origin, `/${locale}`),
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Acupuncture',
+              item: absoluteUrlFromSiteOrigin(origin, `/${locale}/acupuncture-middletown-ny`),
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: c.seo.h1,
+              item: resolveSeoCanonicalToAbsoluteUrl(origin, c.seo.canonicalUrl || ''),
+            },
+          ],
+        }
+      : null;
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -170,10 +186,12 @@ export default function SEOConditionLayout({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      {breadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      )}
 
       {/* Section 1 — Hero */}
       <section

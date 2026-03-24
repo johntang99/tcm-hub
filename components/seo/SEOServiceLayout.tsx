@@ -53,6 +53,7 @@ interface SEOServiceContent {
 interface SEOServiceLayoutProps {
   content: Record<string, any>;
   locale: string;
+  siteBaseOrigin?: string;
 }
 
 function FAQAccordion({ items }: { items: FAQItem[] }) {
@@ -97,6 +98,7 @@ function FAQAccordion({ items }: { items: FAQItem[] }) {
 export default function SEOServiceLayout({
   content,
   locale,
+  siteBaseOrigin: _siteBaseOrigin,
 }: SEOServiceLayoutProps) {
   const c = content as unknown as SEOServiceContent;
   const { hero, whatIsIt, whatItTreats, howItWorks, faq, cta } = c;

@@ -97,6 +97,7 @@ interface SEOLocalLandingContent {
 interface SEOLocalLandingLayoutProps {
   content: Record<string, any>;
   locale: string;
+  siteBaseOrigin?: string;
 }
 
 function FAQAccordion({ items }: { items: FAQItem[] }) {
@@ -152,6 +153,7 @@ function FAQAccordion({ items }: { items: FAQItem[] }) {
 export default function SEOLocalLandingLayout({
   content,
   locale,
+  siteBaseOrigin: _siteBaseOrigin,
 }: SEOLocalLandingLayoutProps) {
   const c = content as unknown as SEOLocalLandingContent;
   const { hero, conditions, services, whyChooseUs, faq, location } = c;

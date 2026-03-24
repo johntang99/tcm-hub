@@ -65,6 +65,7 @@ interface SEOResourceContent {
 interface SEOResourceLayoutProps {
   content: Record<string, any>;
   locale: string;
+  siteBaseOrigin?: string;
 }
 
 function FAQAccordion({ items }: { items: FAQItem[] }) {
@@ -109,6 +110,7 @@ function FAQAccordion({ items }: { items: FAQItem[] }) {
 export default function SEOResourceLayout({
   content,
   locale,
+  siteBaseOrigin: _siteBaseOrigin,
 }: SEOResourceLayoutProps) {
   const c = content as unknown as SEOResourceContent;
   const {
