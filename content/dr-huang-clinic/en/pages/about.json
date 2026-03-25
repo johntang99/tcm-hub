@@ -71,6 +71,17 @@
     ],
     "environment": "Our clinic provides a peaceful, welcoming environment designed to promote relaxation and healing. From the moment you enter, you'll feel the difference - calming colors, comfortable treatment rooms, and a warm, friendly atmosphere that puts patients at ease."
   },
+  "staffs": {
+    "title": "Meet Our Team",
+    "members": [
+      {
+        "name": "John Smith",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/dr-huang-11.png",
+        "title": "Principal Doctor",
+        "description": "Lead clinician focusing on pain management and internal medicine patterns. Replace with your real bio and photo URL."
+      }
+    ]
+  },
   "journey": {
     "story": "My path to Traditional Chinese Medicine began with a personal health challenge. As a biology student at Cornell, I suffered from chronic migraines that conventional medicine couldn't fully resolve. A friend suggested I try acupuncture, and after just a few treatments, my migraines improved dramatically. I was amazed - not just by the relief, but by the holistic approach that considered my stress levels, sleep patterns, and diet alongside the physical symptoms.\n\nThis experience sparked a deep curiosity about TCM. I began studying the theories, philosophy, and diagnostic methods during my remaining undergraduate years. After graduation, instead of pursuing medical school as originally planned, I enrolled in a Master's program in Traditional Chinese Medicine.\n\nThose years of intensive study were transformative. I learned pulse diagnosis, tongue diagnosis, acupuncture techniques, herbal pharmacology, and the intricate theories that have guided Chinese medicine for thousands of years. But more importantly, I learned to see patients as whole human beings, not just collections of symptoms.\n\nAfter earning my master's degree and passing national board certifications, I began my clinical practice. Each patient has taught me something new, and after 15 years, I remain passionate about this medicine's ability to help people heal naturally. Opening Dr. Huang Clinic in Middletown has allowed me to serve this wonderful community and share the benefits of TCM with my neighbors.",
     "title": "My Journey to Chinese Medicine",
@@ -217,34 +228,5 @@
     "title": "Continuing Education & Training",
     "variant": "compact",
     "description": "Dr. Huang maintains active involvement in the TCM community and regularly pursues advanced training:"
-  },
-  "staffs": {
-    "title": "Meet Our Team",
-    "members": [
-      {
-        "name": "John Smith",
-        "title": "Principal Doctor",
-        "description": "Lead clinician focusing on pain management and internal medicine patterns. Replace with your real bio and photo URL.",
-        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/dr-huang-11.png"
-      },
-      {
-        "name": "Test Staff A",
-        "title": "Licensed Acupuncturist",
-        "description": "Sample row for QA — sports acupuncture and recovery.",
-        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/dr-huang-lecture-20.png"
-      },
-      {
-        "name": "Test Staff B",
-        "title": "Herbal Medicine Support",
-        "description": "Sample row for QA — herbal consults and dispensing support.",
-        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/dr-huang-14.jpg"
-      },
-      {
-        "name": "Test Staff C",
-        "title": "Front Desk",
-        "description": "Sample row for QA — scheduling and new-patient intake (placeholder image).",
-        "image": ""
-      }
-    ]
   }
 }

@@ -2,37 +2,37 @@
   "faq": {
     "items": [
       {
-        "answer": "初诊费用通常在$120-180之间，复诊$80-120。具体费用取决于治疗方案和时长。我们接受多种保险，也提供自费优惠。",
+        "answer": "初诊费用$120-150，复诊$80-100。具体费用根据治疗方案而定，我们接受多种保险并提供灵活的付费选择。",
         "linkHref": "/zh/acupuncture-cost-middletown-ny",
         "linkText": "查看详细费用",
         "question": "在Middletown, NY做针灸要多少钱？"
       },
       {
-        "answer": "针灸治疗几乎无痛。您可能会感到轻微的针刺感或酸胀感，这是正常的得气反应，表明治疗正在起效。",
+        "answer": "针灸通常不会疼痛。大多数患者只感到轻微的针刺感，随后是放松和舒适的感觉。Dr. Huang使用精细的一次性针具确保治疗舒适。",
         "question": "针灸会痛吗？"
       },
       {
-        "answer": "治疗次数因人而异，急性症状可能需要4-6次，慢性疾病通常需要8-12次或更多。我们会根据您的恢复情况调整治疗计划。",
+        "answer": "治疗次数因人而异。急性问题可能需要3-6次，慢性疾病通常需要8-12次。Dr. Huang会根据您的具体情况制定个性化治疗计划。",
         "question": "我需要做多少次治疗？"
       },
       {
-        "answer": "我们接受大部分主要保险，包括一些医疗保险计划。请致电咨询您的具体保险覆盖情况，我们的工作人员会协助您确认。",
+        "answer": "我们接受大部分主要保险计划。请携带保险卡前来，我们的工作人员会帮助您确认保险覆盖范围并处理相关手续。",
         "question": "NY的保险覆盖针灸吗？"
       },
       {
-        "answer": "初诊包括详细的中医问诊、舌诊、脉诊，制定个性化治疗方案，然后进行首次针灸治疗，整个过程约60-90分钟。",
+        "answer": "首次就诊包括详细的中医诊断、脉诊、舌诊，然后进行针灸治疗。整个过程约90分钟，Dr. Huang会详细解释您的治疗方案。",
         "question": "第一次就诊需要注意什么？"
       },
       {
-        "answer": "Dr. Huang精通中文和英文，能够用您熟悉的语言进行沟通，确保您充分理解治疗过程和注意事项。",
+        "answer": "Dr. Huang精通中文（普通话、粤语）和英文，确保与华人患者的顺畅沟通，让您倍感亲切和放心。",
         "question": "诊所提供中文服务吗？"
       }
     ],
     "heading": "关于Middletown, NY针灸的常见问题"
   },
   "seo": {
-    "h1": "Middletown专业中医针灸治疗 - Dr. Huang Clinic",
-    "title": "Middletown中医诊所 - Dr. Huang专业针灸中医治疗",
+    "h1": "Middletown NY专业中医针灸 - Dr. Huang Clinic",
+    "title": "Middletown NY中医针灸 - Dr. Huang Clinic黄医师诊所",
     "schema": [
       "LocalBusiness",
       "Service",
@@ -40,12 +40,12 @@
     ],
     "noindex": false,
     "priority": 0.9,
-    "description": "Dr. Huang Clinic位于Middletown, NY，提供专业中医针灸治疗。治疗腰痛、失眠、焦虑等症状。经验丰富的中医师，接受保险，预约便捷。",
+    "description": "Middletown NY专业中医针灸诊所。Dr. Huang黄医师提供针灸、中药、推拿等传统中医治疗。治疗疼痛、失眠、焦虑等。预约电话咨询。",
     "canonicalUrl": "/zh/acupuncture-middletown-ny"
   },
   "hero": {
-    "h1": "Middletown专业中医针灸治疗 - Dr. Huang Clinic",
-    "intro": "Dr. Huang Clinic为Middletown社区提供专业的中医针灸治疗服务。我们运用传统中医理论结合现代医学知识，为您的健康问题提供个性化的治疗方案。",
+    "h1": "Middletown NY专业中医针灸 - Dr. Huang Clinic",
+    "intro": "Dr. Huang黄医师在Middletown为华人社区提供正宗中医治疗服务。我们运用针灸、中药和传统疗法治疗各种健康问题，帮助您恢复身心平衡。",
     "ctaHref": "/zh/contact",
     "ctaLabel": "预约首次就诊",
     "subheading": "Dr. Huang Clinic — Traditional Chinese Medicine & Acupuncture",
@@ -91,7 +91,7 @@
         "hours": "Closed"
       }
     ],
-    "intro": "我们的诊所位于Middletown, NY，交通便利，为周边华人社区提供优质的中医服务。",
+    "intro": "位于Middletown NY的Dr. Huang Clinic为当地华人社区提供优质中医服务。我们的诊所交通便利，环境舒适，致力于为每位患者提供个性化的中医治疗方案。",
     "ctaHref": "/zh/contact",
     "heading": "访问Middletown, NY的Dr. Huang Clinic",
     "ctaLabel": "预约就诊",
@@ -106,18 +106,22 @@
         "description": "通过刺激特定穴位来恢复身体平衡、缓解疼痛。"
       },
       {
+        "link": "/zh/chinese-herbal-medicine-middletown-ny",
         "name": "中药",
         "description": "根据个人体质开具的中药方剂，支持治疗效果。"
       },
       {
+        "link": "/zh/cupping-therapy-middletown-ny",
         "name": "拔罐",
         "description": "促进血液循环、缓解肌肉紧张。"
       },
       {
+        "link": "/zh/moxibustion-middletown-ny",
         "name": "艾灸",
         "description": "温热疗法，使用艾草刺激穴位促进愈合。"
       },
       {
+        "link": "/zh/tui-na-massage-middletown-ny",
         "name": "推拿",
         "description": "中医治疗性按摩，针对经络和穴位。"
       }

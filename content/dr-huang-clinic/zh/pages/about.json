@@ -58,10 +58,93 @@
     ],
     "environment": "我們的診所提供寧靜、溫馨的環境，旨在促進放鬆和癒合。從您進入的那一刻起，您就會感受到不同——寧靜的色彩、舒適的治療室和溫暖、友好的氛圍讓患者感到輕鬆自在。"
   },
+  "staffs": {
+    "title": "專家導師",
+    "members": [
+      {
+        "name": "汪衛東 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1774412916267-wangweidong.jpg",
+        "title": "主任醫師",
+        "description": "中醫心理學專業委員會會長、世界中聯睡眠醫學專業委員會常務副會長、中國睡眠研究會副理事長、國家中醫藥管理局中醫心理學重點學科帶頭人。曾任廣安門醫院副院長。擅長：各類心理疾病、失眠、焦慮、抑鬱、強迫症等。我於 2010 年至 2013 年在廣安門醫院心理睡眠門診隨師學習。"
+      },
+      {
+        "name": "劉艷驕 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/liuyanjiao.jpg",
+        "title": "醫學博士、主任醫師",
+        "description": "北京中醫藥大學臨床特聘專家，世界中聯睡眠醫學專業委員會名譽會長。主要研究中國睡眠醫學理論與臨床。擅長治療各種睡眠障礙（失眠、發作性睡病、打鼾及睡眠呼吸中止症候群）、過敏性疾病（哮喘、花粉症、皮炎）及神經內分泌疾病。"
+      },
+      {
+        "name": "花寶金 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/huabaojin.jpg",
+        "title": "主任醫師、醫學博士",
+        "description": "曾任廣安門醫院副院長、中國中醫科學院腫瘤研究所常務副所長。國家中醫腫瘤臨床重點專科帶頭人。研究方向聚焦於中醫藥治療腫瘤術後復發轉移之臨床研究，以及經方在腫瘤治療中的應用。"
+      },
+      {
+        "name": "張如心 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/zhangruxin.jpg",
+        "title": "主任醫師、教授",
+        "description": "1954年畢業於北京中醫學校。擅長激發經氣、循經感傳手法。曾任美國中醫藥評估委員會委員、美國國際針灸學院教授。對面肌痙攣、三叉神經痛、肩周炎、哮喘、坐骨神經痛等疑難雜症療效顯著。"
+      },
+      {
+        "name": "郭榮娟 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/guorongjuan.jpg",
+        "title": "主任醫師、博士生導師",
+        "description": "世界中聯心身醫學專業委員會會長，中華中醫藥學會心身醫學分會主任委員。北京市中醫藥管理局「薪火傳承 3＋3 工程」王永炎名醫傳承工作站負責人，致力於心身醫學與卒中中西醫結合防治研究。"
+      },
+      {
+        "name": "田從豁 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/tianconghuo.jpg",
+        "title": "主任醫師、國醫名師",
+        "description": "廣安門醫院針灸科主任，國家級非物質文化遺產針灸項目代表性傳承人，全國 500 名著名中醫師帶徒導師。祖傳中醫，1951年畢業於中國醫科大學。在針灸學術經驗繼承工作上具有崇高地位。"
+      },
+      {
+        "name": "桑希生 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/sangxisheng.jpg",
+        "title": "教授、博士後",
+        "description": "黑龍江中醫藥大學中醫基礎理論教研室主任。倡導「以病為綱」的中醫學術思路，對內、婦、兒、皮膚、疼痛科疾病有獨特見解。與中醫同道研創「乂針」，臨床效果顯著。擔任中國臨床腫瘤學會（CSCO）專家委員會常委。"
+      },
+      {
+        "name": "林曉峰 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/linxiaofeng.jpg",
+        "title": "主任醫師",
+        "description": "黑龍江中醫藥大學附屬第一醫院主任醫師。擅長冠心病、心肌炎等心腦血管疾病及疑難病症。研究方向聚焦中醫臟腑證候機理。我於 2009 年至 2010 年門診隨師學習。"
+      },
+      {
+        "name": "毛大鵬 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/maodapeng.jpg",
+        "title": "主任醫師",
+        "description": "北京社區名老中醫，出身中醫世家，傳承「易水學派」與「補土學說」。從事臨床 40 餘年，原創「益氣充絡」法治療心腦血管病。擅長糖尿病、心腦血管病、腎病症候群及失眠症等老年病症。"
+      },
+      {
+        "name": "肖德華 醫師",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/xiaodehua.jpg",
+        "title": "針刀醫師",
+        "description": "針刀醫學早期實踐者，師從發明者朱漢章教授。擔任中華中醫藥學會針刀醫學分會副主任委員。主要從事針刀教育推廣，擅長處理各類痛症。我於 2021 年參加首屆北京基層針刀培訓班隨師學習。"
+      },
+      {
+        "name": "王修身 醫師",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/wangxiushen.jpg",
+        "title": "主任醫師",
+        "description": "中國宮廷御醫第三代傳人。身懷「一穴多針、透拉針、舌針、五龍針法」等絕技。擁有 50 多年臨床經驗，發明許多獨特針法，業績入錄多部國際辭典，被譽為中醫針灸界的瑰寶。"
+      },
+      {
+        "name": "楊志勳 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/yangzhixun.jpg",
+        "title": "著名中醫",
+        "description": "中醫世家傳人，北京世紀楊氏新藥管療法研究所所長。擅長「內病外治」、「順氣養氣、淨化體液」治療一身數病。致力於中醫啟蒙工作。我於 2017 年至 2018 年隨師學習中醫適宜技術藥管術。"
+      },
+      {
+        "name": "周煒 教授",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/zhouwei.jpg",
+        "title": "主任醫師",
+        "description": "北京護國寺中醫醫院主任醫師。針灸師從王居易，內科師從周耀庭、郝萬山等名家。擅長應用經絡醫學與五運六氣理論。我於 2018 年參加經絡診察精英培訓班，學習經絡診察理論和實操。"
+      }
+    ]
+  },
   "journey": {
-    "story": "我的傳統中醫之路始於個人健康挑戰。作為康奈爾大學的生物學學生，我曾患有慢性偏頭痛，傳統醫學無法完全解決。一位朋友建議我嘗試針灸，僅僅幾次治療後，我的偏頭痛就顯著改善了。我感到驚訝——不僅僅是因為緩解，還因為這種考慮我的壓力水平、睡眠模式和飲食以及身體症狀的整體方法。\n\n這次經歷激發了我對中醫的深厚好奇心。我在剩餘的本科年份開始學習理論、哲學和診斷方法。畢業後，我沒有按原計劃進入醫學院，而是報讀了傳統中醫碩士課程。\n\n那些密集學習的歲月是變革性的。我學習了脈診、舌診、針灸技術、中藥藥理學，以及數千年來指導中醫的複雜理論。但更重要的是，我學會了將患者視為完整的人，而不僅僅是症狀的集合。\n\n獲得碩士學位並通過國家委員會認證後，我開始了臨床實踐。每個患者都教會了我新的東西，15年後，我仍然熱衷於這種醫學幫助人們自然癒合的能力。在米德爾敦開設黃醫生診所使我能夠為這個美好的社區服務，並與鄰居分享中醫的益處。",
-    "title": "我的中醫之路",
-    "variant": "prose"
+    "story": "",
+    "title": "",
+    "variant": ""
   },
   "profile": {
     "bio": "碩士研究生學歷 本科畢業於黑龍江中醫藥大學，碩士畢業於中國中醫科學院，曾入選名老中醫“學術經驗繼承人”計劃，師從多位國醫名師。\n\n行醫十餘年，臨床與研究並重，擅長運用針灸，中藥等中醫療法治療 心理、睡眠疾病、內科、外科，婦科，兒科等各科疾病及疑難雜癥，各類痛癥等。\n\n> 真正的治癒來自於解決根本原因，而不僅僅是抑制症狀。每個患者都是獨一無二的，治療必須反映這種個性。\n\n**黃醫生，針灸師，中醫碩士**",
@@ -106,31 +189,45 @@
     "items": [
       {
         "icon": "GraduationCap",
-        "year": "2011",
+        "year": "2011-2018",
+        "location": "北京廣安門醫院",
+        "credential": "傳統中醫資歷",
+        "institution": "中國中醫科學院 廣安門醫院碩士研究生\n\n中國中醫科學院廣安門醫院學術經驗繼承"
+      },
+      {
+        "icon": "GraduationCap",
+        "year": "2011-2018",
         "location": "北京大學人民醫院",
         "credential": "心理與睡眠醫學",
-        "institution": "\n北京大學人民醫院睡眠醫學中心進修，學習睡眠監測與睡眠相關疾病（2011）\n\n首屆國際心理學與睡眠醫學科研方法高階培訓課程（2012）\n\n創傷治療與哀傷輔導連續訓練項目，結業（2013，紐瀚斯心理事業發展中心）\n\n心理危機介入技術建構與提升訓練班（2018，北京豐台區南苑醫院）"
-      },
-      {
-        "icon": "Award",
-        "year": "2009",
-        "location": "執照 #12345",
-        "credential": "持牌針灸師",
-        "institution": "紐約州教育部"
+        "institution": "\n北京大學人民醫院睡眠醫學中心進修，學習睡眠監測與睡眠相關疾病（2011）\n\n首屆國際心理學與睡眠醫學科研方法高階培訓課程（2012）\n\n創傷治療與哀傷輔導連續訓練項目，結業（2013，紐瀚斯心理事業發展中心）\n\n心理危機介入技術建構與提升訓練班（2018，北京豐台區南苑醫院）\n"
       },
       {
         "icon": "Certificate",
-        "year": "2009",
-        "location": "針灸文憑持有者",
-        "credential": "針灸國家委員會認證",
-        "institution": "NCCAOM（國家認證委員會）"
+        "year": "2008 - 2015",
+        "location": "",
+        "credential": "中醫心理學與資質",
+        "institution": "國際催眠師認證（2008，World Medical Executive Certification Center）\n\n國家中醫管理局人才交流中心 · 中醫心理師培訓，獲二級證書（2015）"
       },
       {
         "icon": "Certificate",
-        "year": "2009",
-        "location": "中藥學文憑持有者",
-        "credential": "中藥學國家委員會認證",
-        "institution": "NCCAOM"
+        "year": "2018 - 2019",
+        "location": "文憑持有者",
+        "credential": "兒童臨床帶教資格",
+        "institution": "兒科醫療人員強化訓練（2018，北京市衛計委）\n\n北市中醫管理局 · 中醫兒科師資培訓，取得臨床帶教資格（2019）\n"
+      },
+      {
+        "icon": "GraduationCap",
+        "year": "2017 - 2018",
+        "location": "",
+        "credential": "中醫内科培訓",
+        "institution": "北京中醫藥大學繼續教育學院 · “經脈與級聯理論”臨床應用培訓班（2017）\n\n鮑艷舉六經辨證工作坊（2018）"
+      },
+      {
+        "icon": "GraduationCap",
+        "year": "2018 - 2020",
+        "location": "",
+        "credential": "針灸、針刀、推拿、拔罐技術",
+        "institution": "台灣董氏針灸訓練班（2018）\n\n經絡診察精英班訓練（2019）\n\n首屆北京基層針刀訓練班，師從針刀大家肖德華教授，獲針刀合格證（2021）\n\n北京中西醫結合學會 · 中醫藥健康養老示範工程十項適宜技術訓練（2017–2018）\n\n中醫適宜技術藥管術第二期菁英班（2018–2019）\n\n無痛正骨臨床技術培訓（2020）\n\n產後修復手法實操班（2020）"
       }
     ],
     "title": "教育和資質",
@@ -141,8 +238,8 @@
     "variant": "compact",
     "organizations": [
       {
-        "name": "針灸和東方醫學國家認證委員會（NCCAOM）",
-        "role": "認證文憑持有者"
+        "name": "世界中醫藥學會聯合會中醫心理學專業委員會理事",
+        "role": "專業委員會理事"
       },
       {
         "name": "紐約州針灸和綜合醫學協會",
@@ -197,16 +294,5 @@
     "title": "繼續教育和培訓",
     "variant": "compact",
     "description": "黃醫生積極參與中醫社區，並定期尋求高級培訓："
-  },
-  "staffs": {
-    "members": [
-      {
-        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1774412916267-wangweidong.jpg",
-        "name": "汪卫东教授",
-        "title": "主任医师",
-        "description": "主任医师 中医心理学专业委员会会长、世界中医药学会联合会睡眠医学专业委员会常务副会长、中国睡眠研究会副理事长、中国医师协会养生专业委员会副主任委员、国家中医药管理局中医心理学重点学科与重点专科带头人、曾任中国中医科学院广安门医院副院长、北京中医药大学教授、华佑医疗中医心理科教授 。擅长：各类心理疾病，失眠，焦虑，抑郁，强迫症，躯体形式障碍等。我于2010年-2013年在广安门医院心理睡眠门诊跟师学习。"
-      }
-    ],
-    "title": "专家导师"
   }
 }
