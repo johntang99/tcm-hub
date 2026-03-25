@@ -93,28 +93,80 @@ Update content_entries for existing pages to add `seo` objects:
 
 ---
 
-## Phase 3 — Homepage Hub + Footer + Header
+## Phase 3 — Internal Link Rewiring + Navigation Updates
 
-### 3.1 Homepage — "Everything You Need to Know" Section
+> **Critical step:** All existing pages (homepage, services, conditions) must link to SEO pages instead of anchor links. This is what drives internal link authority to the SEO pages.
 
-Add 3×3 card grid with links to all core SEO pages:
+### 3.1 Homepage — Services Section Links
 
-| Row 1 | Row 2 | Row 3 |
-|-------|-------|-------|
-| Acupuncture in Flushing | Back Pain | Insomnia |
-| Anxiety | Cost Guide | Chinese Herbal Medicine |
-| Cupping Therapy | Moxibustion | Tui Na Massage |
+Rewrite `services.services[].link` and `services.featured.link` in `pages/home.json` DB content:
 
-### 3.2 Footer — Add Resources + Service Areas
+| Service | Before | After |
+|---------|--------|-------|
+| Acupuncture (featured) | `/en/services#acupuncture` | `/en/acupuncture-flushing-ny` |
+| Chinese Herbal Medicine | `/en/services#herbs` | `/en/chinese-herbal-medicine-flushing-ny` |
+| Cupping Therapy | `/en/services#cupping` | `/en/cupping-therapy-flushing-ny` |
+| Moxibustion | `/en/services#moxibustion` | `/en/moxibustion-flushing-ny` |
+| Tui Na Massage | `/en/services#tuina` | `/en/tui-na-massage-flushing-ny` |
+| Gua Sha | `/en/services#gua-sha` | stays (no SEO page) |
+
+### 3.2 Homepage — Conditions Section Links
+
+Rewrite `conditions.conditions[].link` in `pages/home.json` DB content:
+
+| Condition | Before | After |
+|-----------|--------|-------|
+| Back Pain | `/en/conditions#back-pain` | `/en/acupuncture-for-back-pain-flushing-ny` |
+| Anxiety & Panic | `/en/conditions#anxiety` | `/en/acupuncture-for-anxiety-flushing-ny` |
+| Others without SEO pages | anchor links | stay as-is |
+
+### 3.3 Services Page (`pages/services.json`) — Add Links
+
+Update `servicesList.items[].link` — each service with an SEO page gets a link:
+
+| Service ID | Link Added |
+|------------|-----------|
+| acupuncture | `/en/acupuncture-flushing-ny` |
+| chinese-herbal-medicine | `/en/chinese-herbal-medicine-flushing-ny` |
+| cupping-therapy | `/en/cupping-therapy-flushing-ny` |
+| moxibustion | `/en/moxibustion-flushing-ny` |
+| tuina-massage | `/en/tui-na-massage-flushing-ny` |
+
+> The `ServicesSection` component already renders "Learn More →" links when `service.link` exists (added during Dr. Huang retrofit).
+
+### 3.4 Conditions Page (`pages/conditions.json`) — Add Links
+
+Update `conditions[].link` for conditions that have SEO pages:
+
+| Condition | Link Added |
+|-----------|-----------|
+| Back Pain (+ neck/shoulder, arthritis) | `/en/acupuncture-for-back-pain-flushing-ny` |
+| Anxiety & Panic | `/en/acupuncture-for-anxiety-flushing-ny` |
+| Insomnia & Sleep | `/en/acupuncture-for-insomnia-flushing-ny` |
+
+### 3.5 Homepage — seoLink to Core Landing Page
+
+Add `services.seoLink` to homepage content:
+```json
+{ "url": "/en/acupuncture-flushing-ny", "text": "Acupuncture in Flushing, NY" }
+```
+
+### 3.6 Header Navigation — Core Landing Page
+
+Add "Acupuncture" nav item linking to `/en/acupuncture-flushing-ny` after "Home".
+
+### 3.7 Footer — Resources + Service Areas Columns
+
+Add to `footer.json` DB content:
 
 | Column | Links |
 |--------|-------|
-| Resources | Acupuncture Cost, File Guidelines |
-| Nearby Areas | Queens, Forest Hills, Jamaica |
-
-### 3.3 Header — Add Core Landing Page Link
-
-Add "Acupuncture in Flushing" to navigation menu.
+| **Resources** | Acupuncture Cost → `/en/acupuncture-cost-flushing-ny` |
+| | Acupuncture in Flushing → `/en/acupuncture-flushing-ny` |
+| **Service Areas** | Flushing, NY → `/en/acupuncture-flushing-ny` |
+| | Back Pain Treatment → `/en/acupuncture-for-back-pain-flushing-ny` |
+| | Insomnia Treatment → `/en/acupuncture-for-insomnia-flushing-ny` |
+| | Anxiety Treatment → `/en/acupuncture-for-anxiety-flushing-ny` |
 
 ---
 
