@@ -19,6 +19,7 @@ import { IntroductionPanel } from '@/components/admin/panels/IntroductionPanel';
 import { AboutAdditionalPanel } from '@/components/admin/panels/AboutAdditionalPanel';
 import { AboutStaffsPanel } from '@/components/admin/panels/AboutStaffsPanel';
 import { AboutCredentialsPanel } from '@/components/admin/panels/AboutCredentialsPanel';
+import { AboutAffiliationsPanel } from '@/components/admin/panels/AboutAffiliationsPanel';
 import { normalizeAboutFormData, finalizeAboutFormForSave } from '@/lib/admin/about-form-normalize';
 import { GalleryPhotosPanel } from '@/components/admin/panels/GalleryPhotosPanel';
 import { CtaPanel } from '@/components/admin/panels/CtaPanel';
@@ -2542,6 +2543,16 @@ export function ContentEditor({
                     updateFormValue={updateFormValue}
                     markdownPreview={markdownPreview}
                     toggleMarkdownPreview={toggleMarkdownPreview}
+                  />
+                  <AboutAffiliationsPanel
+                    affiliations={
+                      formData.affiliations ?? {
+                        title: '',
+                        variant: 'compact',
+                        organizations: [],
+                      }
+                    }
+                    updateFormValue={updateFormValue}
                   />
                   <AboutAdditionalPanel
                     formData={formData}
