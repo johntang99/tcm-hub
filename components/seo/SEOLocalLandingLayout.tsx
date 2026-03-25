@@ -17,6 +17,7 @@ interface ConditionItem {
 interface ServiceItem {
   name: string;
   description: string;
+  link?: string;
 }
 
 interface WhyChooseItem {
@@ -303,20 +304,27 @@ export default function SEOLocalLandingLayout({
             </h2>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.items.map((item) => (
-                <div
-                  key={item.name}
-                  className="bg-white border border-gray-200 p-6"
-                  style={tokenSurface}
-                >
-                  <h3 className="text-subheading font-bold text-gray-900 mb-2">
-                    {item.name}
-                  </h3>
-                  <p className="text-small text-gray-600 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
+              {services.items.map((item) => {
+                const Wrapper = item.link ? Link : 'div';
+                const wrapperProps = item.link
+                  ? { href: item.link, className: 'group block bg-white border border-gray-200 p-6 hover:border-primary/40 hover:shadow-md transition-all', style: tokenSurface }
+                  : { className: 'bg-white border border-gray-200 p-6', style: tokenSurface };
+                return (
+                  <Wrapper key={item.name} {...(wrapperProps as any)}>
+                    <h3 className="text-subheading font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+                      {item.name}
+                    </h3>
+                    <p className="text-small text-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                    {item.link && (
+                      <span className="inline-flex items-center gap-1 text-small font-semibold text-primary mt-3 group-hover:gap-2 transition-all">
+                        Learn more →
+                      </span>
+                    )}
+                  </Wrapper>
+                );
+              })}
             </div>
           </div>
         </div>
