@@ -1,14 +1,4 @@
 {
-  "seo": {
-    "title": "About Dr. Huang Clinic — Acupuncture in Middletown, NY",
-    "description": "Meet Dr. Huang — experienced acupuncturist and TCM practitioner in Middletown, NY. Learn about our approach to traditional Chinese medicine.",
-    "h1": "Meet Dr. Huang",
-    "canonicalUrl": "/en/about",
-    "schema": ["AboutPage", "BreadcrumbList"],
-    "noindex": false,
-    "changefreq": "monthly",
-    "priority": 0.8
-  },
   "cta": {
     "title": "Ready to Start Your Healing Journey?",
     "variant": "centered",
@@ -21,6 +11,19 @@
       "link": "tel:+18453811106",
       "text": "Call Us Today"
     }
+  },
+  "seo": {
+    "h1": "Meet Dr. Huang",
+    "title": "About Dr. Huang Clinic — Acupuncture in Middletown, NY",
+    "schema": [
+      "AboutPage",
+      "BreadcrumbList"
+    ],
+    "noindex": false,
+    "priority": 0.8,
+    "changefreq": "monthly",
+    "description": "Meet Dr. Huang — experienced acupuncturist and TCM practitioner in Middletown, NY. Learn about our approach to traditional Chinese medicine.",
+    "canonicalUrl": "/en/about"
   },
   "hero": {
     "title": "Meet Dr. Huang",
@@ -74,10 +77,9 @@
     "variant": "prose"
   },
   "profile": {
-    "bio": "Dr. Huang has dedicated over 15 years to the practice of Traditional Chinese Medicine, helping thousands of patients achieve better health through natural, holistic healing methods. Her passion for TCM began during his undergraduate studies in biology, where she became fascinated by the body's innate healing abilities and the elegant wisdom of Chinese medicine.",
+    "bio": "Dr. Huang has dedicated over 15 years to the practice of Traditional Chinese Medicine, helping thousands of patients achieve better health through natural, holistic healing methods. Her passion for TCM began during his undergraduate studies in biology, where she became fascinated by the body's innate healing abilities and the elegant wisdom of Chinese medicine.\n\n> True healing comes from addressing the root cause, not just suppressing symptoms. Every patient is unique, and treatment must reflect that individuality.\n\n**Dr. Huang, L.Ac., MSTCM**",
     "name": "Dr. Huang, L.Ac., MSTCM",
     "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/dr-huang-11.png",
-    "quote": "True healing comes from addressing the root cause, not just suppressing symptoms. Every patient is unique, and treatment must reflect that individuality.",
     "title": "Licensed Acupuncturist & TCM Practitioner",
     "variant": "split",
     "signature": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/signature.png"
@@ -215,5 +217,34 @@
     "title": "Continuing Education & Training",
     "variant": "compact",
     "description": "Dr. Huang maintains active involvement in the TCM community and regularly pursues advanced training:"
+  },
+  "staffs": {
+    "title": "Meet Our Team",
+    "members": [
+      {
+        "name": "John Smith",
+        "title": "Principal Doctor",
+        "description": "Lead clinician focusing on pain management and internal medicine patterns. Replace with your real bio and photo URL.",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/dr-huang-11.png"
+      },
+      {
+        "name": "Test Staff A",
+        "title": "Licensed Acupuncturist",
+        "description": "Sample row for QA — sports acupuncture and recovery.",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/dr-huang-lecture-20.png"
+      },
+      {
+        "name": "Test Staff B",
+        "title": "Herbal Medicine Support",
+        "description": "Sample row for QA — herbal consults and dispensing support.",
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/dr-huang-14.jpg"
+      },
+      {
+        "name": "Test Staff C",
+        "title": "Front Desk",
+        "description": "Sample row for QA — scheduling and new-patient intake (placeholder image).",
+        "image": ""
+      }
+    ]
   }
 }

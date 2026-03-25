@@ -12,6 +12,8 @@ import { resolveMediaUrl } from '@/lib/media-url';
 import { Button, Badge, Card, CardHeader, CardTitle, CardDescription, CardContent, Icon } from '@/components/ui';
 import CTASection from '@/components/sections/CTASection';
 import { CheckCircle2, MapPin, Clock } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import { buildProfileBioMarkdown } from '@/lib/about-profile-bio';
 
 interface AboutPageData {
   hero: {
@@ -27,8 +29,27 @@ interface AboutPageData {
     title: string;
     image: string;
     bio: string;
-    quote: string;
+    quote?: string;
     signature?: string;
+  };
+  staffs?: {
+    title: string;
+    members: Array<{
+      image: string;
+      name: string;
+      title: string;
+      description: string;
+    }>;
+  };
+  /** @deprecated use `staffs` */
+  team?: {
+    title: string;
+    members: Array<{
+      image: string;
+      name: string;
+      title: string;
+      description: string;
+    }>;
   };
   credentials: {
     variant?: 'list' | 'grid';
@@ -228,9 +249,23 @@ export default async function AboutPage({ params }: AboutPageProps) {
     title: siteInfo?.tagline || '',
     image: '',
     bio: '',
-    quote: '',
     signature: '',
   };
+  const staffs = {
+    title:
+      content.staffs?.title ??
+      content.team?.title ??
+      (locale === 'en' ? 'Meet Our Team' : '導師簡介'),
+    members: content.staffs?.members ?? content.team?.members ?? [],
+  };
+  const staffMembersVisible = staffs.members.filter(
+    (m) =>
+      m &&
+      (String(m.name || '').trim() ||
+        String(m.title || '').trim() ||
+        String(m.description || '').trim() ||
+        String(m.image || '').trim())
+  );
   const credentials = content.credentials || {
     variant: 'list',
     title: locale === 'en' ? 'Credentials' : '资质',
@@ -289,9 +324,36 @@ export default async function AboutPage({ params }: AboutPageProps) {
     layout?.sections?.map((section, index) => [section.id, index]) || []
   );
   const useLayout = layoutOrder.size > 0;
-  const isEnabled = (sectionId: string) => !useLayout || layoutOrder.has(sectionId);
-  const sectionStyle = (sectionId: string) =>
-    useLayout ? { order: layoutOrder.get(sectionId) ?? 0 } : undefined;
+  const isEnabled = (sectionId: string) => {
+    if (!useLayout) return true;
+    if (layoutOrder.has(sectionId)) return true;
+    if (sectionId === 'staffs' && layoutOrder.has('team')) return true;
+    // Layout files often predate `staffs`; still show the grid when content exists.
+    if (sectionId === 'staffs' && staffMembersVisible.length > 0) return true;
+    return false;
+  };
+  const sectionStyle = (sectionId: string) => {
+    if (!useLayout) return undefined;
+    if (layoutOrder.has(sectionId)) return { order: layoutOrder.get(sectionId) ?? 0 };
+    if (sectionId === 'staffs' && layoutOrder.has('team'))
+      return { order: layoutOrder.get('team') ?? 0 };
+    // Slot staffs between profile and credentials when visible but not listed in layout.
+    if (
+      sectionId === 'staffs' &&
+      staffMembersVisible.length > 0 &&
+      !layoutOrder.has('staffs') &&
+      !layoutOrder.has('team')
+    ) {
+      const pOrder = layoutOrder.get('profile');
+      const cOrder = layoutOrder.get('credentials');
+      if (typeof pOrder === 'number' && typeof cOrder === 'number') {
+        return { order: (pOrder + cOrder) / 2 };
+      }
+      if (typeof pOrder === 'number') return { order: pOrder + 0.5 };
+      if (typeof cOrder === 'number') return { order: cOrder - 0.5 };
+    }
+    return undefined;
+  };
   const heroVariant = hero.variant || 'split-photo-right';
   const centeredHero = heroVariant === 'centered';
   const imageLeftHero = heroVariant === 'split-photo-left';
@@ -318,14 +380,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
     boxShadow: 'var(--shadow-base, 0 4px 20px rgba(0,0,0,0.08))',
   };
   const heroBottomSpacingStyle = { paddingBottom: 'var(--section-padding-y, 5rem)' };
-  const bioParagraphs =
-    typeof profile.bio === 'string'
-      ? profile.bio
-          .split(/\n\s*\n/g)
-          .map((paragraph) => paragraph.trim())
-          .filter(Boolean)
-      : [];
-  const resolvedBioParagraphs = bioParagraphs.length > 0 ? bioParagraphs : [String(profile.bio || '').trim()].filter(Boolean);
+  const profileBioMarkdown = buildProfileBioMarkdown(profile);
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -448,34 +503,118 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 </div>
               </div>
 
-              {/* Bio Content */}
-              <div className={profileVariant === 'stacked' ? 'max-w-3xl mx-auto space-y-8 text-center' : 'lg:col-span-3 space-y-8'}>
-                <div>
-                  <div className="space-y-4 mb-6">
-                    {resolvedBioParagraphs.map((paragraph, index) => (
-                      <p key={`bio-${index}`} className="text-body text-gray-700 leading-relaxed">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-                  
-                  {/* Quote */}
-                  <div
-                    className="bg-gradient-to-br from-primary/5 to-backdrop-primary border-l-4 border-primary p-8"
-                    style={{ borderTopRightRadius: 'var(--radius-base, 0.75rem)', borderBottomRightRadius: 'var(--radius-base, 0.75rem)' }}
+              {/* Bio (Markdown — quote + attribution live in `profile.bio`) */}
+              <div
+                className={
+                  profileVariant === 'stacked'
+                    ? 'max-w-3xl mx-auto space-y-8 text-left'
+                    : 'lg:col-span-3 space-y-8 text-left'
+                }
+              >
+                <div className="about-profile-bio prose prose-gray max-w-none">
+                  <ReactMarkdown
+                    components={{
+                      p: ({ children }) => (
+                        <p className="text-body text-gray-700 leading-relaxed mb-4 last:mb-0">{children}</p>
+                      ),
+                      blockquote: ({ children }) => (
+                        <div
+                          className="bg-gradient-to-br from-primary/5 to-backdrop-primary border-l-4 border-primary p-8 my-6"
+                          style={{
+                            borderTopRightRadius: 'var(--radius-base, 0.75rem)',
+                            borderBottomRightRadius: 'var(--radius-base, 0.75rem)',
+                          }}
+                        >
+                          <div className="text-subheading italic text-gray-800 [&_p]:mb-0 [&_p:last-child]:mb-0">
+                            {children}
+                          </div>
+                        </div>
+                      ),
+                      strong: ({ children }) => (
+                        <strong className="block text-right font-semibold text-gray-900 not-italic text-body mt-3">
+                          {children}
+                        </strong>
+                      ),
+                      ul: ({ children }) => (
+                        <ul className="list-disc pl-5 mb-4 text-body text-gray-700">{children}</ul>
+                      ),
+                      ol: ({ children }) => (
+                        <ol className="list-decimal pl-5 mb-4 text-body text-gray-700">{children}</ol>
+                      ),
+                      li: ({ children }) => <li className="mb-1">{children}</li>,
+                      a: ({ children, href }) => (
+                        <a
+                          href={href}
+                          className="text-primary underline hover:text-primary-dark"
+                          rel="noopener noreferrer"
+                          target={href?.startsWith('http') ? '_blank' : undefined}
+                        >
+                          {children}
+                        </a>
+                      ),
+                    }}
                   >
-                    <blockquote className="text-subheading italic text-gray-800 mb-4">
-                      "{profile.quote}"
-                    </blockquote>
-                    <div className="text-right">
-                      <p className="font-semibold text-gray-900">{profile.name}</p>
-                    </div>
-                  </div>
+                    {profileBioMarkdown}
+                  </ReactMarkdown>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        </section>
+      )}
+
+      {/* Staffs — own section above Education & Credentials */}
+      {isEnabled('staffs') && staffMembersVisible.length > 0 && (
+        <section
+          className="bg-white"
+          style={{ ...(sectionStyle('staffs') || {}), ...sectionSpacingStyle }}
+        >
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-heading font-bold text-gray-900 text-center mb-12 md:mb-14">
+                {staffs.title}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                {staffMembersVisible.map((member, index) => {
+                  const src = resolveMediaUrl(member.image);
+                  return (
+                    <article
+                      key={`${member.name || 'staff'}-${index}`}
+                      className="flex flex-col overflow-hidden bg-white border border-gray-100"
+                      style={tokenSurfaceStyle}
+                    >
+                      <div className="relative w-full aspect-[3/4] bg-gray-100">
+                        {src ? (
+                          <Image
+                            src={src}
+                            alt={member.name || 'Team member'}
+                            fill
+                            unoptimized
+                            className="object-cover object-top"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/15 to-gray-100">
+                            <Icon name="User" size="xl" className="text-primary/25" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1 bg-gray-50 px-4 py-5">
+                        <h3 className="text-subheading font-bold text-gray-900 text-center">
+                          {member.name}
+                        </h3>
+                        <p className="text-small text-gray-600 text-center mt-1">{member.title}</p>
+                        <p className="text-xs sm:text-sm text-gray-700 text-left leading-relaxed mt-4 whitespace-pre-line">
+                          {member.description}
+                        </p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </section>
       )}
 
@@ -509,7 +648,28 @@ export default async function AboutPage({ params }: AboutPageProps) {
                       <h3 className="text-subheading font-bold text-gray-900 mb-1">
                         {item.credential}
                       </h3>
-                      <p className="text-gray-700 mb-2">{item.institution}</p>
+                      <div className="text-gray-700 mb-2 prose prose-sm max-w-none credential-institution-md">
+                        <ReactMarkdown
+                          components={{
+                            p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                            ul: ({ children }) => <ul className="list-disc pl-5 mb-2">{children}</ul>,
+                            ol: ({ children }) => <ol className="list-decimal pl-5 mb-2">{children}</ol>,
+                            li: ({ children }) => <li className="mb-0.5">{children}</li>,
+                            a: ({ children, href }) => (
+                              <a
+                                href={href}
+                                className="text-primary underline hover:text-primary-dark"
+                                rel="noopener noreferrer"
+                                target={href?.startsWith('http') ? '_blank' : undefined}
+                              >
+                                {children}
+                              </a>
+                            ),
+                          }}
+                        >
+                          {String(item.institution || '')}
+                        </ReactMarkdown>
+                      </div>
                       <div className="flex flex-wrap gap-3 text-small text-gray-500">
                         <span className="flex items-center gap-1">
                           <Icon name="Calendar" size="sm" />

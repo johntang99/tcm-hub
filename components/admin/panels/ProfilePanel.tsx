@@ -30,21 +30,14 @@ export function ProfilePanel({ profile, updateFormValue, openImagePicker }: Prof
       )}
       {'bio' in profile && (
         <div className="mb-3">
-          <label className="block text-xs text-gray-500">Bio</label>
+          <label className="block text-xs text-gray-500">
+            Bio <span className="font-normal text-gray-400">(Markdown — include pull quotes with &gt; lines)</span>
+          </label>
           <textarea
-            className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
+            className="mt-1 w-full min-h-[280px] rounded-md border border-gray-200 px-3 py-2 text-sm font-mono leading-relaxed"
             value={profile.bio || ''}
             onChange={(event) => updateFormValue(['profile', 'bio'], event.target.value)}
-          />
-        </div>
-      )}
-      {'quote' in profile && (
-        <div className="mb-3">
-          <label className="block text-xs text-gray-500">Quote</label>
-          <textarea
-            className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
-            value={profile.quote || ''}
-            onChange={(event) => updateFormValue(['profile', 'quote'], event.target.value)}
+            placeholder={'Intro paragraphs...\n\n> Pull quote text here.\n\n**Name, credentials**'}
           />
         </div>
       )}

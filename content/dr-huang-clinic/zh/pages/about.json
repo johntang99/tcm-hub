@@ -64,11 +64,10 @@
     "variant": "prose"
   },
   "profile": {
-    "bio": "黃醫生從事傳統中醫實踐已超過15年，通過自然、整體的治療方法幫助數千名患者實現更好的健康。她對中醫的熱情始於本科生物學學習期間，當時她對人體的先天癒合能力和中醫的優雅智慧深深著迷。",
+    "bio": "碩士研究生學歷 本科畢業於黑龍江中醫藥大學，碩士畢業於中國中醫科學院，曾入選名老中醫“學術經驗繼承人”計劃，師從多位國醫名師。\n\n行醫十餘年，臨床與研究並重，擅長運用針灸，中藥等中醫療法治療 心理、睡眠疾病、內科、外科，婦科，兒科等各科疾病及疑難雜癥，各類痛癥等。\n\n> 真正的治癒來自於解決根本原因，而不僅僅是抑制症狀。每個患者都是獨一無二的，治療必須反映這種個性。\n\n**黃醫生，針灸師，中醫碩士**",
     "name": "黃醫生，針灸師，中醫碩士",
     "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/dr-huang-11.png",
-    "quote": "真正的治癒來自於解決根本原因，而不僅僅是抑制症狀。每個患者都是獨一無二的，治療必須反映這種個性。",
-    "title": "持牌針灸師和中醫執業醫師",
+    "title": "美國執業針灸師和中醫執業醫師",
     "variant": "split",
     "signature": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/signature.png"
   },
@@ -107,10 +106,10 @@
     "items": [
       {
         "icon": "GraduationCap",
-        "year": "2008",
-        "location": "加利福尼亞州聖地亞哥",
-        "credential": "傳統中醫理學碩士",
-        "institution": "太平洋健康與科學學院"
+        "year": "2011",
+        "location": "北京大學人民醫院",
+        "credential": "心理與睡眠醫學",
+        "institution": "\n北京大學人民醫院睡眠醫學中心進修，學習睡眠監測與睡眠相關疾病（2011）\n\n首屆國際心理學與睡眠醫學科研方法高階培訓課程（2012）\n\n創傷治療與哀傷輔導連續訓練項目，結業（2013，紐瀚斯心理事業發展中心）\n\n心理危機介入技術建構與提升訓練班（2018，北京豐台區南苑醫院）"
       },
       {
         "icon": "Award",
@@ -198,5 +197,16 @@
     "title": "繼續教育和培訓",
     "variant": "compact",
     "description": "黃醫生積極參與中醫社區，並定期尋求高級培訓："
+  },
+  "staffs": {
+    "members": [
+      {
+        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1774412916267-wangweidong.jpg",
+        "name": "汪卫东教授",
+        "title": "主任医师",
+        "description": "主任医师 中医心理学专业委员会会长、世界中医药学会联合会睡眠医学专业委员会常务副会长、中国睡眠研究会副理事长、中国医师协会养生专业委员会副主任委员、国家中医药管理局中医心理学重点学科与重点专科带头人、曾任中国中医科学院广安门医院副院长、北京中医药大学教授、华佑医疗中医心理科教授 。擅长：各类心理疾病，失眠，焦虑，抑郁，强迫症，躯体形式障碍等。我于2010年-2013年在广安门医院心理睡眠门诊跟师学习。"
+      }
+    ],
+    "title": "专家导师"
   }
 }

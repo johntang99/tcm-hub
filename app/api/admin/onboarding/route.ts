@@ -16,6 +16,7 @@ import {
 } from '@/lib/admin/rewriteDb';
 import { extractRewriteItems, generateRewriteItemsFromProvider } from '@/lib/admin/rewriteEngine';
 import { generateRewriteWithProvider, isRewriteProviderConfigured } from '@/lib/ai/rewrite/provider';
+import { profileWithMergedBio } from '@/lib/about-profile-bio';
 
 // ── Types ────────────────────────────────────────────────────────────
 
@@ -1474,10 +1475,15 @@ export async function POST(request: NextRequest) {
               if (aboutRows[0]?.data) {
                 const about = aboutRows[0].data;
                 if (aiContent.aboutStory && about.journey) about.journey.story = aiContent.aboutStory;
-                if (aiContent.ownerBio && about.profile) {
-                  about.profile.bio = formatBioParagraphs(aiContent.ownerBio);
+                if (about.profile) {
+                  if (aiContent.ownerBio) {
+                    about.profile.bio = formatBioParagraphs(aiContent.ownerBio);
+                  }
+                  if (aiContent.ownerQuote) {
+                    about.profile.quote = aiContent.ownerQuote;
+                  }
+                  about.profile = profileWithMergedBio(about.profile) ?? about.profile;
                 }
-                if (aiContent.ownerQuote && about.profile) about.profile.quote = aiContent.ownerQuote;
                 await upsert('content_entries', [{ site_id: SITE_ID, locale, path: 'pages/about.json', data: about, updated_by: 'onboard-api' }], 'site_id,locale,path');
               }
               // NOTE: No separate doctor files in TCM — bio is already in about.json above

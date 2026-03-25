@@ -17,6 +17,9 @@ import { HeroPanel } from '@/components/admin/panels/HeroPanel';
 import { ProfilePanel } from '@/components/admin/panels/ProfilePanel';
 import { IntroductionPanel } from '@/components/admin/panels/IntroductionPanel';
 import { AboutAdditionalPanel } from '@/components/admin/panels/AboutAdditionalPanel';
+import { AboutStaffsPanel } from '@/components/admin/panels/AboutStaffsPanel';
+import { AboutCredentialsPanel } from '@/components/admin/panels/AboutCredentialsPanel';
+import { normalizeAboutFormData, finalizeAboutFormForSave } from '@/lib/admin/about-form-normalize';
 import { GalleryPhotosPanel } from '@/components/admin/panels/GalleryPhotosPanel';
 import { CtaPanel } from '@/components/admin/panels/CtaPanel';
 import { ServicesPanel } from '@/components/admin/panels/ServicesPanel';
@@ -290,6 +293,9 @@ export function ContentEditor({
           if (activeFile?.path === 'theme.json') {
             parsedForForm = withThemeDefaults(parsedForForm);
             setContent(JSON.stringify(parsedForForm, null, 2));
+          } else if (activeFile?.path === 'pages/about.json') {
+            parsedForForm = normalizeAboutFormData(parsedForForm);
+            setContent(JSON.stringify(parsedForForm, null, 2));
           } else {
             setContent(nextContent);
           }
@@ -434,6 +440,11 @@ export function ContentEditor({
       if (activeFile.path === 'theme.json') {
         parsedContent = withThemeDefaults(parsedContent);
       }
+      setFormData(parsedContent);
+    }
+
+    if (activeFile.path === 'pages/about.json' && parsedContent && typeof parsedContent === 'object') {
+      parsedContent = finalizeAboutFormForSave(parsedContent);
       setFormData(parsedContent);
     }
 
@@ -2518,10 +2529,25 @@ export function ContentEditor({
               )}
 
               {showSharedPanels && activeFile?.path === 'pages/about.json' && formData && (
-                <AboutAdditionalPanel
-                  formData={formData}
-                  updateFormValue={updateFormValue}
-                />
+                <>
+                  <AboutStaffsPanel
+                    staffs={formData.staffs ?? formData.team ?? { title: '', members: [] }}
+                    updateFormValue={updateFormValue}
+                    openImagePicker={openImagePicker}
+                  />
+                  <AboutCredentialsPanel
+                    credentials={
+                      formData.credentials ?? { title: '', variant: 'list', items: [] }
+                    }
+                    updateFormValue={updateFormValue}
+                    markdownPreview={markdownPreview}
+                    toggleMarkdownPreview={toggleMarkdownPreview}
+                  />
+                  <AboutAdditionalPanel
+                    formData={formData}
+                    updateFormValue={updateFormValue}
+                  />
+                </>
               )}
 
               {showSharedPanels && Array.isArray(formData?.images) && (

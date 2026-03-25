@@ -9,7 +9,6 @@ const SECTION_KEYS = [
   'clinic',
   'journey',
   'philosophy',
-  'credentials',
   'affiliations',
   'specializations',
   'continuingEducation',
