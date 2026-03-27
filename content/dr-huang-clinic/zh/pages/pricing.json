@@ -44,77 +44,59 @@
   "packages": {
     "items": [
       {
-        "name": "入門方案",
-        "bestFor": "急性病症，首次就診患者",
+        "name": "單次美塑療程",
+        "bestFor": "初次體驗，局部微調",
         "popular": false,
-        "savings": "省 $25",
+        "savings": "體驗價",
         "includes": [
-          "5 次針灸複診療程",
-          "3 個月內有效",
-          "可額外付費添加其他療法"
+          "1 小時專業針對性治療",
+          "客製化美塑方案諮詢",
+          "適用於美容針灸或局部塑形"
         ],
-        "sessions": 5,
-        "totalPrice": "$400",
-        "description": "非常適合初次嘗試中醫或解決急性問題",
-        "regularPrice": "$425",
-        "perSessionPrice": "$80"
+        "sessions": "1 小時",
+        "totalPrice": "$680",
+        "description": "適合初次嘗試或針對特定小區域進行局部微調",
+        "regularPrice": "$680",
+        "perSessionPrice": "$680"
       },
       {
-        "name": "健康方案",
-        "bestFor": "慢性疼痛，生育支持，持續保健",
+        "name": "進階美塑方案 (6hr)",
+        "bestFor": "臉部拉皮，顯著祛皺，產後修復",
         "popular": true,
-        "savings": "省 $100",
+        "savings": "現省 $680",
         "includes": [
-          "10 次針灸複診療程",
-          "1 次免費拔罐或刮痧附加治療",
-          "6 個月內有效",
-          "中藥配方 9 折優惠"
+          "共計 6 小時深度療程",
+          "針灸美容（拉皮、祛皺、淡斑）",
+          "減肥塑形（腹部、腰部、四肢）",
+          "贈送基礎皮膚或體態評估"
         ],
-        "sessions": 10,
-        "totalPrice": "$750",
-        "description": "我們最受歡迎的慢性病症選擇",
-        "regularPrice": "$850",
-        "perSessionPrice": "$75"
+        "sessions": "6 小時",
+        "totalPrice": "$3,400",
+        "description": "最受歡迎的美容塑體方案，適合針對性改善臉部或身材",
+        "regularPrice": "$4,080",
+        "perSessionPrice": "$566"
       },
       {
-        "name": "康復之旅方案",
-        "bestFor": "複雜慢性病症，預防性護理，最佳健康狀態",
+        "name": "極致美塑轉變 (13hr)",
+        "bestFor": "全身塑形，全面抗衰老，長期體態維持",
         "popular": false,
-        "savings": "省 $300",
+        "savings": "超值省 $2,040",
         "includes": [
-          "20 次針灸複診療程",
-          "3 次免費附加療法（拔罐、刮痧或艾灸）",
-          "12 個月內有效",
-          "中藥配方 85 折優惠",
-          "免費飲食療法諮詢（價值 $75）"
+          "共計 13 小時全方位療程",
+          "全面美容：臉部提升與全臉豐滿",
+          "全身塑形：胸部提升、全身體膚緊緻",
+          "縮陰、去妊娠紋等高階項目"
         ],
-        "sessions": 20,
-        "totalPrice": "$1,400",
-        "description": "針對複雜或長期病症的全面護理",
-        "regularPrice": "$1,700",
-        "perSessionPrice": "$70"
-      },
-      {
-        "name": "每月維護方案",
-        "bestFor": "長期健康，疾病預防，慢性病管理",
-        "popular": false,
-        "savings": "省 $40",
-        "includes": [
-          "每月 4 次療程（每週一次）",
-          "每月自動續訂",
-          "可隨時暫停或取消",
-          "優先預約安排"
-        ],
-        "sessions": 4,
-        "totalPrice": "$300",
-        "description": "持續護理以保持健康並預防疾病",
-        "regularPrice": "$340",
-        "perSessionPrice": "$75"
+        "sessions": "13 小時",
+        "totalPrice": "$6,800",
+        "description": "全方位的身心轉變之旅，實現全身性的緊緻與逆齡效果",
+        "regularPrice": "$8,840",
+        "perSessionPrice": "$523"
       }
     ],
-    "title": "治療方案（套餐）",
+    "title": "針灸美容、減肥、塑形套餐",
     "variant": "grid-3",
-    "subtitle": "透過我們的療程方案節省費用 — 您對健康的投入越多，節省越多"
+    "subtitle": "結合傳統中醫智慧與現代美學，打造自然健康的體態與容顏"
   },
   "policies": {
     "title": "診所政策",

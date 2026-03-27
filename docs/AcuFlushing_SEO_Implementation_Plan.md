@@ -205,15 +205,15 @@ https://acupunctureflushing.com/sitemap.xml
 
 ### URLs to Request Indexing
 ```
-https://acupunctureflushing.com/en/acupuncture-flushing-ny
-https://acupunctureflushing.com/en/acupuncture-for-back-pain-flushing-ny
-https://acupunctureflushing.com/en/acupuncture-for-insomnia-flushing-ny
-https://acupunctureflushing.com/en/acupuncture-for-anxiety-flushing-ny
-https://acupunctureflushing.com/en/acupuncture-cost-flushing-ny
-https://acupunctureflushing.com/en/chinese-herbal-medicine-flushing-ny
-https://acupunctureflushing.com/en/cupping-therapy-flushing-ny
-https://acupunctureflushing.com/en/moxibustion-flushing-ny
-https://acupunctureflushing.com/en/tui-na-massage-flushing-ny
+https://www.acupunctureflushing.com/en/acupuncture-flushing-ny
+https://www.acupunctureflushing.com/en/acupuncture-for-back-pain-flushing-ny
+https://www.acupunctureflushing.com/en/acupuncture-for-insomnia-flushing-ny
+https://www.acupunctureflushing.com/en/acupuncture-for-anxiety-flushing-ny
+https://www.acupunctureflushing.com/en/acupuncture-cost-flushing-ny
+https://www.acupunctureflushing.com/en/chinese-herbal-medicine-flushing-ny
+https://www.acupunctureflushing.com/en/cupping-therapy-flushing-ny
+https://www.acupunctureflushing.com/en/moxibustion-flushing-ny
+https://www.acupunctureflushing.com/en/tui-na-massage-flushing-ny
 ```
 
 ---

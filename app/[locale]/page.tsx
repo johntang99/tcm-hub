@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { notFound } from 'next/navigation';
 import { type Locale } from '@/lib/i18n';
-import { getRequestSiteId, loadPageContent, loadSiteInfo } from '@/lib/content';
+import { getRequestSiteId, loadPageContent, loadSiteInfo, loadAllItems } from '@/lib/content';
 import { buildPageMetadata } from '@/lib/seo';
 import { getServiceSEOLinks } from '@/lib/seo-pages';
 import type { SiteInfo } from '@/lib/types';
@@ -138,6 +138,24 @@ export default async function HomePage({ params }: PageProps) {
       }
     }
   }
+  // Load latest blog posts dynamically instead of using hardcoded slugs
+  if (content.blog) {
+    type BlogListItem = { slug: string; title: string; excerpt?: string; image?: string; category?: string; publishDate?: string; readTime?: string; type?: string; featured?: boolean; status?: string };
+    const allPosts = await loadAllItems<BlogListItem>(siteId, locale, 'blog');
+    if (allPosts.length > 0) {
+      const latestPosts = [...allPosts]
+        .filter(p => !p.status || p.status === 'published')
+        .filter(p => p.title && p.slug)
+        .sort((a, b) => {
+          const da = new Date(a.publishDate || 0).getTime();
+          const db = new Date(b.publishDate || 0).getTime();
+          return db - da;
+        })
+        .slice(0, 3);
+      content.blog.posts = latestPosts;
+    }
+  }
+
   const defaultSections = [
     'hero',
     'credentials',

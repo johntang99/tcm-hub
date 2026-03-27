@@ -7,9 +7,6 @@
       "id": "profile"
     },
     {
-      "id": "staffs"
-    },
-    {
       "id": "credentials"
     },
     {
@@ -19,10 +16,10 @@
       "id": "philosophy"
     },
     {
-      "id": "journey"
+      "id": "affiliationsEducation"
     },
     {
-      "id": "affiliationsEducation"
+      "id": "staffs"
     },
     {
       "id": "clinic"
