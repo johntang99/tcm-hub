@@ -8,7 +8,7 @@
     },
     "description": "安排您的初次諮詢，討論您的健康目標，並了解中醫如何幫助您恢復到最佳狀態。",
     "secondaryCta": {
-      "link": "tel:+19172291229",
+      "link": "tel:+15164664018",
       "text": "今天致電我們"
     }
   },
@@ -53,7 +53,7 @@
       "寧靜、舒緩的環境"
     ],
     "description": [
-      "Smith 醫生診所成立於2010年，使命簡單：為米德爾敦（New York）社區提供便捷、高品質的傳統中醫護理。",
+      "石剛醫師診所（Gang Shi Acupuncture）成立於1994年，使命簡單：為大頸（Great Neck）與紐約地區社區提供便捷、高品質的傳統中醫護理。",
       "從一個小診所開始，已經發展成為一個值得信賴的健康中心，幫助1,000多名患者自然實現更好的健康。"
     ],
     "environment": "我們的診所提供寧靜、溫馨的環境，旨在促進放鬆和癒合。從您進入的那一刻起，您就會感受到不同——寧靜的色彩、舒適的治療室和溫暖、友好的氛圍讓患者感到輕鬆自在。"
@@ -64,9 +64,10 @@
     "variant": "prose"
   },
   "profile": {
-    "bio": "Dr. Gang Shi's journey into Traditional Chinese Medicine began over three decades ago, driven by a deep reverence for the profound healing wisdom of his ancestors. After earning his Master of Science in Traditional Chinese Medicine from the American College of Traditional Chinese Medicine in San Francisco, he became board-certified by the National Certification Commission for Acupuncture and Oriental Medicine (NCCAOM), establishing himself as a trusted practitioner in the field.\n\nWith 32 years of clinical experience, Dr. Shi has developed particular expertise in treating complex conditions including chronic pain management, anxiety and panic disorders, women's health issues, respiratory conditions, and immune system imbalances. His approach seamlessly weaves together multiple modalities—acupuncture, Chinese herbal medicine, cupping, moxibustion, and Tuina massage—creating individualized treatment protocols that address not just symptoms, but the root energetic imbalances within each patient.\n\nDr. Shi believes that true healing occurs when we work in harmony with the body's innate wisdom rather than against it. Fluent in both English and Chinese, he serves as a bridge between ancient Eastern healing traditions and modern wellness needs, guiding each patient toward optimal health through the gentle yet powerful principles of qi cultivation, meridian balance, and constitutional harmony.\n\n> The body holds infinite wisdom to heal itself when we simply provide the right conditions for balance to flourish.\n\n**Dr. Gang Shi**",
+    "bio": "Dr. Gang Shi's journey into Traditional Chinese Medicine began over three decades ago, driven by a deep reverence for the profound healing wisdom of his ancestors. After earning his Master of Science in Traditional Chinese Medicine from the American College of Traditional Chinese Medicine in San Francisco, he became board-certified by the National Certification Commission for Acupuncture and Oriental Medicine (NCCAOM), establishing himself as a trusted practitioner in the field.\n\nWith 32 years of clinical experience, Dr. Gang Shi has developed particular expertise in treating complex conditions including chronic pain management, anxiety and panic disorders, women's health issues, respiratory conditions, and immune system imbalances. His approach seamlessly weaves together multiple modalities—acupuncture, Chinese herbal medicine, cupping, moxibustion, and Tuina massage—creating individualized treatment protocols that address not just symptoms, but the root energetic imbalances within each patient.\n\nDr. Gang Shi believes that true healing occurs when we work in harmony with the body's innate wisdom rather than against it. Fluent in both English and Chinese, he serves as a bridge between ancient Eastern healing traditions and modern wellness needs, guiding each patient toward optimal health through the gentle yet powerful principles of qi cultivation, meridian balance, and constitutional harmony.",
     "name": "Dr. Gang Shi",
     "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/acu-gangshi/onboarding-overrides/1773091212756-b489bbebcad7eea57f3cbf9b5cbb0eea-jpg.avif",
+    "quote": "The body holds infinite wisdom to heal itself when we simply provide the right conditions for balance to flourish.",
     "title": "L.Ac., NCCAOM",
     "variant": "split",
     "signature": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/signature.png"
@@ -77,7 +78,7 @@
     "principles": [
       {
         "title": "治療整個人",
-        "description": "中醫認識到身體症狀通常與情緒、精神和心靈因素相關。黃醫生解決健康的所有方面，而不僅僅是孤立的症狀。"
+        "description": "中醫認識到身體症狀通常與情緒、精神和心靈因素相關。石剛醫師從整體著眼，關注健康的各個面向，而不僅僅是孤立的症狀。"
       },
       {
         "title": "找到根本原因",
@@ -89,26 +90,26 @@
       },
       {
         "title": "患者教育",
-        "description": "了解您的身體和狀況使您能夠在治療中發揮積極作用。黃醫生花時間用清晰、易懂的術語解釋您的診斷和治療。"
+        "description": "了解您的身體和狀況使您能夠在治療中發揮積極作用。石剛醫師會花時間用清晰、易懂的說明解釋您的診斷與治療。"
       },
       {
         "title": "與西醫結合",
-        "description": "中醫可以與傳統醫療護理完美配合。黃醫生與其他醫療保健提供者合作，確保全面、協調的治療。"
+        "description": "中醫可以與傳統醫療護理完美配合。石剛醫師會與其他醫療保健提供者合作，確保全面、協調的治療。"
       },
       {
         "title": "預防和保健",
         "description": "最好的醫學是在疾病發生前預防它。治療包括飲食、生活方式和自我保健實踐的指導，以保持長期健康。"
       }
     ],
-    "introduction": "黃醫生的治療方法植根於傳統中醫的基本原則，同時融合現代臨床理解。"
+    "introduction": "石剛醫師的治療方法植根於傳統中醫的基本原則，同時融合現代臨床理解。"
   },
   "credentials": {
     "items": [
       {
         "icon": "Award",
         "year": "",
-        "location": "San Francisco",
-        "credential": "MSTCM",
+        "location": "纽约",
+        "credential": "NCBAHM",
         "institution": "ACTCM"
       }
     ],
@@ -160,7 +161,7 @@
     ],
     "title": "專業領域",
     "variant": "grid-2",
-    "description": "通過多年的臨床實踐和繼續教育，黃醫生在幾個關鍵領域發展了特殊的專業知識："
+    "description": "通過多年的臨床實踐和繼續教育，石剛醫師在幾個關鍵領域發展了特殊的專業知識："
   },
   "continuingEducation": {
     "items": [
@@ -173,6 +174,6 @@
     ],
     "title": "繼續教育和培訓",
     "variant": "compact",
-    "description": "黃醫生積極參與中醫社區，並定期尋求高級培訓："
+    "description": "石剛醫師積極參與中醫社區，並定期尋求高級培訓："
   }
 }

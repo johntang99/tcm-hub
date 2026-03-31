@@ -19,6 +19,10 @@
         "text": "首頁"
       },
       {
+        "url": "/zh/acupuncture-great-neck-ny",
+        "text": "針灸"
+      },
+      {
         "url": "/zh/services",
         "text": "服務項目"
       },
@@ -56,10 +60,10 @@
   "topbar": {
     "badge": "",
     "hours": "週一至週五 9:00-18:00",
-    "phone": "516 - 466 - 4018",
+    "phone": "516-466-4018",
     "address": "935 Northern Boulevard, Suite Number 303, Great Neck, NY 11021",
     "phoneHref": "tel:+15164664018",
-    "addressHref": "https://maps.google.com/?q=71+East+Main+Street+New York+NY+10001"
+    "addressHref": "https://maps.google.com/?q=935+Northern+Boulevard+Suite+Number+303+Great+Neck+NY+11021"
   },
   "languages": [
     "en",

@@ -8,8 +8,8 @@
       "text": "立即預約諮詢"
     },
     "secondaryCta": {
-      "link": "tel:845-381-1106",
-      "text": "來電：845-381-1106"
+      "link": "tel:+15164664018",
+      "text": "來電：516-466-4018"
     }
   },
   "faq": {
@@ -70,7 +70,7 @@
       "改善睡眠質量與心理健康",
       "優化消化健康及加速損傷恢復"
     ],
-    "introduction": "在黃醫生診所，我們由專業中醫師依據您的身體狀況，規劃個別化的中醫治療與健康管理方案。面對疾病調理，我們重視身心整體協調，協助您逐步恢復健康；對於亞健康與日常保養需求，則著重於提升體力、精力、身形、氣色與心理狀態。結合傳統中醫智慧與現代健康觀點，為您提供合適的自然療法。"
+    "introduction": "在石剛醫師診所，我們由專業中醫師依據您的身體狀況，規劃個別化的中醫治療與健康管理方案。面對疾病調理，我們重視身心整體協調，協助您逐步恢復健康；對於亞健康與日常保養需求，則著重於提升體力、精力、身形、氣色與心理狀態。結合傳統中醫智慧與現代健康觀點，為您提供合適的自然療法。"
   },
   "trustBar": {
     "items": [
@@ -104,6 +104,7 @@
         "icon": "Syringe",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-10.jpeg",
         "order": 1,
+        "link": "/zh/acupuncture-great-neck-ny",
         "title": "針灸",
         "benefits": [
           "無需藥物的有效止痛",
@@ -124,6 +125,7 @@
         "icon": "Leaf",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-herb-10.webp",
         "order": 2,
+        "link": "/zh/chinese-herbal-medicine-great-neck-ny",
         "title": "中藥",
         "benefits": [
           "為您的確切需求定制",
@@ -144,6 +146,7 @@
         "icon": "Circle",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/cupping-10.jpg",
         "order": 3,
+        "link": "/zh/cupping-therapy-great-neck-ny",
         "title": "拔罐",
         "benefits": [
           "深度肌肉緊張釋放",
@@ -164,6 +167,7 @@
         "icon": "Flame",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/moxibustion-2.jpeg",
         "order": 4,
+        "link": "/zh/moxibustion-great-neck-ny",
         "title": "艾灸",
         "benefits": [
           "增強免疫系統",
@@ -184,6 +188,7 @@
         "icon": "Hand",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/acupuncture-pain.jpg",
         "order": 5,
+        "link": "/zh/tui-na-massage-great-neck-ny",
         "title": "中醫推拿",
         "benefits": [
           "緩解肌肉疼痛和緊張",
@@ -260,9 +265,9 @@
     "subtitle": "認識更多與本頁服務相關的實用資訊。",
     "viewAllText": "瀏覽全部",
     "preferredSlugs": [
-      "acupuncture-pain-relief-science",
-      "chinese-herbal-formulas",
-      "first-visit-acupuncture-guide"
+      "2-2",
+      "acupuncture-for-menopause",
+      "acupuncture-recurring-colds-flu"
     ],
     "defaultCategory": "指南"
   },

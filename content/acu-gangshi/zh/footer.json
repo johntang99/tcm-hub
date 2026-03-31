@@ -5,17 +5,17 @@
     "description": "以傳統中醫和針灸為社區提供整體治療。"
   },
   "hours": [
-    "Mon: 9:00 AM - 5:00 PM",
-    "Tue: 9:00 AM - 5:00 PM",
-    "Wed: 9:00 AM - 5:00 PM",
-    "Thu: 9:00 AM - 5:00 PM",
-    "Fri: 9:00 AM - 5:00 PM",
-    "Sat: 9:00 AM - 1:00 PM",
+    "Mon: 9:00 AM - 7:00 PM",
+    "Tue: 9:00 AM - 7:00 PM",
+    "Wed: 9:00 AM - 7:00 PM",
+    "Thu: 10:00 AM - 6:00 PM",
+    "Fri: 9:00 AM - 7:00 PM",
+    "Sat: 9:00 AM - 3:00 PM",
     "Sun: Closed"
   ],
   "contact": {
     "email": "shigangusus@yahoo.com",
-    "phone": "516 - 466 - 4018",
+    "phone": "516-466-4018",
     "emailLink": "mailto:shigangusus@yahoo.com",
     "phoneLink": "tel:+15164664018",
     "addressLines": [
@@ -25,19 +25,19 @@
   },
   "services": [
     {
-      "url": "/zh/services#acupuncture",
+      "url": "/zh/acupuncture-great-neck-ny",
       "text": "針灸"
     },
     {
-      "url": "/zh/services#herbs",
+      "url": "/zh/chinese-herbal-medicine-great-neck-ny",
       "text": "中藥"
     },
     {
-      "url": "/zh/services#cupping",
+      "url": "/zh/cupping-therapy-great-neck-ny",
       "text": "拔罐"
     },
     {
-      "url": "/zh/services#tuina",
+      "url": "/zh/tui-na-massage-great-neck-ny",
       "text": "推拿"
     }
   ],
@@ -66,16 +66,20 @@
       "text": "治療病症"
     },
     {
+      "url": "/zh/acupuncture-great-neck-ny",
+      "text": "大頸針灸服務"
+    },
+    {
+      "url": "/zh/acupuncture-cost-great-neck-ny",
+      "text": "針灸費用"
+    },
+    {
       "url": "/zh/case-studies",
       "text": "案例研究"
     },
     {
       "url": "/zh/new-patients",
       "text": "首次就診"
-    },
-    {
-      "url": "/zh/new-patients",
-      "text": "新患者"
     },
     {
       "url": "/zh/blog",

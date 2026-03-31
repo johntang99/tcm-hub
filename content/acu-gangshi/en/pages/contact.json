@@ -32,7 +32,7 @@
     "showMap": true,
     "variant": "shown",
     "embedUrl": "https://www.google.com/maps?q=935%20Northern%20Boulevard%2C%20Suite%20Number%20303%2C%20Great%20Neck%2C%20NY%2011021&output=embed",
-    "directions": "We are located in Great Neck at 935 Northern Boulevard, Suite Number 303. Please call 516 - 466 - 4018 for detailed directions and parking information."
+    "directions": "We are located in Great Neck at 935 Northern Boulevard, Suite Number 303. Please call 516-466-4018 for detailed directions and parking information."
   },
   "form": {
     "title": "Send Us a Message",
@@ -73,7 +73,7 @@
     },
     "variant": "single-column",
     "subtitle": "Fill out the form below and we'll get back to you as soon as possible",
-    "errorMessage": "Sorry, there was an error sending your message. Please call us directly at 516 - 466 - 4018.",
+    "errorMessage": "Sorry, there was an error sending your message. Please call us directly at 516-466-4018.",
     "submitButton": {
       "text": "Send Message"
     },
@@ -92,17 +92,16 @@
     "schedule": [
       {
         "day": "Monday",
-        "time": "9:00 AM - 6:00 PM",
+        "time": "9:00 AM - 7:00 PM",
         "isOpen": true
       },
       {
         "day": "Tuesday",
-        "time": "9:00 AM - 6:00 PM",
+        "time": "9:00 AM - 7:00 PM",
         "isOpen": true
       },
       {
         "day": "Wednesday",
-        "note": "Community Acupuncture Day",
         "time": "9:00 AM - 7:00 PM",
         "isOpen": true
       },
@@ -113,12 +112,12 @@
       },
       {
         "day": "Friday",
-        "time": "9:00 AM - 6:00 PM",
+        "time": "9:00 AM - 7:00 PM",
         "isOpen": true
       },
       {
         "day": "Saturday",
-        "time": "9:00 AM - 2:00 PM",
+        "time": "9:00 AM - 3:00 PM",
         "isOpen": true
       },
       {
@@ -146,7 +145,7 @@
         "link": "tel:+15164664018",
         "text": "Call Now"
       },
-      "primary": "516 - 466 - 4018",
+      "primary": "516-466-4018",
       "secondary": null,
       "description": "Mon-Fri: 9am-6pm, Sat: 9am-2pm"
     },
@@ -165,7 +164,7 @@
       "icon": "MapPin",
       "title": "Visit Us",
       "action": {
-        "link": "https://maps.google.com/?q=71+East+Main+Street+New York+NY+10001",
+        "link": "https://maps.google.com/?q=935+Northern+Boulevard+Suite+Number+303+Great+Neck+NY+11021",
         "text": "Get Directions"
       },
       "primary": "935 Northern Boulevard, Suite Number 303",

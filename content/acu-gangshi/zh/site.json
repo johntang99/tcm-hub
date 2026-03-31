@@ -11,7 +11,7 @@
     "thursday": "9:00 AM - 5:00 PM",
     "wednesday": "9:00 AM - 5:00 PM"
   },
-  "phone": "516 - 466 - 4018",
+  "phone": "516-466-4018",
   "state": "NY",
   "social": {
     "google": "",
@@ -37,8 +37,8 @@
     }
   ],
   "clinicName": "Gang Shi Acupuncture",
-  "description": "在纽约州米德尔敦通过传统中医进行整体治疗",
-  "addressMapUrl": "https://maps.google.com/?q=71+East+Main+Street+New York+NY+10001",
+  "description": "在纽约州大颈（Great Neck）通过传统中医进行整体诊疗",
+  "addressMapUrl": "https://maps.google.com/?q=935+Northern+Boulevard+Suite+Number+303+Great+Neck+NY+11021",
   "headerVariant": "stacked",
   "iconCharacter": "SHI"
 }

@@ -8,7 +8,7 @@
     },
     "description": "安排一场免费咨询，和我们聊聊您的具体健康困扰",
     "secondaryCta": {
-      "link": "tel:+19172291229",
+      "link": "tel:+15164664018",
       "text": "来电咨询"
     }
   },
@@ -65,6 +65,7 @@
   "conditions": [
     {
       "id": "back-pain",
+      "link": "/zh/acupuncture-for-back-pain-great-neck-ny",
       "icon": "Activity",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/home/welcome-section.jpg",
       "title": "腰背部疼痛",
@@ -160,6 +161,7 @@
     },
     {
       "id": "anxiety",
+      "link": "/zh/acupuncture-for-anxiety-great-neck-ny",
       "icon": "Brain",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/anxiate-3.jpeg",
       "title": "焦虑与恐慌症",
@@ -210,6 +212,7 @@
     },
     {
       "id": "insomnia",
+      "link": "/zh/acupuncture-for-insomnia-great-neck-ny",
       "icon": "Brain",
       "title": "失眠与睡眠问题",
       "category": "mental-health",

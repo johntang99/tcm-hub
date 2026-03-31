@@ -32,7 +32,7 @@
     "showMap": true,
     "variant": "shown",
     "embedUrl": "https://www.google.com/maps?q=935%20Northern%20Boulevard%2C%20Suite%20Number%20303%2C%20Great%20Neck%2C%20NY%2011021&output=embed",
-    "directions": "我们位于Great Neck，地址为935 Northern Boulevard, Suite Number 303。如需详细路线或停车信息，请致电516 - 466 - 4018。"
+    "directions": "我们位于Great Neck，地址为935 Northern Boulevard, Suite Number 303。如需详细路线或停车信息，请致电516-466-4018。"
   },
   "form": {
     "title": "给我们留言",
@@ -73,7 +73,7 @@
     },
     "variant": "single-column",
     "subtitle": "填写下面的表格，我们会尽快回复您",
-    "errorMessage": "抱歉，发送您的消息时出错。请直接致电我们 516 - 466 - 4018",
+    "errorMessage": "抱歉，发送您的消息时出错。请直接致电我们 516-466-4018",
     "submitButton": {
       "text": "发送消息"
     },
@@ -146,7 +146,7 @@
         "link": "tel:+15164664018",
         "text": "立即致电"
       },
-      "primary": "516 - 466 - 4018",
+      "primary": "516-466-4018",
       "secondary": null,
       "description": "周一至周五：9am-6pm，周六：9am-2pm"
     },
@@ -165,7 +165,7 @@
       "icon": "MapPin",
       "title": "拜访我们",
       "action": {
-        "link": "https://maps.google.com/?q=71+East+Main+Street+New York+NY+10001",
+        "link": "https://maps.google.com/?q=935+Northern+Boulevard+Suite+Number+303+Great+Neck+NY+11021",
         "text": "获取路线"
       },
       "primary": "935 Northern Boulevard, Suite Number 303",

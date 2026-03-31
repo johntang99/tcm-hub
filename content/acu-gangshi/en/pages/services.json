@@ -8,8 +8,8 @@
       "text": "Book a Consultation"
     },
     "secondaryCta": {
-      "link": "tel:845-381-1106",
-      "text": "Call: 845-381-1106"
+      "link": "tel:+15164664018",
+      "text": "Call: 516-466-4018"
     }
   },
   "faq": {
@@ -104,6 +104,7 @@
         "icon": "Syringe",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-10.jpeg",
         "order": 1,
+        "link": "/en/acupuncture-great-neck-ny",
         "title": "Acupuncture Therapy",
         "benefits": [
           "Medication-free support for pain relief",
@@ -125,6 +126,7 @@
         "icon": "Leaf",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-herb-10.webp",
         "order": 2,
+        "link": "/en/chinese-herbal-medicine-great-neck-ny",
         "title": "Traditional Chinese Herbal Medicine",
         "benefits": [
           "Customized to match your individual health needs",
@@ -145,6 +147,7 @@
         "icon": "Circle",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/cupping-10.jpg",
         "order": 3,
+        "link": "/en/cupping-therapy-great-neck-ny",
         "title": "Therapeutic Cupping",
         "benefits": [
           "Helps release deep muscle tension",
@@ -165,6 +168,7 @@
         "icon": "Flame",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/moxibustion-2.jpeg",
         "order": 4,
+        "link": "/en/moxibustion-great-neck-ny",
         "title": "Moxibustion Therapy",
         "benefits": [
           "Helps support and strengthen immune function",
@@ -185,6 +189,7 @@
         "icon": "Hand",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/acupuncture-pain.jpg",
         "order": 5,
+        "link": "/en/tui-na-massage-great-neck-ny",
         "title": "Tui Na Therapeutic Massage",
         "benefits": [
           "Helps relieve muscle pain and long-standing tension",
@@ -261,9 +266,9 @@
     "subtitle": "Explore articles and practical guides related to these services.",
     "viewAllText": "View all",
     "preferredSlugs": [
-      "acupuncture-pain-relief-science",
-      "chinese-herbal-formulas",
-      "first-visit-acupuncture-guide"
+      "natural-way-restore-energy",
+      "1-1",
+      "acupuncture-recurring-colds-flu"
     ],
     "defaultCategory": "Guide"
   },

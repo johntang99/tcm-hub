@@ -1,4 +1,14 @@
 {
+  "seo": {
+    "title": "Gang Shi Acupuncture | Acupuncture & TCM in Great Neck, NY",
+    "description": "Acupuncture, herbal medicine & TCM in Great Neck, NY. Dr. Gang Shi—30+ years experience. Pain, stress, sleep & more. Call 516-466-4018.",
+    "h1": "Acupuncture & Traditional Chinese Medicine in Great Neck, NY",
+    "canonicalUrl": "/en",
+    "schema": ["LocalBusiness", "MedicalClinic", "BreadcrumbList"],
+    "noindex": false,
+    "changefreq": "weekly",
+    "priority": 1.0
+  },
   "cta": {
     "title": "Ready to Begin Your Healing Journey?",
     "variant": "centered",
@@ -7,7 +17,7 @@
       "link": "/en/contact",
       "text": "Book Your Consultation"
     },
-    "contactInfo": "Call us at 516 - 466 - 4018 or book online",
+    "contactInfo": "Call us at 516-466-4018 or book online",
     "secondaryCta": {
       "link": "tel:+15164664018",
       "text": "Call Us Now"
@@ -17,31 +27,31 @@
     "badge": "LEARN & EXPLORE",
     "posts": [
       {
-        "slug": "acupuncture-pain-relief-science",
+        "slug": "natural-way-restore-energy",
         "type": "article",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-10.jpeg",
-        "title": "The Science Behind Acupuncture: How It Works",
-        "excerpt": "Discover how acupuncture stimulates your body's natural healing mechanisms based on modern research.",
+        "title": "Acupuncture for Persistent Fatigue in Great Neck & Long Island",
+        "excerpt": "Persistent fatigue is more than just feeling tired—many people in Great Neck and Nassau County use acupuncture as a natural way to restore energy.",
         "category": "Acupuncture",
         "readTime": "8 min read"
       },
       {
-        "slug": "chinese-herbal-formulas",
+        "slug": "1-1",
         "type": "article",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-herb-10.webp",
-        "title": "Chinese Herbal Medicine 101",
-        "excerpt": "Learn about the fundamentals of Chinese herbal medicine and how custom formulas are created.",
-        "category": "Herbal Medicine",
-        "readTime": "6 min read"
+        "title": "Acupuncture for Menopause in Great Neck, NY",
+        "excerpt": "Natural support for hot flashes, night sweats, sleep changes, and mood shifts during menopause.",
+        "category": "Women's Health",
+        "readTime": "7 min read"
       },
       {
-        "slug": "first-visit-acupuncture-guide",
-        "type": "video",
+        "slug": "3-3",
+        "type": "article",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/Acupuncture-14.webp",
-        "title": "What to Expect at Your First Acupuncture Visit",
-        "excerpt": "Watch this video to learn what happens during your initial consultation and treatment.",
+        "title": "Seasonal Allergies & Acupuncture in Great Neck",
+        "excerpt": "A natural approach to hay fever and congestion for people in Great Neck, Queens, and Long Island.",
         "category": "Patient Education",
-        "readTime": "5 min watch"
+        "readTime": "6 min read"
       }
     ],
     "title": "Latest from Our Blog & Media",
@@ -106,7 +116,7 @@
     "trustBadges": [
       "Licensed Acupuncturist",
       "Board Certified",
-      "20 Years Experience"
+      "30+ Years Experience"
     ],
     "floatingTags": [
       "Acupuncture",
@@ -174,10 +184,10 @@
       "text": "Accepting New Patients",
       "visible": true
     },
-    "email": "contact@tcm-network.com",
-    "phone": "9172291229",
-    "address": "220 W 30th Street, New York, NY 10001",
-    "addressMapUrl": "https://maps.google.com/?q=71+East+Main+Street+New York+NY+10001"
+    "email": "shigangusus@yahoo.com",
+    "phone": "516-466-4018",
+    "address": "935 Northern Boulevard, Suite Number 303, Great Neck, NY 11021",
+    "addressMapUrl": "https://maps.google.com/?q=935+Northern+Boulevard+Suite+Number+303+Great+Neck+NY+11021"
   },
   "gallery": {
     "badge": "VISIT OUR CLINIC",
@@ -218,12 +228,16 @@
     "featured": {
       "id": "acupuncture",
       "icon": "Syringe",
-      "link": "/en/services#acupuncture",
+      "link": "/en/acupuncture-great-neck-ny",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/Acupuncture-15.webp",
       "title": "Acupuncture",
       "subtitle": "Restore balance and stimulate healing",
       "fullDescription": "Regulates the body's internal organs and meridians by stimulating specific acupuncture points. It balances Yin and Yang, promotes the circulation of Qi and blood, and clears the meridians to prevent and treat various conditions.",
       "shortDescription": "Our primary treatment modality using fine needles to restore balance and promote healing"
+    },
+    "seoLink": {
+      "url": "/en/acupuncture-great-neck-ny",
+      "text": "Acupuncture in Great Neck, NY"
     },
     "moreLink": {
       "url": "/en/services",
@@ -233,7 +247,7 @@
       {
         "id": "herbal-medicine",
         "icon": "Leaf",
-        "link": "/en/services#herbs",
+        "link": "/en/chinese-herbal-medicine-great-neck-ny",
         "title": "Chinese Herbal Medicine",
         "subtitle": "Nature's pharmacy for holistic healing",
         "fullDescription": "Utilizes syndrome differentiation to select specific herbs or formulas that regulate the Yin, Yang, Qi, and blood of the internal organs, effectively adjusting the body's overall functional balance.",
@@ -242,7 +256,7 @@
       {
         "id": "cupping",
         "icon": "Circle",
-        "link": "/en/services#cupping",
+        "link": "/en/cupping-therapy-great-neck-ny",
         "title": "Cupping Therapy",
         "subtitle": "Release tension and promote circulation",
         "fullDescription": "Uses fire or vacuum suction to create negative pressure on the skin. This expands the capillaries to promote blood circulation, remove blood stasis, and expel wind and cold pathogens from the body.",
@@ -251,7 +265,7 @@
       {
         "id": "moxibustion",
         "icon": "Flame",
-        "link": "/en/services#moxibustion",
+        "link": "/en/moxibustion-great-neck-ny",
         "title": "Moxibustion",
         "subtitle": "Warming therapy to invigorate Qi",
         "fullDescription": "Uses the gentle, penetrating heat from burning moxa (mugwort) to stimulate specific acupuncture points. This therapy warms the meridians, expels cold, activates blood circulation, and relieves pain.",
@@ -260,7 +274,7 @@
       {
         "id": "tuina",
         "icon": "Hand",
-        "link": "/en/services#tuina",
+        "link": "/en/tui-na-massage-great-neck-ny",
         "title": "Tui Na Massage",
         "subtitle": "Therapeutic massage along meridians",
         "fullDescription": "Applies manual techniques to the meridians, muscles, and joints to harmonize Qi and blood, relax the tendons, clear the meridians, and improve local circulation.",
@@ -290,7 +304,7 @@
       {
         "id": "back-pain",
         "icon": "Activity",
-        "link": "/en/conditions#back-pain",
+        "link": "/en/acupuncture-for-back-pain-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/gallery/acupuncture-needles.jpg",
         "title": "Back Pain",
         "category": "Pain Management",
@@ -320,7 +334,7 @@
       {
         "id": "anxiety",
         "icon": "Brain",
-        "link": "/en/conditions#anxiety",
+        "link": "/en/acupuncture-for-anxiety-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/anxiate-3.jpeg",
         "title": "Anxiety & Panic Disorders",
         "category": "Mental & Emotional Health",
@@ -460,7 +474,7 @@
       {
         "icon": "award",
         "title": "Three Decades Experience",
-        "description": "Dr. Shi's 32 years of practice and NCCAOM certification ensure you receive authentic, masterful TCM treatment."
+        "description": "Dr. Gang Shi's 32 years of practice and NCCAOM certification ensure you receive authentic, masterful TCM treatment."
       },
       {
         "icon": "user",

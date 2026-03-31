@@ -15,7 +15,7 @@
   ],
   "contact": {
     "email": "shigangusus@yahoo.com",
-    "phone": "516 - 466 - 4018",
+    "phone": "516-466-4018",
     "emailLink": "mailto:shigangusus@yahoo.com",
     "phoneLink": "tel:+15164664018",
     "addressLines": [
@@ -25,19 +25,19 @@
   },
   "services": [
     {
-      "url": "/en/services#acupuncture",
+      "url": "/en/acupuncture-great-neck-ny",
       "text": "Acupuncture"
     },
     {
-      "url": "/en/services#herbs",
+      "url": "/en/chinese-herbal-medicine-great-neck-ny",
       "text": "Herbal Medicine"
     },
     {
-      "url": "/en/services#cupping",
+      "url": "/en/cupping-therapy-great-neck-ny",
       "text": "Cupping"
     },
     {
-      "url": "/en/services#tuina",
+      "url": "/en/tui-na-massage-great-neck-ny",
       "text": "Tui Na"
     }
   ],
@@ -64,6 +64,14 @@
     {
       "url": "/en/conditions",
       "text": "Conditions"
+    },
+    {
+      "url": "/en/acupuncture-great-neck-ny",
+      "text": "Acupuncture in Great Neck, NY"
+    },
+    {
+      "url": "/en/acupuncture-cost-great-neck-ny",
+      "text": "Acupuncture cost"
     },
     {
       "url": "/en/case-studies",

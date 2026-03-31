@@ -8,7 +8,7 @@
     },
     "description": "Contact us to arrange a complimentary consultation and discuss your individual health concerns with our team.",
     "secondaryCta": {
-      "link": "tel:+19172291229",
+      "link": "tel:+15164664018",
       "text": "Call Our Office"
     }
   },
@@ -71,6 +71,7 @@
   "conditions": [
     {
       "id": "back-pain",
+      "link": "/en/acupuncture-for-back-pain-great-neck-ny",
       "icon": "Activity",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/home/welcome-section.jpg",
       "title": "Lower Back, Upper Back & Sciatica Pain",
@@ -168,6 +169,7 @@
     },
     {
       "id": "anxiety",
+      "link": "/en/acupuncture-for-anxiety-great-neck-ny",
       "icon": "Brain",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/anxiate-3.jpeg",
       "title": "Anxiety & Panic Disorder",
@@ -218,6 +220,7 @@
     },
     {
       "id": "insomnia",
+      "link": "/en/acupuncture-for-insomnia-great-neck-ny",
       "icon": "Brain",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/headache-2.jpeg",
       "title": "Insomnia & Sleep Problems",
