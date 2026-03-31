@@ -54,40 +54,38 @@
   "hero": {
     "title": "Traditional Chinese Medicine (TCM) Treatments",
     "variant": "split-photo-right",
-    "subtitle": "A comprehensive selection of healing therapies tailored with care to your individual health needs",
+    "subtitle": "Hands-on therapies in Great Neck, shaped around how you feel today and what you want to improve",
     "backgroundImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/tcm-emotion-1.webp"
   },
   "overview": {
     "title": "How Our Care Model Can Help",
     "variant": "centered",
     "benefits": [
-      "Medication-free support for pain management",
-      "Natural support for stress and anxiety",
-      "Support for healthy immune system function",
-      "Improved energy and a stronger sense of vitality",
-      "Support for hormonal health and balance",
-      "Better sleep quality",
-      "Support for digestive health and gut wellness",
-      "Support for recovery from injury and rehabilitation"
+      "Drug-free options for many pain and tension patterns",
+      "Calmer stress response and steadier sleep for many patients",
+      "Immune and energy support without a one-size-fits-all protocol",
+      "Digestive comfort and better day-to-day stamina",
+      "Women’s health and recovery support alongside your medical team",
+      "Clear explanations in English or Mandarin at each step"
     ],
-    "introduction": "Gang Shi Acupuncture offers a wide range of Traditional Chinese Medicine treatments, each selected and tailored to your individual concerns and wellness goals. Our care combines long-established practices with modern clinical understanding to provide natural, whole-person support that focuses on the underlying patterns behind your concerns, not only the symptoms."
+    "introduction": "At Gang Shi Acupuncture in Great Neck, we choose therapies based on your history, exam, and goals—not a generic script. Visits blend classic Chinese medicine thinking with practical, modern safety habits so you know what we’re doing and why."
   },
   "trustBar": {
     "items": [
       {
         "icon": "Award",
-        "title": "Licensed Providers",
-        "description": "Treatment guided by evidence-informed clinical practice"
+        "title": "Licensed Care",
+        "description": "Board-level training with decades of focused TCM practice"
       },
       {
         "icon": "Users",
-        "title": "Personalized Treatment Plans",
-        "description": "Each plan is tailored to your individual health needs and goals"
+        "title": "Plans That Evolve",
+        "description": "We adjust frequency and tools as your symptoms change"
       },
       {
         "icon": "Shield",
-        "title": "Safe and Professional Care",
-        "description": "High standards for hygiene and professionalism at every visit"
+        "title": "Safety First",
+        "description": "Sterile supplies, careful screening, and honest precautions"
       }
     ]
   },
@@ -107,19 +105,17 @@
         "link": "/en/acupuncture-great-neck-ny",
         "title": "Acupuncture Therapy",
         "benefits": [
-          "Medication-free support for pain relief",
-          "Reduced inflammation",
-          "Improved circulation",
-          "Helps support healthy immune function",
-          "Helps ease stress and anxiety",
-          "Better sleep quality",
-          "Hormonal balance",
-          "Increased energy levels"
+          "Often chosen first for back, neck, and shoulder complaints",
+          "Can soften stress-driven tension and guard sleep quality",
+          "May support headaches, fatigue, and digestive upset when patterns fit",
+          "Pairs naturally with cupping or herbs in the same care plan",
+          "Typically gentle enough for busy professionals and older adults",
+          "Explained in plain language before any needles are used"
         ],
         "featured": true,
-        "whatToExpect": "At the start of your acupuncture session, you’ll be made comfortable while your practitioner places very fine needles at selected points. Most patients feel little to no discomfort. The needles are then left in place for about 20 to 30 minutes while you rest quietly, and many people experience a deep sense of calm. Some patients even fall asleep during treatment.",
-        "fullDescription": "Acupuncture involves the precise insertion of needles at specific points along the body’s meridians to support the balance of Yin and Yang and promote the smooth flow of Qi and blood. \n\n**Scope of Application**\nThis therapy may be used for acute and chronic pain conditions, including neck, shoulder, back, and leg pain, headaches, and arthritis; internal medicine concerns such as insomnia, gastrointestinal disorders, and hypertension; surgical and soft tissue issues including soft tissue injuries and skin conditions; gynecological concerns such as irregular menstruation and menopausal syndrome; pediatric conditions including indigestion and low immunity; men’s health concerns including prostate enlargement, impotence, premature ejaculation, and sexual dysfunction; and aesthetic TCM applications including acne management, anti-aging, weight management, skin lifting, and edema reduction. \n\n**Precautions**\nPlease do not receive acupuncture on an empty stomach or right after a large meal. Extra caution is advised for those who are pregnant or who have severe heart disease or bleeding disorders. Be sure to tell your acupuncturist if you take anti-platelet or anticoagulant medications. After treatment, keep warm, avoid exposure to cold drafts, and wait at least 4 hours before bathing.",
-        "shortDescription": "One of the foundations of our care, acupuncture uses fine needles to help rebalance the body and support its natural healing response."
+        "whatToExpect": "You’ll relax while hair-thin, sterile needles stay in place about 20–30 minutes. Most visits feel mild or neutral; many people drift into quiet rest.",
+        "fullDescription": "Needle placement is chosen after intake, pulse/tongue review, and palpation when helpful. Dr. Gang Shi favors practical combinations—acupuncture plus heat, cupping, or bodywork—when your case calls for it, rather than stacking unrelated add-ons.\n\n**Good fits:** Persistent muscle pain, posture-related tightness, stress-linked insomnia, tension headaches, and functional digestive complaints after medical causes are addressed.\n\n**Please tell us:** Pregnancy, blood thinners, bleeding disorders, fainting history, or major cardiac issues. Avoid arriving overly hungry or just after a feast; dress so arms and legs can be reached easily.",
+        "shortDescription": "Precise, minimal needles to settle pain circuits, calm the nervous system, and support how you move and sleep."
       },
       {
         "id": "chinese-herbal-medicine",
@@ -129,18 +125,16 @@
         "link": "/en/chinese-herbal-medicine-great-neck-ny",
         "title": "Traditional Chinese Herbal Medicine",
         "benefits": [
-          "Customized to match your individual health needs",
-          "Addresses underlying patterns, not just surface symptoms",
-          "Typically well tolerated with few side effects",
-          "Can complement acupuncture treatment effectively",
-          "Well suited for ongoing and chronic conditions",
-          "Supports immune system resilience",
-          "Helps maintain healthy internal organ function",
-          "Supports long-term wellbeing over time"
+          "Granules or teas matched to your current presentation—not retail blends",
+          "Support between visits for sleep, hormones, digestion, or immunity",
+          "Useful when travel or work makes frequent office visits harder",
+          "We cross-check prescriptions and supplements you already take",
+          "Adjusted every few weeks as symptoms shift",
+          "Stopped or changed promptly if something disagrees with you"
         ],
-        "whatToExpect": "Care begins with a detailed consultation and TCM assessment. Based on that evaluation, we create a herbal formula tailored to your specific needs and provide clear instructions for preparing and taking it. As treatment continues, we follow up regularly and adjust the formula as needed to support your progress.",
-        "fullDescription": "Chinese Herbal Medicine uses carefully chosen herbal formulas to regulate the Yin, Yang, Qi, and blood of the organs according to TCM syndrome differentiation. \n\n**Scope of Application**\nIt may be used for internal medicine conditions, including stomach complaints, liver disease, and cardiovascular disease; gynecological concerns such as menstrual disorders, infertility, and menopause; pediatric issues including colds and indigestion; men’s health concerns including kidney deficiency and impotence; recovery after chronic illness; and anti-aging and wellness support. \n\n**Precautions**\nHerbal formulas should always be taken under the supervision of a qualified TCM practitioner. If you are using Western medications, please let your practitioner know so the prescription can be adjusted appropriately. Pregnant women and individuals with special health considerations should follow their practitioner’s guidance closely.",
-        "shortDescription": "Custom herbal formulas prepared to address the root of your health concerns while supporting your body’s natural healing process."
+        "whatToExpect": "After pattern assessment you receive clear dosing directions and a timeline for follow-up. Expect honest talk about taste, timing with food, and what to report between visits.",
+        "fullDescription": "Herbs extend what we do with needles or manual therapy: they can anchor a treatment plan while tissue heals or stress levels fall. Formulas are modest in size and revised as your tongue, pulse, and symptoms evolve.\n\n**Common uses:** Period or perimenopause discomfort, lingering cough, gut irregularity, recovery after illness, and stubborn fatigue once red flags are cleared by your physician.\n\n**Must-share info:** All pharmaceuticals, pregnancy plans, liver or kidney issues, and any prior herb reactions.",
+        "shortDescription": "Tailored classical formulas to reinforce acupuncture, sleep, digestion, or recovery goals between appointments."
       },
       {
         "id": "cupping-therapy",
@@ -150,18 +144,16 @@
         "link": "/en/cupping-therapy-great-neck-ny",
         "title": "Therapeutic Cupping",
         "benefits": [
-          "Helps release deep muscle tension",
-          "Supports healthy circulation",
-          "Reduced inflammation",
-          "Pain relief",
-          "Can support recovery after injury",
-          "Respiratory support",
-          "Detoxification",
-          "Immune system boost"
+          "Targets stubborn upper-back and shoulder “knots”",
+          "Often paired after desk-work weeks or travel stiffness",
+          "Brings warmth and circulation to tight fascia",
+          "Can ease some chest or respiratory tightness when appropriate",
+          "Leaves circular marks that fade like a mild bruise",
+          "Quick to combine with acupuncture in one session"
         ],
-        "whatToExpect": "During treatment, your practitioner places glass or silicone cups on areas of tightness or discomfort. Most people describe the sensation as a firm, relieving pull rather than pain. The cups may remain in place for 5 to 15 minutes or be moved gently across the skin. Temporary round marks can appear afterward, which is normal and usually fades within a few days.",
-        "fullDescription": "Cupping therapy applies negative pressure to draw cups firmly against the skin, expanding the capillaries beneath to encourage blood flow, clear stagnation, and help the body expel wind and cold. \n\n**Scope of Application**\nColds, coughs, asthma, rheumatic joint pain, and muscle tension in the neck, shoulders, and back arising from wind-cold pathogens. \n\n**Precautions**\nCupping is not appropriate over broken or irritated skin, for those with bleeding disorders, or over the abdominal and lower back areas of pregnant women. Elderly patients should proceed with care. Following treatment, protect yourself from cold exposure, avoid overexertion, and wait before bathing to prevent wind-cold from entering through the pores.",
-        "shortDescription": "A traditional therapy that uses suction cups to relieve muscle tension, promote circulation, and support the body’s natural recovery process."
+        "whatToExpect": "Cups pull gently on oiled skin for several minutes; moving or stationary styles depend on comfort. Markings are normal and usually fade within days—plan around sleeveless events if you prefer.",
+        "fullDescription": "Cupping is a decompressive stretch for skin and muscle layers. In our office it’s most often used for occupational neck tension, athletic recovery, or seasonal chest heaviness—not as a stand-alone “detox” fad.\n\n**Avoid if:** Skin breakdown, bleeding disorders, severe anemia, or pregnancy over the lower back/abdomen.\n\n**Aftercare:** Cover up, skip icy blasts or aggressive workouts that hour, and hydrate normally.",
+        "shortDescription": "Negative-pressure cups lift tight fascia, improve local blood flow, and signal the body to relax guard muscles."
       },
       {
         "id": "moxibustion",
@@ -171,18 +163,16 @@
         "link": "/en/moxibustion-great-neck-ny",
         "title": "Moxibustion Therapy",
         "benefits": [
-          "Helps support and strengthen immune function",
-          "Supports energy levels and overall vitality",
-          "Improves circulation",
-          "Relieves cold-type pain",
-          "Helps promote healthy digestion",
-          "Turns breech babies",
-          "Warms cold extremities",
-          "Tonifies deficiency"
+          "Comforting heat for cold-sensitive pain or cramps",
+          "Supports digestive sluggishness tied to “cold” patterns",
+          "Helps some patients with deep fatigue when deficiency signs fit",
+          "Can complement IVF or pregnancy plans only with OB clearance",
+          "Useful autumn/winter when Long Island wind chills leave you achy",
+          "Always monitored to prevent skin irritation or overheating"
         ],
-        "whatToExpect": "During a moxibustion session, you’ll feel a gentle, soothing warmth as burning moxa is held near selected points on the body. Many patients find the experience calming, grounding, and deeply relaxing, often comparing it to the soft warmth of sunlight on the skin. The herb also has a distinct earthy aroma that many people find comforting.",
-        "fullDescription": "Moxibustion uses the therapeutic heat created by burning moxa leaves near specific acupuncture points to warm the meridians, stimulate those points, and nourish the body’s vital energy. \n\n**Scope of Application**\nIt may be used for deficiency-cold constitutions, menstrual cramps, chronic gastrointestinal conditions, rheumatic pain, asthma, general fatigue, and cold hands or feet. \n\n**Precautions**\nTreatment must be performed carefully to avoid burns. Moxibustion is not appropriate for individuals with a high fever or constitutions marked by excess heat. People with diabetic neuropathy should use extreme caution. Pregnant women should avoid treatment over the abdominal and sacral areas.",
-        "shortDescription": "A gentle heat-based therapy using dried mugwort to support vitality, promote circulation, and help the body dispel cold."
+        "whatToExpect": "Compressed mugwort smolders near skin-safe distances; you’ll feel gradual warmth—not a brand. We pause or stop if heat builds too fast.",
+        "fullDescription": "Moxa adds infrared-style warmth to points that benefit from stimulation without extra needle density. Dr. Shi uses it sparingly and only when your pattern suggests cold or yang insufficiency.\n\n**Not used during:** Active fever, acute inflammation flares, severe numbness where you can’t feel heat, or certain pregnancy sites.\n\n**Talk first about:** Asthma smoke sensitivity—alternate smokeless options may exist.",
+        "shortDescription": "Controlled warming herb heat to reinforce acupuncture points when cold, fatigue, or deep ache dominate the picture."
       },
       {
         "id": "tuina-massage",
@@ -192,18 +182,16 @@
         "link": "/en/tui-na-massage-great-neck-ny",
         "title": "Tui Na Therapeutic Massage",
         "benefits": [
-          "Helps relieve muscle pain and long-standing tension",
-          "Improved joint mobility",
-          "Supports better posture and structural alignment",
-          "Enhanced circulation",
-          "Stress reduction",
-          "Injury recovery support",
-          "May help lessen how often headaches and migraines occur, as well as their intensity",
-          "Digestive improvement"
+          "Medical massage through clothing—no oil needed",
+          "Combines pressing, lifting, and stretch-like movements",
+          "Ideal after long drives from Queens or the North Shore",
+          "Helps free stuck shoulder blades and hip rotators",
+          "Often scheduled before needles when muscles feel “locked”",
+          "Gentle variants available for osteoporosis or seniors"
         ],
-        "whatToExpect": "Tui Na may feel gentle and calming or more active and stimulating, depending on your condition and constitution. Your practitioner uses a variety of hands-on techniques with the hands, fingers, elbows, and sometimes feet. You remain fully clothed during the session, which usually lasts 30 to 60 minutes.",
-        "fullDescription": "Tui Na uses skilled manual techniques along the body’s meridians, muscles, and joints to regulate Qi and blood, relax the tendons, and improve circulation in specific areas. \n\n**Scope of Application**\nThis therapy may be used for neck, shoulder, back, and leg pain, muscle strain, sports injuries, indigestion, and pediatric conditions such as cough or constipation. \n\n**Precautions**\nTui Na should not be performed over open wounds, active skin infections, or areas affected by bone tumors. Deep abdominal pressure is not appropriate during pregnancy. For elderly patients and those with osteoporosis, only gentle techniques should be used.",
-        "shortDescription": "A traditional Chinese medical massage that combines acupressure, assisted stretching, and joint mobilization in a single therapeutic treatment."
+        "whatToExpect": "Pressure shifts from soothing to firm based on feedback. Sessions run roughly 30–60 minutes; speak up early if anything feels sharp.",
+        "fullDescription": "Tui na is our manual reset button: it addresses trigger chains the way physical therapy gate-checks mobility, but through Eastern channel logic.\n\n**Great for:** Commuter neck, rotator cuff fatigue, TMJ-adjacent tension (with dental clearance), and postural strain from desk work.\n\n**Hold off if:** Fresh fracture, active infection, acute disc emergency, or unsupported high-risk pregnancy over the abdomen.",
+        "shortDescription": "Channel-based bodywork that loosens adhesions, improves range, and prepares tissue for acupuncture if needed."
       },
       {
         "id": "gua-sha",
@@ -212,18 +200,16 @@
         "order": 6,
         "title": "Gua Sha Therapy",
         "benefits": [
-          "Rapid pain relief",
-          "Reduced muscle tension",
-          "Decreased inflammation",
-          "Support for healthy immune function",
-          "Enhanced circulation",
-          "May help the body recover more quickly after illness",
-          "Relief from headaches",
-          "Helps ease tension in the neck and shoulders"
+          "Fast relief for neck and trap “vice grip” pain",
+          "Surface friction wakes up sluggish micro-circulation",
+          "Helpful early in a cold-season head cold (with rest advice)",
+          "Shorter add-on than full massage when time is tight",
+          "Visible petechiae show release; they’re temporary",
+          "Rarely used alone—usually with acupuncture judgment"
         ],
-        "whatToExpect": "At the start of treatment, your practitioner applies oil to the skin and then uses a smooth-edged tool with firm downward strokes over areas of tightness or discomfort. You will feel clear pressure and scraping during the session, which can be intense but is usually well tolerated. It is common for red or purplish marks to appear as treatment progresses, and these typically fade within 2 to 7 days.",
-        "fullDescription": "Gua Sha uses a smooth tool and repeated friction on the skin to promote circulation, open the meridians, and bring stagnant blood to the surface as part of supporting the body's response to pathogens. \n\n**Scope of Application**\nIt is commonly used for colds, fever, sore throat, heatstroke, hypertension, and tension or stiffness affecting the neck, shoulders, and back. \n\n**Precautions**\nAvoid using this therapy over broken skin or moles. It is not suitable for people with bleeding disorders, and it should not be performed on the abdomen during pregnancy. After treatment, keep the area warm and covered, and avoid exposure to cold drafts or bathing immediately afterward.",
-        "shortDescription": "A traditional scraping therapy used to relieve muscle tightness, encourage circulation, and help calm inflammation."
+        "whatToExpect": "A smooth edge glides on oiled skin with rhythmic strokes. It can feel spicy, not sharp. Pink-to-purple flecks may linger like a hickey—plan collars accordingly.",
+        "fullDescription": "Gua sha is intentional friction dermatitis: it signals immune and circulatory attention to stuck areas. We reserve it for muscular restriction or early exterior wind-cold presentations—not for cosmetic trend videos.\n\n**Skip if:** Bleeding risk, blood thinners without clearance, sunburn, psoriasis flare, or thin skin on blood-thinning meds.\n\n**After:** Keep the area covered; no ice plunges or harsh scrubbing that evening.",
+        "shortDescription": "Controlled skin scraping to break up fascial drag, wake blood flow, and offload tension after stressful weeks."
       },
       {
         "id": "dietary-therapy",
@@ -233,8 +219,8 @@
         "title": "Herbal Patch Therapy",
         "benefits": [],
         "whatToExpect": "",
-        "fullDescription": "Individually prepared herbal pastes or powders are placed directly on selected acupoints or areas of pain so the medicinal ingredients can be absorbed through the skin. \n\n**Scope of Application**\nThis approach is often used for rheumatic joint pain, ongoing waist and leg pain, asthma, rhinitis, pediatric cough conditions such as San-Fu-Tie, and various skin concerns. \n\n**Precautions**\nUse care on sensitive skin. Do not apply to broken skin or open wounds. If marked redness, swelling, or itching occurs, stop use immediately.",
-        "shortDescription": "Customized herbal applications placed on specific areas to support care through transdermal absorption."
+        "fullDescription": "We apply small herbal pads or pastes to targeted points when internal herbs aren’t ideal yet transdermal support helps—often for seasonal protocols or localized joint ache.\n\n**Watch for:** Skin redness past mild pink, blistering, or itch—remove promptly and call us.\n\n**Not placed on:** Open wounds, infected skin, or unknown rashes.",
+        "shortDescription": "Point-specific herbal patches for short courses when your skin and pattern suit external delivery."
       },
       {
         "id": "lifestyle-counseling",
@@ -243,23 +229,21 @@
         "order": 8,
         "title": "Wellness & Lifestyle Counseling",
         "benefits": [
-          "Meaningful health changes that can be sustained over time",
-          "Better sleep quality",
-          "Useful strategies to better manage stress",
-          "Improved energy and a stronger sense of vitality",
-          "Emotional balance",
-          "Preventive support aimed at lowering the likelihood of future illness",
-          "Support for improved overall treatment results",
-          "Individualized guidance for maintaining long-term wellness"
+          "Sleep and wind-down tweaks that fit a Long Island commute",
+          "Meal timing ideas aligned with TCM food energetics—not fad diets",
+          "Breath and micro-break tools for high-stress jobs",
+          "Seasonal habits (damp springs, dry winters) explained simply",
+          "Realistic steps so changes survive busy family weeks",
+          "Coordinates with your MD’s advice—we don’t contradict care teams"
         ],
-        "whatToExpect": "As part of your treatment plan, we look closely at key parts of your daily routine and provide practical recommendations you can use in everyday life. Guidance may include breathing techniques, meditation, sleep habits, seasonal routine changes, and ways to respond to stress more effectively. We work with you to create changes that feel manageable, personal, and sustainable.",
-        "fullDescription": "Long-term wellness depends on more than what happens during clinic visits.\n\nOur lifestyle counseling takes a broader view of your health, including sleep, physical activity, stress patterns, and the habits that shape your day-to-day life.\n\nEach recommendation is based on TCM principles and tailored to your individual constitution, needs, and circumstances.",
-        "shortDescription": "Personalized support for sleep, movement, stress, and daily habits to help strengthen your long-term wellbeing."
+        "whatToExpect": "Expect two or three concrete homework items per phase—hydration rhythm, bedtime light, walking cadence—reviewed honestly at follow-up.",
+        "fullDescription": "Lifestyle work bridges visits: it’s how you keep gains from acupuncture alive when you’re back in the car or at the office.\n\nWe focus on what you already do, tweak the order of operations, and avoid shame-based coaching.\n\nBring questions about supplements or diets; we’ll flag interactions worth your prescriber’s opinion.",
+        "shortDescription": "Short, concrete coaching on sleep, food timing, stress micro-habits, and season-aware routines that support your treatments."
       }
     ],
     "title": "Our Traditional Chinese Medicine Services",
     "variant": "detail-alternating",
-    "subtitle": "A comprehensive selection of healing therapies tailored to your individual needs"
+    "subtitle": "Core modalities we use every week at our Northern Boulevard office"
   },
   "relatedReading": {
     "title": "Related Reading",
