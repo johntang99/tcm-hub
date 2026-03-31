@@ -70,6 +70,24 @@ interface SEOConditionLayoutProps {
   siteBaseOrigin: string;
 }
 
+/** Derive /{locale}/acupuncture-{city}-{st} from condition slug acupuncture-for-...-{city}-{st}. */
+function coreLandingPathFromConditionCanonical(canonicalUrl: string, locale: string): string | null {
+  const slug =
+    String(canonicalUrl || '')
+      .split('/')
+      .filter(Boolean)
+      .pop() || '';
+  if (!slug.startsWith('acupuncture-for-')) return null;
+  const rest = slug.slice('acupuncture-for-'.length);
+  const parts = rest.split('-');
+  if (parts.length < 3) return null;
+  const state = parts[parts.length - 1];
+  const cityPart = parts[parts.length - 2];
+  if (!/^[a-z]{2}$/i.test(state)) return null;
+  const geo = `${cityPart}-${state}`.toLowerCase();
+  return `/${locale}/acupuncture-${geo}`;
+}
+
 function FAQAccordion({ items }: { items: FAQItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -115,6 +133,7 @@ export default function SEOConditionLayout({
   siteBaseOrigin,
 }: SEOConditionLayoutProps) {
   const c = content as unknown as SEOConditionContent;
+  const raw = content as Record<string, unknown>;
   const {
     hero,
     howItWorks,
@@ -124,6 +143,12 @@ export default function SEOConditionLayout({
     relatedConditions,
     cta,
   } = c;
+  const coreLandingHref =
+    (raw.backLink &&
+    typeof (raw.backLink as { url?: string }).url === 'string' &&
+    (raw.backLink as { url: string }).url.startsWith('/')
+      ? (raw.backLink as { url: string }).url
+      : null) || coreLandingPathFromConditionCanonical(c.seo?.canonicalUrl || '', locale);
 
   const tokenSurface = {
     borderRadius: 'var(--radius-base, 0.75rem)',
@@ -151,31 +176,47 @@ export default function SEOConditionLayout({
     '';
 
   // BreadcrumbList JSON-LD — Google requires absolute URLs in `item` (not path-only).
-  const breadcrumbSchema =
+  const breadcrumbItems: Array<{
+    '@type': 'ListItem';
+    position: number;
+    name: string;
+    item: string;
+  }> =
     origin.length > 0
+      ? [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: absoluteUrlFromSiteOrigin(origin, `/${locale}`),
+          },
+        ]
+      : [];
+
+  if (origin.length > 0 && coreLandingHref) {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: breadcrumbItems.length + 1,
+      name: 'Acupuncture',
+      item: absoluteUrlFromSiteOrigin(origin, coreLandingHref),
+    });
+  }
+
+  if (origin.length > 0) {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: breadcrumbItems.length + 1,
+      name: c.seo.h1,
+      item: resolveSeoCanonicalToAbsoluteUrl(origin, c.seo.canonicalUrl || ''),
+    });
+  }
+
+  const breadcrumbSchema =
+    origin.length > 0 && breadcrumbItems.length > 0
       ? {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              name: 'Home',
-              item: absoluteUrlFromSiteOrigin(origin, `/${locale}`),
-            },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: 'Acupuncture',
-              item: absoluteUrlFromSiteOrigin(origin, `/${locale}/acupuncture-middletown-ny`),
-            },
-            {
-              '@type': 'ListItem',
-              position: 3,
-              name: c.seo.h1,
-              item: resolveSeoCanonicalToAbsoluteUrl(origin, c.seo.canonicalUrl || ''),
-            },
-          ],
+          itemListElement: breadcrumbItems,
         }
       : null;
 

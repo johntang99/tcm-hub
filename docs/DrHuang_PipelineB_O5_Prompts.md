@@ -1,12 +1,58 @@
 # Pipeline B — O5 Extended Prompts
 ## System A (TCM): SEO Page Content Generation
 
-> **Version:** 1.0
-> **Date:** March 2026
-> **Used in:** Pipeline B Step O5 (AI Content Generation)
-> **File location:** `scripts/onboard/prompts/tcm/seo.md`
-> **Model:** claude-sonnet-4-20250514
+> **Version:** 1.1  
+> **Date:** March 2026  
+> **Used in:** Pipeline B Step O5 (AI Content Generation) + O1/O4 onboarding hardening (see below)  
+> **SEO prompt on disk (live):** `scripts/onboard/prompts/chinese-medicine/seo.md` (O5 loads this path from `app/api/admin/onboarding/route.ts`)  
+> **Model:** claude-sonnet-4-20250514  
 > **Purpose:** After DrHuang retrofit, these prompts generate city-specific SEO page content for every new TCM client onboarded via Pipeline B. Acu-Flushing, Acu-Shi, and all future TCM clients get fully populated SEO pages on day 1.
+
+---
+
+## O1 & O4 — Site-wide NAP, domains, and SEO registry (v1.1)
+
+**Implementation:** `app/api/admin/onboarding/route.ts`
+
+Pipeline B is not only O5 copy generation. **O1 (clone)** and **O4 (content replacement)** must align **all** template artifacts with the new client: core pages, header/footer, blog, **SEO landing JSON**, the **`site_seo_pages`** registry, and stored **intake**.
+
+### O1 — Clone extensions
+
+| Addition | Purpose |
+|----------|---------|
+| **Clone `site_seo_pages`** from `templateSiteId` → new `site_id` | Powers **sitemap** (`getSEOPagesForSite`) and **`getServiceSEOLinks`** so service/home links resolve to SEO URLs instead of `#` anchors. |
+| **Upsert `content_entries` path `intake.json`** (default locale) | Persists the submitted intake for **`scripts/seed-seo-pages.mjs`**, QA, and traceability. |
+
+SEO page **content** still comes from cloned template `content_entries` rows (slug = row `path`, e.g. `acupuncture-middletown-ny`).
+
+### O4 — Replacement + SEO slug remap + NAP patch
+
+1. **Geo slug remap (when template city/state ≠ intake)**  
+   - **Template suffix** is resolved from template `intake.json` → `location`, or from template **`site_seo_pages`** core landing slug (`acupuncture-{suffix}`).  
+   - **New suffix** = `{citySlug}-{state}` — same convention as `scripts/seed-seo-pages.mjs` (`citySlug` from `intake.location.citySlug` or slugified `city`; state = first two letters, lowercased).  
+   - If old ≠ new: **rename** all `content_entries` whose `path` ends with the old suffix; **rename** matching **`site_seo_pages.slug`**; add string replacement pairs so internal links and canonical paths stay consistent.
+
+2. **`augmentReplacementsFromTemplateSite`**  
+   Loads the **template’s** `site.json` (en) and **`sites.domain`**, and adds replace pairs for **phone**, **email**, **full address lines**, and **production domain** (including `www.`), so deep-replace works even when the template is not the hard-coded Middletown/Flushing examples.
+
+3. **Existing O4 behavior** (unchanged in spirit)  
+   Doctor/clinic term sets, hardcoded fallback NAP swaps, **`drhuangclinic.com` → production domain**, full **`deepReplace`** over all non-`theme.json` entries, then structural updates to **`site.json`**, **`header.json`**, **`footer.json`**, **`pages/about.json`**, **`pages/home.json`**, **`pages/contact.json`**, **`pages/blog.json`**, blog articles.
+
+4. **`patchAllSeoContentEntries` (after deep replace)**  
+   For every row with `data.pageType` starting with **`seo-`**: refresh **`location` / `location.nap`**, **map embed + directions URLs**, **`location.hours`** from **`intake.hours`** when present, and **hero `secondaryCta`** (phone text + `tel:`), with EN vs ZH phone label.
+
+### Rendering note — condition page breadcrumbs
+
+**`components/seo/SEOConditionLayout.tsx`:** `BreadcrumbList` JSON-LD no longer hardcodes a single city slug. It uses **`backLink.url`** when present, otherwise infers the core landing path from the condition **`seo.canonicalUrl`** (`acupuncture-for-…-{city}-{st}` → `acupuncture-{city}-{st}`).
+
+### Intake fields to require for clean SEO onboarding
+
+- **`location.city`**, **`location.state`** (two-letter, e.g. `NY`) — required for geo suffix and maps.  
+- **`location.citySlug`** (optional) — if omitted, city is slugified (spaces → hyphens).  
+- **`location.address`**, **`zip`**, **`phone`**, **`email`**, **`addressMapUrl`** (optional) — drive NAP + embeds.  
+- **`hours`** (optional) — copied into SEO **`location.hours`** where the patch applies.
+
+If the template has **no** `site_seo_pages` rows, clone still succeeds; run **`node scripts/seed-seo-pages.mjs <site-id>`** after onboarding (intake is available in DB).
 
 ---
 
@@ -175,7 +221,7 @@ Generate the following JSON structure exactly:
 
 ## O5 Code Implementation
 
-Add this to `scripts/onboard/steps/o5-ai-content.mjs` after the existing content call:
+**Production:** O5 (Claude content + `seo.md`, structured file updates) lives in **`app/api/admin/onboarding/route.ts`** — not a separate `o5-ai-content.mjs` step file. The block below is a **reference sketch** for the same responsibilities if splitting into a script later.
 
 ```javascript
 // Call 2B — SEO page content generation (extended in V3.9)
@@ -267,7 +313,9 @@ async function applySEOContent(siteId, locale, seoContent) {
 
 ## O7 Verify — Add SEO Page Checks
 
-Add to `scripts/onboard/steps/o7-verify.mjs`:
+**Production:** Post-onboarding checks can be run with **`node scripts/verify-site.mjs <site-id>`** (includes `site_seo_pages` row counts). The snippet below is a **reference** for dedicated O7 step logic or extensions.
+
+Add to `scripts/onboard/steps/o7-verify.mjs` (if maintained separately):
 
 ```javascript
 // V3.9 — SEO page verification
@@ -337,3 +385,10 @@ After implementing, test with a minimal Acu-Flushing intake:
 ```
 
 Expected result: All 5 SEO pages generated with Flushing-specific content, all seo objects populated, O7 passes with zero errors.
+
+**After onboarding (v1.1), also verify:**
+
+- **`content_entries`** includes **`intake.json`** for the new `site_id`.  
+- **`site_seo_pages`** has the expected rows for that `site_id` (cloned from template or created by `seed-seo-pages.mjs`).  
+- Spot-check one **SEO slug** URL: `location` block shows the **new** address, phone, and map embed (not template NAP).  
+- Run **`node scripts/verify-site.mjs <site-id>`** when Supabase is configured.

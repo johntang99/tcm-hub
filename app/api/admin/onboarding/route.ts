@@ -154,6 +154,330 @@ function phoneToTel(phone: string): string {
   return 'tel:+1' + phone.replace(/[^0-9]/g, '');
 }
 
+/** Geo slug suffix e.g. middletown-ny — matches seed-seo-pages.mjs convention. */
+function normalizeStateAbbr(state: string | undefined): string {
+  return String(state || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z]/g, '')
+    .slice(0, 2);
+}
+
+function citySlugPart(loc: any): string {
+  if (loc?.citySlug) {
+    return String(loc.citySlug)
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '');
+  }
+  return String(loc?.city || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
+function geoSuffixFromLocation(loc: any): string {
+  const c = citySlugPart(loc);
+  const s = normalizeStateAbbr(loc?.state);
+  if (!c || !s) return '';
+  return `${c}-${s}`;
+}
+
+function googleMapsEmbedUrl(loc: any): string {
+  if (loc?.address && loc?.city && loc?.state && loc?.zip) {
+    return `https://www.google.com/maps?q=${encodeURIComponent(
+      `${loc.address}, ${loc.city}, ${loc.state} ${loc.zip}`
+    )}&output=embed`;
+  }
+  return '';
+}
+
+function googleDirectionsUrl(loc: any): string {
+  if (loc?.address && loc?.city && loc?.state && loc?.zip) {
+    return `https://maps.google.com/?q=${encodeURIComponent(
+      `${loc.address}, ${loc.city}, ${loc.state} ${loc.zip}`
+    )}`;
+  }
+  return '';
+}
+
+const INTAKE_DAY_ORDER = [
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
+  'sunday',
+] as const;
+const INTAKE_DAY_LABEL: Record<string, string> = {
+  monday: 'Monday',
+  tuesday: 'Tuesday',
+  wednesday: 'Wednesday',
+  thursday: 'Thursday',
+  friday: 'Friday',
+  saturday: 'Saturday',
+  sunday: 'Sunday',
+};
+
+function intakeHoursToSeoLocationSchedule(
+  hours: Record<string, string> | undefined
+): Array<{ day: string; time: string }> {
+  if (!hours || typeof hours !== 'object') return [];
+  return INTAKE_DAY_ORDER.filter((d) => hours[d]).map((d) => ({
+    day: INTAKE_DAY_LABEL[d] || d,
+    time: hours[d],
+  }));
+}
+
+async function fetchTemplateGeoSuffix(templateId: string): Promise<string> {
+  try {
+    const intakeRows = await fetchRows('content_entries', {
+      site_id: templateId,
+      locale: 'en',
+      path: 'intake.json',
+    });
+    const intakeData = intakeRows[0]?.data;
+    if (intakeData?.location) {
+      const g = geoSuffixFromLocation(intakeData.location);
+      if (g) return g;
+    }
+  } catch {
+    // ignore
+  }
+  try {
+    const seoRows = await fetchRows('site_seo_pages', { site_id: templateId });
+    const core = (seoRows as any[]).find((p) => p.page_type === 'seo-local-landing');
+    if (core?.slug && typeof core.slug === 'string') {
+      const m = core.slug.match(/^acupuncture-(.+)$/);
+      if (m?.[1]) return m[1];
+    }
+  } catch {
+    // ignore
+  }
+  return '';
+}
+
+/** Rename SEO content_entries whose path ends with oldSuffix (e.g. *-middletown-ny → *-flushing-ny). */
+async function remapContentEntrySeoSlugs(
+  siteId: string,
+  oldSuffix: string,
+  newSuffix: string
+): Promise<number> {
+  const entries = await fetchRows('content_entries', { site_id: siteId });
+  const targets = entries.filter(
+    (e) => typeof e.path === 'string' && e.path.endsWith(oldSuffix)
+  );
+  if (targets.length === 0) return 0;
+  const pairs: [string, string][] = [
+    [oldSuffix, newSuffix],
+    [`-${oldSuffix}`, `-${newSuffix}`],
+  ];
+  for (const e of targets) {
+    await deleteRows('content_entries', { site_id: siteId, locale: e.locale, path: e.path });
+  }
+  for (const e of targets) {
+    const newPath = e.path.slice(0, -oldSuffix.length) + newSuffix;
+    const newData = deepReplace(e.data, pairs);
+    await upsert(
+      'content_entries',
+      [
+        {
+          site_id: siteId,
+          locale: e.locale,
+          path: newPath,
+          data: newData,
+          updated_by: 'onboard-api',
+        },
+      ],
+      'site_id,locale,path'
+    );
+  }
+  return targets.length;
+}
+
+async function remapSiteSeoPagesSlugs(
+  siteId: string,
+  oldSuffix: string,
+  newSuffix: string
+): Promise<number> {
+  const pages = await fetchRows('site_seo_pages', { site_id: siteId });
+  const targets = pages.filter(
+    (p) => typeof p.slug === 'string' && p.slug.endsWith(oldSuffix)
+  );
+  for (const p of targets) {
+    await deleteRows('site_seo_pages', { site_id: siteId, slug: p.slug });
+  }
+  for (const p of targets) {
+    const newSlug = p.slug.slice(0, -oldSuffix.length) + newSuffix;
+    await upsert(
+      'site_seo_pages',
+      [
+        {
+          site_id: siteId,
+          slug: newSlug,
+          page_type: p.page_type,
+          active: p.active !== false,
+        },
+      ],
+      'site_id,slug'
+    );
+  }
+  return targets.length;
+}
+
+async function augmentReplacementsFromTemplateSite(
+  templateId: string,
+  loc: any,
+  intake: any,
+  replacements: [string, string][]
+): Promise<void> {
+  try {
+    const rows = await fetchRows('content_entries', {
+      site_id: templateId,
+      locale: 'en',
+      path: 'site.json',
+    });
+    const ts = rows[0]?.data;
+    if (ts && loc?.phone && ts.phone && String(ts.phone) !== loc.phone) {
+      const td = String(ts.phone).replace(/[^0-9]/g, '');
+      replacements.push([String(ts.phone), loc.phone]);
+      if (td.length >= 10) {
+        replacements.push([`+1${td}`, `+1${loc.phone.replace(/[^0-9]/g, '')}`]);
+        replacements.push([`tel:+1${td}`, phoneToTel(loc.phone)]);
+      }
+    }
+    if (ts && loc?.email && ts.email && String(ts.email) !== loc.email) {
+      replacements.push([String(ts.email), loc.email], [`mailto:${ts.email}`, `mailto:${loc.email}`]);
+    }
+    if (
+      ts &&
+      loc?.address &&
+      loc?.city &&
+      loc?.state &&
+      loc?.zip &&
+      ts.address &&
+      ts.city &&
+      ts.state &&
+      ts.zip
+    ) {
+      const fullOld = `${ts.address}, ${ts.city}, ${ts.state} ${ts.zip}`;
+      const fullNew = `${loc.address}, ${loc.city}, ${loc.state} ${loc.zip}`;
+      if (fullOld !== fullNew) {
+        replacements.push([fullOld, fullNew]);
+        replacements.push([String(ts.address), String(loc.address)]);
+        replacements.push([
+          `${ts.city}, ${ts.state} ${ts.zip}`,
+          `${loc.city}, ${loc.state} ${loc.zip}`,
+        ]);
+        replacements.push([`${ts.city}, ${ts.state}`, `${loc.city}, ${loc.state}`]);
+      }
+    }
+    const tplSiteMeta = await fetchRows('sites', { id: templateId });
+    const dom = String(tplSiteMeta[0]?.domain || '').trim();
+    const prod = String(intake?.domains?.production || '').trim();
+    if (dom && prod && dom !== prod) {
+      replacements.push([dom, prod], [`www.${dom}`, `www.${prod}`]);
+    }
+  } catch {
+    // non-blocking
+  }
+}
+
+/** Force NAP + map on SEO JSON (local landing + any page with location block). */
+function applySeoLocationContactPatch(
+  data: any,
+  biz: any,
+  loc: any,
+  intake: any,
+  locale: string
+): any {
+  if (!data || typeof data !== 'object') return data;
+  const pt = data.pageType;
+  if (typeof pt !== 'string' || !pt.startsWith('seo-')) return data;
+
+  const next = data;
+  const isZh = String(locale || '').startsWith('zh');
+  if (next.location && typeof next.location === 'object') {
+    const L = next.location;
+    if (L.nap && typeof L.nap === 'object') {
+      if (biz?.name) L.nap.name = biz.name;
+      if (loc?.address) L.nap.address = loc.address;
+      if (loc?.city) L.nap.city = loc.city;
+      if (loc?.state) L.nap.state = loc.state;
+      if (loc?.zip) L.nap.zip = loc.zip;
+      if (loc?.phone) L.nap.phone = loc.phone;
+    }
+    if (biz?.name) {
+      if ('clinicName' in L) L.clinicName = biz.name;
+      if ('title' in L && typeof L.title === 'string' && L.title.includes('Visit ')) {
+        L.title = L.title.replace(/^Visit\s+.+?\s+in\s+/i, `Visit ${biz.name} in `);
+      }
+    }
+    if (loc?.address) L.address = loc.address;
+    if (loc?.city) L.city = loc.city;
+    if (loc?.state) L.state = loc.state;
+    if (loc?.zip) L.zip = loc.zip;
+    if (loc?.phone) L.phone = loc.phone;
+    if (loc?.email) L.email = loc.email;
+
+    const emb = googleMapsEmbedUrl(loc) || (loc?.addressMapUrl ? String(loc.addressMapUrl) : '');
+    if (emb) {
+      L.mapEmbedUrl = emb;
+      const dir = googleDirectionsUrl(loc);
+      if (dir) L.directionsUrl = dir;
+    }
+
+    const sched = intakeHoursToSeoLocationSchedule(intake?.hours);
+    if (sched.length > 0) {
+      L.hours = sched;
+    }
+  }
+
+  if (next.hero?.secondaryCta && loc?.phone) {
+    next.hero.secondaryCta.link = phoneToTel(loc.phone);
+    next.hero.secondaryCta.text = isZh ? `致电${loc.phone}` : `Call ${loc.phone}`;
+  }
+
+  return next;
+}
+
+async function patchAllSeoContentEntries(
+  siteId: string,
+  biz: any,
+  loc: any,
+  intake: any
+): Promise<number> {
+  const entries = await fetchRows('content_entries', { site_id: siteId });
+  let n = 0;
+  const updates: any[] = [];
+  for (const entry of entries) {
+    if (!entry.data || typeof entry.data !== 'object') continue;
+    const pt = (entry.data as any).pageType;
+    if (typeof pt !== 'string' || !pt.startsWith('seo-')) continue;
+    const before = JSON.stringify(entry.data);
+    const copy = JSON.parse(before);
+    applySeoLocationContactPatch(copy, biz, loc, intake, entry.locale);
+    if (JSON.stringify(copy) !== before) {
+      updates.push({
+        site_id: siteId,
+        locale: entry.locale,
+        path: entry.path,
+        data: copy,
+        updated_by: 'onboard-api',
+      });
+      n += 1;
+    }
+  }
+  const BATCH = 50;
+  for (let i = 0; i < updates.length; i += BATCH) {
+    await upsert('content_entries', updates.slice(i, i + BATCH), 'site_id,locale,path');
+  }
+  return n;
+}
+
 function ownerDisplayName(biz: any): string {
   return biz?.ownerNameWithCredentials || biz?.ownerName || biz?.name || '';
 }
@@ -613,6 +937,47 @@ export async function POST(request: NextRequest) {
             await upsert('content_entries', cloned.slice(i, i + BATCH), 'site_id,locale,path');
           }
 
+          // Clone site_seo_pages so sitemap + getServiceSEOLinks resolve SEO URLs for the new site.
+          let clonedSeoPageRows = 0;
+          try {
+            const templateSeoPages = await fetchRows('site_seo_pages', { site_id: TEMPLATE_ID });
+            if (templateSeoPages.length > 0) {
+              const seoCloned = templateSeoPages.map((p: any) => ({
+                site_id: SITE_ID,
+                slug: p.slug,
+                page_type: p.page_type,
+                active: p.active !== false,
+              }));
+              for (let i = 0; i < seoCloned.length; i += BATCH) {
+                await upsert('site_seo_pages', seoCloned.slice(i, i + BATCH), 'site_id,slug');
+              }
+              clonedSeoPageRows = seoCloned.length;
+            }
+          } catch (seoCloneErr: any) {
+            result.warnings.push(
+              `site_seo_pages clone skipped: ${seoCloneErr?.message || seoCloneErr}`
+            );
+          }
+
+          // Persist intake for downstream scripts (e.g. seed-seo-pages.mjs) and QA.
+          try {
+            await upsert(
+              'content_entries',
+              [
+                {
+                  site_id: SITE_ID,
+                  locale: DEFAULT_LOCALE,
+                  path: 'intake.json',
+                  data: { ...intake, clientId: normalizedClientId },
+                  updated_by: 'onboard-api',
+                },
+              ],
+              'site_id,locale,path'
+            );
+          } catch {
+            // non-blocking
+          }
+
           // Register domain aliases
           const domainRows: any[] = [];
           if (intake.domains?.production) {
@@ -795,7 +1160,7 @@ export async function POST(request: NextRequest) {
             'O1',
             'Clone',
             'done',
-            `Cloned ${cloned.length} entries, ${templateMedia.length} media assets, booking services: ${clonedBookingServiceCount}, booking settings: ${clonedBookingSettings ? 'yes' : 'no'}`,
+            `Cloned ${cloned.length} entries, site_seo_pages: ${clonedSeoPageRows}, ${templateMedia.length} media assets, booking services: ${clonedBookingServiceCount}, booking settings: ${clonedBookingSettings ? 'yes' : 'no'}`,
             Date.now() - o1Start
           );
         } catch (err: any) {
@@ -949,6 +1314,19 @@ export async function POST(request: NextRequest) {
           const loc = intake.location;
           const media = intake.media || {};
 
+          let geoOldSuffix = '';
+          let geoNewSuffix = '';
+          try {
+            geoOldSuffix = await fetchTemplateGeoSuffix(TEMPLATE_ID);
+            geoNewSuffix = geoSuffixFromLocation(loc);
+            if (geoOldSuffix && geoNewSuffix && geoOldSuffix !== geoNewSuffix) {
+              await remapContentEntrySeoSlugs(SITE_ID, geoOldSuffix, geoNewSuffix);
+              await remapSiteSeoPagesSlugs(SITE_ID, geoOldSuffix, geoNewSuffix);
+            }
+          } catch (geoErr: any) {
+            result.warnings.push(`SEO geo slug remap: ${geoErr?.message || geoErr}`);
+          }
+
           // Build replacement pairs — ordered longest-first to avoid partial matches
           // Business name is always required
           const replacements: [string, string][] = [];
@@ -1017,6 +1395,8 @@ export async function POST(request: NextRequest) {
             replacements.push([ownerReplacement.replace(/\.\s?/g, ' ').trim(), ownerNoDots]);
           }
 
+          await augmentReplacementsFromTemplateSite(TEMPLATE_ID, loc, intake, replacements);
+
           // Email (longest first)
           if (loc.email) {
             replacements.push(
@@ -1062,6 +1442,13 @@ export async function POST(request: NextRequest) {
           // Domain
           if (intake.domains?.production) {
             replacements.push(['drhuangclinic.com', intake.domains.production]);
+          }
+
+          if (geoOldSuffix && geoNewSuffix && geoOldSuffix !== geoNewSuffix) {
+            replacements.push(
+              [geoOldSuffix, geoNewSuffix],
+              [`-${geoOldSuffix}`, `-${geoNewSuffix}`]
+            );
           }
 
           // Fetch all content entries for new site and deep-replace
@@ -1394,7 +1781,15 @@ export async function POST(request: NextRequest) {
             // NOTE: No separate doctor files to create/delete in TCM
           }
 
-          emitProgress('O4', 'Content Replacement', 'done', `Deep-replaced ${updated.length} entries`, Date.now() - o4Start);
+          const napPatched = await patchAllSeoContentEntries(SITE_ID, biz, loc, intake);
+
+          emitProgress(
+            'O4',
+            'Content Replacement',
+            'done',
+            `Deep-replaced ${updated.length} entries; SEO NAP fields patched on ${napPatched} entries`,
+            Date.now() - o4Start
+          );
         } catch (err: any) {
           emitProgress('O4', 'Content Replacement', 'error', err.message, Date.now() - o4Start);
           throw err;
