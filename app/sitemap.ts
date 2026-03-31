@@ -21,11 +21,20 @@ async function listJsonSlugs(dirPath: string): Promise<string[]> {
   }
 }
 
+/** Page JSON filenames that are not public routes (partials, drafts with no page.tsx). */
+const PAGE_SLUG_DENYLIST = new Set(['faq']);
+
 async function listPageSlugs(siteId: string, locale: Locale) {
   const pagesDir = path.join(CONTENT_DIR, siteId, locale, 'pages');
   const slugs = await listJsonSlugs(pagesDir);
   const excluded = /-(copy|new)$/;
-  return slugs.filter((slug) => slug !== 'home' && !excluded.test(slug));
+  return slugs.filter((slug) => {
+    if (slug === 'home' || excluded.test(slug)) return false;
+    // e.g. services.layout.json → not a navigable URL
+    if (slug.includes('.layout')) return false;
+    if (PAGE_SLUG_DENYLIST.has(slug)) return false;
+    return true;
+  });
 }
 
 async function listBlogSlugs(siteId: string, locale: Locale) {
@@ -48,15 +57,6 @@ async function listBlogSlugs(siteId: string, locale: Locale) {
     return visible;
   } catch (error) {
     return [];
-  }
-}
-
-async function getLastModified(filePath: string): Promise<Date | undefined> {
-  try {
-    const stats = await fs.stat(filePath);
-    return stats.mtime;
-  } catch (error) {
-    return undefined;
   }
 }
 
@@ -111,5 +111,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  return entries;
+  const seen = new Set<string>();
+  return entries.filter((entry) => {
+    if (seen.has(entry.url)) return false;
+    seen.add(entry.url);
+    return true;
+  });
 }
