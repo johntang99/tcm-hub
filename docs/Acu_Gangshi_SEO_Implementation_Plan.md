@@ -187,7 +187,7 @@ Use the **production** host (confirm `www` vs apex in Vercel / DNS).
 ### Sitemap
 
 ```
-https://shiacupuncture.com/sitemap.xml
+https://www.shiacupuncture.com/sitemap.xml
 ```
 
 (Adjust if production uses `www`.)
