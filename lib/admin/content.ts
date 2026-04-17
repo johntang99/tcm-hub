@@ -3,6 +3,7 @@ import path from 'path';
 import { getDefaultFooter } from '../footer';
 import { listContentEntries } from '@/lib/contentDb';
 import { getBlogPostStatus } from '@/lib/blog';
+import { getSEOPagesForSite } from '@/lib/seo-pages';
 
 export interface ContentFileItem {
   id: string;
@@ -34,6 +35,22 @@ function titleCase(value: string) {
   return value
     .replace(/[-_]/g, ' ')
     .replace(/\b\w/g, (match) => match.toUpperCase());
+}
+
+// Known root-level .json files and directories — NOT SEO pages
+const KNOWN_ROOT_FILES = new Set([
+  'pages', 'blog', 'blog-scheduled', '_history',
+]);
+
+// SEO landing pages are stored at root level without .json extension
+// (e.g., "acupuncture-middletown-ny"). They are NOT prefixed with pages/ or blog/.
+function isSeoPagePath(filePath: string): boolean {
+  return (
+    !filePath.includes('/') &&
+    !filePath.endsWith('.json') &&
+    !KNOWN_ROOT_FILES.has(filePath) &&
+    filePath.length > 0
+  );
 }
 
 async function ensureSeoFile(siteId: string, locale: string) {
@@ -157,6 +174,17 @@ export async function listContentFiles(
   const dbEntries = await listContentEntries(siteId, locale);
   if (dbEntries.length > 0) {
     dbEntries.forEach((entry) => {
+      // SEO landing pages: stored at root level without extension (e.g., "acupuncture-middletown-ny")
+      if (isSeoPagePath(entry.path)) {
+        addItem({
+          id: `seo-page-${entry.path}`,
+          label: `SEO Page: ${titleCase(entry.path)}`,
+          path: entry.path,
+          scope: 'locale',
+        });
+        return;
+      }
+
       if (entry.path.startsWith('pages/') && entry.path.endsWith('.json')) {
         const slug = entry.path.replace('pages/', '').replace('.json', '');
         addItem({
@@ -213,6 +241,46 @@ export async function listContentFiles(
         addItem({ id: 'theme', label: 'Theme', path: entry.path, scope: 'site' });
       }
     });
+  }
+
+  // Include SEO slugs registered in DB so they appear in admin Content
+  // even before file-system sync.
+  const seoRegistryEntries = await getSEOPagesForSite(siteId);
+  seoRegistryEntries.forEach((entry) => {
+    addItem({
+      id: `seo-registry-${entry.slug}`,
+      label: `SEO Page: ${titleCase(entry.slug)}`,
+      path: entry.slug,
+      scope: 'locale',
+    });
+  });
+
+  // SEO landing pages: root-level files without .json extension
+  const localeDir = path.join(CONTENT_DIR, siteId, locale);
+  try {
+    const allFiles = await fs.readdir(localeDir);
+    for (const file of allFiles) {
+      if (file.includes('.') || KNOWN_ROOT_FILES.has(file)) continue;
+      const fullPath = path.join(localeDir, file);
+      const stat = await fs.stat(fullPath);
+      if (stat.isFile()) {
+        // Verify it's valid JSON content
+        try {
+          const raw = await fs.readFile(fullPath, 'utf-8');
+          JSON.parse(raw);
+          addItem({
+            id: `seo-page-${file}`,
+            label: `SEO Page: ${titleCase(file)}`,
+            path: file,
+            scope: 'locale',
+          });
+        } catch {
+          // skip non-JSON files
+        }
+      }
+    }
+  } catch {
+    // ignore missing locale directory
   }
 
   const pagesDir = path.join(CONTENT_DIR, siteId, locale, 'pages');
@@ -344,6 +412,11 @@ export function resolveContentPath(siteId: string, locale: string, filePath: str
   }
 
   if (filePath.startsWith('blog/') || filePath.startsWith('blog-scheduled/')) {
+    return path.join(CONTENT_DIR, siteId, locale, filePath);
+  }
+
+  // SEO landing pages: root-level files without extension (e.g., "acupuncture-middletown-ny")
+  if (isSeoPagePath(filePath)) {
     return path.join(CONTENT_DIR, siteId, locale, filePath);
   }
 

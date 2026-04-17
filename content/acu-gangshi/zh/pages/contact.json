@@ -171,17 +171,6 @@
       "primary": "935 Northern Boulevard, Suite Number 303",
       "secondary": "Great Neck, NY 11021",
       "description": "提供免费停车"
-    },
-    {
-      "icon": "Calendar",
-      "title": "在线预约",
-      "action": {
-        "link": "/zh/book",
-        "text": "立即预约"
-      },
-      "primary": "新患者预约",
-      "secondary": null,
-      "description": "选择方便的就诊时间"
     }
   ]
 }

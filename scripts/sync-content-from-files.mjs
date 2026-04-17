@@ -17,6 +17,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content');
 const LOCALES = ['en', 'zh'];
+const KNOWN_ROOT_ENTRIES = new Set(['pages', 'blog', 'blog-scheduled', '_history']);
 
 const envPath = path.join(ROOT, '.env.local');
 const envRaw = (await fs.readFile(envPath, 'utf-8').catch(() => '')) || '';
@@ -65,9 +66,25 @@ async function collectCandidates(siteId) {
   for (const locale of LOCALES) {
     const localeRoot = path.join(CONTENT_DIR, siteId, locale);
     try {
-      const rootFiles = await fs.readdir(localeRoot);
-      for (const file of rootFiles.filter((f) => f.endsWith('.json') && f !== 'theme.json')) {
-        await add(locale, file, path.join(localeRoot, file));
+      const rootEntries = await fs.readdir(localeRoot);
+      for (const entry of rootEntries) {
+        const fullPath = path.join(localeRoot, entry);
+        const stat = await fs.stat(fullPath);
+        if (!stat.isFile()) continue;
+        if (entry === 'theme.json') continue;
+
+        if (entry.endsWith('.json')) {
+          await add(locale, entry, fullPath);
+          continue;
+        }
+
+        // SEO pages are root-level JSON files without extension.
+        if (entry.includes('.') || KNOWN_ROOT_ENTRIES.has(entry)) continue;
+        try {
+          await add(locale, entry, fullPath);
+        } catch {
+          /* skip non-JSON root file */
+        }
       }
     } catch {
       /* missing locale */

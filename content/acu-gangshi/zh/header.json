@@ -1,7 +1,7 @@
 {
   "cta": {
     "link": "/zh/contact",
-    "text": "線上預約"
+    "text": "联系我们"
   },
   "menu": {
     "logo": {
@@ -62,7 +62,6 @@
     "addressHref": "https://maps.google.com/?q=935+Northern+Boulevard+Suite+Number+303+Great+Neck+NY+11021"
   },
   "languages": [
-    "en",
-    "zh"
+    "en"
   ]
 }

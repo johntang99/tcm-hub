@@ -1,0 +1,83 @@
+{
+  "cta": {
+    "href": "/zh/contact",
+    "label": "预约就诊",
+    "backLink": {
+      "href": "/zh/acupuncture-great-neck-ny",
+      "text": "了解更多Great Neck针灸服务"
+    }
+  },
+  "faq": {
+    "items": [
+      {
+        "answer": "艾灸和针灸都是中医传统疗法，但作用机理不同。针灸主要通过针刺刺激穴位调节经络，而艾灸是利用艾草燃烧产生的温热和药性作用于穴位。艾灸更注重温补阳气，适合虚寒体质和慢性疾病，治疗过程更温和舒适。两者常常结合使用，可以发挥更好的协同效应。",
+        "question": "艾灸与针灸有什么区别？"
+      },
+      {
+        "answer": "艾灸治疗过程非常温和，患者主要感受到温暖舒适的热感，不会产生疼痛。Dr. Gang Shi会严格控制艾灸的温度和时间，确保患者在安全舒适的环境中接受治疗。部分患者可能感到轻微的温热刺激，这是正常的治疗反应，有助于促进经络通畅和气血运行。",
+        "question": "艾灸治疗会感到疼痛吗？"
+      },
+      {
+        "answer": "艾灸治疗效果因人而异，取决于个人体质、病情严重程度和配合度。一般急性症状可能在3-5次治疗后有明显改善，慢性疾病通常需要8-12次或更多疗程。Dr. Gang Shi会根据患者具体情况制定个性化治疗计划，定期评估治疗效果并调整方案。",
+        "question": "需要多少次艾灸治疗才能看到效果？"
+      },
+      {
+        "answer": "艾灸与其他中医疗法结合使用效果更佳。Gang Shi Acupuncture诊所提供针灸、中药、推拿等多种中医治疗方法，Dr. Gang Shi会根据患者具体情况制定综合治疗方案。艾灸与针灸结合可以增强疗效，配合中药内服外用能够标本兼治，实现更好的治疗效果。",
+        "question": "艾灸可以与其他中医疗法结合吗？"
+      }
+    ],
+    "heading": "Moxibustion — 常见问题"
+  },
+  "seo": {
+    "h1": "Great Neck, NY专业艾灸治疗 - Gang Shi Acupuncture中医诊所",
+    "title": "Great Neck艾灸治疗 - Gang Shi Acupuncture中医诊所专业服务",
+    "schema": [
+      "Service",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
+    "noindex": false,
+    "priority": 0.8,
+    "description": "Gang Shi Acupuncture诊所在Great Neck, NY提供专业艾灸治疗服务。Dr. Gang Shi运用传统艾灸疗法治疗各种慢性疾病，温经散寒，调理气血，提升免疫力。",
+    "canonicalUrl": "/zh/moxibustion-great-neck-ny"
+  },
+  "hero": {
+    "h1": "Great Neck, NY专业艾灸治疗 - Gang Shi Acupuncture中医诊所",
+    "ctaHref": "/zh/contact",
+    "ctaLabel": "预约Moxibustion咨询",
+    "description": "艾灸是中医传统疗法的重要组成部分，通过燃烧艾草产生的温热刺激穴位，达到温经散寒、扶阳固脱、消瘀散结的功效。Gang Shi Acupuncture诊所位于Great Neck, NY，Dr. Gang Shi拥有丰富的临床经验，运用正宗艾灸技法为患者提供个性化治疗方案。艾灸疗法温和安全，适合各年龄段人群，特别对慢性疾病和亚健康状态有显著改善效果。"
+  },
+  "service": "moxibustion",
+  "pageType": "seo-service",
+  "whatIsIt": {
+    "body": "艾灸是以艾叶为主要材料制成艾绒，点燃后在人体特定穴位上进行熏烤的中医外治法。艾草性温，味苦辛，具有温经止血、散寒止痛、温肾壮阳、养心安神的功效。艾灸通过燃烧产生的温热之气和药物作用，能够温通经络，调和气血，协调阴阳，扶正祛邪。现代研究表明，艾灸能改善局部血液循环，增强新陈代谢，调节神经系统功能，提高机体免疫力。Dr. Gang Shi在艾灸治疗中严格遵循中医理论，根据患者体质和病情选择合适的艾灸方法和穴位配伍，确保治疗效果最大化。艾灸操作简便，疗效持久，是中医治疗和养生保健的重要手段。",
+    "heading": "什么是Moxibustion？"
+  },
+  "howItWorks": {
+    "body": "艾灸治疗过程温和舒适，患者首先接受详细的中医诊断，Dr. Gang Shi会仔细了解病史，进行望闻问切四诊合参，确定治疗方案。治疗时患者采用舒适体位，医生在选定穴位上放置艾炷或使用艾条进行悬灸。艾灸时患者会感受到温热感觉，这种温热刺激能够激发经气，调动人体自愈能力。每次治疗时间通常为20-30分钟，根据不同病症和体质调整治疗强度。治疗过程中医生会密切观察患者反应，确保安全有效。艾灸后患者通常感到身体放松，精神愉悦，症状逐步改善。",
+    "heading": "在Gang Shi Acupuncture体验Moxibustion"
+  },
+  "whatItTreats": {
+    "heading": "Moxibustion可以治疗哪些病症",
+    "conditions": [
+      {
+        "name": "慢性腹泻"
+      },
+      {
+        "name": "关节炎"
+      },
+      {
+        "name": "哮喘"
+      },
+      {
+        "name": "月经不调"
+      },
+      {
+        "name": "失眠"
+      },
+      {
+        "name": "消化不良"
+      }
+    ]
+  }
+}

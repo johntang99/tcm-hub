@@ -16,10 +16,6 @@
         "question": "Do you accept walk-ins?"
       },
       {
-        "answer": "Please arrive 10 minutes early to complete paperwork (or download forms from our New Patients page). Eat a light meal 1-2 hours before, wear comfortable clothing, and bring a list of any medications you're taking.",
-        "question": "How do I prepare for my first visit?"
-      },
-      {
         "answer": "We offer a brief phone consultation (10-15 minutes) at no charge to answer questions and determine if TCM is right for you. Full in-person consultations include treatment and are billed at our initial visit rate.",
         "question": "Do you offer free consultations?"
       }
@@ -105,39 +101,39 @@
     "schedule": [
       {
         "day": "Monday",
-        "time": "9:00 AM - 6:00 PM",
+        "time": "9:00 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "Tuesday",
-        "time": "9:00 AM - 6:00 PM",
+        "time": "9:00 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "Wednesday",
         "note": "Community Acupuncture Day",
-        "time": "9:00 AM - 7:00 PM",
+        "time": "9:00 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "Thursday",
-        "time": "9:00 AM - 6:00 PM",
-        "isOpen": true
+        "time": "Closed",
+        "isOpen": false
       },
       {
         "day": "Friday",
-        "time": "9:00 AM - 6:00 PM",
+        "time": "9:00 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "Saturday",
-        "time": "9:00 AM - 2:00 PM",
+        "time": "9:00 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "Sunday",
-        "time": "Closed",
-        "isOpen": false
+        "time": "9:00 AM - 5:00 PM",
+        "isOpen": true
       }
     ]
   },
@@ -161,7 +157,7 @@
       },
       "primary": "(845) 381-1106",
       "secondary": null,
-      "description": "Mon-Fri: 9am-6pm, Sat: 9am-2pm"
+      "description": "Mon–Wed, Fri–Sun: 9am–5pm | Thu: Closed"
     },
     {
       "icon": "Mail",

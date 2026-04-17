@@ -888,6 +888,9 @@ export function ContentEditor({
       if (slug === 'home') return `/${locale}`;
       return `/${locale}/${slug}`;
     }
+    if (!activeFile.path.includes('/') && !activeFile.path.endsWith('.json')) {
+      return `/${locale}/${activeFile.path}`;
+    }
     return `/${locale}`;
   };
 

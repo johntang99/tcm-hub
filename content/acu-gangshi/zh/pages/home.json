@@ -1,14 +1,4 @@
 {
-  "seo": {
-    "title": "石剛中醫診所 | 紐約大頸針灸與中醫",
-    "description": "大頸（Great Neck）針灸、中藥與中醫調理，石剛醫師三十餘年經驗。疼痛、壓力、睡眠等。電 516-466-4018。",
-    "h1": "大頸針灸與傳統中醫診療",
-    "canonicalUrl": "/zh",
-    "schema": ["LocalBusiness", "MedicalClinic", "BreadcrumbList"],
-    "noindex": false,
-    "changefreq": "weekly",
-    "priority": 1.0
-  },
   "cta": {
     "title": "準備開始您的康復之旅嗎？",
     "variant": "centered",
@@ -17,11 +7,25 @@
       "link": "/zh/contact",
       "text": "預約諮詢"
     },
-    "contactInfo": "致电 516-466-4018 或在线预约",
+    "contactInfo": "致电 516-466-4018 或联系我们",
     "secondaryCta": {
       "link": "tel:+15164664018",
       "text": "立即致電"
     }
+  },
+  "seo": {
+    "h1": "大頸針灸與傳統中醫診療",
+    "title": "石剛中醫診所 | 紐約大頸針灸與中醫",
+    "schema": [
+      "LocalBusiness",
+      "MedicalClinic",
+      "BreadcrumbList"
+    ],
+    "noindex": false,
+    "priority": 1,
+    "changefreq": "weekly",
+    "description": "大頸（Great Neck）針灸、中藥與中醫調理，石剛醫師三十餘年經驗。疼痛、壓力、睡眠等。電 516-466-4018。",
+    "canonicalUrl": "/zh"
   },
   "blog": {
     "badge": "學習與探索",
@@ -224,6 +228,10 @@
   "services": {
     "badge": "治療選項",
     "title": "我們的療法",
+    "seoLink": {
+      "url": "/zh/acupuncture-great-neck-ny",
+      "text": "大頸針灸服務"
+    },
     "variant": "featured-large",
     "featured": {
       "id": "acupuncture",
@@ -234,10 +242,6 @@
       "subtitle": "恢復平衡並促進康復",
       "fullDescription": "透過針刺人體經絡穴位，調節臟腑經絡，平衡陰陽，促進氣血運行，疏通經絡，從而達到防病治病的目的。",
       "shortDescription": "我們的主要治療方式，使用細針恢復平衡並促進康復"
-    },
-    "seoLink": {
-      "url": "/zh/acupuncture-great-neck-ny",
-      "text": "大頸針灸服務"
     },
     "moreLink": {
       "url": "/zh/services",

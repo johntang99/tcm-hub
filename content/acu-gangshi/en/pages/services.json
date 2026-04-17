@@ -100,9 +100,9 @@
       {
         "id": "acupuncture",
         "icon": "Syringe",
+        "link": "/en/acupuncture-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-10.jpeg",
         "order": 1,
-        "link": "/en/acupuncture-great-neck-ny",
         "title": "Acupuncture Therapy",
         "benefits": [
           "Often chosen first for back, neck, and shoulder complaints",
@@ -120,9 +120,9 @@
       {
         "id": "chinese-herbal-medicine",
         "icon": "Leaf",
+        "link": "/en/chinese-herbal-medicine-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-herb-10.webp",
         "order": 2,
-        "link": "/en/chinese-herbal-medicine-great-neck-ny",
         "title": "Traditional Chinese Herbal Medicine",
         "benefits": [
           "Granules or teas matched to your current presentation—not retail blends",
@@ -139,9 +139,9 @@
       {
         "id": "cupping-therapy",
         "icon": "Circle",
+        "link": "/en/cupping-therapy-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/cupping-10.jpg",
         "order": 3,
-        "link": "/en/cupping-therapy-great-neck-ny",
         "title": "Therapeutic Cupping",
         "benefits": [
           "Targets stubborn upper-back and shoulder “knots”",
@@ -158,9 +158,9 @@
       {
         "id": "moxibustion",
         "icon": "Flame",
+        "link": "/en/moxibustion-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/moxibustion-2.jpeg",
         "order": 4,
-        "link": "/en/moxibustion-great-neck-ny",
         "title": "Moxibustion Therapy",
         "benefits": [
           "Comforting heat for cold-sensitive pain or cramps",
@@ -177,9 +177,9 @@
       {
         "id": "tuina-massage",
         "icon": "Hand",
+        "link": "/en/tui-na-massage-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/acupuncture-pain.jpg",
         "order": 5,
-        "link": "/en/tui-na-massage-great-neck-ny",
         "title": "Tui Na Therapeutic Massage",
         "benefits": [
           "Medical massage through clothing—no oil needed",

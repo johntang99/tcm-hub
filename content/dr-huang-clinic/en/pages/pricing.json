@@ -20,10 +20,6 @@
         "question": "How many treatments will I need?"
       },
       {
-        "answer": "We accept most major insurance plans that include acupuncture benefits. We can verify your coverage and assist with billing. Even if we are out-of-network, we can provide a detailed superbill for reimbursement.",
-        "question": "Can I use insurance?"
-      },
-      {
         "answer": "No, treatment packages are optional. You can always pay per visit. However, packages provide significant savings and are recommended for chronic conditions that require multiple sessions.",
         "question": "Are treatment packages required?"
       },
@@ -109,10 +105,6 @@
       "title": "Late Arrival",
       "policy": "Please arrive 5-10 minutes before your scheduled appointment. If you arrive more than 15 minutes late, we may need to shorten your treatment or reschedule, and the full fee may still apply."
     },
-    "newPatients": {
-      "title": "New Patient Forms",
-      "policy": "Please complete new patient forms before your first visit (available on our website), or arrive 15 minutes early to complete them in clinic."
-    },
     "cancellation": {
       "title": "Cancellation & Rescheduling Policy",
       "policy": "We understand schedules can change. Please provide at least 24 hours notice if you need to cancel or reschedule. Late cancellations (less than 24 hours) or no-shows will be charged 50% of the treatment fee. Emergency exceptions apply."
@@ -171,67 +163,88 @@
   "individualTreatments": {
     "items": [
       {
-        "name": "Initial Consultation Fee",
+        "name": "Initial consultation &treatment",
         "notes": "Basic consultation for first-time patients",
-        "price": "$100",
-        "duration": "Consultation slot",
+        "price": "$160",
+        "duration": "60-90 minutes",
         "description": "Comprehensive first-visit evaluation including health history intake and Traditional Chinese Medicine pattern diagnosis."
       },
       {
-        "name": "Acupuncture Treatment",
+        "name": "Follow up acupuncture session",
         "notes": "Package available: buy 10 sessions, get 1 free ($1200)",
-        "price": "$120",
-        "duration": "Single session",
+        "price": "$130",
+        "duration": "45-60 minutes",
         "description": "Standard acupuncture treatment. Discounted package options are available for better value per session."
       },
       {
-        "name": "Moxibustion",
+        "name": "Cupping therapy ( standalone)",
         "notes": "Warming meridian regulation",
-        "price": "$50",
-        "duration": "30 minutes",
+        "price": "$60",
+        "duration": "10-20 minutes",
         "description": "Uses warming moxa therapy on selected points to support circulation, dispel cold, and strengthen overall balance."
       },
       {
-        "name": "Dragon Bone Moxa",
+        "name": "Cupping therapy (add-on)",
         "notes": "Includes 10-minute gua sha service",
-        "price": "$200",
-        "duration": "60 minutes",
+        "price": "$30",
+        "duration": "10-20 minutes",
         "description": "Deep warming and broad meridian release, especially suitable for cold-deficiency constitutions or chronic fatigue."
       },
       {
-        "name": "Gua Sha",
+        "name": "Gua Sha:(standalone)",
         "notes": "Promotes circulation and relieves local discomfort",
-        "price": "$40",
-        "duration": "15 minutes",
+        "price": "$60",
+        "duration": "",
         "description": "Gua sha scraping along channels and points to improve qi-blood flow and release stagnation."
       },
       {
-        "name": "Cupping",
+        "name": "Gua she: (add-on)",
         "notes": "Improves circulation and relieves muscle tension",
         "price": "$30",
-        "duration": "10-15 minutes",
+        "duration": "",
         "description": "Negative-pressure cup therapy for deep muscle release and local circulation support."
       },
       {
-        "name": "Sliding Cupping",
+        "name": "Tui Na Medical Massage",
         "notes": "Large-area meridian release and relaxation",
-        "price": "$50",
-        "duration": "10 minutes",
+        "price": "$80",
+        "duration": "60 minutes",
         "description": "Combines cupping and manual movement over the skin, ideal for back stiffness and heaviness."
       },
       {
-        "name": "Acupoint Bloodletting",
-        "notes": "Alternative option: $30 for two acupoints",
-        "price": "$80",
-        "duration": "Targeted treatment",
+        "name": "Moxibustion",
+        "notes": "",
+        "price": "$200",
+        "duration": "45-60 minutes",
         "description": "A focused bloodletting method used to clear heat, reduce swelling, and relieve specific acute symptoms."
       },
       {
-        "name": "Chinese Herbal Prescription Fee",
+        "name": "Chinese herbal consultation",
         "notes": "Herb material cost billed separately",
         "price": "$100",
         "duration": "Prescription service",
         "description": "Customized herbal prescription based on pattern differentiation to support internal balance of organs and qi-blood."
+      },
+      {
+        "name": "Chinese herbal consultation with one weak herb",
+        "notes": "",
+        "price": "150",
+        "duration": "",
+        "description": ""
+      },
+      {
+        "name": "One week Chinese herbal (add-on)",
+        "notes": "",
+        "price": "100",
+        "duration": "",
+        "description": ""
+      },
+      {
+        "name": "Dietary Therapy consultation",
+        "notes": "",
+        "price": "100",
+        "duration": "",
+        "description": ""
       }
     ],
     "title": "Individual Treatment Pricing",

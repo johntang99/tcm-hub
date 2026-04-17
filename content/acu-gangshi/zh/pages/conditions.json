@@ -65,8 +65,8 @@
   "conditions": [
     {
       "id": "back-pain",
-      "link": "/zh/acupuncture-for-back-pain-great-neck-ny",
       "icon": "Activity",
+      "link": "/zh/acupuncture-for-back-pain-great-neck-ny",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/home/welcome-section.jpg",
       "title": "腰背部疼痛",
       "category": "pain-management",
@@ -161,8 +161,8 @@
     },
     {
       "id": "anxiety",
-      "link": "/zh/acupuncture-for-anxiety-great-neck-ny",
       "icon": "Brain",
+      "link": "/zh/acupuncture-for-anxiety-great-neck-ny",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/anxiate-3.jpeg",
       "title": "焦虑与恐慌症",
       "category": "mental-health",
@@ -212,8 +212,8 @@
     },
     {
       "id": "insomnia",
-      "link": "/zh/acupuncture-for-insomnia-great-neck-ny",
       "icon": "Brain",
+      "link": "/zh/acupuncture-for-insomnia-great-neck-ny",
       "title": "失眠与睡眠问题",
       "category": "mental-health",
       "symptoms": [

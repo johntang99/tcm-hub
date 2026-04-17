@@ -100,9 +100,9 @@
       {
         "id": "acupuncture",
         "icon": "Syringe",
+        "link": "/zh/acupuncture-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-10.jpeg",
         "order": 1,
-        "link": "/zh/acupuncture-great-neck-ny",
         "title": "針灸",
         "benefits": [
           "久坐、通勤後肩頸腰臀緊繃常優先處理",
@@ -119,9 +119,9 @@
       {
         "id": "chinese-herbal-medicine",
         "icon": "Leaf",
+        "link": "/zh/chinese-herbal-medicine-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-herb-10.webp",
         "order": 2,
-        "link": "/zh/chinese-herbal-medicine-great-neck-ny",
         "title": "中藥",
         "benefits": [
           "顆粒或湯劑依證型調整，非坊間固定成藥包",
@@ -138,9 +138,9 @@
       {
         "id": "cupping-therapy",
         "icon": "Circle",
+        "link": "/zh/cupping-therapy-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/cupping-10.jpg",
         "order": 3,
-        "link": "/zh/cupping-therapy-great-neck-ny",
         "title": "拔罐",
         "benefits": [
           "上背「鐵肩」與肩胛內側黏滯感常見用途",
@@ -157,9 +157,9 @@
       {
         "id": "moxibustion",
         "icon": "Flame",
+        "link": "/zh/moxibustion-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/moxibustion-2.jpeg",
         "order": 4,
-        "link": "/zh/moxibustion-great-neck-ny",
         "title": "艾灸",
         "benefits": [
           "怕冷型腹痛、宮寒痛經可評估",
@@ -176,9 +176,9 @@
       {
         "id": "tuina-massage",
         "icon": "Hand",
+        "link": "/zh/tui-na-massage-great-neck-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/acupuncture-pain.jpg",
         "order": 5,
-        "link": "/zh/tui-na-massage-great-neck-ny",
         "title": "中醫推拿",
         "benefits": [
           "隔衣操作，適合上班午休抽空",

@@ -48,6 +48,11 @@
       "id": "other",
       "icon": "Sparkles",
       "name": "其他病症"
+    },
+    {
+      "id": "category-7",
+      "icon": "Activity",
+      "name": "皮膚問題"
     }
   ],
   "statistics": {
@@ -101,6 +106,24 @@
       "condition": "焦慮和抑鬱",
       "afterImage": "https://images.unsplash.com/photo-1513097847644-f00cfe868607?fm=jpg&q=60&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0",
       "beforeImage": "https://images.unsplash.com/photo-1554574004-b5ed96682e9b?fm=jpg&q=60&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0"
+    },
+    {
+      "id": "acne-16-years-herbal-cream",
+      "image": "",
+      "summary": "案主受痤瘡困擾長達16年，曾嘗試多種方法均未能根治。\n\n- 使用黃醫師中藥祛痘膏外用\n- 兩個月內炎症明顯消退\n- 膚色均勻，皮膚清透，效果顯著\n\n**效果：** 中藥外用治療兩個月，痤瘡顯著改善",
+      "category": "category-7",
+      "condition": "16年痤瘡",
+      "afterImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1776110115260-after-1.jpg",
+      "beforeImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1776110137996-before-1.jpg"
+    },
+    {
+      "id": "acne-17-years-herbal-cream",
+      "image": "",
+      "summary": "案主深受痤瘡困擾長達17年，多種治療均未能根治。\n\n- 使用黃醫師中藥祛痘膏外用\n- 兩個月內暗瘡明顯消退\n- 皮膚狀況大幅改善，效果顯著\n\n**效果：** 中藥外用治療兩個月，痤瘡大幅改善",
+      "category": "category-7",
+      "condition": "17年痤瘡",
+      "afterImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1776179717576-case-002-after.jpg",
+      "beforeImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1776179710864-case-002-before.jpg"
     }
   ],
   "introduction": {

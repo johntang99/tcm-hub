@@ -8,6 +8,7 @@ import { locales } from '@/lib/i18n';
 import { writeAuditLog } from '@/lib/admin/audit';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
+const KNOWN_ROOT_ENTRIES = new Set(['pages', 'blog', 'blog-scheduled', '_history']);
 
 async function readJson(filePath: string) {
   const raw = await fs.readFile(filePath, 'utf-8');
@@ -66,9 +67,26 @@ async function collectImportCandidates(siteId: string, locale: string): Promise<
 
   // Root locale JSON files
   try {
-    const rootFiles = await fs.readdir(localeRoot);
-    for (const file of rootFiles.filter((item) => item.endsWith('.json') && item !== 'theme.json')) {
-      await addCandidate(locale, file, path.join(localeRoot, file));
+    const rootEntries = await fs.readdir(localeRoot);
+    for (const entry of rootEntries) {
+      const fullPath = path.join(localeRoot, entry);
+      const stat = await fs.stat(fullPath);
+      if (!stat.isFile()) continue;
+      if (entry === 'theme.json') continue;
+
+      if (entry.endsWith('.json')) {
+        await addCandidate(locale, entry, fullPath);
+        continue;
+      }
+
+      // SEO landing pages use root-level paths without extension
+      // e.g. acupuncture-great-neck-ny
+      if (entry.includes('.') || KNOWN_ROOT_ENTRIES.has(entry)) continue;
+      try {
+        await addCandidate(locale, entry, fullPath);
+      } catch {
+        // skip non-JSON root files
+      }
     }
   } catch {
     // ignore missing locale root

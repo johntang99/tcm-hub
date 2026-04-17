@@ -1,14 +1,4 @@
 {
-  "seo": {
-    "title": "Gang Shi Acupuncture | Acupuncture & TCM in Great Neck, NY",
-    "description": "Acupuncture, herbal medicine & TCM in Great Neck, NY. Dr. Gang Shi—30+ years experience. Pain, stress, sleep & more. Call 516-466-4018.",
-    "h1": "Acupuncture & Traditional Chinese Medicine in Great Neck, NY",
-    "canonicalUrl": "/en",
-    "schema": ["LocalBusiness", "MedicalClinic", "BreadcrumbList"],
-    "noindex": false,
-    "changefreq": "weekly",
-    "priority": 1.0
-  },
   "cta": {
     "title": "Ready to Begin Your Healing Journey?",
     "variant": "centered",
@@ -22,6 +12,20 @@
       "link": "tel:+15164664018",
       "text": "Call Us Now"
     }
+  },
+  "seo": {
+    "h1": "Acupuncture & Traditional Chinese Medicine in Great Neck, NY",
+    "title": "Gang Shi Acupuncture | Acupuncture & TCM in Great Neck, NY",
+    "schema": [
+      "LocalBusiness",
+      "MedicalClinic",
+      "BreadcrumbList"
+    ],
+    "noindex": false,
+    "priority": 1,
+    "changefreq": "weekly",
+    "description": "Acupuncture, herbal medicine & TCM in Great Neck, NY. Dr. Gang Shi—30+ years experience. Pain, stress, sleep & more. Call 516-466-4018.",
+    "canonicalUrl": "/en"
   },
   "blog": {
     "badge": "LEARN & EXPLORE",
@@ -63,7 +67,7 @@
     "subtitle": "Educational resources about TCM and wellness"
   },
   "hero": {
-    "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/acu-gangshi/onboarding-overrides/1773091212756-b489bbebcad7eea57f3cbf9b5cbb0eea-jpg.avif",
+    "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/acu-gangshi/general/1775873352166-gang-shi-picture.jpg",
     "stats": [
       {
         "icon": "calendar",
@@ -133,7 +137,7 @@
   "menu": {
     "cta": {
       "link": "/en/contact",
-      "text": "Book Online"
+      "text": "Contact Us"
     },
     "items": [
       {
@@ -224,6 +228,10 @@
   "services": {
     "badge": "TREATMENT OPTIONS",
     "title": "Our Modalities",
+    "seoLink": {
+      "url": "/en/acupuncture-great-neck-ny",
+      "text": "Acupuncture in Great Neck, NY"
+    },
     "variant": "featured-large",
     "featured": {
       "id": "acupuncture",
@@ -234,10 +242,6 @@
       "subtitle": "Restore balance and stimulate healing",
       "fullDescription": "Regulates the body's internal organs and meridians by stimulating specific acupuncture points. It balances Yin and Yang, promotes the circulation of Qi and blood, and clears the meridians to prevent and treat various conditions.",
       "shortDescription": "Our primary treatment modality using fine needles to restore balance and promote healing"
-    },
-    "seoLink": {
-      "url": "/en/acupuncture-great-neck-ny",
-      "text": "Acupuncture in Great Neck, NY"
     },
     "moreLink": {
       "url": "/en/services",

@@ -71,8 +71,8 @@
   "conditions": [
     {
       "id": "back-pain",
-      "link": "/en/acupuncture-for-back-pain-great-neck-ny",
       "icon": "Activity",
+      "link": "/en/acupuncture-for-back-pain-great-neck-ny",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/home/welcome-section.jpg",
       "title": "Lower Back, Upper Back & Sciatica Pain",
       "category": "pain-management",
@@ -85,7 +85,7 @@
         "Muscle spasms",
         "Limited mobility"
       ],
-      "description": "Sacroiliac irritation, disc-related ache, or tight paraspinals—we treat the pattern, whether it started yesterday or years ago.", 
+      "description": "Sacroiliac irritation, disc-related ache, or tight paraspinals—we treat the pattern, whether it started yesterday or years ago.",
       "tcmApproach": "We look for stagnation or cold lodged along the bladder and gallbladder channels, then mix needle depth, cupping drag, or warming moxa depending on what palpation shows.",
       "treatmentMethods": [
         "Acupuncture",
@@ -169,8 +169,8 @@
     },
     {
       "id": "anxiety",
-      "link": "/en/acupuncture-for-anxiety-great-neck-ny",
       "icon": "Brain",
+      "link": "/en/acupuncture-for-anxiety-great-neck-ny",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/anxiate-3.jpeg",
       "title": "Anxiety & Panic Disorder",
       "category": "mental-health",
@@ -220,8 +220,8 @@
     },
     {
       "id": "insomnia",
-      "link": "/en/acupuncture-for-insomnia-great-neck-ny",
       "icon": "Brain",
+      "link": "/en/acupuncture-for-insomnia-great-neck-ny",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/headache-2.jpeg",
       "title": "Insomnia & Sleep Problems",
       "category": "mental-health",
