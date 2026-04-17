@@ -200,33 +200,33 @@ node scripts/seo-pipeline.mjs acu-flushing --skip-generation
 
 ### Sitemap
 ```
-https://acupunctureflushing.com/sitemap.xml
+https://www.acupunctureflushing.com/sitemap.xml
 ```
 
-### English URLs to Request Indexing
+### English URLs (Already Submitted — No Action Needed)
 ```
-https://acupunctureflushing.com/en/acupuncture-flushing-ny
-https://acupunctureflushing.com/en/acupuncture-for-back-pain-flushing-ny
-https://acupunctureflushing.com/en/acupuncture-for-insomnia-flushing-ny
-https://acupunctureflushing.com/en/acupuncture-for-anxiety-flushing-ny
-https://acupunctureflushing.com/en/acupuncture-cost-flushing-ny
-https://acupunctureflushing.com/en/chinese-herbal-medicine-flushing-ny
-https://acupunctureflushing.com/en/cupping-therapy-flushing-ny
-https://acupunctureflushing.com/en/moxibustion-flushing-ny
-https://acupunctureflushing.com/en/tui-na-massage-flushing-ny
+https://www.acupunctureflushing.com/en/acupuncture-flushing-ny
+https://www.acupunctureflushing.com/en/acupuncture-for-back-pain-flushing-ny
+https://www.acupunctureflushing.com/en/acupuncture-for-insomnia-flushing-ny
+https://www.acupunctureflushing.com/en/acupuncture-for-anxiety-flushing-ny
+https://www.acupunctureflushing.com/en/acupuncture-cost-flushing-ny
+https://www.acupunctureflushing.com/en/chinese-herbal-medicine-flushing-ny
+https://www.acupunctureflushing.com/en/cupping-therapy-flushing-ny
+https://www.acupunctureflushing.com/en/moxibustion-flushing-ny
+https://www.acupunctureflushing.com/en/tui-na-massage-flushing-ny
 ```
 
-### Chinese URLs to Request Indexing (Added April 2026)
+### Chinese URLs to Request Indexing (Added April 2026) — SUBMIT THESE ONLY
 ```
-https://acupunctureflushing.com/zh/法拉盛中医针灸
-https://acupunctureflushing.com/zh/法拉盛针灸治腰痛
-https://acupunctureflushing.com/zh/法拉盛失眠针灸
-https://acupunctureflushing.com/zh/法拉盛针灸治焦虑
-https://acupunctureflushing.com/zh/法拉盛中药
-https://acupunctureflushing.com/zh/法拉盛拔罐
-https://acupunctureflushing.com/zh/法拉盛艾灸
-https://acupunctureflushing.com/zh/法拉盛推拿
-https://acupunctureflushing.com/zh/法拉盛针灸费用
+https://www.acupunctureflushing.com/zh/法拉盛中医针灸
+https://www.acupunctureflushing.com/zh/法拉盛针灸治腰痛
+https://www.acupunctureflushing.com/zh/法拉盛失眠针灸
+https://www.acupunctureflushing.com/zh/法拉盛针灸治焦虑
+https://www.acupunctureflushing.com/zh/法拉盛中药
+https://www.acupunctureflushing.com/zh/法拉盛拔罐
+https://www.acupunctureflushing.com/zh/法拉盛艾灸
+https://www.acupunctureflushing.com/zh/法拉盛推拿
+https://www.acupunctureflushing.com/zh/法拉盛针灸费用
 ```
 
 ### GSC Step-by-Step

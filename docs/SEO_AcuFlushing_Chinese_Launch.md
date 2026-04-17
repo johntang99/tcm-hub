@@ -51,7 +51,7 @@
 
 1. Go to [Google Search Console](https://search.google.com/search-console)
 2. Click **Add Property**
-3. Choose **URL prefix**: `https://acuflushing.com` (your production domain)
+3. Choose **URL prefix**: `https://www.acupunctureflushing.com` (your production domain)
 4. Verify via one of:
    - **HTML tag** — add `<meta name="google-site-verification" content="...">` to layout
    - **DNS record** — add TXT record to domain
@@ -72,15 +72,15 @@ Google will discover pages via sitemap, but you can speed it up:
 1. In GSC, go to **URL Inspection** (top search bar)
 2. Enter each new Chinese URL one by one:
    ```
-   https://acuflushing.com/zh/法拉盛中医针灸
-   https://acuflushing.com/zh/法拉盛针灸治腰痛
-   https://acuflushing.com/zh/法拉盛失眠针灸
-   https://acuflushing.com/zh/法拉盛针灸治焦虑
-   https://acuflushing.com/zh/法拉盛中药
-   https://acuflushing.com/zh/法拉盛拔罐
-   https://acuflushing.com/zh/法拉盛艾灸
-   https://acuflushing.com/zh/法拉盛推拿
-   https://acuflushing.com/zh/法拉盛针灸费用
+   https://www.acupunctureflushing.com/zh/法拉盛中医针灸
+   https://www.acupunctureflushing.com/zh/法拉盛针灸治腰痛
+   https://www.acupunctureflushing.com/zh/法拉盛失眠针灸
+   https://www.acupunctureflushing.com/zh/法拉盛针灸治焦虑
+   https://www.acupunctureflushing.com/zh/法拉盛中药
+   https://www.acupunctureflushing.com/zh/法拉盛拔罐
+   https://www.acupunctureflushing.com/zh/法拉盛艾灸
+   https://www.acupunctureflushing.com/zh/法拉盛推拿
+   https://www.acupunctureflushing.com/zh/法拉盛针灸费用
    ```
 3. For each URL, click **Request Indexing**
 4. Google allows ~10 requests per day — do the core landing page first
@@ -96,7 +96,7 @@ Google will discover pages via sitemap, but you can speed it up:
 ### 2.4 Verify Redirects in GSC
 
 1. Go to **URL Inspection**
-2. Enter an old URL: `https://acuflushing.com/zh/acupuncture-flushing-ny`
+2. Enter an old URL: `https://www.acupunctureflushing.com/zh/acupuncture-flushing-ny`
 3. GSC should show:
    - "URL is not on Google" (if not yet crawled) or
    - "Page with redirect" with the redirect target
