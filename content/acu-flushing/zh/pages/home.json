@@ -443,28 +443,28 @@
     "features": [
       {
         "icon": "heart",
-        "title": "Holistic Healing Approach",
-        "description": "We treat the whole person, addressing root causes rather than just symptoms to restore your body's natural balance and harmony."
+        "title": "整体调理，标本兼治",
+        "description": "我们注重整体治疗，从根本原因入手，而不仅仅是缓解症状，帮助恢复身体的自然平衡与和谐。"
       },
       {
         "icon": "user",
-        "title": "Personalized Care Plans",
-        "description": "Every treatment is tailored to your unique constitution, symptoms, and health goals using traditional diagnostic methods."
+        "title": "个性化治疗方案",
+        "description": "每位患者都会获得根据个人体质、症状和健康目标量身定制的治疗方案，运用传统中医诊断方法精准施治。"
       },
       {
         "icon": "book-open",
-        "title": "Authentic TCM Wisdom",
-        "description": "Our treatments honor thousands of years of Chinese medical knowledge, using time-tested methods for lasting results."
+        "title": "正宗中医传承",
+        "description": "我们的治疗秉承数千年中医药智慧，采用经过时间验证的传统方法，为您带来持久的治疗效果。"
       },
       {
         "icon": "award",
-        "title": "Board Certified Excellence",
-        "description": "Dr. Jiang's NCCAOM certification and 20 years of experience ensure you receive the highest standard of Traditional Chinese Medicine care."
+        "title": "专业认证资质",
+        "description": "Dr. Jiang医师持有NCCAOM认证，拥有超过15年临床经验，确保您获得最高标准的传统中医治疗。"
       },
       {
         "icon": "shield",
-        "title": "Gentle Natural Healing",
-        "description": "We offer safe, natural alternatives to pharmaceuticals, supporting your body's healing process without harsh side effects."
+        "title": "温和天然疗法",
+        "description": "我们提供安全、天然的替代疗法，支持身体自愈过程，无药物副作用，温和而有效。"
       }
     ],
     "subtitle": "我們的與眾不同之處"

@@ -45,8 +45,21 @@ export async function getServiceSEOLinks(
   siteId: string,
   locale: string
 ): Promise<Map<string, string>> {
-  const pages = await getSEOPagesForSite(siteId);
   const map = new Map<string, string>();
+
+  // First, try locale-specific SEO pages from content_entries.
+  // These pages store their service/condition ID in the JSON data,
+  // which handles non-Latin slugs (e.g., Chinese character URLs).
+  const localeMap = await getServiceSEOLinksFromContent(siteId, locale);
+  for (const [key, value] of localeMap) {
+    map.set(key, value);
+  }
+
+  // If we found locale-specific links, use them (they take priority)
+  if (map.size > 0) return map;
+
+  // Fall back to site_seo_pages table for English-slug matching
+  const pages = await getSEOPagesForSite(siteId);
 
   // Map the primary service (acupuncture) to the core landing page
   const coreLanding = pages.find((p) => p.page_type === 'seo-local-landing');
@@ -95,6 +108,59 @@ export async function getServiceSEOLinks(
             break;
           }
         }
+      }
+    }
+  }
+
+  return map;
+}
+
+/**
+ * Scan content_entries for locale-specific SEO pages and build service links
+ * from their JSON data. Handles non-Latin slugs (e.g., Chinese characters).
+ */
+async function getServiceSEOLinksFromContent(
+  siteId: string,
+  locale: string
+): Promise<Map<string, string>> {
+  const supabase = getSupabaseServerClient();
+  const map = new Map<string, string>();
+  if (!supabase) return map;
+
+  const { data, error } = await supabase
+    .from('content_entries')
+    .select('path, data')
+    .eq('site_id', siteId)
+    .eq('locale', locale);
+
+  if (error || !data) return map;
+
+  // Service alias mapping for matching service IDs to content JSON service fields
+  const serviceAliases: Record<string, string[]> = {
+    'chinese-herbal-medicine': ['chinese-herbal-medicine', 'herbal-medicine', 'herbs'],
+    'cupping-therapy': ['cupping-therapy', 'cupping'],
+    'moxibustion': ['moxibustion', 'moxa'],
+    'tui-na-massage': ['tui-na-massage', 'tui-na', 'tuina', 'tuina-massage'],
+    'gua-sha': ['gua-sha', 'guasha'],
+    'acupressure': ['acupressure'],
+  };
+
+  for (const entry of data) {
+    const content = entry.data as Record<string, unknown> | null;
+    if (!content) continue;
+    const pageType = content.pageType as string | undefined;
+    const url = `/${locale}/${entry.path}`;
+
+    if (pageType === 'seo-local-landing') {
+      map.set('acupuncture', url);
+    } else if (pageType === 'seo-service') {
+      const serviceId = content.service as string | undefined;
+      if (serviceId && serviceAliases[serviceId]) {
+        for (const alias of serviceAliases[serviceId]) {
+          map.set(alias, url);
+        }
+      } else if (serviceId) {
+        map.set(serviceId, url);
       }
     }
   }

@@ -28,6 +28,7 @@
 15. 90-Day Execution Plan
 16. Vertical Adaptation Guide
 17. Reusable Master Checklist
+18. Multilingual SEO — Chinese Language Pages
 
 ---
 
@@ -866,6 +867,171 @@ Use this checklist at the start of every new industry or client SEO engagement.
 - [ ] Review response monitored (reply within 48 hours)
 - [ ] Citation audit scheduled (quarterly)
 - [ ] Keyword map quarterly review scheduled
+
+---
+
+## 18. Multilingual SEO — Chinese Language Pages
+
+> **Added:** April 2026
+> **Context:** Proven workflow from acu-flushing Chinese SEO implementation.
+
+### Why Multilingual SEO Requires Separate Architecture
+
+Chinese SEO is **not translation**. Chinese users search differently from English users — different keywords, different intent patterns, different trust signals. A translated English page will not rank for Chinese queries.
+
+**Core principle:** Build Chinese pages around **Chinese search behavior**, not by translating English page slugs.
+
+### URL Strategy for Chinese Pages
+
+**Use Chinese characters in URLs (recommended):**
+```
+/zh/法拉盛中医针灸/
+/zh/法拉盛针灸治腰痛/
+/zh/法拉盛失眠针灸/
+```
+
+**Why Chinese characters beat pinyin:**
+- Google indexes and ranks Chinese-character URLs for Chinese queries
+- URLs match the exact search phrase — maximum keyword relevance
+- Chinese users recognize and trust Chinese-character URLs
+- Pinyin is ambiguous (multiple characters share the same pinyin)
+
+**Technical requirements:**
+- Next.js auto-decodes URL params, but verify with `decodeURIComponent()` in route handlers
+- `permanentRedirect()` requires URI-encoded destinations: `encodeURIComponent()` each path segment
+- Sitemaps must use percent-encoded URLs (standard XML escaping)
+- Filesystem supports UTF-8 filenames natively
+
+### Page Architecture — Chinese vs. English
+
+Do NOT mirror English pages 1:1. Build Chinese pages by **Chinese search intent**:
+
+| Intent Type | English Example | Chinese Example |
+|---|---|---|
+| Core local landing | `acupuncture-flushing-ny` | `法拉盛中医针灸` |
+| Condition — back pain | `acupuncture-for-back-pain-flushing-ny` | `法拉盛针灸治腰痛` |
+| Condition — insomnia | `acupuncture-for-insomnia-flushing-ny` | `法拉盛失眠针灸` |
+| Service — herbal medicine | `chinese-herbal-medicine-flushing-ny` | `法拉盛中药` |
+| Service — cupping | `cupping-therapy-flushing-ny` | `法拉盛拔罐` |
+| Cost / pricing | `acupuncture-cost-flushing-ny` | `法拉盛针灸费用` |
+
+**Chinese-specific pages to consider (no English equivalent):**
+- `法拉盛针灸师` — practitioner intent
+- `法拉盛中医诊所` — clinic intent
+- `法拉盛痛症针灸` — pain-focused intent
+- `法拉盛妇科中医` — gynecology intent
+- `法拉盛老中医` — experienced practitioner trust signal
+
+### Migration: Replacing English-Slug Chinese Pages
+
+When replacing old English-slug zh pages with Chinese-character URLs:
+
+**Step 1 — Set up 301 redirects (NEVER delete old URLs without redirects)**
+
+Create `content/<siteId>/redirects.json`:
+```json
+{
+  "hreflang": [
+    { "en": "acupuncture-flushing-ny", "zh": "法拉盛中医针灸" }
+  ],
+  "redirects": [
+    {
+      "source": "/zh/acupuncture-flushing-ny",
+      "destination": "/zh/法拉盛中医针灸",
+      "permanent": true
+    }
+  ]
+}
+```
+
+**Step 2 — Create new Chinese-character page files**
+
+Files go in `content/<siteId>/zh/` with no extension (same as English SEO pages).
+Each file must include the `service` or `condition` field so the system can resolve service links:
+```json
+{
+  "pageType": "seo-service",
+  "service": "chinese-herbal-medicine",
+  "seo": {
+    "canonicalUrl": "/zh/法拉盛中药",
+    "title": "法拉盛中药｜专业中草药调理",
+    ...
+  }
+}
+```
+
+**Step 3 — Import to DB and register in site_seo_pages**
+
+1. Import via admin panel (Import Locale JSON for zh)
+2. Register in `site_seo_pages` table with correct `page_type`
+3. Delete old zh English-slug entries from `content_entries` table
+
+**Step 4 — Verify**
+
+- [ ] New Chinese URLs render correctly
+- [ ] Old English URLs redirect (308) to new Chinese URLs
+- [ ] Homepage/services "Learn More" links point to Chinese URLs (not redirects)
+- [ ] Sitemap includes Chinese URLs under `/zh/` only
+- [ ] Sitemap excludes old redirected URLs
+- [ ] hreflang tags pair English ↔ Chinese pages
+
+### SEO Metadata — All Signals Must Match Page Language
+
+For every Chinese page, ALL of these must be in Chinese:
+
+| Signal | Example |
+|---|---|
+| URL slug | `法拉盛中医针灸` |
+| `<title>` | `法拉盛中医针灸｜专业针灸与中医调理` |
+| `<meta description>` | `法拉盛专业中医针灸诊所，Dr. Jiang医师提供传统中医治疗...` |
+| H1 | `法拉盛中医针灸｜专业针灸与中医调理` |
+| Body content | Full Chinese |
+| FAQ questions & answers | Full Chinese |
+| Internal link anchor text | `法拉盛针灸治腰痛`, not `Acupuncture for Back Pain` |
+| Schema text (where applicable) | Chinese |
+
+**Critical:** The site-wide `seo.json` for zh locale must also be in Chinese — it controls metadata for homepage, services, about, contact, and all other non-SEO pages.
+
+### Chinese Keyword Research Approach
+
+Chinese users in the US search with mixed patterns:
+
+| Pattern | Example |
+|---|---|
+| Full Chinese | `法拉盛针灸` |
+| Chinese + English location | `flushing 针灸` |
+| Chinese + English service | `acupuncture 法拉盛` |
+| Full Chinese with specifics | `法拉盛中医调理失眠` |
+
+**Keyword structure:** `[location in Chinese] + [service/condition in Chinese]`
+- Location: `法拉盛` (Flushing), `大颈` (Great Neck)
+- Services: `针灸`, `中药`, `拔罐`, `推拿`, `艾灸`
+- Conditions: `腰痛`, `失眠`, `焦虑`, `痛症`
+- Modifiers: `诊所`, `医师`, `费用`, `保险`
+
+### Technical Implementation Checklist
+
+**Routing & Rendering:**
+- [ ] `[slug]/page.tsx` decodes URL params: `decodeURIComponent(params.slug)`
+- [ ] Redirect destinations are URI-encoded for HTTP Location header
+- [ ] Redirects fire BEFORE DB lookup (not after 404)
+- [ ] `lib/redirects.ts` caches redirect lookups per site
+
+**Service Link Resolution:**
+- [ ] `getServiceSEOLinks()` checks `content_entries` for locale-specific pages
+- [ ] Service matching uses the `service` field from page JSON data
+- [ ] Chinese pages resolve directly (no redirect hop)
+
+**Sitemap:**
+- [ ] Chinese-character URLs included (percent-encoded in XML)
+- [ ] Old redirected URLs excluded via `checkSiteRedirect()`
+- [ ] Non-ASCII slugs only appear under matching locale (`/zh/`)
+- [ ] Filesystem discovery picks up non-.json SEO page files
+
+**Database:**
+- [ ] New Chinese pages registered in `site_seo_pages` table
+- [ ] Old zh English-slug `content_entries` deleted
+- [ ] hreflang mapping stored in `redirects.json`
 
 ---
 

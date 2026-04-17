@@ -3,9 +3,9 @@
     "items": [
       {
         "answer": "初诊费用$120-150，复诊$80-100。我们接受多种保险，具体费用请咨询前台。",
-        "linkHref": "/zh/acupuncture-cost-flushing-ny",
+        "linkHref": "/zh/法拉盛针灸费用",
         "linkText": "查看详细费用",
-        "question": "在Flushing, NY做针灸要多少钱？"
+        "question": "在法拉盛做针灸要多少钱？"
       },
       {
         "answer": "针灸几乎无痛，大部分患者只感觉轻微的刺感或酸胀感，这是正常的得气反应。",
@@ -17,7 +17,7 @@
       },
       {
         "answer": "我们接受大部分主要保险计划，包括Aetna、Blue Cross、UnitedHealth等。请提前确认保险覆盖范围。",
-        "question": "NY的保险覆盖针灸吗？"
+        "question": "纽约的保险覆盖针灸吗？"
       },
       {
         "answer": "首次就诊包括详细病史询问、中医诊断（望闻问切）和制定个性化治疗方案，大约需要60-90分钟。",
@@ -28,11 +28,11 @@
         "question": "诊所提供中文服务吗？"
       }
     ],
-    "heading": "关于Flushing, NY针灸的常见问题"
+    "heading": "法拉盛中医针灸常见问题"
   },
   "seo": {
-    "h1": "法拉盛针灸中医诊所 - 专业传统中医治疗",
-    "title": "法拉盛针灸中医诊所 | Dr. Jiang中医针灸治疗",
+    "h1": "法拉盛中医针灸｜专业针灸与中医调理",
+    "title": "法拉盛中医针灸｜专业针灸与中医调理 - Flushing Acupuncture & TCM",
     "schema": [
       "LocalBusiness",
       "Service",
@@ -40,16 +40,29 @@
     ],
     "noindex": false,
     "priority": 0.9,
-    "description": "法拉盛专业中医针灸诊所，Dr. Jiang医师提供传统中医治疗。专治腰痛、失眠、焦虑等疾病。接受保险，免费咨询。",
-    "canonicalUrl": "/zh/acupuncture-flushing-ny"
+    "description": "法拉盛专业中医针灸诊所，Dr. Jiang医师提供传统中医治疗。专治腰痛、失眠、焦虑等疾病。接受保险，免费咨询。位于Flushing, NY。",
+    "canonicalUrl": "/zh/法拉盛中医针灸"
   },
   "hero": {
-    "h1": "法拉盛针灸中医诊所 - 专业传统中医治疗",
-    "intro": "Flushing Acupuncture & TCM由经验丰富的Dr. Jiang医师主诊，专业提供针灸、中药、推拿等传统中医治疗服务。我们致力于为法拉盛华人社区提供安全有效的中医治疗，帮助患者恢复健康。",
+    "h1": "法拉盛中医针灸｜专业针灸与中医调理",
+    "intro": "Flushing Acupuncture & TCM由经验丰富的Dr. Jiang医师主诊，专业提供针灸、中药、推拿等传统中医治疗服务。我们致力于为法拉盛华人社区提供安全有效的中医治疗，帮助患者恢复健康。诊所位于法拉盛核心地带，交通便利，中文沟通无障碍。",
     "ctaHref": "/zh/contact",
     "ctaLabel": "预约首次就诊",
-    "subheading": "Flushing Acupuncture & TCM — Traditional Chinese Medicine & Acupuncture",
-    "trustItems": []
+    "subheading": "Flushing Acupuncture & TCM — 法拉盛专业中医针灸诊所",
+    "trustItems": [
+      {
+        "label": "执业年限",
+        "value": "15+"
+      },
+      {
+        "label": "治愈患者",
+        "value": "3000+"
+      },
+      {
+        "label": "Google评分",
+        "value": "5.0★"
+      }
+    ]
   },
   "location": {
     "nap": {
@@ -63,37 +76,37 @@
     },
     "hours": [
       {
-        "day": "Monday",
+        "day": "周一",
         "hours": "9:00 AM - 6:00 PM"
       },
       {
-        "day": "Tuesday",
+        "day": "周二",
         "hours": "9:00 AM - 6:00 PM"
       },
       {
-        "day": "Wednesday",
+        "day": "周三",
         "hours": "9:00 AM - 6:00 PM"
       },
       {
-        "day": "Thursday",
+        "day": "周四",
         "hours": "9:00 AM - 6:00 PM"
       },
       {
-        "day": "Friday",
+        "day": "周五",
         "hours": "9:00 AM - 6:00 PM"
       },
       {
-        "day": "Saturday",
+        "day": "周六",
         "hours": "9:00 AM - 6:00 PM"
       },
       {
-        "day": "Sunday",
-        "hours": "Closed"
+        "day": "周日",
+        "hours": "休息"
       }
     ],
     "intro": "我们诊所位于纽约法拉盛核心地带，交通便利，停车方便。作为当地华人社区信赖的中医诊所，我们深刻理解华人患者的健康需求和文化背景。",
     "ctaHref": "/zh/contact",
-    "heading": "访问Flushing, NY的Flushing Acupuncture & TCM",
+    "heading": "法拉盛中医针灸诊所地址",
     "ctaLabel": "预约就诊",
     "hoursLabel": "营业时间",
     "mapEmbedUrl": "https://www.google.com/maps?q=143-26%2041st%20Ave%2C%20Flushing%2C%20NY%2011355&output=embed"
@@ -106,42 +119,42 @@
         "description": "通过刺激特定穴位来恢复身体平衡、缓解疼痛。"
       },
       {
-        "link": "/zh/chinese-herbal-medicine-flushing-ny",
+        "link": "/zh/法拉盛中药",
         "name": "中药",
         "description": "根据个人体质开具的中药方剂，支持治疗效果。"
       },
       {
-        "link": "/zh/cupping-therapy-flushing-ny",
+        "link": "/zh/法拉盛拔罐",
         "name": "拔罐",
         "description": "促进血液循环、缓解肌肉紧张。"
       },
       {
-        "link": "/zh/moxibustion-flushing-ny",
+        "link": "/zh/法拉盛艾灸",
         "name": "艾灸",
         "description": "温热疗法，使用艾草刺激穴位促进愈合。"
       },
       {
-        "link": "/zh/tui-na-massage-flushing-ny",
+        "link": "/zh/法拉盛推拿",
         "name": "推拿",
         "description": "中医治疗性按摩，针对经络和穴位。"
       }
     ],
-    "heading": "Flushing Acupuncture & TCM的中医治疗项目"
+    "heading": "法拉盛中医针灸治疗项目"
   },
   "conditions": {
     "intro": "针灸治疗根本原因，而不仅仅是缓解症状。",
     "items": [
       {
         "name": "腰背疼痛",
-        "slug": "acupuncture-for-back-pain-flushing-ny"
+        "slug": "法拉盛针灸治腰痛"
       },
       {
         "name": "失眠",
-        "slug": "acupuncture-for-insomnia-flushing-ny"
+        "slug": "法拉盛失眠针灸"
       },
       {
         "name": "焦虑与压力",
-        "slug": "acupuncture-for-anxiety-flushing-ny"
+        "slug": "法拉盛针灸治焦虑"
       },
       {
         "name": "助孕支持",
@@ -149,26 +162,42 @@
       },
       {
         "name": "颈部疼痛",
-        "slug": "acupuncture-flushing-ny"
+        "slug": "法拉盛中医针灸"
       },
       {
         "name": "消化问题",
-        "slug": "acupuncture-flushing-ny"
+        "slug": "法拉盛中医针灸"
       },
       {
         "name": "头痛",
-        "slug": "acupuncture-flushing-ny"
+        "slug": "法拉盛中医针灸"
       },
       {
         "name": "疲劳",
-        "slug": "acupuncture-flushing-ny"
+        "slug": "法拉盛中医针灸"
       }
     ],
     "heading": "针灸可以帮助哪些症状？"
   },
   "whyChooseUs": {
-    "items": [],
-    "heading": "为什么选择Flushing, NY的Flushing Acupuncture & TCM",
-    "testimonial": null
+    "items": [
+      {
+        "body": "Dr. Jiang医师精通中文和英文，确保与华人患者充分沟通，理解您的健康诉求。",
+        "title": "中文服务"
+      },
+      {
+        "body": "持有L.Ac.和DAOM双重资质，Dr. Jiang医师融合传统中医智慧与现代临床技术。",
+        "title": "专业资质"
+      },
+      {
+        "body": "每位患者都会获得针对个人体质和健康目标的定制治疗方案。",
+        "title": "个性化治疗"
+      }
+    ],
+    "heading": "为什么选择法拉盛中医针灸诊所",
+    "testimonial": {
+      "quote": "多年的慢性腰痛，在Dr. Jiang这里终于得到了缓解。现在疼痛已经明显减轻，睡眠也好了很多。非常感谢！",
+      "attribution": "王女士，法拉盛"
+    }
   }
 }

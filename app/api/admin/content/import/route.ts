@@ -114,19 +114,18 @@ async function collectImportCandidates(siteId: string, locale: string): Promise<
     // ignore missing blog dir
   }
 
-  // Theme (site scope) - mirrored to all locales
+  // Theme (site scope) - only check the requested locale;
+  // actual import will sync to all locales via upsert
   const themePath = path.join(CONTENT_DIR, siteId, 'theme.json');
   try {
     const [themeData, themeStat] = await Promise.all([readJson(themePath), fs.stat(themePath)]);
-    for (const entryLocale of locales) {
-      candidates.push({
-        locale: entryLocale,
-        path: 'theme.json',
-        data: themeData,
-        sourceFilePath: themePath,
-        sourceMtimeMs: themeStat.mtimeMs,
-      });
-    }
+    candidates.push({
+      locale,
+      path: 'theme.json',
+      data: themeData,
+      sourceFilePath: themePath,
+      sourceMtimeMs: themeStat.mtimeMs,
+    });
   } catch {
     // ignore missing theme
   }
@@ -320,15 +319,31 @@ export async function POST(request: NextRequest) {
   for (let i = 0; i < importQueue.length; i += writeBatchSize) {
     const batch = importQueue.slice(i, i + writeBatchSize);
     await Promise.all(
-      batch.map((candidate) =>
-        upsertContentEntry({
+      batch.map(async (candidate) => {
+        await upsertContentEntry({
           siteId,
           locale: candidate.locale,
           path: candidate.path,
           data: candidate.data,
           updatedBy: session.user.email,
-        })
-      )
+        });
+        // Sync theme to all locales (site-scoped)
+        if (candidate.path === 'theme.json') {
+          await Promise.all(
+            locales
+              .filter((l) => l !== candidate.locale)
+              .map((otherLocale) =>
+                upsertContentEntry({
+                  siteId,
+                  locale: otherLocale,
+                  path: 'theme.json',
+                  data: candidate.data,
+                  updatedBy: session.user.email,
+                })
+              )
+          );
+        }
+      })
     );
     imported += batch.length;
   }
