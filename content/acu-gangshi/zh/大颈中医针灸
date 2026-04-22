@@ -3,12 +3,12 @@
     "items": [
       {
         "answer": "初诊费用通常在$120-180之间，复诊约$80-120。具体费用因治疗方案而异，我们接受多种保险。",
-        "linkHref": "/zh/acupuncture-cost-great-neck-ny",
+        "linkHref": "/zh/大颈针灸费用",
         "linkText": "查看详细费用",
-        "question": "在Great Neck, NY做针灸要多少钱？"
+        "question": "在大颈做针灸要多少钱？"
       },
       {
-        "answer": "针灸治疗几乎无痛。您可能会感到轻微的刺痛或酸胀感，这是正常的得气反应，表明针灸正在发挥作用。",
+        "answer": "针灸治疗几乎无痛。您可能会感到轻微刺感或酸胀感，这是正常的得气反应，代表针灸正在发挥作用。",
         "question": "针灸会痛吗？"
       },
       {
@@ -16,23 +16,23 @@
         "question": "我需要做多少次治疗？"
       },
       {
-        "answer": "我们接受大部分主要保险，包括Aetna、Blue Cross Blue Shield、Cigna等。建议预约前先确认您的保险覆盖情况。",
-        "question": "NY的保险覆盖针灸吗？"
+        "answer": "我们接受多数主要保险，包括Aetna、Blue Cross Blue Shield、Cigna等。建议预约前先确认您的保险覆盖情况。",
+        "question": "纽约的保险覆盖针灸吗？"
       },
       {
-        "answer": "初诊包括详细的健康史询问、体检、诊断和第一次治疗。整个过程约60-90分钟，我们会制定个性化的治疗方案。",
+        "answer": "初诊包含详细健康史询问、体检、诊断和第一次治疗。整个过程约60-90分钟，我们会制定个人化治疗方案。",
         "question": "第一次就诊需要注意什么？"
       },
       {
-        "answer": "石刚博士精通中文（普通话）和英文，能够用您最熟悉的语言进行诊疗，确保充分的沟通和理解。",
+        "answer": "石刚医师精通中文（普通话）和英文，能用您最熟悉的语言进行诊疗，确保充分沟通与理解。",
         "question": "诊所提供中文服务吗？"
       }
     ],
-    "heading": "关于Great Neck, NY针灸的常见问题"
+    "heading": "关于大颈中医针灸的常见问题"
   },
   "seo": {
-    "h1": "Great Neck专业针灸治疗 - Gang Shi Acupuncture",
-    "title": "Great Neck针灸治疗 - Gang Shi Acupuncture中医诊所",
+    "h1": "大颈中医针灸｜Gang Shi Acupuncture",
+    "title": "大颈中医针灸｜专业针灸与中医调理",
     "schema": [
       "LocalBusiness",
       "Service",
@@ -40,12 +40,12 @@
     ],
     "noindex": false,
     "priority": 0.9,
-    "description": "Great Neck专业针灸治疗，石刚博士20年经验。治疗背痛、失眠、焦虑等病症。接受保险，提供中文服务。立即预约咨询。",
-    "canonicalUrl": "/zh/acupuncture-great-neck-ny"
+    "description": "大颈（Great Neck）专业中医针灸服务，石刚医师20+年临床经验。可调理腰痛、失眠、焦虑等常见问题。接受保险，提供中文服务。",
+    "canonicalUrl": "/zh/大颈中医针灸"
   },
   "hero": {
-    "h1": "Great Neck专业针灸治疗 - Gang Shi Acupuncture",
-    "intro": "石刚博士在Great Neck地区提供专业的中医针灸治疗服务，拥有20多年的临床经验。我们专门治疗背痛、失眠、焦虑等各种病症，为华人患者提供贴心的中文服务。",
+    "h1": "大颈中医针灸｜Gang Shi Acupuncture",
+    "intro": "石刚医师在大颈地区提供专业中医针灸服务，具备20多年的临床经验。我们专门调理腰痛、失眠、焦虑等常见问题，为华人患者提供安心的中文诊疗服务。",
     "ctaHref": "/zh/contact",
     "ctaLabel": "预约首次就诊",
     "subheading": "Gang Shi Acupuncture — Traditional Chinese Medicine & Acupuncture",
@@ -91,9 +91,9 @@
         "hours": "Closed"
       }
     ],
-    "intro": "Gang Shi Acupuncture位于Great Neck市中心，交通便利，为Nassau County及周边地区的华人社区提供优质的中医针灸服务。",
+    "intro": "Gang Shi Acupuncture位于Great Neck市中心，交通便利，为Nassau County及周边地区华人社区提供高品质中医针灸服务。",
     "ctaHref": "/zh/contact",
-    "heading": "访问Great Neck, NY的Gang Shi Acupuncture",
+    "heading": "造访大颈（Great Neck）的Gang Shi Acupuncture",
     "ctaLabel": "预约就诊",
     "hoursLabel": "营业时间",
     "mapEmbedUrl": "https://www.google.com/maps?q=935%20Northern%20Boulevard%2C%20Suite%20Number%20303%2C%20Great%20Neck%2C%20NY%2011021&output=embed"
@@ -106,42 +106,42 @@
         "description": "通过刺激特定穴位来恢复身体平衡、缓解疼痛。"
       },
       {
-        "link": "/zh/chinese-herbal-medicine-great-neck-ny",
+        "link": "/zh/大颈中药",
         "name": "中药",
-        "description": "根据个人体质开具的中药方剂，支持治疗效果。"
+        "description": "根据个人体质开立中药方剂，支持整体疗效。"
       },
       {
-        "link": "/zh/cupping-therapy-great-neck-ny",
+        "link": "/zh/大颈拔罐",
         "name": "拔罐",
         "description": "促进血液循环、缓解肌肉紧张。"
       },
       {
-        "link": "/zh/moxibustion-great-neck-ny",
+        "link": "/zh/大颈艾灸",
         "name": "艾灸",
-        "description": "温热疗法，使用艾草刺激穴位促进愈合。"
+        "description": "温热疗法，使用艾草刺激穴位促进康复。"
       },
       {
-        "link": "/zh/tui-na-massage-great-neck-ny",
+        "link": "/zh/大颈推拿",
         "name": "推拿",
-        "description": "中医治疗性按摩，针对经络和穴位。"
+        "description": "中医治疗性按摩，针对经络与穴位。"
       }
     ],
     "heading": "Gang Shi Acupuncture的中医治疗项目"
   },
   "conditions": {
-    "intro": "针灸治疗根本原因，而不仅仅是缓解症状。",
+    "intro": "针灸重在调理根本，而不只缓解表面症状。",
     "items": [
       {
         "name": "腰背疼痛",
-        "slug": "acupuncture-for-back-pain-great-neck-ny"
+        "slug": "大颈针灸治腰痛"
       },
       {
         "name": "失眠",
-        "slug": "acupuncture-for-insomnia-great-neck-ny"
+        "slug": "大颈失眠针灸"
       },
       {
         "name": "焦虑与压力",
-        "slug": "acupuncture-for-anxiety-great-neck-ny"
+        "slug": "大颈针灸治焦虑"
       },
       {
         "name": "助孕支持",
@@ -149,26 +149,26 @@
       },
       {
         "name": "颈部疼痛",
-        "slug": "acupuncture-great-neck-ny"
+        "slug": "大颈中医针灸"
       },
       {
         "name": "消化问题",
-        "slug": "acupuncture-great-neck-ny"
+        "slug": "大颈中医针灸"
       },
       {
         "name": "头痛",
-        "slug": "acupuncture-great-neck-ny"
+        "slug": "大颈中医针灸"
       },
       {
         "name": "疲劳",
-        "slug": "acupuncture-great-neck-ny"
+        "slug": "大颈中医针灸"
       }
     ],
     "heading": "针灸可以帮助哪些症状？"
   },
   "whyChooseUs": {
     "items": [],
-    "heading": "为什么选择Great Neck, NY的Gang Shi Acupuncture",
+    "heading": "为什么选择大颈的Gang Shi Acupuncture",
     "testimonial": null
   }
 }

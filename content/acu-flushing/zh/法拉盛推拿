@@ -31,7 +31,11 @@
   "seo": {
     "h1": "法拉盛推拿按摩｜中医推拿理疗",
     "title": "法拉盛推拿按摩｜Dr. Jiang专业中医推拿",
-    "schema": ["Service", "FAQPage", "BreadcrumbList"],
+    "schema": [
+      "Service",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
     "noindex": false,
     "priority": 0.8,
     "description": "法拉盛专业推拿按摩服务，Dr. Jiang中医师运用传统推拿手法治疗颈椎病、腰痛、失眠等症状。正宗中医推拿理疗。",
@@ -56,12 +60,24 @@
   "whatItTreats": {
     "heading": "推拿可以治疗哪些病症",
     "conditions": [
-      { "name": "颈椎病" },
-      { "name": "腰椎间盘突出" },
-      { "name": "肩周炎" },
-      { "name": "慢性头痛" },
-      { "name": "失眠焦虑" },
-      { "name": "消化不良" }
+      {
+        "name": "颈椎病"
+      },
+      {
+        "name": "腰椎间盘突出"
+      },
+      {
+        "name": "肩周炎"
+      },
+      {
+        "name": "慢性头痛"
+      },
+      {
+        "name": "失眠焦虑"
+      },
+      {
+        "name": "消化不良"
+      }
     ]
   }
 }

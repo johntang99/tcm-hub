@@ -1,70 +1,70 @@
 {
   "cta": {
-    "title": "準備開始您的康復之旅？",
+    "title": "准备开始您的康复之旅？",
     "variant": "centered",
     "primaryCta": {
       "link": "/zh/contact",
-      "text": "預約諮詢"
+      "text": "预约咨询"
     },
-    "description": "安排您的初次諮詢，討論您的健康目標，並了解中醫如何幫助您恢復到最佳狀態。",
+    "description": "安排您的初次咨询，讨论您的健康目标，并了解中医如何帮助您恢复到最佳状态。",
     "secondaryCta": {
       "link": "tel:+19172291229",
-      "text": "今天致電我們"
+      "text": "今天致电我们"
     }
   },
   "hero": {
     "title": "认识 Dr. Jiang",
     "variant": "centered",
-    "subtitle": "致力於通過傳統中醫為您的健康和保健服務",
-    "description": "以歷久彌新的智慧與個性化關懷，陪伴您的康復之路。",
+    "subtitle": "致力于通过传统中医为您的健康和保健服务",
+    "description": "以历久弥新的智慧与个性化关怀，陪伴您的康复之路。",
     "backgroundImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/dr-huang-lecture-20.png"
   },
   "clinic": {
-    "title": "關於我們的診所",
+    "title": "关于我们的诊所",
     "values": [
       {
         "icon": "Heart",
-        "title": "富有同情心的護理",
-        "description": "我們以尊重、同情和對其福祉的真誠關懷對待每位患者。"
+        "title": "富有同情心的护理",
+        "description": "我们以尊重、同情和对其福祉的真诚关怀对待每位患者。"
       },
       {
         "icon": "Award",
-        "title": "臨床卓越",
-        "description": "我們保持最高的實踐標準，使用優質草藥和無菌技術。"
+        "title": "临床卓越",
+        "description": "我们保持最高的实践标准，使用优质草药和无菌技术。"
       },
       {
         "icon": "Users",
-        "title": "以患者為中心",
-        "description": "您的需求、關切和目標是我們所做一切的核心。"
+        "title": "以患者为中心",
+        "description": "您的需求、关切和目标是我们所做一切的核心。"
       },
       {
         "icon": "Leaf",
-        "title": "自然癒合",
-        "description": "我們相信支持身體自我癒合的自然能力。"
+        "title": "自然愈合",
+        "description": "我们相信支持身体自我愈合的自然能力。"
       }
     ],
     "variant": "split",
     "features": [
-      "無障礙通道",
-      "停車便利",
-      "多語言服務（英語、中文）",
+      "无障碍通道",
+      "停车便利",
+      "多语言服务（英语、中文）",
       "接受新患者",
-      "乾淨、現代的治療室",
-      "寧靜、舒緩的環境"
+      "干净、现代的治疗室",
+      "宁静、舒缓的环境"
     ],
     "description": [
       "",
-      "從一個小診所開始，已經發展成為一個值得信賴的健康中心，幫助1,000多名患者自然實現更好的健康。"
+      "从一个小诊所开始，已经发展成为一个值得信赖的健康中心，帮助1,000多名患者自然实现更好的健康。"
     ],
-    "environment": "我們的診所提供寧靜、溫馨的環境，旨在促進放鬆和癒合。從您進入的那一刻起，您就會感受到不同——寧靜的色彩、舒適的治療室和溫暖、友好的氛圍讓患者感到輕鬆自在。"
+    "environment": "我们的诊所提供宁静、温馨的环境，旨在促进放松和愈合。从您进入的那一刻起，您就会感受到不同——宁静的色彩、舒适的治疗室和温暖、友好的氛围让患者感到轻松自在。"
   },
   "journey": {
     "story": "Founded in 2006, Flushing Acupuncture emerged from Dr. Jiang's deep commitment to bringing authentic Traditional Chinese Medicine to the vibrant, multicultural community of Flushing, New York. Having witnessed the profound healing potential of TCM during her own family's health journey, Dr. Jiang was inspired to create a sanctuary where ancient wisdom meets modern wellness needs.\n\nFor eighteen years, our clinic has become a cornerstone of holistic health in Queens, serving patients from all walks of life who seek natural, effective alternatives to conventional treatments. We've watched children grow into adults, supported families through health challenges, and celebrated countless healing victories alongside our patients.\n\nRooted in the rich cultural tapestry of Flushing, we honor both traditional Chinese healing practices and the diverse healthcare needs of our community. Our bilingual approach ensures that every patient feels understood and comfortable, whether they prefer to communicate in English or Chinese, creating a bridge between Eastern wisdom and Western accessibility.",
-    "title": "我的中醫之路",
+    "title": "我的中医之路",
     "variant": "prose"
   },
   "profile": {
-    "bio": "江醫師簡介\n\n江醫師早年於中國接受系統性的中醫醫學教育，畢業於北京中醫藥大學，完成五年制中醫本科專業課程，並於 1996 年順利畢業。該課程屬於正規醫學教育體系，內容涵蓋中醫基礎理論、中藥學、針灸學等多個醫學領域，奠定了她紮實而全面的中醫專業基礎。\n\n赴美之後，江醫師持續進修深造，研習分子生物學與生物統計學，並取得相關專業碩士學位。畢業後，她曾於大型製藥企業任職約五年，從事生物醫藥相關研究與專業工作，累積了現代生物科學與醫藥領域的實務經驗。\n\n儘管在生物醫藥領域擁有良好的職涯發展機會，江醫師始終對中醫、中藥與針灸治療懷抱深厚熱忱。經過審慎思考後，她最終選擇回歸自己最初熱愛的醫學道路，取得相關執照，專注於中醫與針灸臨床診療工作。\n\n江醫師融合中醫醫學與現代生物科學的學習背景與研究經驗，在臨床上重視整體調理與辨證施治的理念，期望透過中醫針灸與中藥調養，協助患者改善健康狀況，提升生活品質。\n\n經過多年臨床實踐，江醫師累積了豐富的診療經驗，對各類常見疾病及慢性疾病的調理，已形成成熟、穩健且具個人特色的診療思路。多年來，她已成功幫助許多患者改善健康、減輕症狀，甚至恢復良好生活狀態。眾多患者在治療後，對江醫師的醫術與醫德皆給予高度肯定與信任。\n\n在長期診療過程中，不少患者於康復之後，仍持續與江醫師保持聯繫，懷著感恩之心分享生活中的轉變，甚至成為彼此信任的朋友。來自患者的這份認可與信賴，也成為江醫師持續投入中醫事業、精進醫術的重要力量。\n\n江醫師始終相信，中醫不僅是一門醫學，更是一種幫助人們恢復身心平衡、提升整體生活品質的醫療理念。她希望憑藉自身的專業與經驗，幫助更多患者獲得健康、安心與更好的生活。",
+    "bio": "江医师简介\n\n江医师早年于中国接受系统性的中医医学教育，毕业于北京中医药大学，完成五年制中医本科专业课程，并于 1996 年顺利毕业。该课程属于正规医学教育体系，内容涵盖中医基础理论、中药学、针灸学等多个医学领域，奠定了她扎实而全面的中医专业基础。\n\n赴美之后，江医师持续进修深造，研习分子生物学与生物统计学，并取得相关专业硕士学位。毕业后，她曾于大型制药企业任职约五年，从事生物医药相关研究与专业工作，累积了现代生物科学与医药领域的实务经验。\n\n尽管在生物医药领域拥有良好的职涯发展机会，江医师始终对中医、中药与针灸治疗怀抱深厚热忱。经过审慎思考后，她最终选择回归自己最初热爱的医学道路，取得相关执照，专注于中医与针灸临床诊疗工作。\n\n江医师融合中医医学与现代生物科学的学习背景与研究经验，在临床上重视整体调理与辨证施治的理念，期望透过中医针灸与中药调养，协助患者改善健康状况，提升生活品质。\n\n经过多年临床实践，江医师累积了丰富的诊疗经验，对各类常见疾病及慢性疾病的调理，已形成成熟、稳健且具个人特色的诊疗思路。多年来，她已成功帮助许多患者改善健康、减轻症状，甚至恢复良好生活状态。众多患者在治疗后，对江医师的医术与医德皆给予高度肯定与信任。\n\n在长期诊疗过程中，不少患者于康复之后，仍持续与江医师保持联系，怀著感恩之心分享生活中的转变，甚至成为彼此信任的朋友。来自患者的这份认可与信赖，也成为江医师持续投入中医事业、精进医术的重要力量。\n\n江医师始终相信，中医不仅是一门医学，更是一种帮助人们恢复身心平衡、提升整体生活品质的医疗理念。她希望凭借自身的专业与经验，帮助更多患者获得健康、安心与更好的生活。",
     "name": "Dr. Jiang",
     "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/acu-flushing/onboarding-overrides/1773046663898-1771604339255-dr-jiang-acu-flushing-2.webp",
     "quote": "When we support the body's natural wisdom with ancient healing principles, profound transformation becomes possible.",
@@ -73,35 +73,35 @@
     "signature": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/signature.png"
   },
   "philosophy": {
-    "title": "治療理念",
+    "title": "治疗理念",
     "variant": "cards",
     "principles": [
       {
-        "title": "治療整個人",
-        "description": "中醫認識到身體症狀通常與情緒、精神和心靈因素相關。黃醫生解決健康的所有方面，而不僅僅是孤立的症狀。"
+        "title": "治疗整个人",
+        "description": "中医认识到身体症状通常与情绪、精神和心灵因素相关。黄医生解决健康的所有方面，而不仅仅是孤立的症状。"
       },
       {
         "title": "找到根本原因",
-        "description": "治療不僅僅是抑制症狀，而是專注於識別和解決造成疾病的潛在失衡。這種方法帶來持久的結果。"
+        "description": "治疗不仅仅是抑制症状，而是专注于识别和解决造成疾病的潜在失衡。这种方法带来持久的结果。"
       },
       {
-        "title": "個性化護理",
-        "description": "沒有兩個患者是相同的。每個治療計劃都是根據您獨特的體質、健康史和當前狀況精心定制的。"
+        "title": "个性化护理",
+        "description": "没有两个患者是相同的。每个治疗计划都是根据您独特的体质、健康史和当前状况精心定制的。"
       },
       {
         "title": "患者教育",
-        "description": "了解您的身體和狀況使您能夠在治療中發揮積極作用。黃醫生花時間用清晰、易懂的術語解釋您的診斷和治療。"
+        "description": "了解您的身体和状况使您能够在治疗中发挥积极作用。黄医生花时间用清晰、易懂的术语解释您的诊断和治疗。"
       },
       {
-        "title": "與西醫結合",
-        "description": "中醫可以與傳統醫療護理完美配合。黃醫生與其他醫療保健提供者合作，確保全面、協調的治療。"
+        "title": "与西医结合",
+        "description": "中医可以与传统医疗护理完美配合。黄医生与其他医疗保健提供者合作，确保全面、协调的治疗。"
       },
       {
-        "title": "預防和保健",
-        "description": "最好的醫學是在疾病發生前預防它。治療包括飲食、生活方式和自我保健實踐的指導，以保持長期健康。"
+        "title": "预防和保健",
+        "description": "最好的医学是在疾病发生前预防它。治疗包括饮食、生活方式和自我保健实践的指导，以保持长期健康。"
       }
     ],
-    "introduction": "黃醫生的治療方法植根於傳統中醫的基本原則，同時融合現代臨床理解。"
+    "introduction": "黄医生的治疗方法植根于传统中医的基本原则，同时融合现代临床理解。"
   },
   "credentials": {
     "items": [
@@ -113,11 +113,11 @@
         "institution": "ACTCM"
       }
     ],
-    "title": "教育和資質",
+    "title": "教育和资质",
     "variant": "list"
   },
   "affiliations": {
-    "title": "專業會員資格和附屬機構",
+    "title": "专业会员资格和附属机构",
     "variant": "compact",
     "organizations": [
       {
@@ -159,21 +159,21 @@
         "description": ""
       }
     ],
-    "title": "專業領域",
+    "title": "专业领域",
     "variant": "grid-2",
-    "description": "通過多年的臨床實踐和繼續教育，黃醫生在幾個關鍵領域發展了特殊的專業知識："
+    "description": "通过多年的临床实践和继续教育，黄医生在几个关键领域发展了特殊的专业知识："
   },
   "continuingEducation": {
     "items": [
-      "高級運動醫學針灸認證（2019年）",
-      "生育和生殖健康專業化（2016年）",
-      "與 Heiner Fruehauf 博士的經典中藥研討會",
-      "每年參加國家中醫會議",
-      "與當地中醫執業者的定期學習小組",
-      "每年 30+ 小時的繼續教育（要求：每 3 年 30 小時）"
+      "高级运动医学针灸认证（2019年）",
+      "生育和生殖健康专业化（2016年）",
+      "与 Heiner Fruehauf 博士的经典中药研讨会",
+      "每年参加国家中医会议",
+      "与当地中医执业者的定期学习小组",
+      "每年 30+ 小时的继续教育（要求：每 3 年 30 小时）"
     ],
-    "title": "繼續教育和培訓",
+    "title": "继续教育和培训",
     "variant": "compact",
-    "description": "黃醫生積極參與中醫社區，並定期尋求高級培訓："
+    "description": "黄医生积极参与中医社区，并定期寻求高级培训："
   }
 }

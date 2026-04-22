@@ -31,7 +31,10 @@
   "seo": {
     "h1": "法拉盛针灸费用｜透明定价与保险覆盖",
     "title": "法拉盛针灸费用｜针灸价格与保险",
-    "schema": ["FAQPage", "BreadcrumbList"],
+    "schema": [
+      "FAQPage",
+      "BreadcrumbList"
+    ],
     "noindex": false,
     "priority": 0.7,
     "description": "了解法拉盛针灸治疗费用详情。Dr. Jiang诊所提供透明定价，接受多种保险，初诊$120-150，复诊$80-100。",
@@ -56,11 +59,26 @@
   "resourceType": "cost",
   "priceBreakdown": {
     "items": [
-      { "label": "初诊咨询+治疗（90分钟）", "price": "$[X]" },
-      { "label": "复诊治疗（60分钟）", "price": "$[X]" },
-      { "label": "复诊治疗（45分钟）", "price": "$[X]" },
-      { "label": "5次疗程套餐", "price": "$[X]" },
-      { "label": "中药处方（如需）", "price": "$[X]/formula" }
+      {
+        "label": "初诊咨询+治疗（90分钟）",
+        "price": "$[X]"
+      },
+      {
+        "label": "复诊治疗（60分钟）",
+        "price": "$[X]"
+      },
+      {
+        "label": "复诊治疗（45分钟）",
+        "price": "$[X]"
+      },
+      {
+        "label": "5次疗程套餐",
+        "price": "$[X]"
+      },
+      {
+        "label": "中药处方（如需）",
+        "price": "$[X]/formula"
+      }
     ],
     "heading": "法拉盛针灸收费标准"
   },

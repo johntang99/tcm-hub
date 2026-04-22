@@ -27,7 +27,11 @@
   "seo": {
     "h1": "法拉盛失眠针灸｜中医调理改善睡眠",
     "title": "法拉盛失眠针灸｜Dr. Jiang中医调理睡眠",
-    "schema": ["Service", "FAQPage", "BreadcrumbList"],
+    "schema": [
+      "Service",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
     "noindex": false,
     "priority": 0.8,
     "description": "法拉盛专业中医治疗失眠，Dr. Jiang医师运用针灸调理睡眠障碍。天然安全无依赖，改善睡眠质量，接受保险。",
@@ -54,9 +58,18 @@
   },
   "relatedConditions": {
     "links": [
-      { "slug": "法拉盛针灸治腰痛", "label": "法拉盛针灸治腰痛" },
-      { "slug": "法拉盛针灸治焦虑", "label": "法拉盛针灸治焦虑" },
-      { "slug": "conditions#gynecology", "label": "助孕针灸" }
+      {
+        "slug": "法拉盛针灸治腰痛",
+        "label": "法拉盛针灸治腰痛"
+      },
+      {
+        "slug": "法拉盛针灸治焦虑",
+        "label": "法拉盛针灸治焦虑"
+      },
+      {
+        "slug": "conditions#gynecology",
+        "label": "助孕针灸"
+      }
     ],
     "heading": "其他中医针灸治疗项目"
   }

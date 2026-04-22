@@ -31,7 +31,11 @@
   "seo": {
     "h1": "法拉盛拔罐｜专业中医火罐治疗",
     "title": "法拉盛拔罐｜Dr. Jiang专业火罐治疗",
-    "schema": ["Service", "FAQPage", "BreadcrumbList"],
+    "schema": [
+      "Service",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
     "noindex": false,
     "priority": 0.8,
     "description": "法拉盛专业拔罐疗法，Dr. Jiang运用传统中医火罐技术，有效治疗肌肉疼痛、感冒咳嗽、消化不良等症状。位于Flushing, NY。",
@@ -56,12 +60,24 @@
   "whatItTreats": {
     "heading": "拔罐可以治疗哪些病症",
     "conditions": [
-      { "name": "颈椎病和肩周炎" },
-      { "name": "腰肌劳损和坐骨神经痛" },
-      { "name": "感冒咳嗽和支气管炎" },
-      { "name": "消化不良和胃肠功能紊乱" },
-      { "name": "失眠焦虑和神经衰弱" },
-      { "name": "风湿关节炎和肌肉疼痛" }
+      {
+        "name": "颈椎病和肩周炎"
+      },
+      {
+        "name": "腰肌劳损和坐骨神经痛"
+      },
+      {
+        "name": "感冒咳嗽和支气管炎"
+      },
+      {
+        "name": "消化不良和胃肠功能紊乱"
+      },
+      {
+        "name": "失眠焦虑和神经衰弱"
+      },
+      {
+        "name": "风湿关节炎和肌肉疼痛"
+      }
     ]
   }
 }

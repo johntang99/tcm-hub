@@ -31,7 +31,11 @@
   "seo": {
     "h1": "法拉盛艾灸｜传统中医艾灸温经通络",
     "title": "法拉盛艾灸｜专业艾灸治疗服务",
-    "schema": ["Service", "FAQPage", "BreadcrumbList"],
+    "schema": [
+      "Service",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
     "noindex": false,
     "priority": 0.8,
     "description": "法拉盛专业艾灸服务，Dr. Jiang医师运用传统中医艾灸疗法，有效治疗各种慢性疾病，改善体质，增强免疫力。",
@@ -56,12 +60,24 @@
   "whatItTreats": {
     "heading": "艾灸可以治疗哪些病症",
     "conditions": [
-      { "name": "慢性疲劳综合征" },
-      { "name": "消化不良胃寒" },
-      { "name": "关节炎风湿痛" },
-      { "name": "月经不调痛经" },
-      { "name": "失眠多梦" },
-      { "name": "免疫力低下" }
+      {
+        "name": "慢性疲劳综合征"
+      },
+      {
+        "name": "消化不良胃寒"
+      },
+      {
+        "name": "关节炎风湿痛"
+      },
+      {
+        "name": "月经不调痛经"
+      },
+      {
+        "name": "失眠多梦"
+      },
+      {
+        "name": "免疫力低下"
+      }
     ]
   }
 }

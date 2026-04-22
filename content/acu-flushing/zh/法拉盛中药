@@ -31,7 +31,11 @@
   "seo": {
     "h1": "法拉盛中药｜专业中草药调理与处方",
     "title": "法拉盛中药｜Dr. Jiang专业中草药调理",
-    "schema": ["Service", "FAQPage", "BreadcrumbList"],
+    "schema": [
+      "Service",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
     "noindex": false,
     "priority": 0.8,
     "description": "法拉盛专业中草药治疗服务，Dr. Jiang医师采用传统中医理论，个性化配制中药方剂，有效治疗多种慢性疾病，恢复身体平衡。",
@@ -56,12 +60,24 @@
   "whatItTreats": {
     "heading": "中草药可以治疗哪些病症",
     "conditions": [
-      { "name": "消化系统疾病" },
-      { "name": "呼吸系统疾病" },
-      { "name": "内分泌失调" },
-      { "name": "妇科疾病" },
-      { "name": "免疫系统疾病" },
-      { "name": "慢性疲劳综合征" }
+      {
+        "name": "消化系统疾病"
+      },
+      {
+        "name": "呼吸系统疾病"
+      },
+      {
+        "name": "内分泌失调"
+      },
+      {
+        "name": "妇科疾病"
+      },
+      {
+        "name": "免疫系统疾病"
+      },
+      {
+        "name": "慢性疲劳综合征"
+      }
     ]
   }
 }
