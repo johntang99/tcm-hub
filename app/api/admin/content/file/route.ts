@@ -122,6 +122,9 @@ export async function GET(request: NextRequest) {
       if (entry?.data && !isEmptyHeaderPayload(filePath, entry.data)) {
         return NextResponse.json({ content: JSON.stringify(entry.data, null, 2) });
       }
+      if (!shouldWriteThroughFile(request)) {
+        return NextResponse.json({ message: 'File not found' }, { status: 404 });
+      }
     }
 
     const content = await fs.readFile(resolved, 'utf-8');
