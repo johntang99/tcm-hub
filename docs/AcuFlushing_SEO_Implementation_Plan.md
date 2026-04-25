@@ -200,10 +200,10 @@ node scripts/seo-pipeline.mjs acu-flushing --skip-generation
 
 ### Sitemap
 ```
-https://acupunctureflushing.com/sitemap.xml
+https://www.acupunctureflushing.com/sitemap.xml
 ```
 
-### URLs to Request Indexing
+### English URLs (Already Submitted — No Action Needed)
 ```
 https://www.acupunctureflushing.com/en/acupuncture-flushing-ny
 https://www.acupunctureflushing.com/en/acupuncture-for-back-pain-flushing-ny
@@ -216,19 +216,143 @@ https://www.acupunctureflushing.com/en/moxibustion-flushing-ny
 https://www.acupunctureflushing.com/en/tui-na-massage-flushing-ny
 ```
 
+### Chinese URLs to Request Indexing (Added April 2026) — SUBMIT THESE ONLY
+```
+https://www.acupunctureflushing.com/zh/法拉盛中医针灸
+https://www.acupunctureflushing.com/zh/法拉盛针灸治腰痛
+https://www.acupunctureflushing.com/zh/法拉盛失眠针灸
+https://www.acupunctureflushing.com/zh/法拉盛针灸治焦虑
+https://www.acupunctureflushing.com/zh/法拉盛中药
+https://www.acupunctureflushing.com/zh/法拉盛拔罐
+https://www.acupunctureflushing.com/zh/法拉盛艾灸
+https://www.acupunctureflushing.com/zh/法拉盛推拿
+https://www.acupunctureflushing.com/zh/法拉盛针灸费用
+```
+
+### GSC Step-by-Step
+
+**1. Submit sitemap:**
+- GSC → Sitemaps → enter `sitemap.xml` → Submit
+- Verify status shows "Success" and URL count includes Chinese pages
+
+**2. Request indexing (priority order):**
+- GSC → URL Inspection → paste each URL → Request Indexing
+- Do core landing pages first (English + Chinese), then conditions, then services
+- Google allows ~10 requests/day
+
+**3. Verify redirects:**
+- GSC → URL Inspection → enter old zh URL (e.g., `/zh/acupuncture-flushing-ny`)
+- Should show "Page with redirect" status pointing to new Chinese URL
+- All 9 old zh URLs redirect via 308 permanent
+
+**4. Monitor hreflang:**
+- GSC → URL Inspection → check each Chinese page
+- Verify "Alternate page" shows the English equivalent
+- e.g., `法拉盛中医针灸` ↔ `acupuncture-flushing-ny`
+
+**5. Performance filters for Chinese SEO:**
+- GSC → Performance → filter by Page containing `法拉盛`
+- GSC → Performance → filter by Query containing `针灸` or `中医` or `法拉盛`
+- Track: Impressions, Clicks, CTR, Average Position
+
+### GSC Monitoring Schedule
+
+| When | What to Check |
+|------|---------------|
+| **Week 1** | Sitemap submitted, indexing requested, no crawl errors |
+| **Week 2-3** | Pages → new URLs appearing as "Indexed" |
+| **Month 1** | Performance → first impressions for Chinese queries |
+| **Month 2-3** | Performance → ranking stabilization, initial traffic |
+| **Monthly** | Top queries review, new keyword opportunities, Core Web Vitals |
+
 ---
 
 ## Phase 6 — Ongoing (Manual)
 
 | Task | Priority | Frequency |
 |------|----------|-----------|
-| Optimize GBP listing (services, photos, Q&As) | High | Once |
-| Set up review collection system | High | Once + ongoing |
-| Monthly GSC review | Medium | Monthly |
+| Optimize GBP listing (add Chinese description) | High | Once |
+| Set up review collection system (encourage Chinese reviews) | High | Once + ongoing |
+| Monthly GSC review (both EN + ZH performance) | Medium | Monthly |
 | Monthly AI citation monitoring | Medium | Monthly |
-| Blog posts targeting long-tail keywords | Medium | 2/month |
-| Backlink building | Medium | Ongoing |
-| GBP posts | Low | Weekly |
+| Blog posts targeting long-tail keywords (EN + ZH) | Medium | 2/month |
+| Backlink building (EN sites + Chinese directories) | Medium | Ongoing |
+| GBP posts (alternate EN/ZH) | Low | Weekly |
+| Submit to Chinese business directories | Medium | Once |
+
+### Chinese Business Directories
+
+| Directory | Priority |
+|---|---|
+| 大众点评 (US) - dianping.com | High |
+| 华人黄页 - huarenyellowpage.com | High |
+| Local WeChat groups (manual outreach) | High |
+| 58同城海外 | Medium |
+| 华人头条 - 52hrtt.com | Medium |
+
+---
+
+## Phase 7 — Chinese SEO (Completed April 2026)
+
+> **Status: DONE** — All items below completed April 15-17, 2026.
+
+### What Was Built
+
+| Item | Status |
+|------|--------|
+| 9 Chinese-character SEO pages created | ✅ |
+| 9 permanent redirects (old EN slugs → new CN slugs) | ✅ |
+| Redirect logic in `[slug]/page.tsx` (fires before DB lookup) | ✅ |
+| URL decoding fix for Next.js 14 (`decodeURIComponent`) | ✅ |
+| URL encoding fix for HTTP Location header | ✅ |
+| hreflang alternates (EN ↔ ZH) via `redirects.json` | ✅ |
+| `getServiceSEOLinks()` updated for locale-specific content lookup | ✅ |
+| Homepage + services "Learn More" → direct Chinese URLs | ✅ |
+| `seo.json` (zh) — all metadata translated to Chinese | ✅ |
+| Homepage "Why Choose Us" translated to Chinese | ✅ |
+| Sitemap updated (Chinese URLs included, old redirects excluded) | ✅ |
+| `site_seo_pages` table — 9 Chinese pages registered | ✅ |
+| Old zh English-slug DB entries cleaned up | ✅ |
+
+### Chinese Page Inventory
+
+| Chinese URL | English Equivalent | Type |
+|---|---|---|
+| `法拉盛中医针灸` | `acupuncture-flushing-ny` | seo-local-landing |
+| `法拉盛针灸治腰痛` | `acupuncture-for-back-pain-flushing-ny` | seo-condition |
+| `法拉盛失眠针灸` | `acupuncture-for-insomnia-flushing-ny` | seo-condition |
+| `法拉盛针灸治焦虑` | `acupuncture-for-anxiety-flushing-ny` | seo-condition |
+| `法拉盛中药` | `chinese-herbal-medicine-flushing-ny` | seo-service |
+| `法拉盛拔罐` | `cupping-therapy-flushing-ny` | seo-service |
+| `法拉盛艾灸` | `moxibustion-flushing-ny` | seo-service |
+| `法拉盛推拿` | `tui-na-massage-flushing-ny` | seo-service |
+| `法拉盛针灸费用` | `acupuncture-cost-flushing-ny` | seo-resource |
+
+### Key Files Changed
+
+| File | Change |
+|------|--------|
+| `app/[locale]/[slug]/page.tsx` | Added `decodeURIComponent`, redirect-before-DB-lookup, hreflang metadata |
+| `lib/redirects.ts` | New — per-site redirect + hreflang lookup with caching |
+| `lib/seo-pages.ts` | Added `getServiceSEOLinksFromContent()` for locale-specific service link resolution |
+| `app/api/admin/content/export/route.ts` | Fixed theme.json sync across locales, excluded from backfill |
+| `app/api/admin/content/import/route.ts` | Fixed theme check to only check requested locale |
+| `app/sitemap.ts` | Added filesystem SEO page discovery, redirect exclusion, non-ASCII locale filtering |
+| `content/acu-flushing/redirects.json` | New — 9 redirects + 9 hreflang mappings |
+| `content/acu-flushing/zh/seo.json` | All metadata translated to Chinese |
+| `content/acu-flushing/zh/pages/home.json` | "Why Choose Us" translated to Chinese |
+
+### Future Chinese Pages to Consider
+
+Based on Chinese search patterns (build when GSC data confirms demand):
+
+| Potential Page | Target Keyword | When to Build |
+|---|---|---|
+| `法拉盛针灸师` | Practitioner intent | If GSC shows "针灸师" queries |
+| `法拉盛中医诊所` | Clinic intent | If GSC shows "诊所" queries |
+| `法拉盛痛症针灸` | Pain-focused | If GSC shows "痛症" queries |
+| `法拉盛妇科中医` | Gynecology | If GSC shows "妇科" queries |
+| `法拉盛老中医` | Trust signal | If GSC shows "老中医" queries |
 
 ---
 
@@ -239,11 +363,16 @@ Since Acu-Flushing uses the same codebase as Dr. Huang, all the infrastructure i
 - `SEO*Layout.tsx` components ✓
 - `site_seo_pages` DB table ✓
 - `seed-seo-pages.mjs` pipeline ✓
-- `getServiceSEOLinks()` auto-linking ✓
+- `getServiceSEOLinks()` auto-linking (now locale-aware) ✓
+- `lib/redirects.ts` per-site redirect system ✓
+- Chinese-character URL support ✓
 
 **Phase 1–4 can be completed in ~30 minutes** by running the pipeline + a few DB updates. No new code needed.
+
+**Phase 7 (Chinese SEO) adds ~45 minutes** per site: create Chinese pages, set up redirects, translate seo.json, register in DB.
 
 ---
 
 *Acu-Flushing SEO Implementation Plan — March 25, 2026*
+*Updated: April 17, 2026 — Added Phase 7 (Chinese SEO), updated Phase 5 (GSC) with Chinese URLs*
 *Ref: BAAM SEO Playbook | DrHuang retrofit as reference implementation*

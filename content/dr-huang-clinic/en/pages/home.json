@@ -1,14 +1,4 @@
 {
-  "seo": {
-    "title": "Dr. Huang Clinic — Acupuncture & TCM in Middletown, NY",
-    "description": "Dr. Huang Clinic offers acupuncture, herbal medicine & TCM in Middletown, NY. Experienced care for pain, sleep, stress & more. Book today.",
-    "h1": "Acupuncture in Middletown, NY",
-    "canonicalUrl": "/en",
-    "schema": ["LocalBusiness", "MedicalClinic", "BreadcrumbList"],
-    "noindex": false,
-    "changefreq": "monthly",
-    "priority": 1.0
-  },
   "cta": {
     "title": "Ready to Begin Your Healing Journey?",
     "variant": "centered",
@@ -22,6 +12,20 @@
       "link": "tel:+18453811106",
       "text": "Call Us Now"
     }
+  },
+  "seo": {
+    "h1": "Acupuncture in Middletown, NY",
+    "title": "Dr. Huang Clinic — Acupuncture & TCM in Middletown, NY",
+    "schema": [
+      "LocalBusiness",
+      "MedicalClinic",
+      "BreadcrumbList"
+    ],
+    "noindex": false,
+    "priority": 1,
+    "changefreq": "monthly",
+    "description": "Dr. Huang Clinic offers acupuncture, herbal medicine & TCM in Middletown, NY. Experienced care for pain, sleep, stress & more. Book today.",
+    "canonicalUrl": "/en"
   },
   "blog": {
     "badge": "LEARN & EXPLORE",
@@ -223,6 +227,10 @@
   "services": {
     "badge": "TREATMENT OPTIONS",
     "title": "Our Modalities",
+    "seoLink": {
+      "url": "/en/acupuncture-middletown-ny",
+      "text": "Acupuncture in Middletown, NY"
+    },
     "variant": "featured-large",
     "featured": {
       "id": "acupuncture",
@@ -233,10 +241,6 @@
       "subtitle": "Restore balance and stimulate healing",
       "fullDescription": "Regulates the body's internal organs and meridians by stimulating specific acupuncture points. It balances Yin and Yang, promotes the circulation of Qi and blood, and clears the meridians to prevent and treat various conditions.",
       "shortDescription": "Our primary treatment modality using fine needles to restore balance and promote healing"
-    },
-    "seoLink": {
-      "url": "/en/acupuncture-middletown-ny",
-      "text": "Acupuncture in Middletown, NY"
     },
     "moreLink": {
       "url": "/en/services",

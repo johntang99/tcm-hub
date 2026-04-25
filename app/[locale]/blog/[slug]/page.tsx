@@ -9,6 +9,7 @@ import { getRequestSiteId, loadAllItems, loadItemBySlug, loadPageContent } from 
 import { buildPageMetadata } from '@/lib/seo';
 import { Button, Badge, Icon, Card, CardHeader, CardTitle, CardDescription } from '@/components/ui';
 import { isBlogPostVisible } from '@/lib/blog';
+import { getServiceSEOLinks } from '@/lib/seo-pages';
 
 interface BlogContentBlock {
   type: 'paragraph' | 'heading' | 'list' | 'quote' | 'image' | 'video';
@@ -127,12 +128,14 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     servicesPage?.services ||
     [];
   const conditionsItems = conditionsPage?.conditions || [];
+  // Resolve SEO page URLs for related services (links to SEO pages instead of anchor links)
+  const seoServiceLinks = await getServiceSEOLinks(siteId, locale);
   const relatedServices = (post.relatedServices || []).map((serviceId) => {
     const match = servicesItems.find((service: any) => service?.id === serviceId);
     return {
       id: serviceId,
       title: match?.title || humanizeId(serviceId),
-      link: `/${locale}/services#${serviceId}`,
+      link: seoServiceLinks.get(serviceId) || `/${locale}/services#${serviceId}`,
     };
   });
   const relatedConditions = (post.relatedConditions || []).map((conditionId) => {

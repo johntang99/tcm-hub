@@ -7,8 +7,11 @@ import { getDefaultSite, getSiteByHost } from '@/lib/sites';
 import { locales, type Locale } from '@/lib/i18n';
 import { isBlogPostVisible } from '@/lib/blog';
 import { getSEOPagesForSite } from '@/lib/seo-pages';
+import { checkSiteRedirect } from '@/lib/redirects';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
+
+const KNOWN_ROOT_DIRS = new Set(['pages', 'blog', 'blog-scheduled', '_history']);
 
 async function listJsonSlugs(dirPath: string): Promise<string[]> {
   try {
@@ -98,16 +101,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // SEO pages from site_seo_pages registry
+  // SEO pages: combine site_seo_pages registry with filesystem discovery.
+  // For each locale, skip slugs that redirect or belong to a different locale.
   const seoPages = await getSEOPagesForSite(site.id);
+  const hasNonAscii = /[^\x00-\x7F]/;
   for (const page of seoPages) {
     for (const locale of siteLocales) {
+      // Skip if this slug redirects in this locale (e.g., old English slug in zh)
+      if (checkSiteRedirect(site.id, locale, page.slug)) continue;
+      // Skip non-ASCII slugs (e.g., Chinese) for non-matching locales
+      if (hasNonAscii.test(page.slug) && locale !== 'zh') continue;
       entries.push({
         url: new URL(`/${locale}/${page.slug}`, baseUrl).toString(),
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
         priority: page.page_type === 'seo-local-landing' ? 0.9 : 0.8,
       });
+    }
+  }
+
+  // Discover locale-specific SEO pages from filesystem (non-.json files in locale root,
+  // e.g., Chinese-character slug files like 法拉盛中医针灸)
+  for (const locale of siteLocales) {
+    const localeRoot = path.join(CONTENT_DIR, site.id, locale);
+    try {
+      const dirEntries = await fs.readdir(localeRoot, { withFileTypes: true });
+      for (const entry of dirEntries) {
+        if (!entry.isFile()) continue;
+        if (entry.name.endsWith('.json') || entry.name.includes('.')) continue;
+        if (KNOWN_ROOT_DIRS.has(entry.name)) continue;
+        entries.push({
+          url: new URL(`/${locale}/${encodeURIComponent(entry.name)}`, baseUrl).toString(),
+          lastModified: new Date(),
+          changeFrequency: 'monthly' as const,
+          priority: 0.8,
+        });
+      }
+    } catch {
+      // locale dir may not exist
     }
   }
 

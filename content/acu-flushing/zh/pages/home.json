@@ -1,56 +1,56 @@
 {
   "cta": {
-    "title": "準備開始您的康復之旅嗎？",
+    "title": "准备开始您的康复之旅吗？",
     "variant": "centered",
-    "subtitle": "今天邁出自然健康的第一步",
+    "subtitle": "今天迈出自然健康的第一步",
     "primaryCta": {
       "link": "/zh/contact",
-      "text": "預約諮詢"
+      "text": "预约咨询"
     },
     "contactInfo": "致电(718) 888-9512或在线预约",
     "secondaryCta": {
       "link": "tel:+17188889512",
-      "text": "立即致電"
+      "text": "立即致电"
     }
   },
   "blog": {
-    "badge": "學習與探索",
+    "badge": "学习与探索",
     "posts": [
       {
         "slug": "acupuncture-pain-relief-science",
         "type": "article",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-10.jpeg",
-        "title": "針灸背後的科學：它如何運作",
-        "excerpt": "了解針灸如何根據現代研究刺激身體的自然康復機制。",
-        "category": "針灸",
-        "readTime": "8分鐘閱讀"
+        "title": "针灸背后的科学：它如何运作",
+        "excerpt": "了解针灸如何根据现代研究刺激身体的自然康复机制。",
+        "category": "针灸",
+        "readTime": "8分钟阅读"
       },
       {
         "slug": "herbal-medicine-101",
         "type": "article",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-herb-10.webp",
-        "title": "中藥 101",
-        "excerpt": "了解中藥的基礎知識以及如何建立定制配方。",
-        "category": "中藥",
-        "readTime": "6分鐘閱讀"
+        "title": "中药 101",
+        "excerpt": "了解中药的基础知识以及如何建立定制配方。",
+        "category": "中药",
+        "readTime": "6分钟阅读"
       },
       {
         "slug": "first-visit-video",
         "type": "video",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/Acupuncture-14.webp",
-        "title": "首次針灸就診的期待",
-        "excerpt": "觀看此影片以了解初次諮詢和治療期間會發生什麼。",
+        "title": "首次针灸就诊的期待",
+        "excerpt": "观看此影片以了解初次咨询和治疗期间会发生什么。",
         "category": "患者教育",
-        "readTime": "5分鐘觀看"
+        "readTime": "5分钟观看"
       }
     ],
-    "title": "部落格與媒體最新資訊",
+    "title": "部落格与媒体最新资讯",
     "variant": "cards-grid",
     "moreLink": {
       "url": "/zh/blog",
-      "text": "瀏覽所有文章"
+      "text": "浏览所有文章"
     },
-    "subtitle": "關於中醫和健康的教育資源"
+    "subtitle": "关于中医和健康的教育资源"
   },
   "hero": {
     "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/acu-flushing/onboarding-overrides/1773046663898-1771604339255-dr-jiang-acu-flushing-2.webp",
@@ -79,19 +79,19 @@
     "title": "Flushing 中医与针灸护理",
     "tagline": "Flushing's Trusted Traditional Chinese Medicine Center",
     "variant": "split-photo-right",
-    "clinicName": "歡迎來到法拉盛中醫針灸- Natural Life Acupuncture",
+    "clinicName": "欢迎来到法拉盛中医针灸- Natural Life Acupuncture",
     "primaryCta": {
       "link": "/zh/contact",
-      "text": "預約"
+      "text": "预约"
     },
     "credentials": [
       {
         "icon": "Award",
-        "text": "持牌與認證"
+        "text": "持牌与认证"
       },
       {
         "icon": "ShieldCheck",
-        "text": "NCCAOM會員"
+        "text": "NCCAOM会员"
       },
       {
         "icon": "UserCheck",
@@ -99,48 +99,48 @@
       },
       {
         "icon": "TrendingUp",
-        "text": "循證實踐"
+        "text": "循证实践"
       }
     ],
-    "description": "江醫師融合中醫醫學與現代生物科學的學習背景與研究經驗，在臨床上重視整體調理與辨證施治的理念，期望透過中醫針灸與中藥調養，協助患者改善健康狀況，提升生活品質。",
+    "description": "江医师融合中医医学与现代生物科学的学习背景与研究经验，在临床上重视整体调理与辨证施治的理念，期望透过中医针灸与中药调养，协助患者改善健康状况，提升生活品质。",
     "trustBadges": [
-      "持牌針灸師",
-      "委員會認證",
-      "20+年經驗"
+      "持牌针灸师",
+      "委员会认证",
+      "20+年经验"
     ],
     "floatingTags": [
-      "針灸",
-      "中藥",
-      "拔罐療法",
+      "针灸",
+      "中药",
+      "拔罐疗法",
       "疼痛管理",
-      "壓力緩解"
+      "压力缓解"
     ],
     "secondaryCta": {
       "link": "tel:+17188889512",
-      "text": "立即致電"
+      "text": "立即致电"
     }
   },
   "menu": {
     "cta": {
       "link": "/zh/contact",
-      "text": "線上預約"
+      "text": "线上预约"
     },
     "items": [
       {
         "url": "/zh",
-        "text": "首頁"
+        "text": "首页"
       },
       {
         "url": "/zh/services",
-        "text": "服務項目"
+        "text": "服务项目"
       },
       {
         "url": "/zh/conditions",
-        "text": "治療病症"
+        "text": "治疗病症"
       },
       {
         "url": "/zh/about",
-        "text": "關於我們"
+        "text": "关于我们"
       },
       {
         "url": "/zh/case-studies",
@@ -148,11 +148,11 @@
       },
       {
         "url": "/zh/gallery",
-        "text": "圖庫"
+        "text": "图库"
       },
       {
         "url": "/zh/new-patients",
-        "text": "首次就診"
+        "text": "首次就诊"
       },
       {
         "url": "/zh/blog",
@@ -160,7 +160,7 @@
       },
       {
         "url": "/zh/contact",
-        "text": "聯繫我們"
+        "text": "联系我们"
       }
     ],
     "variant": "transparent"
@@ -176,112 +176,112 @@
     "addressMapUrl": "https://maps.google.com/?q=71+East+Main+Street+New York+NY+10001"
   },
   "gallery": {
-    "badge": "參觀我們的診所",
-    "title": "虛擬參觀",
+    "badge": "参观我们的诊所",
+    "title": "虚拟参观",
     "images": [
       {
-        "alt": "診所接待區",
+        "alt": "诊所接待区",
         "src": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/gallery/hero-bg.jpg",
-        "label": "接待區"
+        "label": "接待区"
       },
       {
-        "alt": "治療室",
+        "alt": "治疗室",
         "src": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/gallery/acupuncture-11.jpeg",
-        "label": "治療室"
+        "label": "治疗室"
       },
       {
-        "alt": "中藥房",
+        "alt": "中药房",
         "src": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-herb-10.webp",
-        "label": "中藥房"
+        "label": "中药房"
       },
       {
-        "alt": "診所外觀",
+        "alt": "诊所外观",
         "src": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/gallery/reception-area.jpg",
-        "label": "我們的位置"
+        "label": "我们的位置"
       }
     ],
     "variant": "grid-uniform",
     "moreLink": {
       "url": "/zh/gallery",
-      "text": "查看完整畫廊"
+      "text": "查看完整画廊"
     },
-    "subtitle": "查看我們溫馨、寧靜的治療環境"
+    "subtitle": "查看我们温馨、宁静的治疗环境"
   },
   "services": {
-    "badge": "治療選項",
-    "title": "我們的療法",
+    "badge": "治疗选项",
+    "title": "我们的疗法",
     "variant": "featured-large",
     "featured": {
       "id": "acupuncture",
       "icon": "Syringe",
       "link": "/zh/services#acupuncture",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/Acupuncture-15.webp",
-      "title": "針灸",
-      "subtitle": "恢復平衡並促進康復",
-      "fullDescription": "透過針刺人體經絡穴位，調節臟腑經絡，平衡陰陽，促進氣血運行，疏通經絡，從而達到防病治病的目的。",
-      "shortDescription": "我們的主要治療方式，使用細針恢復平衡並促進康復"
+      "title": "针灸",
+      "subtitle": "恢复平衡并促进康复",
+      "fullDescription": "透过针刺人体经络穴位，调节脏腑经络，平衡阴阳，促进气血运行，疏通经络，从而达到防病治病的目的。",
+      "shortDescription": "我们的主要治疗方式，使用细针恢复平衡并促进康复"
     },
     "moreLink": {
       "url": "/zh/services",
-      "text": "查看所有療法"
+      "text": "查看所有疗法"
     },
     "services": [
       {
         "id": "herbal-medicine",
         "icon": "Leaf",
         "link": "/zh/services#herbs",
-        "title": "中藥",
-        "subtitle": "自然草本配方，整體調理",
-        "fullDescription": "通過辨證施治，選用草藥或方劑調理臟腑陰陽氣血，調整整體功能。",
-        "shortDescription": "根據您的需求定制的中藥配方"
+        "title": "中药",
+        "subtitle": "自然草本配方，整体调理",
+        "fullDescription": "通过辨证施治，选用草药或方剂调理脏腑阴阳气血，调整整体功能。",
+        "shortDescription": "根据您的需求定制的中药配方"
       },
       {
         "id": "cupping",
         "icon": "Circle",
         "link": "/zh/services#cupping",
-        "title": "拔罐療法",
-        "subtitle": "緩解緊張，促進循環",
-        "fullDescription": "透過火罐或真空罐產生負壓，吸附皮膚，使微血管擴張，達到活血化瘀、祛風散寒的效果。",
-        "shortDescription": "釋放肌肉緊張並改善循環"
+        "title": "拔罐疗法",
+        "subtitle": "缓解紧张，促进循环",
+        "fullDescription": "透过火罐或真空罐产生负压，吸附皮肤，使微血管扩张，达到活血化瘀、祛风散寒的效果。",
+        "shortDescription": "释放肌肉紧张并改善循环"
       },
       {
         "id": "moxibustion",
         "icon": "Flame",
         "link": "/zh/services#moxibustion",
         "title": "艾灸",
-        "subtitle": "溫熱療法，扶正益氣",
-        "fullDescription": "利用艾葉燃燒的溫熱刺激特定穴位，溫經散寒，活血通絡，止痛。",
-        "shortDescription": "溫熱療法以增強和激活能量"
+        "subtitle": "温热疗法，扶正益气",
+        "fullDescription": "利用艾叶燃烧的温热刺激特定穴位，温经散寒，活血通络，止痛。",
+        "shortDescription": "温热疗法以增强和激活能量"
       },
       {
         "id": "tuina",
         "icon": "Hand",
         "link": "/zh/services#tuina",
         "title": "推拿按摩",
-        "subtitle": "經絡理療，舒筋活絡",
-        "fullDescription": "透過手法作用於經絡、肌肉和關節，調和氣血，舒筋活絡，改善局部循環。",
-        "shortDescription": "傳統中醫按摩"
+        "subtitle": "经络理疗，舒筋活络",
+        "fullDescription": "透过手法作用于经络、肌肉和关节，调和气血，舒筋活络，改善局部循环。",
+        "shortDescription": "传统中医按摩"
       },
       {
         "id": "gua-sha",
         "icon": "Shield",
         "link": "/zh/services#gua-sha",
         "title": "刮痧",
-        "subtitle": "疏通淤滯，緩解不適",
-        "fullDescription": "用刮痧板摩擦經絡腧穴，使皮膚出痧，促進氣血運行，疏經活絡，排除風寒及濕熱之邪。",
-        "shortDescription": "緩解疼痛和炎症的刮痧療法"
+        "subtitle": "疏通淤滞，缓解不适",
+        "fullDescription": "用刮痧板摩擦经络腧穴，使皮肤出痧，促进气血运行，疏经活络，排除风寒及湿热之邪。",
+        "shortDescription": "缓解疼痛和炎症的刮痧疗法"
       }
     ],
-    "subtitle": "現代科學支持的傳統治療方法"
+    "subtitle": "现代科学支持的传统治疗方法"
   },
   "conditions": {
-    "title": "我們治療的病症",
+    "title": "我们治疗的病症",
     "variant": "grid-cards-3x",
     "moreLink": {
       "url": "/zh/conditions",
       "text": "查看所有病症"
     },
-    "subtitle": "傳統中醫可以幫助治療多種健康問題",
+    "subtitle": "传统中医可以帮助治疗多种健康问题",
     "conditions": [
       {
         "id": "pain-management-full",
@@ -291,83 +291,83 @@
         "title": "急慢性痛症全科",
         "category": "疼痛管理",
         "symptoms": [
-          "頸肩腰腿痛、坐骨神經痛、三叉神經痛",
-          "頸椎病、腰椎病、骨質疏鬆、骨折不癒",
-          "肩周炎、網球肘、腱鞘炎、腕管綜合徵",
-          "風濕關節炎、膝關節炎、筋膜炎、足跟痛"
+          "颈肩腰腿痛、坐骨神经痛、三叉神经痛",
+          "颈椎病、腰椎病、骨质疏松、骨折不愈",
+          "肩周炎、网球肘、腱鞘炎、腕管综合征",
+          "风湿关节炎、膝关节炎、筋膜炎、足跟痛"
         ],
-        "description": "涵蓋從骨傷科到神經性痛症的全方位治療，透過針灸與中醫藥有效緩解炎症、修復受損組織。"
+        "description": "涵盖从骨伤科到神经性痛症的全方位治疗，透过针灸与中医药有效缓解炎症、修复受损组织。"
       },
       {
         "id": "sleep-mental-full",
         "icon": "Moon",
         "link": "/zh/conditions#sleep",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/anxiate-3.jpeg",
-        "title": "心理情緒與睡眠醫學",
-        "category": "心理與情緒健康",
+        "title": "心理情绪与睡眠医学",
+        "category": "心理与情绪健康",
         "symptoms": [
-          "失眠、焦慮、憂鬱、強迫症",
-          "發作性睡病、打鼾、睡眠呼吸暫停",
-          "睡眠行為異常、壓力性偏頭痛"
+          "失眠、焦虑、忧郁、强迫症",
+          "发作性睡病、打鼾、睡眠呼吸暂停",
+          "睡眠行为异常、压力性偏头痛"
         ],
-        "description": "調節神經遞質與臟腑氣血，針對現代人高壓生活引起的多種心理與睡眠障礙提供深度治療。"
+        "description": "调节神经递质与脏腑气血，针对现代人高压生活引起的多种心理与睡眠障碍提供深度治疗。"
       },
       {
         "id": "psychosomatic-full",
         "icon": "HeartPulse",
         "link": "/zh/conditions#psychosomatic",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-dietary-10.jpg",
-        "title": "內科與心身疾病調理",
-        "category": "內科調理",
+        "title": "内科与心身疾病调理",
+        "category": "内科调理",
         "symptoms": [
-          "腸易激綜合徵 (IBS)、各類結節類疾病",
-          "癌前病變調理、放化療後身體修復",
-          "慢性疲勞綜合徵、內分泌失調"
+          "肠易激综合征 (IBS)、各类结节类疾病",
+          "癌前病变调理、放化疗后身体修复",
+          "慢性疲劳综合征、内分泌失调"
         ],
-        "description": "專注於內臟功能的整體協調，針對複雜性心身疾病與重大疾病後的機能重建。"
+        "description": "专注于内脏功能的整体协调，针对复杂性心身疾病与重大疾病后的机能重建。"
       },
       {
         "id": "aesthetic-full",
         "icon": "Sparkles",
         "link": "/zh/conditions#aesthetic",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/gua-sha-22.png",
-        "title": "損美性疾病與體重管理",
-        "category": "美容與減重",
+        "title": "损美性疾病与体重管理",
+        "category": "美容与减重",
         "symptoms": [
-          "單純性肥胖、體態塑形",
-          "皺紋、皮膚鬆弛、暗沉斑點",
-          "脫髮、斑禿、痤瘡後遺症"
+          "单纯性肥胖、体态塑形",
+          "皱纹、皮肤松弛、暗沉斑点",
+          "脱发、斑秃、痤疮后遗症"
         ],
-        "description": "結合中醫體質辨證，利用針灸與調理改善代謝，實現健康減重與自然煥顏的效果。"
+        "description": "结合中医体质辨证，利用针灸与调理改善代谢，实现健康减重与自然焕颜的效果。"
       },
       {
         "id": "gynecology",
         "icon": "Heart",
         "link": "/zh/conditions#gynecology",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-10.jpeg",
-        "title": "婦科調理",
-        "category": "婦女健康",
+        "title": "妇科调理",
+        "category": "妇女健康",
         "symptoms": [
-          "月經不調、經痛、卵巢早衰",
-          "不孕症、產後修復、子宮脫垂",
-          "更年期綜合症、更年期抑鬱",
-          "乳腺結節、乳癰 (乳腺炎)"
+          "月经不调、经痛、卵巢早衰",
+          "不孕症、产后修复、子宫脱垂",
+          "更年期综合症、更年期抑郁",
+          "乳腺结节、乳痈 (乳腺炎)"
         ],
-        "description": "針對女性各階段生理特點，調節沖任二脈與氣血平衡，解決生殖系統與內分泌困擾。"
+        "description": "针对女性各阶段生理特点，调节冲任二脉与气血平衡，解决生殖系统与内分泌困扰。"
       },
       {
         "id": "pediatrics",
         "icon": "Baby",
         "link": "/zh/conditions#pediatrics",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-herb-10.webp",
-        "title": "兒科發展與調理",
-        "category": "小兒科",
+        "title": "儿科发展与调理",
+        "category": "小儿科",
         "symptoms": [
-          "食積、厭食症、腹瀉、消化不良",
-          "生長發育遲緩、腦部發育不全",
-          "小兒早熟、免疫力低下"
+          "食积、厌食症、腹泻、消化不良",
+          "生长发育迟缓、脑部发育不全",
+          "小儿早熟、免疫力低下"
         ],
-        "description": "呵護小兒稚陰稚陽之體，透過溫和的推拿與中藥改善消化吸收，促進青少年健康發育。"
+        "description": "呵护小儿稚阴稚阳之体，透过温和的推拿与中药改善消化吸收，促进青少年健康发育。"
       }
     ]
   },
@@ -375,109 +375,109 @@
     "cta": {
       "link": {
         "url": "/zh/new-patients",
-        "text": "新患者資訊"
+        "text": "新患者资讯"
       },
-      "title": "準備開始了嗎？",
-      "description": "下載我們的新患者表格或預約您的首次就診"
+      "title": "准备开始了吗？",
+      "description": "下载我们的新患者表格或预约您的首次就诊"
     },
-    "badge": "初次了解中醫？",
+    "badge": "初次了解中医？",
     "steps": [
       {
-        "title": "諮詢",
+        "title": "咨询",
         "number": 1,
-        "duration": "20-30分鐘",
-        "description": "詳細的健康史和中醫診斷"
+        "duration": "20-30分钟",
+        "description": "详细的健康史和中医诊断"
       },
       {
-        "title": "檢查",
+        "title": "检查",
         "number": 2,
-        "duration": "10分鐘",
-        "description": "脈診和舌診"
+        "duration": "10分钟",
+        "description": "脉诊和舌诊"
       },
       {
-        "title": "治療",
+        "title": "治疗",
         "number": 3,
-        "duration": "30-40分鐘",
-        "description": "您的第一次針灸療程"
+        "duration": "30-40分钟",
+        "description": "您的第一次针灸疗程"
       },
       {
-        "title": "治療計劃",
+        "title": "治疗计划",
         "number": 4,
-        "duration": "10分鐘",
-        "description": "個性化建議"
+        "duration": "10分钟",
+        "description": "个性化建议"
       }
     ],
-    "title": "您的首次就診",
-    "subtitle": "以下是初次諮詢時的期待"
+    "title": "您的首次就诊",
+    "subtitle": "以下是初次咨询时的期待"
   },
   "howItWorks": {
     "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/acupuncture-16.webp",
     "steps": [
       {
         "icon": "ClipboardList",
-        "title": "全面評估",
+        "title": "全面评估",
         "number": 1,
-        "description": "我們從詳細的諮詢開始，了解您的健康史、症狀和健康目標。"
+        "description": "我们从详细的咨询开始，了解您的健康史、症状和健康目标。"
       },
       {
         "icon": "Stethoscope",
-        "title": "個性化治療計劃",
+        "title": "个性化治疗计划",
         "number": 2,
-        "description": "使用中醫診斷方法，我們創建針對您獨特需求的定制治療計劃。"
+        "description": "使用中医诊断方法，我们创建针对您独特需求的定制治疗计划。"
       },
       {
         "icon": "Heart",
-        "title": "持續護理與支持",
+        "title": "持续护理与支持",
         "number": 3,
-        "description": "定期治療和調整確保最佳效果和長期健康。"
+        "description": "定期治疗和调整确保最佳效果和长期健康。"
       }
     ],
-    "title": "中醫如何運作",
+    "title": "中医如何运作",
     "variant": "vertical-image-right",
-    "imageAlt": "黃醫生診所的診療服務",
-    "subtitle": "整體治療方法"
+    "imageAlt": "黄医生诊所的诊疗服务",
+    "subtitle": "整体治疗方法"
   },
   "whyChooseUs": {
-    "badge": "為什麼選擇我們",
-    "title": "體驗不同",
+    "badge": "为什么选择我们",
+    "title": "体验不同",
     "features": [
       {
         "icon": "heart",
-        "title": "Holistic Healing Approach",
-        "description": "We treat the whole person, addressing root causes rather than just symptoms to restore your body's natural balance and harmony."
+        "title": "整体调理，标本兼治",
+        "description": "我们注重整体治疗，从根本原因入手，而不仅仅是缓解症状，帮助恢复身体的自然平衡与和谐。"
       },
       {
         "icon": "user",
-        "title": "Personalized Care Plans",
-        "description": "Every treatment is tailored to your unique constitution, symptoms, and health goals using traditional diagnostic methods."
+        "title": "个性化治疗方案",
+        "description": "每位患者都会获得根据个人体质、症状和健康目标量身定制的治疗方案，运用传统中医诊断方法精准施治。"
       },
       {
         "icon": "book-open",
-        "title": "Authentic TCM Wisdom",
-        "description": "Our treatments honor thousands of years of Chinese medical knowledge, using time-tested methods for lasting results."
+        "title": "正宗中医传承",
+        "description": "我们的治疗秉承数千年中医药智慧，采用经过时间验证的传统方法，为您带来持久的治疗效果。"
       },
       {
         "icon": "award",
-        "title": "Board Certified Excellence",
-        "description": "Dr. Jiang's NCCAOM certification and 20 years of experience ensure you receive the highest standard of Traditional Chinese Medicine care."
+        "title": "专业认证资质",
+        "description": "Dr. Jiang医师持有NCCAOM认证，拥有超过15年临床经验，确保您获得最高标准的传统中医治疗。"
       },
       {
         "icon": "shield",
-        "title": "Gentle Natural Healing",
-        "description": "We offer safe, natural alternatives to pharmaceuticals, supporting your body's healing process without harsh side effects."
+        "title": "温和天然疗法",
+        "description": "我们提供安全、天然的替代疗法，支持身体自愈过程，无药物副作用，温和而有效。"
       }
     ],
-    "subtitle": "我們的與眾不同之處"
+    "subtitle": "我们的与众不同之处"
   },
   "testimonials": {
     "badge": "患者成功案例",
-    "title": "真實患者的真實效果",
+    "title": "真实患者的真实效果",
     "variant": "grid",
     "moreLink": {
       "url": "/zh/case-studies",
-      "text": "閱讀更多成功案例"
+      "text": "阅读更多成功案例"
     },
-    "subtitle": "聽聽我們患者的康復之旅",
+    "subtitle": "听听我们患者的康复之旅",
     "testimonials": [
       {
         "name": "老年患者",
@@ -492,7 +492,7 @@
         "condition": "紧张和僵硬"
       },
       {
-        "name": "香港電腦工程師",
+        "name": "香港电脑工程师",
         "image": "",
         "quote": "在诊疗过程中，江医生根据患者的情况，为其采用针灸与推拿相结合的方式进行调理。经过一段时间的治疗后，患者明显感觉手部疼痛减轻，手部活动也变得更加轻松。",
         "condition": "手部疼痛"

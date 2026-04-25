@@ -1,8 +1,9 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { getDefaultFooter } from '../footer';
-import { listContentEntries } from '@/lib/contentDb';
+import { canUseContentDb, listContentEntries } from '@/lib/contentDb';
 import { getBlogPostStatus } from '@/lib/blog';
+import { getSEOPagesForSite } from '@/lib/seo-pages';
 
 export interface ContentFileItem {
   id: string;
@@ -34,6 +35,36 @@ function titleCase(value: string) {
   return value
     .replace(/[-_]/g, ' ')
     .replace(/\b\w/g, (match) => match.toUpperCase());
+}
+
+function parseBooleanEnv(value: string | undefined): boolean | null {
+  if (typeof value !== 'string') return null;
+  const normalized = value.trim().toLowerCase();
+  if (['1', 'true', 'yes', 'on'].includes(normalized)) return true;
+  if (['0', 'false', 'no', 'off'].includes(normalized)) return false;
+  return null;
+}
+
+function shouldIncludeFilesystemFallback(): boolean {
+  const override = parseBooleanEnv(process.env.CONTENT_WRITE_THROUGH_FILE);
+  if (override !== null) return override;
+  return process.env.NODE_ENV !== 'production';
+}
+
+// Known root-level .json files and directories — NOT SEO pages
+const KNOWN_ROOT_FILES = new Set([
+  'pages', 'blog', 'blog-scheduled', '_history',
+]);
+
+// SEO landing pages are stored at root level without .json extension
+// (e.g., "acupuncture-middletown-ny"). They are NOT prefixed with pages/ or blog/.
+function isSeoPagePath(filePath: string): boolean {
+  return (
+    !filePath.includes('/') &&
+    !filePath.endsWith('.json') &&
+    !KNOWN_ROOT_FILES.has(filePath) &&
+    filePath.length > 0
+  );
 }
 
 async function ensureSeoFile(siteId: string, locale: string) {
@@ -155,8 +186,21 @@ export async function listContentFiles(
   };
 
   const dbEntries = await listContentEntries(siteId, locale);
+  const allowFilesystemFallback =
+    !canUseContentDb() || shouldIncludeFilesystemFallback();
   if (dbEntries.length > 0) {
     dbEntries.forEach((entry) => {
+      // SEO landing pages: stored at root level without extension (e.g., "acupuncture-middletown-ny")
+      if (isSeoPagePath(entry.path)) {
+        addItem({
+          id: `seo-page-${entry.path}`,
+          label: `SEO Page: ${titleCase(entry.path)}`,
+          path: entry.path,
+          scope: 'locale',
+        });
+        return;
+      }
+
       if (entry.path.startsWith('pages/') && entry.path.endsWith('.json')) {
         const slug = entry.path.replace('pages/', '').replace('.json', '');
         addItem({
@@ -215,62 +259,104 @@ export async function listContentFiles(
     });
   }
 
-  const pagesDir = path.join(CONTENT_DIR, siteId, locale, 'pages');
-  try {
-    const files = await fs.readdir(pagesDir);
-    files
-      .filter((file) => file.endsWith('.json'))
-      .forEach((file) => {
-        const slug = file.replace('.json', '');
-        addItem({
-          id: `page-${slug}`,
-          label: `Page: ${titleCase(slug)}`,
-          path: `pages/${file}`,
-          scope: 'locale',
-        });
-      });
-  } catch (error) {
-    // ignore missing pages directory
-  }
+  // Include SEO slugs registered in DB so they appear in admin Content
+  // even before file-system sync.
+  const seoRegistryEntries = await getSEOPagesForSite(siteId);
+  seoRegistryEntries.forEach((entry) => {
+    addItem({
+      id: `seo-registry-${entry.slug}`,
+      label: `SEO Page: ${titleCase(entry.slug)}`,
+      path: entry.slug,
+      scope: 'locale',
+    });
+  });
 
-  for (const directory of ['blog', 'blog-scheduled'] as const) {
-    const blogDir = path.join(CONTENT_DIR, siteId, locale, directory);
+  // SEO landing pages: root-level files without .json extension
+  if (allowFilesystemFallback) {
+    const localeDir = path.join(CONTENT_DIR, siteId, locale);
     try {
-      const files = await fs.readdir(blogDir);
-      await Promise.all(
-        files
-          .filter((file) => file.endsWith('.json'))
-          .map(async (file) => {
-            const slug = file.replace('.json', '');
-            let title = '';
-            let publishDate = '';
-            let publishAt = '';
-            let status: 'draft' | 'scheduled' | 'published' | undefined;
-            try {
-              const raw = await fs.readFile(path.join(blogDir, file), 'utf-8');
-              const parsed = JSON.parse(raw);
-              title = typeof parsed.title === 'string' ? parsed.title : '';
-              publishDate =
-                typeof parsed.publishDate === 'string' ? parsed.publishDate : '';
-              publishAt =
-                typeof parsed.publishAt === 'string' ? parsed.publishAt : '';
-              status = getBlogPostStatus(parsed);
-            } catch (error) {
-              // ignore parse errors
-            }
+      const allFiles = await fs.readdir(localeDir);
+      for (const file of allFiles) {
+        if (file.includes('.') || KNOWN_ROOT_FILES.has(file)) continue;
+        const fullPath = path.join(localeDir, file);
+        const stat = await fs.stat(fullPath);
+        if (stat.isFile()) {
+          // Verify it's valid JSON content
+          try {
+            const raw = await fs.readFile(fullPath, 'utf-8');
+            JSON.parse(raw);
             addItem({
-              id: `${directory}-${slug}`,
-              label: `Blog Post: ${title || titleCase(slug)}`,
-              path: `${directory}/${file}`,
+              id: `seo-page-${file}`,
+              label: `SEO Page: ${titleCase(file)}`,
+              path: file,
               scope: 'locale',
-              publishDate: publishDate || undefined,
-              publishAt: publishAt || undefined,
-              status,
             });
-          })
-      );
+          } catch {
+            // skip non-JSON files
+          }
+        }
+      }
+    } catch {
+      // ignore missing locale directory
+    }
+
+    const pagesDir = path.join(CONTENT_DIR, siteId, locale, 'pages');
+    try {
+      const files = await fs.readdir(pagesDir);
+      files
+        .filter((file) => file.endsWith('.json'))
+        .forEach((file) => {
+          const slug = file.replace('.json', '');
+          addItem({
+            id: `page-${slug}`,
+            label: `Page: ${titleCase(slug)}`,
+            path: `pages/${file}`,
+            scope: 'locale',
+          });
+        });
     } catch (error) {
-      // ignore missing blog directory
+      // ignore missing pages directory
+    }
+
+    for (const directory of ['blog', 'blog-scheduled'] as const) {
+      const blogDir = path.join(CONTENT_DIR, siteId, locale, directory);
+      try {
+        const files = await fs.readdir(blogDir);
+        await Promise.all(
+          files
+            .filter((file) => file.endsWith('.json'))
+            .map(async (file) => {
+              const slug = file.replace('.json', '');
+              let title = '';
+              let publishDate = '';
+              let publishAt = '';
+              let status: 'draft' | 'scheduled' | 'published' | undefined;
+              try {
+                const raw = await fs.readFile(path.join(blogDir, file), 'utf-8');
+                const parsed = JSON.parse(raw);
+                title = typeof parsed.title === 'string' ? parsed.title : '';
+                publishDate =
+                  typeof parsed.publishDate === 'string' ? parsed.publishDate : '';
+                publishAt =
+                  typeof parsed.publishAt === 'string' ? parsed.publishAt : '';
+                status = getBlogPostStatus(parsed);
+              } catch (error) {
+                // ignore parse errors
+              }
+              addItem({
+                id: `${directory}-${slug}`,
+                label: `Blog Post: ${title || titleCase(slug)}`,
+                path: `${directory}/${file}`,
+                scope: 'locale',
+                publishDate: publishDate || undefined,
+                publishAt: publishAt || undefined,
+                status,
+              });
+            })
+        );
+      } catch (error) {
+        // ignore missing blog directory
+      }
     }
   }
 
@@ -344,6 +430,11 @@ export function resolveContentPath(siteId: string, locale: string, filePath: str
   }
 
   if (filePath.startsWith('blog/') || filePath.startsWith('blog-scheduled/')) {
+    return path.join(CONTENT_DIR, siteId, locale, filePath);
+  }
+
+  // SEO landing pages: root-level files without extension (e.g., "acupuncture-middletown-ny")
+  if (isSeoPagePath(filePath)) {
     return path.join(CONTENT_DIR, siteId, locale, filePath);
   }
 

@@ -22,11 +22,11 @@
         "question": "针灸治疗腰痛会痛吗？"
       }
     ],
-    "heading": "腰痛针灸 — 常见问题"
+    "heading": "法拉盛针灸治腰痛 — 常见问题"
   },
   "seo": {
-    "h1": "针灸治疗腰痛 - 法拉盛专业中医疗法",
-    "title": "法拉盛针灸治疗腰痛 | Dr. Jiang中医腰痛专科",
+    "h1": "法拉盛针灸治腰痛｜专业中医腰痛治疗",
+    "title": "法拉盛针灸治腰痛｜Dr. Jiang中医腰痛专科",
     "schema": [
       "Service",
       "FAQPage",
@@ -35,10 +35,10 @@
     "noindex": false,
     "priority": 0.8,
     "description": "法拉盛专业针灸治疗腰痛，Dr. Jiang医师运用传统中医方法有效缓解急慢性腰痛。安全无副作用，接受保险。",
-    "canonicalUrl": "/zh/acupuncture-for-back-pain-flushing-ny"
+    "canonicalUrl": "/zh/法拉盛针灸治腰痛"
   },
   "hero": {
-    "h1": "针灸治疗腰痛 - 法拉盛专业中医疗法",
+    "h1": "法拉盛针灸治腰痛｜专业中医腰痛治疗",
     "ctaHref": "/zh/contact",
     "ctaLabel": "预约咨询",
     "openingParagraph": "腰痛是现代人常见的健康问题，无论是久坐办公、体力劳动还是年龄增长都可能导致腰部不适。Dr. Jiang医师在Flushing Acupuncture & TCM运用传统针灸结合现代中医理论，为腰痛患者提供个性化治疗方案。中医认为腰痛多由肾虚、血瘀、风寒湿邪侵袭等因素引起，通过针灸疏通经络、调和气血，能够从根本上缓解疼痛并预防复发。我们的治疗方法安全有效，无药物副作用，深受法拉盛华人患者信赖。"
@@ -47,30 +47,30 @@
   "condition": "back-pain",
   "howItWorks": {
     "body": "针灸治疗腰痛的原理基于中医经络学说，通过刺激特定穴位来调节人体气血运行。Dr. Jiang医师会根据患者的具体症状选择相应的穴位组合，如肾俞、腰阳关、委中、承山等。针刺这些穴位能够激活人体自然修复机制，促进局部血液循环，缓解肌肉紧张，减轻炎症反应。同时，针灸还能刺激大脑释放内啡肽等天然止痛物质，起到镇痛作用。对于不同类型的腰痛，我们会采用不同的针法技巧，如提插补泻、温针灸等，以达到最佳治疗效果。整个治疗过程安全舒适，患者通常在治疗后就能感受到明显改善。",
-    "heading": "针灸治疗腰痛 - 法拉盛专业中医疗法"
+    "heading": "法拉盛针灸治腰痛的原理"
   },
   "testimonial": {
-    "heading": "Flushing患者的真实反馈"
+    "heading": "法拉盛患者的真实反馈"
   },
   "whatToExpect": {
     "body": "首次治疗前，Dr. Jiang医师会进行详细的中医诊断，包括询问病史、疼痛特点、诱发因素等。治疗时患者需平躺或侧卧，医师会在相关穴位轻轻插入细针，大多数患者只感觉轻微刺感。每次治疗约20-30分钟，期间可能会有温热或酸胀感，这是正常的治疗反应。治疗后请避免剧烈运动和受凉，多喝温水促进新陈代谢。",
-    "heading": "Flushing Acupuncture & TCM的治疗流程"
+    "heading": "法拉盛针灸治腰痛的治疗流程"
   },
   "relatedConditions": {
     "links": [
       {
-        "slug": "acupuncture-for-insomnia-flushing-ny",
-        "label": "针灸治疗失眠"
+        "slug": "法拉盛失眠针灸",
+        "label": "法拉盛失眠针灸"
       },
       {
-        "slug": "acupuncture-for-anxiety-flushing-ny",
-        "label": "针灸治疗焦虑"
+        "slug": "法拉盛针灸治焦虑",
+        "label": "法拉盛针灸治焦虑"
       },
       {
         "slug": "conditions#gynecology",
         "label": "助孕针灸"
       }
     ],
-    "heading": "Flushing Acupuncture & TCM治疗的其他病症"
+    "heading": "其他中医针灸治疗项目"
   }
 }

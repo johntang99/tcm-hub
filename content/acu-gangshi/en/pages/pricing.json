@@ -201,81 +201,88 @@
   "individualTreatments": {
     "items": [
       {
-        "name": "Initial Consultation & Treatment",
+        "name": "Initial consultation &treatment",
         "notes": "Includes treatment plan and recommendations",
-        "price": "$120",
-        "duration": "90 minutes",
+        "price": "$160",
+        "duration": "60-90 minutes",
         "description": "Comprehensive 90-minute first visit including full health history, TCM diagnosis, and first acupuncture treatment"
       },
       {
         "name": "Follow-up Acupuncture Session",
         "notes": "Most common treatment type",
-        "price": "$85",
-        "duration": "60 minutes",
+        "price": "$130",
+        "duration": "45-60 minutes",
         "description": "Standard acupuncture treatment with brief check-in"
       },
       {
-        "name": "Extended Acupuncture Session",
+        "name": "Cupping therapy (add-on)",
         "notes": "Includes additional modalities as needed",
-        "price": "$105",
-        "duration": "75 minutes",
+        "price": "$30 ",
+        "duration": "10-20 minutes",
         "description": "Longer session for complex conditions or multiple areas"
       },
       {
         "name": "Cupping Therapy (Add-on)",
         "notes": "Great for muscle tension",
-        "price": "$20",
-        "duration": "15 minutes",
+        "price": "$30",
+        "duration": "10-20 minutes",
         "description": "Cupping added to acupuncture session"
       },
       {
         "name": "Cupping Therapy (Standalone)",
         "notes": null,
-        "price": "$65",
-        "duration": "45 minutes",
+        "price": "$60",
+        "duration": "10-20 minutes",
         "description": "Cupping therapy session without acupuncture"
       },
       {
         "name": "Gua Sha (Add-on)",
         "notes": null,
-        "price": "$15",
-        "duration": "10 minutes",
+        "price": "$30",
+        "duration": "",
         "description": "Gua sha added to acupuncture session"
       },
       {
         "name": "Tui Na Medical Massage",
         "notes": "Can be combined with acupuncture",
-        "price": "$95",
+        "price": "$80",
         "duration": "60 minutes",
         "description": "Traditional Chinese therapeutic massage"
       },
       {
-        "name": "Moxibustion (Add-on)",
+        "name": "Moxibustion",
         "notes": "Especially good for cold conditions",
-        "price": "$15",
-        "duration": "15 minutes",
+        "price": "$200",
+        "duration": "45-60 minutes",
         "description": "Warming therapy added to treatment"
       },
       {
         "name": "Chinese Herbal Consultation",
         "notes": "Price depends on formula complexity. Herb cost separate.",
-        "price": "$45-$95",
-        "duration": "30 minutes",
+        "price": "$100",
+        "duration": "",
         "description": "Herbal formula consultation and dispensing"
       },
       {
-        "name": "Dietary Therapy Consultation",
+        "name": "Chinese herbal consultation with one weak herb",
         "notes": "Includes custom dietary plan",
-        "price": "$75",
-        "duration": "45 minutes",
+        "price": "$150",
+        "duration": "",
         "description": "Personalized nutrition guidance based on TCM principles"
       },
       {
-        "name": "Community Acupuncture",
+        "name": "One week Chinese herbal (add-on)",
         "notes": "Sliding scale based on ability to pay. Wednesdays only.",
-        "price": "$35-$55",
+        "price": "$100",
         "duration": "45 minutes",
         "description": "Affordable acupuncture in a shared, peaceful space"
+      },
+      {
+        "name": "Dietary Therapy consultation",
+        "notes": "",
+        "price": "100",
+        "duration": "",
+        "description": "Personalized nutrition guidance based on TCM principles"
       }
     ],
     "title": "Individual Treatment Pricing",

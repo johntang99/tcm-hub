@@ -4,6 +4,7 @@ import path from 'path';
 import { getSessionFromRequest } from '@/lib/admin/auth';
 import { listContentEntries, upsertContentEntry } from '@/lib/contentDb';
 import { canWriteContent, requireSiteAccess } from '@/lib/admin/permissions';
+import { locales } from '@/lib/i18n';
 import { writeAuditLog } from '@/lib/admin/audit';
 
 async function collectJsonPathsRecursive(
@@ -87,6 +88,7 @@ export async function POST(request: NextRequest) {
   const backfillErrorPaths: string[] = [];
   const missingLocalPaths = localJsonPaths.filter(
     (relativePath) =>
+      relativePath !== 'theme.json' &&
       !localeEntryMap.has(relativePath) &&
       (includePathSet ? includePathSet.has(relativePath) : true)
   );
@@ -160,10 +162,24 @@ export async function POST(request: NextRequest) {
     })
   );
 
-  // Export theme to site-level (not locale)
+  // Export theme to site-level (not locale) and sync to all locales in DB
   if (themeEntry) {
     const themePath = path.join(process.cwd(), 'content', siteId, 'theme.json');
     await fs.writeFile(themePath, JSON.stringify(themeEntry.data, null, 2));
+    // Sync theme to all locales in DB so check-update doesn't ping-pong
+    await Promise.all(
+      locales
+        .filter((l) => l !== locale)
+        .map((otherLocale) =>
+          upsertContentEntry({
+            siteId,
+            locale: otherLocale,
+            path: 'theme.json',
+            data: themeEntry!.data,
+            updatedBy: session.user.email,
+          })
+        )
+    );
   }
 
   await writeAuditLog({

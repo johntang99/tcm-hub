@@ -220,9 +220,11 @@ export async function deleteContentEntry(params: {
   siteId: string;
   locale: string;
   path: string;
-}): Promise<void> {
+}): Promise<{ success: boolean; error?: string }> {
   const supabase = getSupabaseServerClient();
-  if (!supabase) return;
+  if (!supabase) {
+    return { success: false, error: 'Supabase server client unavailable' };
+  }
 
   const { error } = await supabase
     .from(table)
@@ -233,5 +235,8 @@ export async function deleteContentEntry(params: {
 
   if (error) {
     console.error('Supabase deleteContentEntry error:', error);
+    return { success: false, error: error.message };
   }
+
+  return { success: true };
 }

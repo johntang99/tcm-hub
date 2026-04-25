@@ -67,7 +67,7 @@
     "bio": "Dr. Jiang – Professional Biography\n\nDr. Jiang received systematic training in Traditional Chinese Medicine in China early in her career. She graduated from Beijing University of Chinese Medicine in 1996, after completing a five-year undergraduate program in Traditional Chinese Medicine. This medical curriculum covered a wide range of disciplines, including TCM theory, Chinese herbal medicine, and acupuncture, and represented a comprehensive professional medical education.\n\nAfter coming to the United States, Dr. Jiang continued her studies in molecular biology and biostatistics, earning a master’s degree in a related field. Following graduation, she worked for approximately five years at a major pharmaceutical company, where she was involved in biomedical research and related professional work.\n\nAlthough she had promising career opportunities in the biomedical field, Dr. Jiang always maintained a deep interest in Traditional Chinese Medicine, Chinese herbal medicine, and acupuncture. After careful consideration, she ultimately decided to return to the medical path she had originally loved, obtained the relevant licenses, and began practicing clinically in TCM and acupuncture.\n\nDrawing on her background in both Traditional Chinese Medicine and modern biological sciences, Dr. Jiang emphasizes a holistic approach in clinical treatment. Through acupuncture and herbal medicine, she aims to help patients improve their health and enhance their quality of life.\n\nThrough many years of clinical practice, Dr. Jiang has accumulated extensive treatment experience. She has developed a mature and steady diagnostic and treatment approach for the management of various common conditions and chronic illnesses. Over the years, she has successfully helped many patients improve their health. She has a wealth of similar treatment cases, and many patients, after experiencing significant improvement or even full recovery, have expressed high praise for both her medical skill and professional ethics.\n\nThroughout her long-term clinical work, many patients have remained in contact with Dr. Jiang after recovery, sharing life changes with her out of gratitude, and some have even become trusted friends. This recognition and trust from her patients have also become an important source of motivation for Dr. Jiang to continue dedicating herself to Traditional Chinese Medicine and to keep refining her medical expertise.\n\nDr. Jiang firmly believes that Traditional Chinese Medicine is not only a form of medicine, but also a holistic philosophy of healing that helps people restore balance in body and mind and improve their quality of life. Through her professional knowledge and experience, she hopes to help more patients achieve health, peace of mind, and well-being.\n\n> When we support the body's natural wisdom with ancient healing principles, profound transformation becomes possible.\n\n**Dr. Jiang**",
     "name": "Dr. Jiang",
     "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/acu-flushing/onboarding-overrides/1773046663898-1771604339255-dr-jiang-acu-flushing-2.webp",
-    "title": "L.Ac., NCCAOM",
+    "title": "L.Ac., NCBAHM",
     "variant": "split",
     "signature": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/about/signature.png"
   },
@@ -105,11 +105,25 @@
   "credentials": {
     "items": [
       {
+        "icon": "GraduationCap",
+        "year": "1996",
+        "location": "Beijing, China",
+        "credential": "Bachelor of Medicine",
+        "institution": "Beijing University of Chinese Medicine"
+      },
+      {
+        "icon": "GraduationCap",
+        "year": "2001",
+        "location": "Champion ",
+        "credential": "Master of Science in Biostatistics",
+        "institution": "University of Illinois Chicago "
+      },
+      {
         "icon": "Award",
-        "year": "2000",
-        "location": "San Francisco",
-        "credential": "MSTCM",
-        "institution": "ACTCM"
+        "year": "2010",
+        "location": "Alexandria",
+        "credential": "NCBAHM (previously NCCAOM)",
+        "institution": "National Certification Board for Acupuncture and Herbal Medicine"
       }
     ],
     "title": "Education & Credentials",
@@ -120,7 +134,7 @@
     "variant": "compact",
     "organizations": [
       {
-        "name": "NCCAOM",
+        "name": "NCBAHM",
         "role": "Member"
       }
     ]

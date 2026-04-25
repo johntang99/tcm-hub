@@ -170,17 +170,6 @@
       "primary": "935 Northern Boulevard, Suite Number 303",
       "secondary": "Great Neck, NY 11021",
       "description": "Free parking available"
-    },
-    {
-      "icon": "Calendar",
-      "title": "Book Online",
-      "action": {
-        "link": "/en/book",
-        "text": "Book Now"
-      },
-      "primary": "New Patient Booking",
-      "secondary": null,
-      "description": "Choose a convenient appointment time"
     }
   ]
 }

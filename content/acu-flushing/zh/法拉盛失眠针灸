@@ -22,11 +22,11 @@
         "question": "中医认为失眠的原因是什么？"
       }
     ],
-    "heading": "失眠针灸 — 常见问题"
+    "heading": "法拉盛失眠针灸 — 常见问题"
   },
   "seo": {
-    "h1": "中医针灸治疗失眠 - 天然改善睡眠质量",
-    "title": "法拉盛针灸治疗失眠 | Dr. Jiang中医调理睡眠",
+    "h1": "法拉盛失眠针灸｜中医调理改善睡眠",
+    "title": "法拉盛失眠针灸｜Dr. Jiang中医调理睡眠",
     "schema": [
       "Service",
       "FAQPage",
@@ -35,10 +35,10 @@
     "noindex": false,
     "priority": 0.8,
     "description": "法拉盛专业中医治疗失眠，Dr. Jiang医师运用针灸调理睡眠障碍。天然安全无依赖，改善睡眠质量，接受保险。",
-    "canonicalUrl": "/zh/acupuncture-for-insomnia-flushing-ny"
+    "canonicalUrl": "/zh/法拉盛失眠针灸"
   },
   "hero": {
-    "h1": "中医针灸治疗失眠 - 天然改善睡眠质量",
+    "h1": "法拉盛失眠针灸｜中医调理改善睡眠",
     "ctaHref": "/zh/contact",
     "ctaLabel": "预约咨询",
     "openingParagraph": "失眠是现代都市人普遍面临的健康挑战，长期睡眠不足不仅影响日常生活质量，还可能引发多种健康问题。在Flushing Acupuncture & TCM，Dr. Jiang医师运用传统中医理论，通过针灸治疗帮助失眠患者恢复自然健康的睡眠模式。中医认为失眠主要由心神不宁、阴阳失调、脏腑功能紊乱等原因导致，常见证型包括心火亢盛、肝郁气滞、脾胃不和、肾阴不足等。针灸治疗能够调节神经系统，平衡内分泌，改善睡眠质量，且无药物依赖风险，是一种安全有效的天然疗法。"
@@ -47,30 +47,30 @@
   "condition": "insomnia",
   "howItWorks": {
     "body": "针灸治疗失眠的机制在于调节人体的神经内分泌系统，恢复自然的睡眠-觉醒周期。Dr. Jiang医师会根据患者的具体症状和中医辨证选择合适的穴位，如神门、三阴交、百会、印堂、安眠穴等。这些穴位能够宁心安神，调节大脑神经递质的分泌，如血清素和褪黑素，从而改善睡眠质量。针刺还能激活副交感神经系统，帮助身体进入放松状态，缓解焦虑和压力。对于不同类型的失眠，我们会采用相应的治疗策略：入睡困难型重在疏肝理气，早醒型注重滋阴降火，睡眠浅易醒型则以健脾安神为主。治疗过程温和舒适，多数患者在治疗期间就能感受到深度放松。",
-    "heading": "中医针灸治疗失眠 - 天然改善睡眠质量"
+    "heading": "法拉盛失眠针灸的治疗原理"
   },
   "testimonial": {
-    "heading": "Flushing患者的真实反馈"
+    "heading": "法拉盛患者的真实反馈"
   },
   "whatToExpect": {
     "body": "治疗前Dr. Jiang医师会详细了解您的睡眠模式、生活习惯和伴随症状。治疗时患者平躺放松，医师在相关穴位轻柔进针，过程安静舒适。每次治疗20-30分钟，许多患者在治疗中就会感到困倦放松。治疗后请保持规律作息，避免咖啡因和电子设备，为良好睡眠创造条件。通常治疗后当晚就能感受到睡眠质量的改善。",
-    "heading": "Flushing Acupuncture & TCM的治疗流程"
+    "heading": "法拉盛失眠针灸的治疗流程"
   },
   "relatedConditions": {
     "links": [
       {
-        "slug": "acupuncture-for-back-pain-flushing-ny",
-        "label": "针灸治疗腰痛"
+        "slug": "法拉盛针灸治腰痛",
+        "label": "法拉盛针灸治腰痛"
       },
       {
-        "slug": "acupuncture-for-anxiety-flushing-ny",
-        "label": "针灸治疗焦虑"
+        "slug": "法拉盛针灸治焦虑",
+        "label": "法拉盛针灸治焦虑"
       },
       {
         "slug": "conditions#gynecology",
         "label": "助孕针灸"
       }
     ],
-    "heading": "Flushing Acupuncture & TCM治疗的其他病症"
+    "heading": "其他中医针灸治疗项目"
   }
 }

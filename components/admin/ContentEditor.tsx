@@ -856,8 +856,9 @@ export function ContentEditor({
         ? JSON.parse(conditionsPayload.content)
         : null;
 
-      const servicesOptions = Array.isArray(servicesData?.services)
-        ? servicesData.services
+      const serviceItems = servicesData?.servicesList?.items || servicesData?.services || [];
+      const servicesOptions = Array.isArray(serviceItems)
+        ? serviceItems
             .map((service: any) => ({
               id: String(service?.id || ''),
               title: String(service?.title || service?.name || ''),
@@ -887,6 +888,9 @@ export function ContentEditor({
       const slug = activeFile.path.replace('pages/', '').replace('.json', '');
       if (slug === 'home') return `/${locale}`;
       return `/${locale}/${slug}`;
+    }
+    if (!activeFile.path.includes('/') && !activeFile.path.endsWith('.json')) {
+      return `/${locale}/${activeFile.path}`;
     }
     return `/${locale}`;
   };

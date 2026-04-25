@@ -187,12 +187,12 @@ Use the **production** host (confirm `www` vs apex in Vercel / DNS).
 ### Sitemap
 
 ```
-https://shiacupuncture.com/sitemap.xml
+https://www.shiacupuncture.com/sitemap.xml
 ```
 
 (Adjust if production uses `www`.)
 
-### URLs to request indexing (examples)
+### English URLs to request indexing
 
 ```
 https://www.shiacupuncture.com/en/acupuncture-great-neck-ny
@@ -206,7 +206,73 @@ https://www.shiacupuncture.com/en/moxibustion-great-neck-ny
 https://www.shiacupuncture.com/en/tui-na-massage-great-neck-ny
 ```
 
-Add `/zh/...` counterparts when ZH pages ship.
+### Chinese URLs to request indexing (shipped April 2026)
+
+```
+https://www.shiacupuncture.com/zh/大颈中医针灸
+https://www.shiacupuncture.com/zh/大颈针灸治腰痛
+https://www.shiacupuncture.com/zh/大颈失眠针灸
+https://www.shiacupuncture.com/zh/大颈针灸治焦虑
+https://www.shiacupuncture.com/zh/大颈中药
+https://www.shiacupuncture.com/zh/大颈拔罐
+https://www.shiacupuncture.com/zh/大颈艾灸
+https://www.shiacupuncture.com/zh/大颈推拿
+https://www.shiacupuncture.com/zh/大颈针灸费用
+```
+
+### GSC submit priority (recommended)
+
+1. `/zh/大颈中医针灸` (core landing)
+2. `/zh/大颈针灸治腰痛`
+3. `/zh/大颈失眠针灸`
+4. `/zh/大颈针灸治焦虑`
+5. `/zh/大颈针灸费用`
+6. Remaining service pages
+
+### Redirect verification in GSC
+
+Verify these old zh URLs report **Page with redirect**:
+
+- `/zh/acupuncture-great-neck-ny` → `/zh/大颈中医针灸`
+- `/zh/acupuncture-for-back-pain-great-neck-ny` → `/zh/大颈针灸治腰痛`
+- `/zh/acupuncture-for-insomnia-great-neck-ny` → `/zh/大颈失眠针灸`
+- `/zh/acupuncture-for-anxiety-great-neck-ny` → `/zh/大颈针灸治焦虑`
+- `/zh/chinese-herbal-medicine-great-neck-ny` → `/zh/大颈中药`
+- `/zh/cupping-therapy-great-neck-ny` → `/zh/大颈拔罐`
+- `/zh/moxibustion-great-neck-ny` → `/zh/大颈艾灸`
+- `/zh/tui-na-massage-great-neck-ny` → `/zh/大颈推拿`
+- `/zh/acupuncture-cost-great-neck-ny` → `/zh/大颈针灸费用`
+
+---
+
+## Phase 7 — Chinese SEO (Completed April 2026)
+
+> **Status: DONE** (filesystem + DB migration completed).
+
+### What was completed
+
+- 9 Chinese-character SEO pages created under `content/acu-gangshi/zh/`
+- 9 permanent redirects added in `content/acu-gangshi/redirects.json`
+- EN↔ZH hreflang mappings added for all 9 SEO slugs
+- Homepage/services/conditions/header/footer zh links rewired to Chinese URLs
+- `zh/seo.json` metadata translated to Chinese
+- Old zh English-slug SEO files removed
+- Old zh English-slug `content_entries` rows deleted from Supabase
+- 9 Chinese slugs registered in `site_seo_pages`
+
+### Chinese slug inventory
+
+| Chinese URL | English Equivalent | Type |
+|---|---|---|
+| `大颈中医针灸` | `acupuncture-great-neck-ny` | seo-local-landing |
+| `大颈针灸治腰痛` | `acupuncture-for-back-pain-great-neck-ny` | seo-condition |
+| `大颈失眠针灸` | `acupuncture-for-insomnia-great-neck-ny` | seo-condition |
+| `大颈针灸治焦虑` | `acupuncture-for-anxiety-great-neck-ny` | seo-condition |
+| `大颈中药` | `chinese-herbal-medicine-great-neck-ny` | seo-service |
+| `大颈拔罐` | `cupping-therapy-great-neck-ny` | seo-service |
+| `大颈艾灸` | `moxibustion-great-neck-ny` | seo-service |
+| `大颈推拿` | `tui-na-massage-great-neck-ny` | seo-service |
+| `大颈针灸费用` | `acupuncture-cost-great-neck-ny` | seo-resource |
 
 ---
 
@@ -225,7 +291,7 @@ Add `/zh/...` counterparts when ZH pages ship.
 
 ## Key advantage: same pipeline as Acu-Flushing
 
-Infrastructure (`SEO*Layout`, dynamic slug route, `site_seo_pages`, `seed-seo-pages.mjs`, `verify-site.mjs`) is shared. **The unique blocker for this site is Phase 0** (`intake.json` + NAP cleanup + DB site binding). After that, Phases 1–4 follow the same rhythm as Acu-Flushing with **Great Neck** slugs and Long Island–appropriate service-area language.
+Infrastructure (`SEO*Layout`, dynamic slug route, `site_seo_pages`, `seed-seo-pages.mjs`, `verify-site.mjs`) is shared. The original Phase 0 blocker (`intake.json` + DB site binding) has been cleared, and the Chinese SEO migration now follows the same production pattern as Acu-Flushing.
 
 ---
 

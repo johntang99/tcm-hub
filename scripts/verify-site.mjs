@@ -157,13 +157,23 @@ async function main() {
   // Check SEO fields in content_entries
   let seoFieldIssues = 0;
   for (const sp of seoPages) {
-    const entries = await fetchJson(`${SURL}/rest/v1/content_entries?site_id=eq.${SITE}&locale=eq.en&path=eq.${sp.slug}&select=data`);
-    if (entries.length === 0) {
+    const preferredLocales = /[^\x00-\x7F]/.test(sp.slug) ? ['zh', 'en'] : ['en', 'zh'];
+    let matchedEntry = null;
+    for (const locale of preferredLocales) {
+      const entries = await fetchJson(
+        `${SURL}/rest/v1/content_entries?site_id=eq.${SITE}&locale=eq.${locale}&path=eq.${encodeURIComponent(sp.slug)}&select=data`
+      );
+      if (entries.length > 0) {
+        matchedEntry = entries[0];
+        break;
+      }
+    }
+    if (!matchedEntry) {
       console.log(`  ✗ ${sp.slug}: NO content_entries row`);
       seoFieldIssues++;
       continue;
     }
-    const seo = entries[0].data?.seo;
+    const seo = matchedEntry.data?.seo;
     if (!seo?.title || !seo?.description || !seo?.h1) {
       console.log(`  ✗ ${sp.slug}: incomplete seo object`);
       seoFieldIssues++;

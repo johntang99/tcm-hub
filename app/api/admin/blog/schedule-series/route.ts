@@ -216,11 +216,16 @@ export async function POST(request: NextRequest) {
           updatedBy: session.user.email,
         });
         if (sourcePath !== destinationPath) {
-          await deleteContentEntry({
+          const deletion = await deleteContentEntry({
             siteId,
             locale: row.locale,
             path: sourcePath,
           });
+          if (!deletion.success) {
+            console.warn(
+              `Source cleanup failed for ${siteId}/${row.locale}/${sourcePath}: ${deletion.error || 'unknown error'}`
+            );
+          }
         }
       }
 

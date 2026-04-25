@@ -1,14 +1,4 @@
 {
-  "seo": {
-    "title": "Acupuncture & TCM Services — Dr. Huang Clinic Middletown NY",
-    "description": "Acupuncture, Chinese herbal medicine, cupping & more at Dr. Huang Clinic in Middletown, NY. See all our TCM services and book today.",
-    "h1": "Traditional Chinese Medicine (TCM) Modalities",
-    "canonicalUrl": "/en/services",
-    "schema": ["Service", "BreadcrumbList"],
-    "noindex": false,
-    "changefreq": "monthly",
-    "priority": 0.8
-  },
   "cta": {
     "title": "Ready to Experience Natural Healing?",
     "variant": "centered",
@@ -60,6 +50,19 @@
     "title": "Frequently Asked Questions",
     "variant": "accordion",
     "subtitle": "Common questions about services, safety, and expected outcomes"
+  },
+  "seo": {
+    "h1": "Traditional Chinese Medicine (TCM) Modalities",
+    "title": "Acupuncture & TCM Services — Dr. Huang Clinic Middletown NY",
+    "schema": [
+      "Service",
+      "BreadcrumbList"
+    ],
+    "noindex": false,
+    "priority": 0.8,
+    "changefreq": "monthly",
+    "description": "Acupuncture, Chinese herbal medicine, cupping & more at Dr. Huang Clinic in Middletown, NY. See all our TCM services and book today.",
+    "canonicalUrl": "/en/services"
   },
   "hero": {
     "title": "Traditional Chinese Medicine (TCM) Modalities",

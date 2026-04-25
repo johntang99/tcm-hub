@@ -48,6 +48,11 @@
       "id": "other",
       "icon": "Sparkles",
       "name": "Other Conditions"
+    },
+    {
+      "id": "category-7",
+      "icon": "Activity",
+      "name": "Skin Conditions"
     }
   ],
   "statistics": {
@@ -124,6 +129,15 @@
       "category": "womens-health",
       "condition": "Menopause Symptoms",
       "afterImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/stress-management.jpg"
+    },
+    {
+      "id": "acne-16-years-herbal-cream",
+      "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1776109287099-case-001-banner-a.png",
+      "summary": "Patient suffered from persistent acne for 16 years with no lasting relief from conventional treatments.\n \n- Used Dr. Huang's herbal topical acne cream\n- Significant reduction in inflammation observed within 2 months\n- Skin clarity and tone improved dramatically\n \n**Result:** Significant improvement in 2 months of herbal skincare treatment",
+      "category": "category-7",
+      "condition": "16-Year Acne Cleared with Herbal Skincare",
+      "afterImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1776109568308-after-1.jpg",
+      "beforeImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/1776109558915-before-1.jpg"
     }
   ],
   "introduction": {

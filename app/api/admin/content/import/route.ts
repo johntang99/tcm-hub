@@ -8,6 +8,7 @@ import { locales } from '@/lib/i18n';
 import { writeAuditLog } from '@/lib/admin/audit';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
+const KNOWN_ROOT_ENTRIES = new Set(['pages', 'blog', 'blog-scheduled', '_history']);
 
 async function readJson(filePath: string) {
   const raw = await fs.readFile(filePath, 'utf-8');
@@ -66,9 +67,26 @@ async function collectImportCandidates(siteId: string, locale: string): Promise<
 
   // Root locale JSON files
   try {
-    const rootFiles = await fs.readdir(localeRoot);
-    for (const file of rootFiles.filter((item) => item.endsWith('.json') && item !== 'theme.json')) {
-      await addCandidate(locale, file, path.join(localeRoot, file));
+    const rootEntries = await fs.readdir(localeRoot);
+    for (const entry of rootEntries) {
+      const fullPath = path.join(localeRoot, entry);
+      const stat = await fs.stat(fullPath);
+      if (!stat.isFile()) continue;
+      if (entry === 'theme.json') continue;
+
+      if (entry.endsWith('.json')) {
+        await addCandidate(locale, entry, fullPath);
+        continue;
+      }
+
+      // SEO landing pages use root-level paths without extension
+      // e.g. acupuncture-great-neck-ny
+      if (entry.includes('.') || KNOWN_ROOT_ENTRIES.has(entry)) continue;
+      try {
+        await addCandidate(locale, entry, fullPath);
+      } catch {
+        // skip non-JSON root files
+      }
     }
   } catch {
     // ignore missing locale root
@@ -96,19 +114,18 @@ async function collectImportCandidates(siteId: string, locale: string): Promise<
     // ignore missing blog dir
   }
 
-  // Theme (site scope) - mirrored to all locales
+  // Theme (site scope) - only check the requested locale;
+  // actual import will sync to all locales via upsert
   const themePath = path.join(CONTENT_DIR, siteId, 'theme.json');
   try {
     const [themeData, themeStat] = await Promise.all([readJson(themePath), fs.stat(themePath)]);
-    for (const entryLocale of locales) {
-      candidates.push({
-        locale: entryLocale,
-        path: 'theme.json',
-        data: themeData,
-        sourceFilePath: themePath,
-        sourceMtimeMs: themeStat.mtimeMs,
-      });
-    }
+    candidates.push({
+      locale,
+      path: 'theme.json',
+      data: themeData,
+      sourceFilePath: themePath,
+      sourceMtimeMs: themeStat.mtimeMs,
+    });
   } catch {
     // ignore missing theme
   }
@@ -302,15 +319,31 @@ export async function POST(request: NextRequest) {
   for (let i = 0; i < importQueue.length; i += writeBatchSize) {
     const batch = importQueue.slice(i, i + writeBatchSize);
     await Promise.all(
-      batch.map((candidate) =>
-        upsertContentEntry({
+      batch.map(async (candidate) => {
+        await upsertContentEntry({
           siteId,
           locale: candidate.locale,
           path: candidate.path,
           data: candidate.data,
           updatedBy: session.user.email,
-        })
-      )
+        });
+        // Sync theme to all locales (site-scoped)
+        if (candidate.path === 'theme.json') {
+          await Promise.all(
+            locales
+              .filter((l) => l !== candidate.locale)
+              .map((otherLocale) =>
+                upsertContentEntry({
+                  siteId,
+                  locale: otherLocale,
+                  path: 'theme.json',
+                  data: candidate.data,
+                  updatedBy: session.user.email,
+                })
+              )
+          );
+        }
+      })
     );
     imported += batch.length;
   }

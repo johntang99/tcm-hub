@@ -110,11 +110,16 @@ async function runDuePublisher(request: NextRequest, payload: any) {
           updatedBy: session?.user.email || 'cron',
         });
         if (row.sourceDirectory === 'blog-scheduled') {
-          await deleteContentEntry({
+          const deletion = await deleteContentEntry({
             siteId,
             locale: row.locale,
             path: row.path,
           });
+          if (!deletion.success) {
+            console.warn(
+              `Scheduled source cleanup failed for ${siteId}/${row.locale}/${row.path}: ${deletion.error || 'unknown error'}`
+            );
+          }
         }
       }
       const sourceResolved = path.join(CONTENT_DIR, siteId, row.locale, row.path);

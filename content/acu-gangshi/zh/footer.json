@@ -2,7 +2,7 @@
   "brand": {
     "name": "Gang Shi Acupuncture",
     "logoText": "TCM",
-    "description": "以傳統中醫和針灸為社區提供整體治療。"
+    "description": "以传统中医和针灸为社区提供整体治疗。"
   },
   "hours": [
     "Mon: 9:00 AM - 7:00 PM",
@@ -25,19 +25,19 @@
   },
   "services": [
     {
-      "url": "/zh/acupuncture-great-neck-ny",
-      "text": "針灸"
+      "url": "/zh/大颈中医针灸",
+      "text": "针灸"
     },
     {
-      "url": "/zh/chinese-herbal-medicine-great-neck-ny",
-      "text": "中藥"
+      "url": "/zh/大颈中药",
+      "text": "中药"
     },
     {
-      "url": "/zh/cupping-therapy-great-neck-ny",
+      "url": "/zh/大颈拔罐",
       "text": "拔罐"
     },
     {
-      "url": "/zh/tui-na-massage-great-neck-ny",
+      "url": "/zh/大颈推拿",
       "text": "推拿"
     }
   ],
@@ -45,33 +45,33 @@
   "legalLinks": [
     {
       "url": "/zh/privacy",
-      "text": "隱私政策"
+      "text": "隐私政策"
     },
     {
       "url": "/zh/terms",
-      "text": "服務條款"
+      "text": "服务条款"
     }
   ],
   "quickLinks": [
     {
       "url": "/zh/about",
-      "text": "關於我們"
+      "text": "关于我们"
     },
     {
       "url": "/zh/services",
-      "text": "服務項目"
+      "text": "服务项目"
     },
     {
       "url": "/zh/conditions",
-      "text": "治療病症"
+      "text": "治疗病症"
     },
     {
-      "url": "/zh/acupuncture-great-neck-ny",
-      "text": "大頸針灸服務"
+      "url": "/zh/大颈中医针灸",
+      "text": "大颈针灸服务"
     },
     {
-      "url": "/zh/acupuncture-cost-great-neck-ny",
-      "text": "針灸費用"
+      "url": "/zh/大颈针灸费用",
+      "text": "针灸费用"
     },
     {
       "url": "/zh/case-studies",
@@ -79,15 +79,15 @@
     },
     {
       "url": "/zh/new-patients",
-      "text": "首次就診"
+      "text": "首次就诊"
     },
     {
       "url": "/zh/blog",
-      "text": "網誌"
+      "text": "网志"
     },
     {
       "url": "/zh/contact",
-      "text": "聯繫我們"
+      "text": "联系我们"
     }
   ]
 }

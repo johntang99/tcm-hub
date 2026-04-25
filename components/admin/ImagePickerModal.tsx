@@ -24,6 +24,8 @@ interface ProviderItem {
 }
 
 type SourceTab = 'library' | 'unsplash' | 'pexels';
+const MAX_UPLOAD_MB = 3;
+const MAX_UPLOAD_BYTES = MAX_UPLOAD_MB * 1024 * 1024;
 
 async function parseApiPayload(response: Response) {
   const text = await response.text();
@@ -154,6 +156,10 @@ export function ImagePickerModal({ open, siteId, onClose, onSelect }: ImagePicke
   };
 
   const handleUpload = async (file: File) => {
+    if (file.size > MAX_UPLOAD_BYTES) {
+      setStatus(`File is too large. Please upload an image smaller than ${MAX_UPLOAD_MB}MB.`);
+      return;
+    }
     setUploading(true);
     setStatus(null);
     const formData = new FormData();
@@ -273,7 +279,7 @@ export function ImagePickerModal({ open, siteId, onClose, onSelect }: ImagePicke
                 }}
               />
               <span className="px-3 py-1.5 rounded-md border border-gray-200 hover:bg-gray-50">
-                {uploading ? 'Uploading…' : 'Upload'}
+                {uploading ? 'Uploading…' : `Upload (Max ${MAX_UPLOAD_MB}MB)`}
               </span>
             </label>
             <button

@@ -15,6 +15,7 @@ import GalleryPreviewSection from '@/components/sections/GalleryPreviewSection';
 import FirstVisitSection from '@/components/sections/FirstVisitSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import CTASection from '@/components/sections/CTASection';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { getSiteDisplayName } from '@/lib/siteInfo';
 
 interface PageProps {
@@ -71,6 +72,23 @@ interface HomePageContent {
 interface PageLayoutConfig {
   sections: Array<{ id: string }>;
 }
+
+const sectionRevealConfig: Record<
+  string,
+  { distance?: number; duration?: number }
+> = {
+  hero: { distance: 30, duration: 760 },
+  credentials: { distance: 28, duration: 740 },
+  testimonials: { distance: 40, duration: 860 },
+  howItWorks: { distance: 38, duration: 840 },
+  conditions: { distance: 42, duration: 880 },
+  services: { distance: 44, duration: 900 },
+  blog: { distance: 42, duration: 880 },
+  gallery: { distance: 40, duration: 860 },
+  firstVisit: { distance: 38, duration: 840 },
+  whyChooseUs: { distance: 40, duration: 860 },
+  cta: { distance: 48, duration: 940 },
+};
 
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = params;
@@ -223,7 +241,15 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <main>
       {layoutSections.map((sectionId, index) => (
-        <Fragment key={`${sectionId}-${index}`}>{renderSection(sectionId)}</Fragment>
+        <Fragment key={`${sectionId}-${index}`}>
+          <ScrollReveal
+            delay={index * 70}
+            distance={sectionRevealConfig[sectionId]?.distance}
+            duration={sectionRevealConfig[sectionId]?.duration}
+          >
+            {renderSection(sectionId)}
+          </ScrollReveal>
+        </Fragment>
       ))}
     </main>
   );

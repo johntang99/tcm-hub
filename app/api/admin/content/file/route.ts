@@ -122,6 +122,9 @@ export async function GET(request: NextRequest) {
       if (entry?.data && !isEmptyHeaderPayload(filePath, entry.data)) {
         return NextResponse.json({ content: JSON.stringify(entry.data, null, 2) });
       }
+      if (!shouldWriteThroughFile(request)) {
+        return NextResponse.json({ message: 'File not found' }, { status: 404 });
+      }
     }
 
     const content = await fs.readFile(resolved, 'utf-8');
@@ -483,7 +486,17 @@ export async function DELETE(request: NextRequest) {
   }
 
   if (canUseContentDb()) {
-    await deleteContentEntry({ siteId, locale, path: filePath });
+    const deletion = await deleteContentEntry({ siteId, locale, path: filePath });
+    if (!deletion.success) {
+      return NextResponse.json(
+        {
+          message:
+            deletion.error || 'Failed to delete from DB.',
+          fileSync: 'skipped',
+        },
+        { status: 500 }
+      );
+    }
     if (!shouldWriteThroughFile(request)) {
       return NextResponse.json({ success: true, fileSync: 'skipped' });
     }
