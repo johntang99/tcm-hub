@@ -218,7 +218,9 @@ export default async function LocaleLayout({
           variant={headerConfig?.menu?.variant || siteInfo?.headerVariant || 'default'}
           headerConfig={headerConfig ?? undefined}
         />
-        <div className="flex-grow">{children}</div>
+        <div id="main-content" tabIndex={-1} className="flex-grow">
+          {children}
+        </div>
         <Footer
           locale={locale as Locale}
           siteId={site.id}

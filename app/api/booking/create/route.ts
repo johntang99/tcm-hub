@@ -10,6 +10,7 @@ import {
 } from '@/lib/booking/storage';
 import { sendBookingEmails } from '@/lib/booking/email';
 import { sendBookingSms } from '@/lib/booking/sms';
+import { forwardToLeadHub } from '@/lib/lead-hub-forward';
 import type { BookingRecord, BookingServiceType } from '@/lib/types';
 
 export async function POST(request: NextRequest) {
@@ -164,6 +165,28 @@ export async function POST(request: NextRequest) {
     message: 'Your booking is confirmed.',
     adminRecipients: settings.notificationPhones || [],
   });
+
+  // Fire-and-forget forward to BAAM Lead Hub. Must not affect the
+  // user-facing booking confirmation.
+  try {
+    await forwardToLeadHub(siteId, {
+      source: 'booking',
+      source_form_name: 'booking',
+      source_landing_page: '/book',
+      contact: {
+        name,
+        phone,
+        email,
+        language_preference: null,
+      },
+      service_requested: service.name,
+      message:
+        typeof note === 'string' && note.trim() ? note : null,
+      raw_payload: { booking, service: { id: service.id, name: service.name } },
+    });
+  } catch {
+    /* forwarder never throws; defensive no-op */
+  }
 
   return NextResponse.json({ booking });
 }

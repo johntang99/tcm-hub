@@ -84,6 +84,25 @@
    ============================================ */
 
 @layer utilities {
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -3rem;
+    z-index: 1000;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    background: #111827;
+    color: #ffffff;
+    text-decoration: none;
+    transition: top 0.2s ease;
+  }
+
+  .skip-link:focus {
+    top: 0.75rem;
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+
   .text-display {
     font-family: var(--font-display, var(--font-body-default));
   }

@@ -1463,6 +1463,12 @@ Implement via Next.js metadata API + JSON-LD script tags.
 - [ ] No console errors on any page
 - [ ] No broken links (run link checker)
 - [ ] All forms submit and show confirmation
+- [ ] Keyboard-only navigation works across header, forms, and CTA flows
+- [ ] Skip link exists and moves focus to primary content container
+- [ ] All form controls have programmatic labels (`label` + `htmlFor`/`id`)
+- [ ] Form success/error feedback uses screen-reader announcements (`role="status"`/`role="alert"`)
+- [ ] All embedded iframes include meaningful `title` attributes
+- [ ] Informative images include meaningful alt text (decorative images use empty alt)
 - [ ] 404 page styled
 - [ ] Favicon and app icons set
 - [ ] Privacy Policy and Terms of Service pages exist
@@ -1515,6 +1521,7 @@ Site must not go live without passing all of these:
 - [ ] All acceptance tests pass
 - [ ] Production URL live and accessible with SSL
 - [ ] All pages render correctly on production
+- [ ] Accessibility quick audit (WCAG 2.1 AA baseline) passes on core routes
 - [ ] Admin works on production
 - [ ] Sitemap submitted to Google and Bing
 - [ ] Content backup exported and committed
@@ -2034,6 +2041,13 @@ Create `/scripts/qa-checks.ts` (or equivalent) that runs these checks:
 - Check: all image URLs resolve (no broken images)
 - Run: `npm run qa:content`
 
+**Accessibility Baseline (WCAG 2.1 AA Quick Checks):**
+- Verify keyboard navigation for primary flows (home, services, contact, booking)
+- Verify skip-link visibility and behavior
+- Verify form label associations and live-region announcements
+- Verify all embedded iframes have a `title` and all meaningful images have alt text
+- Run: `npm run qa:a11y`
+
 ### 21.3 When to Run
 
 | Check | When |
@@ -2052,6 +2066,7 @@ Add to Phase 4 done-gate:
 - [ ] `npm run qa:seo` — all pages have unique title + description + canonical
 - [ ] `npm run qa:links` — 0 broken links
 - [ ] `npm run qa:content` — 0 placeholder strings remaining
+- [ ] `npm run qa:a11y` — no critical accessibility violations on core routes
 
 ---
 

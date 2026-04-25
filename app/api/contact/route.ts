@@ -4,6 +4,7 @@ import { loadSiteInfo } from '@/lib/content';
 import { getDefaultSite, getSiteByHost } from '@/lib/sites';
 import type { Locale, SiteInfo } from '@/lib/types';
 import { getSiteDisplayName } from '@/lib/siteInfo';
+import { forwardToLeadHub } from '@/lib/lead-hub-forward';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -295,6 +296,30 @@ export async function POST(request: NextRequest) {
       autoReply: autoReplyEmail.data?.id,
       timestamp: new Date().toISOString(),
     });
+
+    // Fire-and-forget forward to BAAM Lead Hub.
+    // Must not affect the user-facing response if it fails.
+    try {
+      const host = request.headers.get('host');
+      const site = (await getSiteByHost(host)) || (await getDefaultSite());
+      const siteId = site?.id || null;
+      await forwardToLeadHub(siteId, {
+        source: 'organic_site_form',
+        source_form_name: 'contact',
+        source_landing_page: '/contact',
+        contact: {
+          name,
+          phone,
+          email,
+          language_preference: locale === 'zh' ? 'zh' : 'en',
+        },
+        service_requested: reasonLabel,
+        message,
+        raw_payload: { name, email, phone, reason, message, locale },
+      });
+    } catch {
+      /* forwarder already never throws; defensive no-op */
+    }
 
     return NextResponse.json(
       { 
