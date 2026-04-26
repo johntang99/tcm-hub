@@ -26,6 +26,8 @@ export interface SiteConfig {
   supportedLocales: Locale[];
   /** Slug of the linked store in pureherbhealth (herb store platform). Defaults to site id. */
   herbStoreSlug?: string;
+  /** GTM container ID (e.g., 'GTM-XXXXXXX'). When set, the GTM snippet is injected on every page. */
+  gtmContainerId?: string;
   createdAt: string;
   updatedAt: string;
 }

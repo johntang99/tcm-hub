@@ -1,5 +1,6 @@
 import LandingPageForm from './LandingPageForm';
 import GclidCapture from './GclidCapture';
+import LpAnalytics from './LpAnalytics';
 import type { LandingPageJsonV2 } from '@/lib/landingPageTypes';
 
 export default function LandingPageRenderer({
@@ -14,6 +15,7 @@ export default function LandingPageRenderer({
   return (
     <div className="bg-white">
       <GclidCapture />
+      <LpAnalytics slug={slug} />
 
       {/* Hero */}
       <section className="bg-white">

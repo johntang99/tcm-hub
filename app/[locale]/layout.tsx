@@ -13,6 +13,7 @@ import {
 import type { FooterSection, SeoConfig, SiteInfo } from '@/lib/types';
 import Header, { type HeaderConfig } from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import GtmLoader from '@/components/analytics/GtmLoader';
 import { getBaseUrlFromHost } from '@/lib/seo';
 import { getSiteDisplayName } from '@/lib/siteInfo';
 
@@ -179,6 +180,9 @@ export default async function LocaleLayout({
   
   return (
     <>
+      {/* GTM loader — only injects when site.gtmContainerId is set */}
+      <GtmLoader containerId={site.gtmContainerId} />
+
       {/* Inject theme CSS variables */}
       {theme && (
         <style dangerouslySetInnerHTML={{ __html: themeStyle }} />

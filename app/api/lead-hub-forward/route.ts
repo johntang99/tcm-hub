@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSiteByHost } from '@/lib/sites';
 import { forwardToLeadHub, type LeadHubPayload } from '@/lib/lead-hub-forward';
+import { forwardConversionToBAAM } from '@/lib/conversion-forward';
 
 export const runtime = 'nodejs';
 
@@ -68,6 +69,19 @@ export async function POST(req: NextRequest) {
       { status: 502 },
     );
   }
+
+  // Best-effort: also record the conversion on baam-platform so it's
+  // visible to Smart Bidding via the offline-conversion-sync cron.
+  // Skip for duplicate lead-hub responses (no fresh conversion to count).
+  if (!result.duplicate && payload.source === 'campaign_studio_lp') {
+    void forwardConversionToBAAM(site.id, {
+      conversion_type: 'form',
+      gclid: payload.gclid ?? null,
+      lead_id: result.lead_id ?? null,
+      landing_page_slug: payload.source_landing_page ?? null,
+    });
+  }
+
   return NextResponse.json({
     ok: true,
     lead_id: result.lead_id,

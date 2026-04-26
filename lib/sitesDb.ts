@@ -10,6 +10,7 @@ interface SiteRow {
   default_locale: string;
   supported_locales: string[];
   herb_store_slug: string | null;
+  gtm_container_id: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -23,6 +24,7 @@ function mapSiteRow(row: SiteRow): SiteConfig {
     defaultLocale: row.default_locale as SiteConfig['defaultLocale'],
     supportedLocales: (row.supported_locales || []) as SiteConfig['supportedLocales'],
     herbStoreSlug: row.herb_store_slug || undefined,
+    gtmContainerId: row.gtm_container_id || undefined,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -129,6 +131,7 @@ export async function updateSiteDb(
     default_locale: updates.defaultLocale,
     supported_locales: updates.supportedLocales,
     herb_store_slug: updates.herbStoreSlug !== undefined ? (updates.herbStoreSlug || null) : undefined,
+    gtm_container_id: updates.gtmContainerId !== undefined ? (updates.gtmContainerId || null) : undefined,
     updated_at: new Date().toISOString(),
   };
 

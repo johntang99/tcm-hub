@@ -51,6 +51,18 @@ export default function LandingPageForm({
         return;
       }
       setDone(true);
+
+      // GTM dataLayer push — paired with the gtm-template-v1 trigger.
+      if (typeof window !== 'undefined') {
+        const dl = ((window as unknown as { dataLayer?: unknown[] }).dataLayer ??=
+          []);
+        dl.push({
+          event: 'lp_form_submit',
+          landing_page_slug: slug,
+          gclid: payload.gclid ?? null,
+        });
+      }
+
       if (thankYouSlug) {
         // Soft-redirect to thank-you path on the same site.
         window.location.href = `/${thankYouSlug.replace(/^\/+/, '')}`;

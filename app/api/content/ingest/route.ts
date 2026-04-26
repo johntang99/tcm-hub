@@ -195,7 +195,7 @@ async function handleLandingPageV2(body: Record<string, unknown>) {
     if (idempotencyKey) {
       const existing = await findByIdempotencyKey(siteId, idempotencyKey);
       if (existing) {
-        const url = await buildLpUrl(siteId, existing.slug);
+        const url = await buildLpUrl(siteId, existing.slug, existing.language);
         return NextResponse.json({ ok: true, url, entryId: existing.id });
       }
     }
@@ -218,7 +218,7 @@ async function handleLandingPageV2(body: Record<string, unknown>) {
       );
     }
 
-    const url = await buildLpUrl(siteId, slug);
+    const url = await buildLpUrl(siteId, slug, language);
     return NextResponse.json({ ok: true, url, entryId: result.id });
   } catch (e: unknown) {
     return NextResponse.json(
@@ -228,7 +228,11 @@ async function handleLandingPageV2(body: Record<string, unknown>) {
   }
 }
 
-async function buildLpUrl(siteId: string, slug: string): Promise<string> {
+async function buildLpUrl(
+  siteId: string,
+  slug: string,
+  language: string,
+): Promise<string> {
   let domain = 'https://example.com';
   try {
     const siteConfig = await getSiteById(siteId);
@@ -240,5 +244,5 @@ async function buildLpUrl(siteId: string, slug: string): Promise<string> {
   } catch {
     /* fallback */
   }
-  return `${domain}/lp/${slug}`;
+  return `${domain}/${language}/lp/${slug}`;
 }
