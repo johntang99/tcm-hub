@@ -72,6 +72,7 @@ curl http://localhost:3003/api/health
 
 ## Key docs
 
+- `LOCALE_ROUTING_SOP.md`
 - `DRHUANG_CLINIC_REPRODUCTION_GUIDE.md`
 - `SITE_REPRODUCTION_TEMPLATE.md`
 - `NEW_SITE_DUPLICATION_CHECKLIST.md`

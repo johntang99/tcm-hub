@@ -161,11 +161,11 @@
       "icon": "MapPin",
       "title": "到訪我們",
       "action": {
-        "link": "https://maps.google.com/?q=71+East+Main+Street+Middletown+NY+10940",
+        "link": "https://maps.google.com/?q=71+East+Main+Street,+Middletown,+NY+10940",
         "text": "獲取路線"
       },
-      "primary": "71 East Main Street",
-      "secondary": "Middletown, NY 10940",
+      "primary": "71 East Main Street, Middletown, NY 10940",
+      "secondary": null,
       "description": "提供免費停車"
     },
     {

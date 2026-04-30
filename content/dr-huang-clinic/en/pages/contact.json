@@ -174,11 +174,11 @@
       "icon": "MapPin",
       "title": "Visit Us",
       "action": {
-        "link": "https://maps.google.com/?q=71+East+Main+Street+Middletown+NY+10940",
+        "link": "https://maps.google.com/?q=71+East+Main+Street,+Middletown,+NY+10940",
         "text": "Get Directions"
       },
-      "primary": "71 East Main Street",
-      "secondary": "Middletown, NY 10940",
+      "primary": "71 East Main Street, Middletown, NY 10940",
+      "secondary": null,
       "description": "Free parking available"
     },
     {

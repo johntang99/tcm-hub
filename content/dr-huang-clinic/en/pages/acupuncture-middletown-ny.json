@@ -111,14 +111,14 @@
     "phone": "(845) 381-1106",
     "state": "NY",
     "title": "Visit Dr. Huang Clinic in Middletown, NY",
-    "address": "71 East Main Street",
+    "address": "71 East Main Street, Middletown, NY 10940",
     "clinicName": "Dr. Huang Clinic",
     "primaryCta": {
       "link": "/en/contact",
       "text": "Book Your Appointment"
     },
     "mapEmbedUrl": "https://www.google.com/maps?q=71+East+Main+Street,+Middletown,+NY+10940&output=embed",
-    "directionsUrl": "https://maps.google.com/?q=71+East+Main+Street+Middletown+NY+10940"
+    "directionsUrl": "https://maps.google.com/?q=71+East+Main+Street,+Middletown,+NY+10940"
   },
   "services": {
     "items": [
