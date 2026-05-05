@@ -82,11 +82,17 @@
     },
     "variant": "single-column",
     "subtitle": "Fill out the form below and we'll get back to you as soon as possible",
+    "senderName": "Dr Huang Clinic",
+    "senderEmail": "no-reply@baamplatform.com",
     "errorMessage": "Sorry, there was an error sending your message. Please try calling us directly at (845) 381-1106.",
     "submitButton": {
       "text": "Send Message"
     },
-    "successMessage": "Thank you for contacting us! We'll get back to you within 24 hours."
+    "successMessage": "Thank you for contacting us! We'll get back to you within 24 hours.",
+    "autoReplyMessage": "Thank you for contacting <strong>{businessName}</strong>. We've received your message and will respond shortly.",
+    "notificationEmail": "sancai.acu@gmail.com",
+    "notificationEmails": [],
+    "notificationMessage": "⚡ Action Required: New customer inquiry"
   },
   "hero": {
     "title": "Get in Touch",

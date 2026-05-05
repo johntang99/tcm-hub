@@ -201,26 +201,6 @@
         "shortDescription": "A traditional Chinese medical massage that combines acupressure, guided stretching, and joint mobilization into one integrated treatment."
       },
       {
-        "id": "gua-sha",
-        "icon": "Shield",
-        "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/gua-sha-22.png",
-        "order": 6,
-        "title": "Gua Sha Therapy",
-        "benefits": [
-          "Rapid pain relief",
-          "Reduced muscle tension",
-          "Decreased inflammation",
-          "Added support for healthy immune function",
-          "Enhanced circulation",
-          "Can support a more comfortable recovery after illness",
-          "Relief from headaches",
-          "Relief for neck and shoulder tightness"
-        ],
-        "whatToExpect": "Your practitioner will first apply oil to the area being treated. A smooth-edged tool is then glided across the skin with firm, downward strokes to help address tightness and discomfort. You’ll feel clear pressure, and the scraping sensation can be intense, though most people tolerate it well. Redness or purple-toned marks often appear during the session and typically resolve on their own within 2 to 7 days.",
-        "fullDescription": "Gua Sha is a hands-on technique that uses a smooth tool and controlled friction to promote circulation, help open the meridians, and bring areas of stagnation to the surface so the body can clear them more efficiently. **Scope of Application** It is commonly used for colds, fever, sore throat, heatstroke, hypertension, and for tightness or stiffness in the neck, shoulders, and back. **Precautions** Do not perform Gua Sha over broken skin or moles. It isn’t appropriate for people with bleeding disorders, and it should be avoided on the abdomen during pregnancy. After treatment, keep the area warm and covered, and avoid cold drafts or bathing right away.",
-        "shortDescription": "A traditional scraping technique used to ease muscle tightness, support healthy circulation, and help soothe inflammation."
-      },
-      {
         "id": "dietary-therapy",
         "icon": "Apple",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/chinese-dietary-10.jpg",

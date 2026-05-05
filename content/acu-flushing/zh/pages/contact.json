@@ -73,11 +73,19 @@
     },
     "variant": "single-column",
     "subtitle": "填写下面的表格，我们会尽快回复您",
+    "senderName": "Flushing Acupuncture",
+    "senderEmail": "no-reply@baamplatform.com",
     "errorMessage": "抱歉，发送您的消息时出错。请直接致电我们 (718) 888-9512",
     "submitButton": {
       "text": "发送消息"
     },
-    "successMessage": "感谢您联系我们！我们将在24小时内回复您。"
+    "successMessage": "感谢您联系我们！我们将在24小时内回复您。",
+    "autoReplyMessage": "感谢您联系 <strong>{businessName}</strong>。我们已收到您的留言，会尽快回复。",
+    "notificationEmail": "acupuncture41ave@gmail.com",
+    "notificationEmails": [
+      "baamplatform@gmail.com"
+    ],
+    "notificationMessage": "⚡ 需要处理：收到新的客户咨询"
   },
   "hero": {
     "title": "联系我们",

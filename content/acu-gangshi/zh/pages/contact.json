@@ -36,6 +36,12 @@
   },
   "form": {
     "title": "给我们留言",
+    "notificationEmail": "shigangusus@yahoo.com",
+    "notificationEmails": [],
+    "senderName": "Gang Shi Acupuncture",
+    "senderEmail": "no-reply@baamplatform.com",
+    "notificationMessage": "⚡ 需要处理：收到新的客户咨询",
+    "autoReplyMessage": "感谢您联系 <strong>{businessName}</strong>。我们已收到您的留言，会尽快回复。",
     "fields": {
       "name": {
         "label": "全名",

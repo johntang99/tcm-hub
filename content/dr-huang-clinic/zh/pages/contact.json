@@ -32,6 +32,12 @@
   },
   "form": {
     "title": "給我們留言",
+    "notificationEmail": "sancai.acu@gmail.com",
+    "notificationEmails": [],
+    "senderName": "黃醫師診所",
+    "senderEmail": "no-reply@baamplatform.com",
+    "notificationMessage": "⚡ 需要處理：收到新的客戶諮詢",
+    "autoReplyMessage": "感謝您聯絡 <strong>{businessName}</strong>。我們已收到您的留言，會盡快回覆。",
     "fields": {
       "name": {
         "label": "全名",

@@ -265,15 +265,6 @@
         "subtitle": "Therapeutic massage along meridians",
         "fullDescription": "Applies manual techniques to the meridians, muscles, and joints to harmonize Qi and blood, relax the tendons, clear the meridians, and improve local circulation.",
         "shortDescription": "Traditional Chinese medical massage"
-      },
-      {
-        "id": "gua-sha",
-        "icon": "Shield",
-        "link": "/en/services#gua-sha",
-        "title": "Gua Sha",
-        "subtitle": "Scraping therapy to release stagnation",
-        "fullDescription": "Uses a specialized scraping tool to rub the skin over meridians and acupuncture points until sha (redness) appears. This process promotes the movement of Qi and blood, clears the meridians, and expels wind-cold or damp-heat pathogens",
-        "shortDescription": "Scraping therapy for pain and inflammation"
       }
     ],
     "subtitle": "Traditional healing methods backed by modern science"

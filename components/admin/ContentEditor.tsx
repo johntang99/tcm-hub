@@ -41,6 +41,7 @@ import {
 import { CaseStudiesPanel } from '@/components/admin/panels/CaseStudiesPanel';
 import { PostsPanel } from '@/components/admin/panels/PostsPanel';
 import { PricingPanel } from '@/components/admin/panels/PricingPanel';
+import { ContactNotificationPanel } from '@/components/admin/panels/ContactNotificationPanel';
 import { SECTION_VARIANT_OPTIONS, SITE_SETTINGS_PATHS } from '@/components/admin/utils/editorConstants';
 import { getPathValue, toTitleCase } from '@/components/admin/utils/editorHelpers';
 import type { ThemePreset } from '@/lib/theme-presets';
@@ -1096,6 +1097,7 @@ export function ContentEditor({
   const isHeaderFile = activeFile?.path === 'header.json';
   const isThemeFile = activeFile?.path === 'theme.json';
   const isHomePageFile = activeFile?.path === 'pages/home.json';
+  const isContactPageFile = activeFile?.path === 'pages/contact.json';
   const isPricingPageFile = activeFile?.path === 'pages/pricing.json';
   const isConditionsPageFile = activeFile?.path === 'pages/conditions.json';
   const isCaseStudiesPageFile = activeFile?.path === 'pages/case-studies.json';
@@ -2515,6 +2517,13 @@ export function ContentEditor({
                   hero={formData.hero}
                   updateFormValue={updateFormValue}
                   openImagePicker={openImagePicker}
+                />
+              )}
+
+              {showSharedPanels && isContactPageFile && formData?.form && (
+                <ContactNotificationPanel
+                  form={formData.form}
+                  updateFormValue={updateFormValue}
                 />
               )}
 

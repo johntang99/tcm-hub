@@ -36,6 +36,12 @@
   },
   "form": {
     "title": "Send Us a Message",
+    "notificationEmail": "contact@tcm-network.com",
+    "notificationEmails": [],
+    "senderName": "TCM Network",
+    "senderEmail": "no-reply@baamplatform.com",
+    "notificationMessage": "⚡ Action Required: New customer inquiry",
+    "autoReplyMessage": "Thank you for contacting <strong>{businessName}</strong>. We've received your message and will respond shortly.",
     "fields": {
       "name": {
         "label": "Full Name",
