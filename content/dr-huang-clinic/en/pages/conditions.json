@@ -14,9 +14,13 @@
   },
   "hero": {
     "title": "Conditions We Treat",
-    "variant": "split-photo-right",
+    "variant": "gallery-background",
     "subtitle": "Traditional Chinese Medicine offers natural, effective solutions for a wide range of health concerns",
-    "backgroundImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/gallery/needles-sterile.jpg"
+    "backgroundImage": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/gallery/needles-sterile.jpg",
+    "gallery": [
+      "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/blog/gua-sha-22.png",
+      "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/cupping-10.jpg"
+    ]
   },
   "categories": [
     {

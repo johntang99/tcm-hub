@@ -9,7 +9,8 @@ import { ServicesPage, Locale } from '@/lib/types';
 import { Badge, Card, CardHeader, CardTitle, CardDescription, CardContent, Icon, Accordion } from '@/components/ui';
 import CTASection from '@/components/sections/CTASection';
 import ServicesSection from '@/components/sections/ServicesSection';
-import { Award, Users, Shield } from 'lucide-react';
+import HeroSection from '@/components/sections/HeroSection';
+import { HeroVariant } from '@/lib/section-variants';
 
 interface ServicesPageProps {
   params: {
@@ -35,12 +36,6 @@ interface HeaderMenuConfig {
     variant?: 'default' | 'centered' | 'transparent' | 'stacked';
   };
 }
-
-const trustIconMap = {
-  Award,
-  Users,
-  Shield,
-} as const;
 
 export async function generateMetadata({ params }: ServicesPageProps): Promise<Metadata> {
   const { locale } = params;
@@ -88,35 +83,6 @@ export default async function ServicesPageComponent({ params }: ServicesPageProp
     : [...blogPosts]
         .sort((a, b) => (b.publishDate || '').localeCompare(a.publishDate || ''))
         .slice(0, 3);
-  const trustItemsDefault = [
-    {
-      icon: 'Award',
-      title: locale === 'en' ? 'Proven Expertise' : '专业团队',
-      description: locale === 'en' ? 'Proven, standards-based service quality' : '基于标准与经验的高质量服务',
-    },
-    {
-      icon: 'Users',
-      title: locale === 'en' ? 'Personalized Plans' : '个性化方案',
-      description: locale === 'en' ? 'Tailored to your goals and preferences' : '根据您的目标与偏好定制',
-    },
-    {
-      icon: 'Shield',
-      title: locale === 'en' ? 'Reliable & Trusted' : '可靠可信',
-      description: locale === 'en' ? 'Professional quality and clear process' : '高质量服务与清晰流程',
-    },
-  ];
-  const trustItems = (content.trustBar?.items && content.trustBar.items.length > 0
-    ? content.trustBar.items
-    : trustItemsDefault
-  ).map((item) => ({
-    ...item,
-    icon: trustIconMap[item.icon as keyof typeof trustIconMap] || Shield,
-  }));
-  const heroPlaceholder = content.heroPlaceholder || {
-    emoji: '🧘',
-    title: locale === 'en' ? 'Professional Services' : '专业服务',
-    subtitle: locale === 'en' ? 'Customized plans tailored to your goals' : '根据您的目标定制方案',
-  };
   const overviewTitle = overview.title || (locale === 'en' ? 'Benefits of Our Care Model' : '我们的服务优势');
   const servicesBadge = content.servicesList?.badge || (locale === 'en' ? 'OUR SERVICES' : '服务项目');
   const servicesTitleFallback = locale === 'en' ? 'Our Services' : '服务项目';
@@ -134,12 +100,7 @@ export default async function ServicesPageComponent({ params }: ServicesPageProp
   const isEnabled = (sectionId: string) => !useLayout || layoutOrder.has(sectionId);
   const sectionStyle = (sectionId: string) =>
     useLayout ? { order: layoutOrder.get(sectionId) ?? 0 } : undefined;
-  const heroVariant = hero.variant || 'split-photo-right';
-  const centeredHero = heroVariant === 'centered';
-  const imageLeftHero = heroVariant === 'split-photo-left';
-  const backgroundHero = heroVariant === 'photo-background' && Boolean(hero.backgroundImage);
   const isTransparentMenu = headerConfig?.menu?.variant === 'transparent';
-  const heroTopPaddingClass = isTransparentMenu ? 'pt-30 md:pt-36' : 'pt-20 md:pt-24';
   const sectionSpacingStyle = {
     paddingTop: 'var(--section-padding-y, 5rem)',
     paddingBottom: 'var(--section-padding-y, 5rem)',
@@ -148,99 +109,35 @@ export default async function ServicesPageComponent({ params }: ServicesPageProp
     borderRadius: 'var(--radius-base, 0.75rem)',
     boxShadow: 'var(--shadow-base, 0 4px 20px rgba(0,0,0,0.08))',
   };
-  const heroBottomSpacingStyle = { paddingBottom: 'var(--section-padding-y, 5rem)' };
 
   return (
     <main className="min-h-screen flex flex-col">
       {/* Hero Section */}
       {isEnabled('hero') && (
-        <section
-          className={`relative ${heroTopPaddingClass} px-4 overflow-hidden ${
-            backgroundHero
-              ? 'bg-cover bg-center before:absolute before:inset-0 before:bg-white/75'
-              : 'bg-gradient-to-br from-[var(--backdrop-primary)] via-[var(--backdrop-secondary)] to-[var(--backdrop-primary)]'
-          }`}
-          style={{
-            ...(sectionStyle('hero') || {}),
-            ...heroBottomSpacingStyle,
-            ...(backgroundHero ? { backgroundImage: `url(${hero.backgroundImage})` } : {}),
-          }}
-        >
-        {/* Decorative Background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-64 h-64 bg-primary-100 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 left-10 w-64 h-64 bg-secondary-50 rounded-full blur-3xl"></div>
+        <div style={sectionStyle('hero')}>
+          <HeroSection
+            variant={(hero.variant as HeroVariant) || 'split-photo-right'}
+            topSpacingMode={isTransparentMenu ? 'extra' : 'default'}
+            tagline={hero.title}
+            description={hero.subtitle}
+            image={hero.backgroundImage || undefined}
+            gallery={Array.isArray((hero as any).gallery) ? (hero as any).gallery : undefined}
+            photoOverlayOpacity={
+              typeof (hero as any).photoOverlayOpacity === 'number'
+                ? (hero as any).photoOverlayOpacity
+                : 0.2
+            }
+            photoContentPosition={
+              (hero as any).photoContentPosition === 'center' ||
+              (hero as any).photoContentPosition === 'center-below' ||
+              (hero as any).photoContentPosition === 'left' ||
+              (hero as any).photoContentPosition === 'left-below' ||
+              (hero as any).photoContentPosition === 'lower'
+                ? (hero as any).photoContentPosition
+                : 'left-below'
+            }
+          />
         </div>
-
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className={`grid gap-12 items-center ${centeredHero ? 'max-w-4xl mx-auto' : 'lg:grid-cols-2'}`}>
-            {/* Left Column - Text Content */}
-            <div className={`text-center ${centeredHero ? '' : 'lg:text-left'}`}>
-              <h1 className="text-display font-bold text-gray-900 mb-6 leading-tight">
-                {hero.title}
-              </h1>
-              <p className="text-subheading text-gray-600 leading-relaxed mb-8">
-                {hero.subtitle}
-              </p>
-
-              {/* Trust Bar */}
-              <div className={`grid sm:grid-cols-3 gap-4 mt-8 ${centeredHero ? 'max-w-3xl mx-auto' : ''}`}>
-                {trustItems.map((item) => {
-                  const TrustIcon = item.icon;
-                  return (
-                    <div
-                      key={item.title}
-                      className="flex flex-col items-center sm:items-start gap-3 bg-white/80 backdrop-blur p-4 border border-gray-200"
-                      style={tokenSurfaceStyle}
-                    >
-                      <div className="w-12 h-12 bg-primary-50 flex items-center justify-center shrink-0" style={{ borderRadius: 'var(--radius-base, 0.5rem)' }}>
-                        <TrustIcon className="w-6 h-6 text-primary" />
-                      </div>
-                      <div className="text-center sm:text-left">
-                        <p className="font-semibold text-gray-900 text-small">{item.title}</p>
-                        <p className="text-small text-gray-600">{item.description}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Right Column - Hero Image */}
-            {!centeredHero && (
-            <div className={`hidden md:block w-full ${imageLeftHero ? 'lg:order-first' : ''}`}>
-              <div className="overflow-hidden" style={tokenSurfaceStyle}>
-                {hero.backgroundImage ? (
-                  <Image
-                    src={hero.backgroundImage}
-                    alt={hero.title}
-                    width={1200}
-                    height={1200}
-                    className="w-full h-auto object-contain"
-                  />
-                ) : (
-                  <div className="w-full aspect-square flex flex-col items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 relative p-8">
-                    <div className="absolute top-8 left-8 w-20 h-20 bg-primary-50/20 rounded-full"></div>
-                    <div className="absolute bottom-8 right-8 w-28 h-28 bg-secondary-50/20 rounded-full"></div>
-                    <div className="absolute top-1/3 right-12 w-16 h-16 bg-primary-100/20 rounded-full"></div>
-
-                    <div className="relative z-10 text-center">
-                      <div className="text-8xl mb-6">{heroPlaceholder.emoji || '🧘'}</div>
-                      <p className="text-gray-700 font-semibold text-subheading mb-2">
-                        {heroPlaceholder.title}
-                      </p>
-                      <p className="text-gray-600 text-small">
-                        {heroPlaceholder.subtitle}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-            )}
-          </div>
-        </div>
-        </section>
       )}
 
       {/* Overview Section */}

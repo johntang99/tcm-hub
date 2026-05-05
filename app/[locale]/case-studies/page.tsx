@@ -7,6 +7,8 @@ import { buildPageMetadata } from '@/lib/seo';
 import { Locale } from '@/lib/types';
 import { Badge, Card, Icon, Tabs } from '@/components/ui';
 import CTASection from '@/components/sections/CTASection';
+import HeroSection from '@/components/sections/HeroSection';
+import { HeroVariant } from '@/lib/section-variants';
 
 interface CaseStudy {
   id: string;
@@ -20,10 +22,18 @@ interface CaseStudy {
 
 interface CaseStudiesPageData {
   hero: {
-    variant?: 'centered' | 'split-photo-right' | 'split-photo-left' | 'photo-background';
+    variant?:
+      | 'centered'
+      | 'split-photo-right'
+      | 'split-photo-left'
+      | 'photo-background'
+      | 'gallery-background';
     title: string;
     subtitle: string;
     backgroundImage?: string;
+    gallery?: string[];
+    photoOverlayOpacity?: number;
+    photoContentPosition?: 'center' | 'center-below' | 'left' | 'left-below' | 'lower';
   };
   introduction: {
     text: string;
@@ -124,13 +134,7 @@ export default async function CaseStudiesPage({ params }: CaseStudiesPageProps) 
   const isEnabled = (sectionId: string) => !useLayout || layoutOrder.has(sectionId);
   const sectionStyle = (sectionId: string) =>
     useLayout ? { order: layoutOrder.get(sectionId) ?? 0 } : undefined;
-  const heroVariant = hero.variant || 'split-photo-right';
-  const centeredHero = heroVariant === 'centered';
-  const imageLeftHero = heroVariant === 'split-photo-left';
-  const backgroundHero = heroVariant === 'photo-background' && Boolean(hero.backgroundImage);
   const isTransparentMenu = headerConfig?.menu?.variant === 'transparent';
-  const heroTopPaddingClass = isTransparentMenu ? 'pt-30 md:pt-36' : 'pt-20 md:pt-24';
-  const heroBottomSpacingStyle = { paddingBottom: 'var(--section-padding-y, 5rem)' };
   const tokenSurfaceStyle = {
     borderRadius: 'var(--radius-base, 0.75rem)',
     boxShadow: 'var(--shadow-base, 0 4px 20px rgba(0,0,0,0.08))',
@@ -154,57 +158,28 @@ export default async function CaseStudiesPage({ params }: CaseStudiesPageProps) 
     <main className="min-h-screen flex flex-col">
       {/* Hero Section */}
       {isEnabled('hero') && (
-        <section
-          className={`relative ${heroTopPaddingClass} px-4 overflow-hidden ${
-            backgroundHero
-              ? 'bg-cover bg-center before:absolute before:inset-0 before:bg-white/75'
-              : 'bg-gradient-to-br from-[var(--backdrop-primary)] via-[var(--backdrop-secondary)] to-[var(--backdrop-primary)]'
-          }`}
-          style={{
-            ...(sectionStyle('hero') || {}),
-            ...heroBottomSpacingStyle,
-            ...(backgroundHero ? { backgroundImage: `url(${hero.backgroundImage})` } : {}),
-          }}
-        >
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-64 h-64 bg-primary-100 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 left-10 w-64 h-64 bg-secondary-50 rounded-full blur-3xl"></div>
+        <div style={sectionStyle('hero')}>
+          <HeroSection
+            variant={(hero.variant as HeroVariant) || 'split-photo-right'}
+            topSpacingMode={isTransparentMenu ? 'extra' : 'default'}
+            tagline={hero.title}
+            description={hero.subtitle}
+            image={hero.backgroundImage || undefined}
+            gallery={Array.isArray(hero.gallery) ? hero.gallery : undefined}
+            photoOverlayOpacity={
+              typeof hero.photoOverlayOpacity === 'number' ? hero.photoOverlayOpacity : 0.2
+            }
+            photoContentPosition={
+              hero.photoContentPosition === 'center' ||
+              hero.photoContentPosition === 'center-below' ||
+              hero.photoContentPosition === 'left' ||
+              hero.photoContentPosition === 'left-below' ||
+              hero.photoContentPosition === 'lower'
+                ? hero.photoContentPosition
+                : 'left-below'
+            }
+          />
         </div>
-
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className={`grid gap-12 items-center ${centeredHero ? 'max-w-4xl mx-auto' : 'lg:grid-cols-2'}`}>
-            <div className={`text-center ${centeredHero ? '' : 'lg:text-left'}`}>
-              <h1 className="text-display font-bold text-gray-900 mb-6 leading-tight">
-                {hero.title}
-              </h1>
-              <p className="text-subheading text-gray-600 leading-relaxed">
-                {hero.subtitle}
-              </p>
-            </div>
-
-            {!centeredHero && (
-            <div className={`hidden md:block w-full ${imageLeftHero ? 'lg:order-first' : ''}`}>
-              <div className="overflow-hidden" style={tokenSurfaceStyle}>
-                {hero.backgroundImage ? (
-                  <Image
-                    src={hero.backgroundImage}
-                    alt={hero.title}
-                    width={1200}
-                    height={1200}
-                    className="w-full h-auto object-contain"
-                    priority
-                  />
-                ) : (
-                  <div className="w-full aspect-square flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10">
-                    <Icon name="Sparkles" className="text-primary/40" size="xl" />
-                  </div>
-                )}
-              </div>
-            </div>
-            )}
-          </div>
-        </div>
-        </section>
       )}
 
       {/* Introduction */}

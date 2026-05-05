@@ -11,17 +11,27 @@ import { getSiteDisplayName } from '@/lib/siteInfo';
 import { resolveMediaUrl } from '@/lib/media-url';
 import { Button, Badge, Card, CardHeader, CardTitle, CardDescription, CardContent, Icon } from '@/components/ui';
 import CTASection from '@/components/sections/CTASection';
+import HeroSection from '@/components/sections/HeroSection';
+import { HeroVariant } from '@/lib/section-variants';
 import { CheckCircle2, MapPin, Clock } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { buildProfileBioMarkdown } from '@/lib/about-profile-bio';
 
 interface AboutPageData {
   hero: {
-    variant?: 'centered' | 'split-photo-right' | 'split-photo-left' | 'photo-background';
+    variant?:
+      | 'centered'
+      | 'split-photo-right'
+      | 'split-photo-left'
+      | 'photo-background'
+      | 'gallery-background';
     title: string;
     subtitle: string;
     description?: string;
     backgroundImage?: string;
+    gallery?: string[];
+    photoOverlayOpacity?: number;
+    photoContentPosition?: 'center' | 'center-below' | 'left' | 'left-below' | 'lower';
   };
   profile: {
     variant?: 'split' | 'stacked';
@@ -354,15 +364,12 @@ export default async function AboutPage({ params }: AboutPageProps) {
     }
     return undefined;
   };
-  const heroVariant = hero.variant || 'split-photo-right';
-  const centeredHero = heroVariant === 'centered';
-  const imageLeftHero = heroVariant === 'split-photo-left';
   const resolvedHeroBackgroundImage = resolveMediaUrl(hero.backgroundImage);
+  const resolvedHeroGallery = Array.isArray(hero.gallery)
+    ? hero.gallery.map((item) => resolveMediaUrl(item)).filter(Boolean)
+    : [];
   const resolvedProfileImage = resolveMediaUrl(profile.image);
-  const backgroundHero =
-    heroVariant === 'photo-background' && Boolean(resolvedHeroBackgroundImage);
   const isTransparentMenu = headerConfig?.menu?.variant === 'transparent';
-  const heroTopPaddingClass = isTransparentMenu ? 'pt-30 md:pt-36' : 'pt-20 md:pt-24';
   const profileVariant = profile.variant || 'split';
   const credentialsVariant = credentials.variant || 'list';
   const specializationsVariant = specializations.variant || 'grid-2';
@@ -379,85 +386,34 @@ export default async function AboutPage({ params }: AboutPageProps) {
     borderRadius: 'var(--radius-base, 0.75rem)',
     boxShadow: 'var(--shadow-base, 0 4px 20px rgba(0,0,0,0.08))',
   };
-  const heroBottomSpacingStyle = { paddingBottom: 'var(--section-padding-y, 5rem)' };
   const profileBioMarkdown = buildProfileBioMarkdown(profile);
 
   return (
     <main className="min-h-screen flex flex-col">
       {/* Hero Section */}
       {isEnabled('hero') && (
-        <section
-          className={`relative ${heroTopPaddingClass} px-4 overflow-hidden ${
-            backgroundHero
-              ? 'bg-cover bg-center before:absolute before:inset-0 before:bg-white/75'
-              : 'bg-gradient-to-br from-[var(--backdrop-primary)] via-[var(--backdrop-secondary)] to-[var(--backdrop-primary)]'
-          }`}
-          style={{
-            ...(sectionStyle('hero') || {}),
-            ...heroBottomSpacingStyle,
-            ...(backgroundHero
-              ? { backgroundImage: `url(${resolvedHeroBackgroundImage})` }
-              : {}),
-          }}
-        >
-        {/* Decorative Background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-64 h-64 bg-primary-100 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 left-10 w-64 h-64 bg-secondary-50 rounded-full blur-3xl"></div>
+        <div style={sectionStyle('hero')}>
+          <HeroSection
+            variant={(hero.variant as HeroVariant) || 'split-photo-right'}
+            topSpacingMode={isTransparentMenu ? 'extra' : 'default'}
+            tagline={hero.title}
+            description={hero.description || hero.subtitle}
+            image={resolvedHeroBackgroundImage || undefined}
+            gallery={resolvedHeroGallery}
+            photoOverlayOpacity={
+              typeof hero.photoOverlayOpacity === 'number' ? hero.photoOverlayOpacity : 0.2
+            }
+            photoContentPosition={
+              hero.photoContentPosition === 'center' ||
+              hero.photoContentPosition === 'center-below' ||
+              hero.photoContentPosition === 'left' ||
+              hero.photoContentPosition === 'left-below' ||
+              hero.photoContentPosition === 'lower'
+                ? hero.photoContentPosition
+                : 'left-below'
+            }
+          />
         </div>
-
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className={`grid gap-12 items-center ${centeredHero ? 'max-w-4xl mx-auto' : 'lg:grid-cols-2'}`}>
-            {/* Left Column - Text Content */}
-            <div className={`text-center ${centeredHero ? '' : 'lg:text-left'}`}>
-              <h1 className="text-display font-bold text-gray-900 mb-6 leading-tight">
-                {hero.title}
-              </h1>
-              <p className="text-subheading text-primary font-medium mb-4">
-                {hero.subtitle}
-              </p>
-              {hero.description && (
-                <p className="text-subheading text-gray-600 leading-relaxed">
-                  {hero.description}
-                </p>
-              )}
-            </div>
-
-            {/* Right Column - Hero Image */}
-            {!centeredHero && (
-            <div className={`hidden md:block w-full ${imageLeftHero ? 'lg:order-first' : ''}`}>
-              <div className="overflow-hidden" style={tokenSurfaceStyle}>
-                {resolvedHeroBackgroundImage ? (
-                  <Image
-                    src={resolvedHeroBackgroundImage}
-                    alt={hero.title}
-                    width={1200}
-                    height={1200}
-                    className="w-full h-auto object-contain"
-                    priority
-                  />
-                ) : (
-                  <div className="w-full aspect-square flex flex-col items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 relative p-8">
-                    <div className="absolute top-10 left-10 w-24 h-24 bg-primary-50/20 rounded-full"></div>
-                    <div className="absolute bottom-10 right-10 w-32 h-32 bg-secondary-50/20 rounded-full"></div>
-
-                    <div className="relative z-10 text-center">
-                      <div className="text-8xl mb-6">🏢</div>
-                      <p className="text-gray-700 font-semibold text-subheading mb-2">
-                        {getSiteDisplayName(siteInfo, 'Our Team')}
-                      </p>
-                      <p className="text-gray-600 text-small">
-                        {siteInfo?.tagline || 'Professional Services'}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-            )}
-          </div>
-        </div>
-        </section>
       )}
 
       {/* Profile Section */}

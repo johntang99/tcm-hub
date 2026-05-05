@@ -38,7 +38,14 @@ interface HomePageContent {
     };
   };
   hero: {
-    variant: 'centered' | 'split-photo-right' | 'split-photo-left' | 'overlap' | 'photo-background' | 'video-background';
+    variant:
+      | 'centered'
+      | 'split-photo-right'
+      | 'split-photo-left'
+      | 'overlap'
+      | 'photo-background'
+      | 'video-background'
+      | 'gallery-background';
     businessName?: string;
     clinicName?: string;
     tagline: string;
@@ -47,6 +54,9 @@ interface HomePageContent {
     secondaryCta?: { text: string; link: string };
     image?: string;
     video?: string;
+    gallery?: string[];
+    photoOverlayOpacity?: number;
+    photoContentPosition?: 'center' | 'center-below' | 'left' | 'left-below' | 'lower';
     floatingTags?: string[];
     stats?: Array<{
       icon?: string;
@@ -205,6 +215,19 @@ export default async function HomePage({ params }: PageProps) {
             secondaryCta={hero.secondaryCta}
             image={hero.image}
             video={hero.video}
+            gallery={hero.gallery}
+            photoOverlayOpacity={
+              typeof hero.photoOverlayOpacity === 'number' ? hero.photoOverlayOpacity : 0.2
+            }
+            photoContentPosition={
+              hero.photoContentPosition === 'center' ||
+              hero.photoContentPosition === 'center-below' ||
+              hero.photoContentPosition === 'left' ||
+              hero.photoContentPosition === 'left-below' ||
+              hero.photoContentPosition === 'lower'
+                ? hero.photoContentPosition
+                : 'left-below'
+            }
             floatingTags={hero.floatingTags}
             stats={hero.stats}
           />

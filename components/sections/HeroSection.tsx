@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { CheckCircle2 } from 'lucide-react';
 import { Button, Badge, Icon } from '@/components/ui';
@@ -35,6 +38,9 @@ export interface HeroSectionProps {
   }>;
   trustBadges?: string[];
   className?: string;
+  priority?: boolean;
+  photoOverlayOpacity?: number;
+  photoContentPosition?: 'center' | 'center-below' | 'left' | 'left-below' | 'lower';
 }
 
 export default function HeroSection({
@@ -55,10 +61,21 @@ export default function HeroSection({
   credentials,
   trustBadges,
   className,
+  priority,
+  photoOverlayOpacity = 0.5,
+  photoContentPosition = 'center',
 }: HeroSectionProps) {
   const config = heroVariantConfig[variant];
   const sectionClasses = getSectionClasses(config);
   const displayName = businessName || legacyName || '';
+  const normalizedPhotoContentPosition =
+    photoContentPosition === 'lower' ? 'left-below' : photoContentPosition;
+  const isBelowPosition =
+    normalizedPhotoContentPosition === 'center-below' ||
+    normalizedPhotoContentPosition === 'left-below';
+  const isCenterAlignedPosition =
+    normalizedPhotoContentPosition === 'center' ||
+    normalizedPhotoContentPosition === 'center-below';
   const topPaddingValue =
     topSpacingMode === 'extra'
       ? 'calc(var(--section-padding-y, 5rem) + 2.5rem)'
@@ -67,6 +84,36 @@ export default function HeroSection({
     backgroundImage:
       'linear-gradient(135deg, var(--backdrop-primary), var(--backdrop-secondary), var(--backdrop-primary))',
   };
+  const galleryImages = useMemo(
+    () =>
+      Array.isArray(gallery)
+        ? gallery.filter((src): src is string => typeof src === 'string' && src.trim().length > 0)
+        : [],
+    [gallery]
+  );
+  const galleryBackgroundImages = useMemo(() => {
+    if (variant !== 'gallery-background') return galleryImages;
+    const merged = [image, ...galleryImages].filter(
+      (src): src is string => typeof src === 'string' && src.trim().length > 0
+    );
+    return Array.from(new Set(merged));
+  }, [variant, image, galleryImages]);
+  const useGalleryBackground =
+    variant === 'gallery-background' && galleryBackgroundImages.length > 0;
+  const shouldRotateGallery = useGalleryBackground && galleryBackgroundImages.length > 1;
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveGalleryIndex(0);
+  }, [variant, galleryImages]);
+
+  useEffect(() => {
+    if (!shouldRotateGallery) return;
+    const timerId = window.setInterval(() => {
+      setActiveGalleryIndex((current) => (current + 1) % galleryBackgroundImages.length);
+    }, 3000);
+    return () => window.clearInterval(timerId);
+  }, [shouldRotateGallery, galleryBackgroundImages.length]);
   const sectionPaddingStyle = {
     paddingTop: topPaddingValue,
     paddingBottom: 'var(--section-padding-y, 5rem)',
@@ -112,6 +159,7 @@ export default function HeroSection({
                         width={1200}
                         height={1200}
                         className="w-full h-auto object-contain"
+                        priority={priority}
                       />
                     </div>
                   </div>
@@ -139,6 +187,7 @@ export default function HeroSection({
                   alt={displayName}
                   fill
                   className="object-cover"
+                  priority={priority}
                 />
               </div>
             )}
@@ -173,6 +222,7 @@ export default function HeroSection({
                 alt={displayName}
                 fill
                 className="object-cover"
+                priority={priority}
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30" />
             </div>
@@ -204,31 +254,86 @@ export default function HeroSection({
         </section>
       );
     
+    case 'gallery-background':
     case 'photo-background':
       return (
         <>
           <section
             className={cn('relative min-h-[600px] md:min-h-[700px]', className)}
-            style={{ paddingBottom: 'var(--section-padding-y, 5rem)' }}
           >
             {/* Background Image */}
-            {image && (
+            {(image || useGalleryBackground) && (
               <>
-                <div className="absolute inset-0 z-0">
-                  <Image
-                    src={image}
-                    alt={displayName}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="absolute inset-0 z-0 bg-black/50" />
+                {shouldRotateGallery ? (
+                  <div className="absolute inset-0 z-0">
+                    {galleryBackgroundImages.map((galleryImage, index) => (
+                      <div
+                        key={`${galleryImage}-${index}`}
+                        className={cn(
+                          'absolute inset-0 transition-opacity duration-1000',
+                          index === activeGalleryIndex ? 'opacity-100' : 'opacity-0'
+                        )}
+                      >
+                        <Image
+                          src={galleryImage}
+                          alt={`${displayName} ${index + 1}`}
+                          fill
+                          className="object-cover"
+                          priority={priority && index === 0}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="absolute inset-0 z-0">
+                    <Image
+                      src={useGalleryBackground ? galleryBackgroundImages[0] : image!}
+                      alt={displayName}
+                      fill
+                      className="object-cover"
+                      priority={priority}
+                    />
+                  </div>
+                )}
+                <div
+                  className="absolute inset-0 z-0"
+                  style={{ backgroundColor: `rgba(0, 0, 0, ${photoOverlayOpacity})` }}
+                />
               </>
             )}
             
             {/* Content */}
-            <div className="relative z-10 container-custom flex items-center min-h-[600px]" style={sectionPaddingStyle}>
-              <div className="max-w-3xl mx-auto text-white">
+            <div
+              className={cn(
+                'relative z-10 container-custom flex min-h-[600px]',
+                isBelowPosition ? 'items-end' : 'items-center'
+              )}
+              style={{
+                paddingTop: topPaddingValue,
+                paddingBottom: isBelowPosition
+                  ? 'max(2.5rem, var(--section-padding-y, 5rem))'
+                  : 'var(--section-padding-y, 5rem)',
+              }}
+            >
+              <div
+                className={cn(
+                  'relative max-w-3xl text-white px-4 md:px-8 py-6 md:py-8',
+                  isCenterAlignedPosition ? 'mx-auto' : 'mr-auto',
+                  isBelowPosition && 'translate-y-6 md:translate-y-10'
+                )}
+              >
+                <div className="absolute -inset-x-10 -inset-y-8 -z-10 pointer-events-none">
+                  <div
+                    className="w-full h-full"
+                    style={{
+                      background:
+                        isCenterAlignedPosition
+                          ? 'radial-gradient(120% 140% at 50% 75%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.42) 34%, rgba(0,0,0,0.2) 58%, rgba(0,0,0,0.08) 72%, rgba(0,0,0,0) 86%)'
+                          : 'radial-gradient(120% 140% at 18% 75%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.42) 34%, rgba(0,0,0,0.2) 58%, rgba(0,0,0,0.08) 72%, rgba(0,0,0,0) 86%)',
+                      filter: 'blur(8px)',
+                    }}
+                  />
+                </div>
                 <HeroContent
                   businessName={displayName}
                   tagline={tagline}
@@ -237,7 +342,7 @@ export default function HeroSection({
                   secondaryCta={secondaryCta}
                   floatingTags={floatingTags}
                   trustBadges={trustBadges}
-                  align="center"
+                  align={isCenterAlignedPosition ? 'center' : 'left'}
                   theme="dark"
                 />
               </div>

@@ -486,7 +486,7 @@ export default function Header({
           {topBar}
           {headerNode}
         </div>
-        <div className="h-20 md:h-36" />
+        <div className="h-6 md:h-8" />
       </>
     );
   }

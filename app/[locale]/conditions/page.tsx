@@ -8,15 +8,24 @@ import { buildPageMetadata } from '@/lib/seo';
 import { Locale } from '@/lib/types';
 import { Button, Badge, Card, CardHeader, CardTitle, CardDescription, CardContent, Icon, Tabs } from '@/components/ui';
 import CTASection from '@/components/sections/CTASection';
-import { Shield, Heart, Sparkles } from 'lucide-react';
+import HeroSection from '@/components/sections/HeroSection';
+import { HeroVariant } from '@/lib/section-variants';
 
 interface ConditionsPageData {
   layoutVariant?: 'categories-tabs' | 'category-detail-alternating';
   hero: {
-    variant?: 'centered' | 'split-photo-right' | 'split-photo-left' | 'photo-background';
+    variant?:
+      | 'centered'
+      | 'split-photo-right'
+      | 'split-photo-left'
+      | 'photo-background'
+      | 'gallery-background';
     title: string;
     subtitle: string;
     backgroundImage?: string;
+    gallery?: string[];
+    photoOverlayOpacity?: number;
+    photoContentPosition?: 'center' | 'center-below' | 'left' | 'left-below' | 'lower';
   };
   introduction: {
     text: string;
@@ -132,20 +141,6 @@ export default async function ConditionsPage({ params }: ConditionsPageProps) {
     : [...blogPosts]
         .sort((a, b) => (b.publishDate || '').localeCompare(a.publishDate || ''))
         .slice(0, 3);
-  const reassuranceItems = [
-    {
-      icon: Shield,
-      text: locale === 'en' ? 'Safe, trusted care' : '安全、可信赖',
-    },
-    {
-      icon: Heart,
-      text: locale === 'en' ? 'Customer-first approach' : '以客户为先',
-    },
-    {
-      icon: Sparkles,
-      text: locale === 'en' ? 'Personalized plans' : '个性化方案',
-    },
-  ];
 
   // Group conditions by category
   const conditionsByCategory = sortedCategories.map(category => ({
@@ -159,12 +154,7 @@ export default async function ConditionsPage({ params }: ConditionsPageProps) {
   const isEnabled = (sectionId: string) => !useLayout || layoutOrder.has(sectionId);
   const sectionStyle = (sectionId: string) =>
     useLayout ? { order: layoutOrder.get(sectionId) ?? 0 } : undefined;
-  const heroVariant = hero.variant || 'split-photo-right';
-  const centeredHero = heroVariant === 'centered';
-  const imageLeftHero = heroVariant === 'split-photo-left';
-  const backgroundHero = heroVariant === 'photo-background' && Boolean(hero.backgroundImage);
   const isTransparentMenu = headerConfig?.menu?.variant === 'transparent';
-  const heroTopPaddingClass = isTransparentMenu ? 'pt-30 md:pt-36' : 'pt-20 md:pt-24';
   const sectionSpacingStyle = {
     paddingTop: 'var(--section-padding-y, 5rem)',
     paddingBottom: 'var(--section-padding-y, 5rem)',
@@ -173,7 +163,6 @@ export default async function ConditionsPage({ params }: ConditionsPageProps) {
     borderRadius: 'var(--radius-base, 0.75rem)',
     boxShadow: 'var(--shadow-base, 0 4px 20px rgba(0,0,0,0.08))',
   };
-  const heroBottomSpacingStyle = { paddingBottom: 'var(--section-padding-y, 5rem)' };
   const renderConditionDetailCard = (condition: ConditionsPageData['conditions'][number]) => (
     <div
       key={condition.id}
@@ -236,93 +225,28 @@ export default async function ConditionsPage({ params }: ConditionsPageProps) {
     <main className="min-h-screen flex flex-col">
       {/* Hero Section */}
       {isEnabled('hero') && (
-        <section
-          className={`relative ${heroTopPaddingClass} px-4 overflow-hidden ${
-            backgroundHero
-              ? 'bg-cover bg-center before:absolute before:inset-0 before:bg-white/75'
-              : 'bg-gradient-to-br from-[var(--backdrop-primary)] via-[var(--backdrop-secondary)] to-[var(--backdrop-primary)]'
-          }`}
-          style={{
-            ...(sectionStyle('hero') || {}),
-            ...heroBottomSpacingStyle,
-            ...(backgroundHero ? { backgroundImage: `url(${hero.backgroundImage})` } : {}),
-          }}
-        >
-        {/* Decorative Background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-64 h-64 bg-primary-100 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 left-10 w-64 h-64 bg-secondary-50 rounded-full blur-3xl"></div>
+        <div style={sectionStyle('hero')}>
+          <HeroSection
+            variant={(hero.variant as HeroVariant) || 'split-photo-right'}
+            topSpacingMode={isTransparentMenu ? 'extra' : 'default'}
+            tagline={hero.title}
+            description={hero.subtitle}
+            image={hero.backgroundImage || undefined}
+            gallery={Array.isArray(hero.gallery) ? hero.gallery : undefined}
+            photoOverlayOpacity={
+              typeof hero.photoOverlayOpacity === 'number' ? hero.photoOverlayOpacity : 0.2
+            }
+            photoContentPosition={
+              hero.photoContentPosition === 'center' ||
+              hero.photoContentPosition === 'center-below' ||
+              hero.photoContentPosition === 'left' ||
+              hero.photoContentPosition === 'left-below' ||
+              hero.photoContentPosition === 'lower'
+                ? hero.photoContentPosition
+                : 'left-below'
+            }
+          />
         </div>
-
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className={`grid gap-12 items-center ${centeredHero ? 'max-w-4xl mx-auto' : 'lg:grid-cols-2'}`}>
-            {/* Left Column - Text Content */}
-            <div className={`text-center ${centeredHero ? '' : 'lg:text-left'}`}>
-              <h1 className="text-display font-bold text-gray-900 mb-6 leading-tight">
-                {hero.title}
-              </h1>
-              <p className="text-subheading text-gray-600 leading-relaxed mb-8">
-                {hero.subtitle}
-              </p>
-
-              {/* Reassurance Row */}
-              <div className={`grid sm:grid-cols-3 gap-4 mt-8 ${centeredHero ? 'max-w-3xl mx-auto' : ''}`}>
-                {reassuranceItems.map((item) => {
-                  const IconComponent = item.icon;
-                  return (
-                    <div
-                      key={item.text}
-                      className="flex flex-col items-center sm:items-start gap-3 bg-white/80 backdrop-blur p-4 border border-gray-200"
-                      style={tokenSurfaceStyle}
-                    >
-                      <div className="w-10 h-10 bg-primary-50 flex items-center justify-center" style={{ borderRadius: 'var(--radius-base, 0.5rem)' }}>
-                        <IconComponent className="w-5 h-5 text-primary" />
-                      </div>
-                      <span className="text-small font-semibold text-gray-900 text-center sm:text-left">
-                        {item.text}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Right Column - Hero Image */}
-            {!centeredHero && (
-            <div className={`hidden md:block w-full ${imageLeftHero ? 'lg:order-first' : ''}`}>
-              <div className="overflow-hidden" style={tokenSurfaceStyle}>
-                {hero.backgroundImage ? (
-                  <Image
-                    src={hero.backgroundImage}
-                    alt={hero.title}
-                    width={1200}
-                    height={1200}
-                    className="w-full h-auto object-contain"
-                    priority
-                  />
-                ) : (
-                  <div className="w-full aspect-square flex flex-col items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 relative p-8">
-                    <div className="absolute top-10 left-10 w-24 h-24 bg-primary-50/20 rounded-full"></div>
-                    <div className="absolute bottom-10 right-10 w-32 h-32 bg-secondary-50/20 rounded-full"></div>
-                    <div className="absolute top-1/2 right-16 w-20 h-20 bg-primary-100/20 rounded-full"></div>
-
-                    <div className="relative z-10 text-center">
-                      <div className="text-8xl mb-6">✨</div>
-                      <p className="text-gray-700 font-semibold text-subheading mb-2">
-                        {locale === 'en' ? 'Comprehensive Support' : '全面支持'}
-                      </p>
-                      <p className="text-gray-600 text-small">
-                        {locale === 'en' ? 'Structured plans focused on long-term results' : '以长期效果为目标的系统化方案'}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-            )}
-          </div>
-        </div>
-        </section>
       )}
 
       {/* Introduction */}

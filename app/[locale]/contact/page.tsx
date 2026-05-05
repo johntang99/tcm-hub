@@ -6,13 +6,23 @@ import { buildPageMetadata } from '@/lib/seo';
 import { Locale } from '@/lib/types';
 import { Button, Badge, Icon, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import ContactForm from '@/components/ContactForm';
+import HeroSection from '@/components/sections/HeroSection';
+import { HeroVariant } from '@/lib/section-variants';
 
 interface ContactPageContent {
   hero: {
-    variant?: 'centered' | 'split-photo-right' | 'split-photo-left' | 'photo-background';
+    variant?:
+      | 'centered'
+      | 'split-photo-right'
+      | 'split-photo-left'
+      | 'photo-background'
+      | 'gallery-background';
     title: string;
     subtitle: string;
     backgroundImage?: string;
+    gallery?: string[];
+    photoOverlayOpacity?: number;
+    photoContentPosition?: 'center' | 'center-below' | 'left' | 'left-below' | 'lower';
   };
   introduction: { variant?: 'centered' | 'left'; text: string };
   contactMethods: Array<{
@@ -115,9 +125,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
   }
 
   const { hero, introduction, contactMethods, hours, form, map, emergency, faq, cta } = content;
-  const heroVariant = hero.variant || 'centered';
-  const isCenteredHero = heroVariant === 'centered';
-  const backgroundHero = heroVariant === 'photo-background' && Boolean(hero.backgroundImage);
   const introVariant = introduction.variant || 'centered';
   const hoursVariant = hours.variant || 'grid';
   const showMap = map.variant === 'hidden' ? false : map.showMap;
@@ -130,8 +137,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const sectionStyle = (sectionId: string) =>
     useLayout ? { order: layoutOrder.get(sectionId) ?? 0 } : undefined;
   const isTransparentMenu = headerConfig?.menu?.variant === 'transparent';
-  const heroTopPaddingClass = isTransparentMenu ? 'pt-30 md:pt-36' : 'pt-20 md:pt-24';
-  const heroBottomSpacingStyle = { paddingBottom: 'var(--section-padding-y, 5rem)' };
   const renderEmailWithPreferredBreaks = (value: string) => {
     const atIndex = value.indexOf('@');
     if (atIndex === -1) return value;
@@ -160,29 +165,29 @@ export default async function ContactPage({ params }: ContactPageProps) {
     <main className="min-h-screen flex flex-col">
       {/* Hero Section */}
       {isEnabled('hero') && (
-        <section
-          className={`relative ${heroTopPaddingClass} px-4 overflow-hidden ${
-            backgroundHero
-              ? 'bg-cover bg-center before:absolute before:inset-0 before:bg-white/80'
-              : 'bg-gradient-to-br from-primary/10 via-backdrop-primary to-primary/5'
-          }`}
-          style={{
-            ...(sectionStyle('hero') || {}),
-            ...heroBottomSpacingStyle,
-            ...(backgroundHero ? { backgroundImage: `url(${hero.backgroundImage})` } : {}),
-          }}
-        >
-        <div className="container mx-auto">
-          <div className={`max-w-4xl mx-auto relative z-10 ${isCenteredHero ? 'text-center' : 'text-left'}`}>
-            <h1 className="text-display font-bold text-gray-900 mb-6">
-              {hero.title}
-            </h1>
-            <p className="text-subheading text-gray-600">
-              {hero.subtitle}
-            </p>
-          </div>
+        <div style={sectionStyle('hero')}>
+          <HeroSection
+            variant={(hero.variant as HeroVariant) || 'centered'}
+            topSpacingMode={isTransparentMenu ? 'extra' : 'default'}
+            tagline={hero.title}
+            description={hero.subtitle}
+            badgeText="Contact Us"
+            image={hero.backgroundImage || undefined}
+            gallery={Array.isArray(hero.gallery) ? hero.gallery : undefined}
+            photoOverlayOpacity={
+              typeof hero.photoOverlayOpacity === 'number' ? hero.photoOverlayOpacity : 0.2
+            }
+            photoContentPosition={
+              hero.photoContentPosition === 'center' ||
+              hero.photoContentPosition === 'center-below' ||
+              hero.photoContentPosition === 'left' ||
+              hero.photoContentPosition === 'left-below' ||
+              hero.photoContentPosition === 'lower'
+                ? hero.photoContentPosition
+                : 'left-below'
+            }
+          />
         </div>
-        </section>
       )}
 
       {/* Introduction */}
