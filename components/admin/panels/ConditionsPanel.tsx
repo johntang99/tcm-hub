@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import { normalizeMarkdown, toSlug } from '@/components/admin/utils/editorHelpers';
+import { resolveMediaUrl } from '@/lib/media-url';
 
 interface ConditionsPanelProps {
   isConditionsPageFile: boolean;
@@ -34,6 +35,13 @@ export function ConditionsPanel({
   removeConditionItem,
   hideItemsEditor = false,
 }: ConditionsPanelProps) {
+  const getPreviewUrl = (value: unknown) => {
+    if (typeof value !== 'string') return '';
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    return resolveMediaUrl(trimmed);
+  };
+
   return (
     <>
       {isConditionsPageFile && Array.isArray(categories) && (
@@ -122,6 +130,16 @@ export function ConditionsPanel({
                       Choose
                     </button>
                   </div>
+                  {getPreviewUrl(category.image) && (
+                    <div className="mb-2">
+                      <img
+                        src={getPreviewUrl(category.image)}
+                        alt={`${category.name || `Category ${index + 1}`} image preview`}
+                        className="h-20 w-36 rounded-md border border-gray-200 object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                   <input
                     className="w-full rounded-md border border-gray-200 px-3 py-2 text-sm mb-2"
                     type="number"
@@ -315,6 +333,16 @@ export function ConditionsPanel({
                     Choose
                   </button>
                 </div>
+                {getPreviewUrl(condition.image) && (
+                  <div className="mt-2">
+                    <img
+                      src={getPreviewUrl(condition.image)}
+                      alt={`${condition.title || `Condition ${index + 1}`} image preview`}
+                      className="h-20 w-36 rounded-md border border-gray-200 object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>}

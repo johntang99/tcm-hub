@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import { normalizeMarkdown, toSlug } from '@/components/admin/utils/editorHelpers';
+import { resolveMediaUrl } from '@/lib/media-url';
 
 interface CaseStudyCategoryItemPanelProps {
   category: any;
@@ -68,6 +69,13 @@ export function CaseStudyItemPanel({
   updateFormValue,
   openImagePicker,
 }: CaseStudyItemPanelProps) {
+  const getPreviewUrl = (value: unknown) => {
+    if (typeof value !== 'string') return '';
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    return resolveMediaUrl(trimmed);
+  };
+
   return (
     <div className="border border-gray-200 rounded-lg p-4">
       <div className="text-xs font-semibold text-gray-500 uppercase mb-3">
@@ -190,6 +198,38 @@ export function CaseStudyItemPanel({
             Choose
           </button>
         </div>
+      </div>
+      <div className="mt-2 grid gap-2 md:grid-cols-3">
+        {getPreviewUrl(item?.image) ? (
+          <img
+            src={getPreviewUrl(item?.image)}
+            alt={`${item?.condition || `Case ${index + 1}`} image preview`}
+            className="h-20 w-36 rounded-md border border-gray-200 object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div />
+        )}
+        {getPreviewUrl(item?.beforeImage) ? (
+          <img
+            src={getPreviewUrl(item?.beforeImage)}
+            alt={`${item?.condition || `Case ${index + 1}`} before image preview`}
+            className="h-20 w-36 rounded-md border border-gray-200 object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div />
+        )}
+        {getPreviewUrl(item?.afterImage) ? (
+          <img
+            src={getPreviewUrl(item?.afterImage)}
+            alt={`${item?.condition || `Case ${index + 1}`} after image preview`}
+            className="h-20 w-36 rounded-md border border-gray-200 object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );

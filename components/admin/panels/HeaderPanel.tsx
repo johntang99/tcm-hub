@@ -1,3 +1,5 @@
+import { resolveMediaUrl } from '@/lib/media-url';
+
 interface HeaderPanelProps {
   formData: Record<string, any>;
   updateFormValue: (path: string[], value: any) => void;
@@ -17,6 +19,11 @@ export function HeaderPanel({
   addHeaderLanguage,
   removeHeaderLanguage,
 }: HeaderPanelProps) {
+  const logoImagePreview =
+    typeof formData.menu?.logo?.image?.src === 'string' && formData.menu.logo.image.src.trim()
+      ? resolveMediaUrl(formData.menu.logo.image.src.trim())
+      : '';
+
   return (
     <div className="border border-gray-200 rounded-lg p-4">
       <div className="text-xs font-semibold text-gray-500 uppercase mb-3">Header</div>
@@ -149,6 +156,16 @@ export function HeaderPanel({
                   Choose
                 </button>
               </div>
+              {logoImagePreview && (
+                <div className="mt-2">
+                  <img
+                    src={logoImagePreview}
+                    alt="Logo image preview"
+                    className="h-16 w-16 rounded-md border border-gray-200 object-contain bg-white"
+                    loading="lazy"
+                  />
+                </div>
+              )}
             </div>
             <div>
               <label className="block text-xs text-gray-500">Logo Alt</label>

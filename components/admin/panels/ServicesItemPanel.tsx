@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import { toSlug, normalizeMarkdown } from '@/components/admin/utils/editorHelpers';
+import { resolveMediaUrl } from '@/lib/media-url';
 
 interface ServicesItemPanelProps {
   servicesList: Record<string, any>;
@@ -23,6 +24,10 @@ export function ServicesItemPanel({
   removeServicesListItem,
 }: ServicesItemPanelProps) {
   const markdownKey = `servicesList-${selectedIndex}-fullDescription`;
+  const serviceImagePreview =
+    typeof selectedService?.image === 'string' && selectedService.image.trim()
+      ? resolveMediaUrl(selectedService.image.trim())
+      : '';
 
   return (
     <div className="space-y-6">
@@ -269,6 +274,16 @@ export function ServicesItemPanel({
               Choose
             </button>
           </div>
+          {serviceImagePreview && (
+            <div className="mt-2">
+              <img
+                src={serviceImagePreview}
+                alt={`${selectedService.title || `Service ${selectedIndex + 1}`} image preview`}
+                className="h-20 w-36 rounded-md border border-gray-200 object-cover"
+                loading="lazy"
+              />
+            </div>
+          )}
         </div>
 
         <div>

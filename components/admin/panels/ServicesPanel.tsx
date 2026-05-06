@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import { normalizeMarkdown, toSlug } from '@/components/admin/utils/editorHelpers';
+import { resolveMediaUrl } from '@/lib/media-url';
 
 interface ServicesPanelProps {
   formData: Record<string, any>;
@@ -30,6 +31,13 @@ export function ServicesPanel({
   removeRelatedReadingSlug,
   hideItemsEditor = false,
 }: ServicesPanelProps) {
+  const getPreviewUrl = (value: unknown) => {
+    if (typeof value !== 'string') return '';
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    return resolveMediaUrl(trimmed);
+  };
+
   return (
     <>
       {Array.isArray(formData?.services) && !formData?.servicesList && (
@@ -77,6 +85,16 @@ export function ServicesPanel({
                     Choose
                   </button>
                 </div>
+                {getPreviewUrl(service.image) && (
+                  <div className="mt-2">
+                    <img
+                      src={getPreviewUrl(service.image)}
+                      alt={`${service.title || `Service ${index + 1}`} image preview`}
+                      className="h-20 w-36 rounded-md border border-gray-200 object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -354,6 +372,16 @@ export function ServicesPanel({
                         Choose
                       </button>
                     </div>
+                    {getPreviewUrl(service.image) && (
+                      <div className="mt-2">
+                        <img
+                          src={getPreviewUrl(service.image)}
+                          alt={`${service.title || `Service ${index + 1}`} image preview`}
+                          className="h-20 w-36 rounded-md border border-gray-200 object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                   </div>
                   <div>
                     <label className="block text-xs text-gray-500 mb-1">Featured</label>

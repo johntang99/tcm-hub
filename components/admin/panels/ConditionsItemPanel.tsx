@@ -1,5 +1,13 @@
 import ReactMarkdown from 'react-markdown';
 import { normalizeMarkdown, toSlug } from '@/components/admin/utils/editorHelpers';
+import { resolveMediaUrl } from '@/lib/media-url';
+
+function getPreviewUrl(value: unknown): string {
+  if (typeof value !== 'string') return '';
+  const trimmed = value.trim();
+  if (!trimmed) return '';
+  return resolveMediaUrl(trimmed);
+}
 
 interface ConditionCategoryItemPanelProps {
   category: any;
@@ -20,6 +28,7 @@ export function ConditionCategoryItemPanel({
 }: ConditionCategoryItemPanelProps) {
   const isAllCategory = category?.id === 'all';
   const markdownPreviewKey = `conditions-category-${index}-description`;
+  const categoryImagePreview = getPreviewUrl(category?.image);
 
   return (
     <div className="border border-gray-200 rounded-lg p-4">
@@ -80,6 +89,16 @@ export function ConditionCategoryItemPanel({
           Choose
         </button>
       </div>
+      {categoryImagePreview && (
+        <div className="mb-2">
+          <img
+            src={categoryImagePreview}
+            alt={`${category?.name || `Category ${index + 1}`} image preview`}
+            className="h-20 w-36 rounded-md border border-gray-200 object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
       <input
         className="w-full rounded-md border border-gray-200 px-3 py-2 text-sm mb-2"
         type="number"
@@ -144,6 +163,8 @@ export function ConditionItemPanel({
   updateFormValue,
   openImagePicker,
 }: ConditionItemPanelProps) {
+  const conditionImagePreview = getPreviewUrl(condition?.image);
+
   return (
     <div className="border border-gray-200 rounded-lg p-4">
       <div className="text-xs font-semibold text-gray-500 uppercase mb-3">
@@ -261,6 +282,16 @@ export function ConditionItemPanel({
           Choose
         </button>
       </div>
+      {conditionImagePreview && (
+        <div className="mt-2">
+          <img
+            src={conditionImagePreview}
+            alt={`${condition?.title || `Condition ${index + 1}`} image preview`}
+            className="h-20 w-36 rounded-md border border-gray-200 object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
     </div>
   );
 }
