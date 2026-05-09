@@ -44,8 +44,10 @@ interface HomePageContent {
       | 'split-photo-left'
       | 'overlap'
       | 'photo-background'
+      | 'photo-screenwide-top'
       | 'video-background'
-      | 'gallery-background';
+      | 'gallery-background'
+      | 'gallery-screenwide-top';
     businessName?: string;
     clinicName?: string;
     tagline: string;
@@ -57,6 +59,7 @@ interface HomePageContent {
     gallery?: string[];
     photoOverlayOpacity?: number;
     photoContentPosition?: 'center' | 'center-below' | 'left' | 'left-below' | 'lower';
+    screenwideHeightDesktop?: number;
     floatingTags?: string[];
     stats?: Array<{
       icon?: string;
@@ -227,6 +230,11 @@ export default async function HomePage({ params }: PageProps) {
               hero.photoContentPosition === 'lower'
                 ? hero.photoContentPosition
                 : 'left-below'
+            }
+            screenwideHeightDesktop={
+              typeof hero.screenwideHeightDesktop === 'number'
+                ? hero.screenwideHeightDesktop
+                : undefined
             }
             floatingTags={hero.floatingTags}
             stats={hero.stats}
