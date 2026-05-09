@@ -489,8 +489,17 @@ export function ContentEditor({
 
   const handleImport = async (
     mode: 'missing' | 'overwrite' = 'missing',
-    options?: { dryRun?: boolean; force?: boolean; includePaths?: string[] }
+    options?: { dryRun?: boolean; force?: boolean; includePaths?: string[]; source?: string }
   ) => {
+    if (mode === 'missing' && !options?.dryRun) {
+      const scopedPaths = Array.isArray(options?.includePaths)
+        ? options!.includePaths!.filter((value) => typeof value === 'string' && value.trim().length > 0)
+        : [];
+      if (scopedPaths.length === 0) {
+        setStatus('Sync requires scoped file paths. Select a file and sync current file, or use section sync.');
+        return null;
+      }
+    }
     setStatus(null);
     setLoading(true);
     setImporting(true);
@@ -505,6 +514,7 @@ export function ContentEditor({
           dryRun: Boolean(options?.dryRun),
           force: Boolean(options?.force),
           includePaths: options?.includePaths || undefined,
+          source: options?.source || undefined,
         }),
       });
       const payload = await response.json();
@@ -549,7 +559,7 @@ export function ContentEditor({
         setStatus('Overwrite cancelled due to newer DB entries.');
         return;
       }
-      await handleImport('overwrite', { force: true });
+      await handleImport('overwrite', { force: true, source: 'admin-overwrite-button' });
       return;
     }
 
@@ -567,7 +577,7 @@ export function ContentEditor({
         'Proceed with overwrite import?'
     );
     if (!confirmed) return;
-    await handleImport('overwrite');
+    await handleImport('overwrite', { source: 'admin-overwrite-button' });
   };
 
   const handleCheckUpdateFromDb = async () => {
@@ -2078,16 +2088,20 @@ export function ContentEditor({
             <button
               type="button"
               onClick={() => {
+                if (!activeFile?.path) {
+                  setStatus('Select a file before syncing to DB.');
+                  return;
+                }
                 const confirmed = window.confirm(
-                  `Import locale JSON for ${siteId} (${locale})?\n\nThis applies to all files in the selected site + locale and may overwrite missing DB entries.`
+                  `Sync current file to DB for ${siteId} (${locale})?\n\nPath:\n${activeFile.path}\n\nOnly this file will be imported in missing mode.`
                 );
                 if (!confirmed) return;
-                handleImport('missing');
+                handleImport('missing', { includePaths: [activeFile.path] });
               }}
-              disabled={importing || loading}
+              disabled={!activeFile?.path || importing || loading}
               className="px-3 py-2 rounded-md border border-gray-200 text-xs text-gray-700 hover:bg-gray-50 disabled:opacity-60"
             >
-              {importing ? 'Importing…' : 'Import Locale JSON'}
+              {importing ? 'Importing…' : 'Sync Current File to DB'}
             </button>
             <button
               type="button"
@@ -2167,7 +2181,7 @@ export function ContentEditor({
         </div>
       </div>
       <p className="text-xs text-gray-500 -mt-3">
-        Locale actions apply to all files for selected site+locale. Section actions apply only to this module.
+        Overwrite Import is locale-wide. Sync Current File and section import/export are scoped.
       </p>
 
       <div className="grid gap-6 lg:grid-cols-[280px_1fr]">

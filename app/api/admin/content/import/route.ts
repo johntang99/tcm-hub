@@ -163,6 +163,7 @@ export async function POST(request: NextRequest) {
     : [];
   const includePathSet = includePaths.length > 0 ? new Set(includePaths) : null;
   const guardToken = typeof payload.guardToken === 'string' ? payload.guardToken.trim() : '';
+  const source = typeof payload.source === 'string' ? payload.source.trim() : '';
 
   if (!siteId || !locale) {
     return NextResponse.json(
@@ -180,18 +181,29 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: 'Forbidden' }, { status: 403 });
   }
 
-  if (shouldEnforceProdImportGuardrails() && !dryRun) {
-    if (includePaths.length === 0) {
-      return NextResponse.json(
-        {
-          message:
-            'Production guardrail: locale-wide import is blocked. Use scoped includePaths (changed files only).',
-          code: 'PROD_SCOPED_IMPORT_REQUIRED',
-        },
-        { status: 403 }
-      );
-    }
+  if (!dryRun && mode !== 'overwrite' && includePaths.length === 0) {
+    return NextResponse.json(
+      {
+        message:
+          'Guardrail: locale-wide import is blocked for missing mode. Use scoped includePaths (changed files only).',
+        code: 'SCOPED_IMPORT_REQUIRED',
+      },
+      { status: 400 }
+    );
+  }
 
+  if (!dryRun && mode === 'overwrite' && source !== 'admin-overwrite-button') {
+    return NextResponse.json(
+      {
+        message:
+          'Guardrail: locale-wide overwrite import is only allowed from the Overwrite Import button flow.',
+        code: 'OVERWRITE_SOURCE_REQUIRED',
+      },
+      { status: 403 }
+    );
+  }
+
+  if (shouldEnforceProdImportGuardrails() && !dryRun) {
     if (mode === 'overwrite') {
       const overwriteEnabled = parseBooleanEnv(process.env.ALLOW_PROD_OVERWRITE_IMPORT) === true;
       const expectedToken = (process.env.PROD_IMPORT_GUARD_TOKEN || '').trim();
