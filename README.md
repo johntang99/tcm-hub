@@ -17,10 +17,6 @@ curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_djRlq5PsWfKq75nVi
 
 
 
-DrHuang Index problem.
-
-
-
 
 Production-ready multi-site Traditional Chinese Medicine template with admin CMS, DB-first content, and EN/ZH locale support.
 
