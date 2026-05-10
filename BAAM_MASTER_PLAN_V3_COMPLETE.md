@@ -2013,6 +2013,16 @@ This addendum captures implementation-level rules derived from Julia Studio prod
 - Run sync dry-run and resolve direction (`import` vs `export`) before content operations.
 - Spot-check at least one collection file for slug/path consistency after duplicate/create flows.
 
+### 27.9 Content Sync Safety Rule (Single-File by Default)
+
+- Default operation is single-file sync (`Sync Current File to DB`) with required `includePaths`.
+- Locale-wide import in `missing` mode is blocked at API level when `includePaths` is empty.
+- Locale-wide overwrite is allowed only from explicit `Overwrite Import` UI flow (`source = admin-overwrite-button`).
+- Production overwrite requires break-glass env + token:
+  - `ALLOW_PROD_OVERWRITE_IMPORT=true`
+  - `PROD_IMPORT_GUARD_TOKEN` present and matched by request `guardToken`
+- Operational rule: vague "sync to DB" commands must never trigger full-locale write.
+
 ---
 
 ## 24. Anti-Patterns & Lessons Learned

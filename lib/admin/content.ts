@@ -13,6 +13,7 @@ export interface ContentFileItem {
   publishDate?: string;
   publishAt?: string;
   status?: 'draft' | 'scheduled' | 'published';
+  groupKey?: string;
 }
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
@@ -65,6 +66,48 @@ function isSeoPagePath(filePath: string): boolean {
     !KNOWN_ROOT_FILES.has(filePath) &&
     filePath.length > 0
   );
+}
+
+function slugifyGroupKey(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9\u4e00-\u9fff-]+/g, '-')
+    .replace(/-{2,}/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function inferSeoGroupKeyFromSlug(pathValue: string): string {
+  if (!pathValue) return 'default';
+  const normalized = pathValue.toLowerCase();
+  const parts = normalized.split('-');
+  if (parts.length >= 2) {
+    const maybeState = parts[parts.length - 1];
+    const maybeCity = parts[parts.length - 2];
+    if (/^[a-z]{2}$/.test(maybeState) && /^[a-z0-9]+$/.test(maybeCity)) {
+      return `${maybeCity}-${maybeState}`;
+    }
+  }
+  // Chinese slugs often start with location prefix (e.g., 法拉盛..., 大颈...)
+  const chinesePrefixMatch = pathValue.match(/^([\u4e00-\u9fff]{2,4})/);
+  if (chinesePrefixMatch?.[1]) {
+    return slugifyGroupKey(chinesePrefixMatch[1]);
+  }
+  return 'default';
+}
+
+function inferSeoGroupKeyFromData(data: Record<string, any> | null | undefined, pathValue: string): string {
+  const city = data?.location?.nap?.city || data?.location?.city || data?.city;
+  const state = data?.location?.nap?.state || data?.location?.state || data?.state;
+  if (typeof city === 'string' && city.trim()) {
+    const cityKey = slugifyGroupKey(city);
+    const stateKey =
+      typeof state === 'string' && state.trim()
+        ? slugifyGroupKey(state).slice(0, 2)
+        : '';
+    return stateKey ? `${cityKey}-${stateKey}` : cityKey;
+  }
+  return inferSeoGroupKeyFromSlug(pathValue);
 }
 
 async function ensureSeoFile(siteId: string, locale: string) {
@@ -192,11 +235,13 @@ export async function listContentFiles(
     dbEntries.forEach((entry) => {
       // SEO landing pages: stored at root level without extension (e.g., "acupuncture-middletown-ny")
       if (isSeoPagePath(entry.path)) {
+        const data = entry.data as Record<string, any> | null;
         addItem({
           id: `seo-page-${entry.path}`,
           label: `SEO Page: ${titleCase(entry.path)}`,
           path: entry.path,
           scope: 'locale',
+          groupKey: inferSeoGroupKeyFromData(data, entry.path),
         });
         return;
       }
@@ -268,6 +313,7 @@ export async function listContentFiles(
       label: `SEO Page: ${titleCase(entry.slug)}`,
       path: entry.slug,
       scope: 'locale',
+      groupKey: inferSeoGroupKeyFromSlug(entry.slug),
     });
   });
 
@@ -284,12 +330,13 @@ export async function listContentFiles(
           // Verify it's valid JSON content
           try {
             const raw = await fs.readFile(fullPath, 'utf-8');
-            JSON.parse(raw);
+            const parsed = JSON.parse(raw);
             addItem({
               id: `seo-page-${file}`,
               label: `SEO Page: ${titleCase(file)}`,
               path: file,
               scope: 'locale',
+              groupKey: inferSeoGroupKeyFromData(parsed as Record<string, any>, file),
             });
           } catch {
             // skip non-JSON files

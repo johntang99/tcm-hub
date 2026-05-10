@@ -29,6 +29,7 @@ import { ServicesModuleList } from '@/components/admin/panels/ServicesModuleList
 import { ConditionsPanel } from '@/components/admin/panels/ConditionsPanel';
 import { ConditionsModuleList } from '@/components/admin/panels/ConditionsModuleList';
 import { CaseStudiesModuleList } from '@/components/admin/panels/CaseStudiesModuleList';
+import { SeoProgramsModuleList } from '@/components/admin/panels/SeoProgramsModuleList';
 import { ItemJsonEditor } from '@/components/admin/panels/ItemJsonEditor';
 import {
   ConditionCategoryItemPanel,
@@ -54,6 +55,7 @@ interface ContentFileItem {
   publishDate?: string;
   publishAt?: string;
   status?: 'draft' | 'scheduled' | 'published';
+  groupKey?: string;
 }
 
 interface ContentEditorProps {
@@ -70,7 +72,8 @@ interface ContentEditorProps {
     | 'conditions'
     | 'conditionsItems'
     | 'caseStudies'
-    | 'caseStudiesItems';
+    | 'caseStudiesItems'
+    | 'seoPrograms';
   titleOverride?: string;
   basePath?: string;
 }
@@ -119,6 +122,7 @@ export function ContentEditor({
   const [activeCaseStudyIndex, setActiveCaseStudyIndex] = useState(-1);
   const [caseStudiesItemJsonDraft, setCaseStudiesItemJsonDraft] = useState('');
   const [caseStudiesItemJsonError, setCaseStudiesItemJsonError] = useState<string | null>(null);
+  const [activeSeoLocation, setActiveSeoLocation] = useState('');
 
   const withThemeDefaults = (input: Record<string, any>) => {
     const next = JSON.parse(JSON.stringify(input || {}));
@@ -162,6 +166,8 @@ export function ContentEditor({
               ? 'Case Studies'
             : fileFilter === 'caseStudiesItems'
               ? 'Case Studies'
+            : fileFilter === 'seoPrograms'
+              ? 'SEO Pages'
         : 'Files';
   const FILE_FILTER_PATHS: Record<
     | 'services'
@@ -182,9 +188,12 @@ export function ContentEditor({
   const isBlogManagedPath = (value?: string | null) =>
     typeof value === 'string' &&
     (value.startsWith('blog/') || value.startsWith('blog-scheduled/'));
+  const isSeoProgramPath = (value?: string | null) =>
+    typeof value === 'string' && !value.includes('/') && !value.endsWith('.json');
   const isServicesItemsMode = fileFilter === 'servicesItems';
   const isConditionsItemsMode = fileFilter === 'conditionsItems';
   const isCaseStudiesItemsMode = fileFilter === 'caseStudiesItems';
+  const isSeoProgramsMode = fileFilter === 'seoPrograms';
 
   const site = useMemo(
     () => sites.find((item) => item.id === siteId),
@@ -239,6 +248,9 @@ export function ContentEditor({
         const allowedPaths = new Set(FILE_FILTER_PATHS[fileFilter]);
         nextFiles = nextFiles.filter((file) => allowedPaths.has(file.path));
         nextFiles = [...nextFiles].sort((a, b) => a.label.localeCompare(b.label));
+      } else if (fileFilter === 'seoPrograms') {
+        nextFiles = nextFiles.filter((file) => isSeoProgramPath(file.path));
+        nextFiles = [...nextFiles].sort((a, b) => a.label.localeCompare(b.label));
       } else {
         const moduleManagedPaths = new Set([
           ...FILE_FILTER_PATHS.servicesItems,
@@ -248,6 +260,7 @@ export function ContentEditor({
         nextFiles = nextFiles.filter(
           (file) =>
             !isBlogManagedPath(file.path) &&
+            !isSeoProgramPath(file.path) &&
             !SITE_SETTINGS_PATHS.has(file.path) &&
             !moduleManagedPaths.has(file.path)
         );
@@ -1115,7 +1128,8 @@ export function ContentEditor({
     fileFilter !== 'siteSettings' &&
     !isServicesItemsMode &&
     !isConditionsItemsMode &&
-    !isCaseStudiesItemsMode;
+    !isCaseStudiesItemsMode &&
+    !isSeoProgramsMode;
   const serviceItems = Array.isArray(formData?.servicesList?.items)
     ? formData.servicesList.items
     : [];
@@ -1162,6 +1176,7 @@ export function ContentEditor({
     files.find((file) => file.path === 'pages/case-studies.layout.json') || null;
   const isCaseStudiesPageFileActive = activeFile?.path === 'pages/case-studies.json';
   const isCaseStudiesLayoutFileActive = activeFile?.path === 'pages/case-studies.layout.json';
+  const isSeoPageFileActive = isSeoProgramPath(activeFile?.path);
   const isCaseStudyCategorySelected =
     isCaseStudiesItemsMode && isCaseStudiesPageFileActive && activeCaseStudyCategoryIndex >= 0;
   const isCaseStudyItemSelected =
@@ -1177,10 +1192,43 @@ export function ContentEditor({
   const selectedCaseStudyItem = isCaseStudyItemSelected
     ? caseStudyItems[activeCaseStudyIndex]
     : null;
+  const inferSeoLocationFromFile = (file: ContentFileItem) => {
+    if (typeof file.groupKey === 'string' && file.groupKey.trim()) {
+      return file.groupKey.trim().toLowerCase();
+    }
+    const slug = file.path.trim().toLowerCase();
+    const parts = slug.split('-');
+    if (parts.length >= 2) {
+      const maybeState = parts[parts.length - 1];
+      const maybeCity = parts[parts.length - 2];
+      if (/^[a-z]{2}$/.test(maybeState) && /^[a-z0-9]+$/.test(maybeCity)) {
+        return `${maybeCity}-${maybeState}`;
+      }
+    }
+    const chinesePrefix = file.path.match(/^([\u4e00-\u9fff]{2,4})/u)?.[1];
+    return chinesePrefix || 'default';
+  };
+  const seoProgramFiles = isSeoProgramsMode ? files.filter((file) => isSeoProgramPath(file.path)) : [];
+  const seoLocations = useMemo(() => {
+    const unique = new Set<string>();
+    seoProgramFiles.forEach((file) => {
+      const key = inferSeoLocationFromFile(file);
+      if (key) unique.add(key);
+    });
+    return Array.from(unique).sort((a, b) => a.localeCompare(b));
+  }, [seoProgramFiles]);
+  const selectedSeoLocation = activeSeoLocation || seoLocations[0] || '';
+  const seoPagesForSelectedLocation = useMemo(
+    () =>
+      seoProgramFiles
+        .filter((file) => inferSeoLocationFromFile(file) === selectedSeoLocation)
+        .sort((a, b) => a.label.localeCompare(b.label)),
+    [seoProgramFiles, selectedSeoLocation]
+  );
   const showCaseStudiesGlobalPanels =
     !isCaseStudiesItemsMode || isCaseStudiesPageSettingsSelected;
   const showSharedPanels =
-    showGlobalPanels && showConditionsGlobalPanels && showCaseStudiesGlobalPanels;
+    showGlobalPanels && showConditionsGlobalPanels && showCaseStudiesGlobalPanels && !isSeoPageFileActive;
   const scopedActionPaths = useMemo(() => {
     if (fileFilter === 'services' || fileFilter === 'servicesItems') {
       return ['pages/services.json', 'pages/services.layout.json'];
@@ -1194,6 +1242,9 @@ export function ContentEditor({
     if (fileFilter === 'blog') {
       return files.filter((file) => isBlogManagedPath(file.path)).map((file) => file.path);
     }
+    if (fileFilter === 'seoPrograms') {
+      return files.filter((file) => isSeoProgramPath(file.path)).map((file) => file.path);
+    }
     return [] as string[];
   }, [fileFilter, files]);
   const hasScopedActions = scopedActionPaths.length > 0;
@@ -1206,8 +1257,261 @@ export function ContentEditor({
           ? 'Case Studies'
           : fileFilter === 'blog'
             ? 'Blog Posts'
+            : fileFilter === 'seoPrograms'
+              ? 'SEO Pages'
             : 'Current Section'
     : 'Current Section';
+
+  useEffect(() => {
+    if (!isSeoProgramsMode) return;
+    if (seoLocations.length === 0) {
+      if (activeSeoLocation) setActiveSeoLocation('');
+      return;
+    }
+    if (!activeSeoLocation || !seoLocations.includes(activeSeoLocation)) {
+      setActiveSeoLocation(seoLocations[0]);
+    }
+  }, [isSeoProgramsMode, seoLocations, activeSeoLocation]);
+
+  useEffect(() => {
+    if (!isSeoProgramsMode || !isSeoPageFileActive || !activeFile) return;
+    const locationKey = inferSeoLocationFromFile(activeFile);
+    if (!activeSeoLocation && locationKey && locationKey !== activeSeoLocation) {
+      setActiveSeoLocation(locationKey);
+    }
+  }, [isSeoProgramsMode, isSeoPageFileActive, activeFile, activeSeoLocation]);
+
+  const handleSeoLocationSelect = (locationKey: string) => {
+    setActiveSeoLocation(locationKey);
+    const nextPages = seoProgramFiles
+      .filter((file) => inferSeoLocationFromFile(file) === locationKey)
+      .sort((a, b) => a.label.localeCompare(b.label));
+    if (nextPages.length > 0) {
+      setActiveFile(nextPages[0]);
+      return;
+    }
+    if (isSeoPageFileActive) {
+      setActiveFile(null);
+    }
+  };
+
+  const saveSeoProgramFile = async (filePath: string, data: Record<string, any>) => {
+    const response = await fetch('/api/admin/content/file', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        siteId,
+        locale,
+        path: filePath,
+        content: JSON.stringify(data, null, 2),
+      }),
+    });
+    const payload = await response.json();
+    if (!response.ok) {
+      throw new Error(payload.message || 'Save failed');
+    }
+    return payload as { message?: string };
+  };
+
+  const addSeoLocation = async () => {
+    if (!isSeoProgramsMode) return;
+    const locationInput = window.prompt(
+      '请输入地点标识（示例: middletown-ny 或 法拉盛）'
+    );
+    if (!locationInput) return;
+    const normalizedLocation = locationInput.trim().toLowerCase();
+    if (!normalizedLocation) {
+      setStatus('Invalid location key.');
+      return;
+    }
+    const newSlug = `acupuncture-${normalizedLocation}`;
+    if (seoProgramFiles.some((file) => file.path === newSlug)) {
+      setStatus(`Location already exists: ${normalizedLocation}`);
+      const existing = seoProgramFiles.find((file) => file.path === newSlug) || null;
+      if (existing) setActiveFile(existing);
+      setActiveSeoLocation(normalizedLocation);
+      return;
+    }
+    const titleDefault = `${normalizedLocation}中医针灸`;
+    const pageTitle = (window.prompt('请输入页面标题（中文）', titleDefault) || titleDefault).trim();
+    const payload: Record<string, any> = {
+      pageType: 'seo-local-landing',
+      seo: {
+        title: pageTitle,
+        h1: pageTitle,
+        description: `${pageTitle}页面，提供本地中医针灸服务介绍。`,
+        canonicalUrl: `/${locale}/${newSlug}`,
+        noindex: false,
+        priority: 0.9,
+        schema: ['LocalBusiness', 'Service', 'BreadcrumbList'],
+      },
+      hero: {
+        h1: pageTitle,
+        subheading: '',
+        intro: `${pageTitle}，支持中文咨询与预约。`,
+        ctaLabel: '预约首次就诊',
+        ctaHref: `/${locale}/contact`,
+        trustItems: [],
+      },
+      location: {
+        heading: `访问${pageTitle}`,
+        intro: '',
+        ctaLabel: '预约就诊',
+        ctaHref: `/${locale}/contact`,
+        hoursLabel: '营业时间',
+        mapEmbedUrl: '',
+        nap: {
+          name: '',
+          address: '',
+          city: '',
+          state: '',
+          zip: '',
+          phone: '',
+          email: '',
+        },
+        hours: [],
+      },
+      services: { heading: '服务项目', items: [] },
+      conditions: { heading: '常见适应症', intro: '', items: [] },
+      faq: { heading: '常见问题', items: [] },
+      whyChooseUs: { heading: '为什么选择我们', items: [], testimonial: null },
+    };
+    try {
+      setLoading(true);
+      const result = await saveSeoProgramFile(newSlug, payload);
+      await loadFiles(newSlug);
+      setActiveSeoLocation(normalizedLocation);
+      setStatus(result.message || `Created SEO location: ${normalizedLocation}`);
+    } catch (error: any) {
+      setStatus(error?.message || 'Failed to create location.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addSeoProgramPage = async () => {
+    if (!isSeoProgramsMode || !selectedSeoLocation) return;
+    const prefixInput = window.prompt(
+      '请输入页面主题 slug（示例: acupuncture-for-back-pain）'
+    );
+    if (!prefixInput) return;
+    const normalizedPrefix = prefixInput
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9-\u4e00-\u9fff]+/g, '-')
+      .replace(/-{2,}/g, '-')
+      .replace(/^-+|-+$/g, '');
+    if (!normalizedPrefix) {
+      setStatus('Invalid page slug.');
+      return;
+    }
+    const slug = `${normalizedPrefix}-${selectedSeoLocation}`;
+    if (seoProgramFiles.some((file) => file.path === slug)) {
+      setStatus(`SEO page already exists: ${slug}`);
+      const existing = seoProgramFiles.find((file) => file.path === slug) || null;
+      if (existing) setActiveFile(existing);
+      return;
+    }
+    const titleDefault = `${selectedSeoLocation}中医针灸专题`;
+    const pageTitle = (window.prompt('请输入页面标题（中文）', titleDefault) || titleDefault).trim();
+    const payload: Record<string, any> = {
+      pageType: 'seo-service',
+      service: normalizedPrefix,
+      seo: {
+        title: pageTitle,
+        h1: pageTitle,
+        description: `${pageTitle}页面，提供疗法与适应症说明。`,
+        canonicalUrl: `/${locale}/${slug}`,
+        noindex: false,
+        priority: 0.8,
+        schema: ['LocalBusiness', 'Service', 'BreadcrumbList'],
+      },
+      hero: {
+        h1: pageTitle,
+        subheading: '',
+        intro: `${pageTitle}，支持中文咨询与预约。`,
+        ctaLabel: '预约首次就诊',
+        ctaHref: `/${locale}/contact`,
+        trustItems: [],
+      },
+      faq: { heading: '常见问题', items: [] },
+      services: { heading: '相关服务', items: [] },
+      conditions: { heading: '常见适应症', intro: '', items: [] },
+      whyChooseUs: { heading: '为什么选择我们', items: [], testimonial: null },
+    };
+    try {
+      setLoading(true);
+      const result = await saveSeoProgramFile(slug, payload);
+      await loadFiles(slug);
+      setStatus(result.message || `Created SEO page: ${slug}`);
+    } catch (error: any) {
+      setStatus(error?.message || 'Failed to create SEO page.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const deleteSelectedSeoPage = async () => {
+    if (!isSeoProgramsMode || !isSeoPageFileActive || !activeFile) return;
+    const confirmed = window.confirm(`Delete ${activeFile.path}? This cannot be undone.`);
+    if (!confirmed) return;
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `/api/admin/content/file?siteId=${siteId}&locale=${locale}&path=${encodeURIComponent(
+          activeFile.path
+        )}`,
+        { method: 'DELETE' }
+      );
+      const payload = await response.json();
+      if (!response.ok) {
+        throw new Error(payload.message || 'Delete failed');
+      }
+      await loadFiles();
+      setStatus(payload.message || 'SEO page deleted.');
+    } catch (error: any) {
+      setStatus(error?.message || 'Delete failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const deleteSelectedSeoLocation = async () => {
+    if (!isSeoProgramsMode || !selectedSeoLocation) return;
+    const targetFiles = seoProgramFiles.filter(
+      (file) => inferSeoLocationFromFile(file) === selectedSeoLocation
+    );
+    if (targetFiles.length === 0) {
+      setStatus('No SEO pages found for selected location.');
+      return;
+    }
+    const confirmed = window.confirm(
+      `Delete location "${selectedSeoLocation}" and ${targetFiles.length} SEO page(s)? This cannot be undone.`
+    );
+    if (!confirmed) return;
+    try {
+      setLoading(true);
+      const results = await Promise.all(
+        targetFiles.map(async (file) => {
+          const response = await fetch(
+            `/api/admin/content/file?siteId=${siteId}&locale=${locale}&path=${encodeURIComponent(
+              file.path
+            )}`,
+            { method: 'DELETE' }
+          );
+          return response.ok;
+        })
+      );
+      await loadFiles();
+      const successCount = results.filter(Boolean).length;
+      setStatus(`Deleted ${successCount}/${targetFiles.length} SEO page(s).`);
+    } catch (error: any) {
+      setStatus(error?.message || 'Failed to delete location.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const variantSections = formData
     ? Object.entries(SECTION_VARIANT_OPTIONS).filter(
         ([key]) =>
@@ -2247,6 +2551,19 @@ export function ContentEditor({
                   deleteSelectedCaseStudyItem={deleteSelectedCaseStudyItem}
                   setStatus={(message) => setStatus(message)}
                 />
+              ) : isSeoProgramsMode ? (
+                <SeoProgramsModuleList
+                  locations={seoLocations}
+                  selectedLocation={selectedSeoLocation}
+                  pages={seoPagesForSelectedLocation}
+                  activeFilePath={activeFile?.path}
+                  onSelectLocation={handleSeoLocationSelect}
+                  setActiveFile={(file) => setActiveFile(file as ContentFileItem | null)}
+                  addLocation={addSeoLocation}
+                  deleteSelectedLocation={deleteSelectedSeoLocation}
+                  addPage={addSeoProgramPage}
+                  deleteSelectedPage={deleteSelectedSeoPage}
+                />
               ) : (
                 files.map((file) => (
                   <button
@@ -2469,6 +2786,16 @@ export function ContentEditor({
                 </div>
               )}
 
+              {isSeoPageFileActive && formData && (
+                <div className="space-y-4">
+                  <div className="text-sm font-semibold text-gray-900">SEO Page Form</div>
+                  <div className="text-xs text-gray-500">
+                    Structured recursive form for SEO landing content.
+                  </div>
+                  {renderGenericFormNode(formData)}
+                </div>
+              )}
+
               {isSeoFile && formData && (
                 <SeoPanel
                   formData={formData}
@@ -2641,7 +2968,8 @@ export function ContentEditor({
                 />
               )}
 
-              {!isServicesItemsMode &&
+              {!isSeoPageFileActive &&
+                !isServicesItemsMode &&
                 (formData?.services ||
                   formData?.servicesList ||
                   formData?.trustBar ||
@@ -2803,6 +3131,7 @@ export function ContentEditor({
               {formData &&
                 !isSiteInfoFile &&
                 !isPricingPageFile &&
+                !isSeoPageFileActive &&
                 !formData.hero &&
                 !formData.introduction &&
                 !formData.cta && (
