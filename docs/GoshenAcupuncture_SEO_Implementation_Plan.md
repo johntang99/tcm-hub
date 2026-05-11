@@ -26,11 +26,11 @@ This implementation follows:
 - Intake foundation created: `content/goshen-acupuncture/intake.json`
 - Site registered in file config fallback: `content/_sites.json`
 - Pipeline executed: `node scripts/seed-seo-pages.mjs goshen-acupuncture`
-- SEO registry now active: **9 rows in `site_seo_pages`**
-- EN + ZH SEO page content seeded for all 9 slugs
+- SEO registry now active: **13 rows in `site_seo_pages`**
+- EN + ZH SEO page content seeded for all 13 slugs
 - Metadata length QA passed for all seeded pages (one overlong EN title fixed)
 
-### Active SEO Slugs (9)
+### Active SEO Slugs (13)
 - `acupuncture-goshen-ny` (`seo-local-landing`)
 - `acupuncture-for-back-pain-goshen-ny` (`seo-condition`)
 - `acupuncture-for-insomnia-goshen-ny` (`seo-condition`)
@@ -40,6 +40,10 @@ This implementation follows:
 - `cupping-therapy-goshen-ny` (`seo-service`)
 - `moxibustion-goshen-ny` (`seo-service`)
 - `tui-na-massage-goshen-ny` (`seo-service`)
+- `acupuncture-hudson-valley-ny` (`seo-local-landing`)
+- `acupuncture-for-back-pain-hudson-valley-ny` (`seo-condition`)
+- `acupuncture-for-anxiety-hudson-valley-ny` (`seo-condition`)
+- `acupuncture-cost-hudson-valley-ny` (`seo-resource`)
 
 ---
 
@@ -109,27 +113,35 @@ https://www.goshenacupuncture.com/sitemap.xml
 ### Request indexing (EN priority order)
 ```text
 https://www.goshenacupuncture.com/en/acupuncture-goshen-ny
+https://www.goshenacupuncture.com/en/acupuncture-hudson-valley-ny
 https://www.goshenacupuncture.com/en/chinese-herbal-medicine-goshen-ny
 https://www.goshenacupuncture.com/en/cupping-therapy-goshen-ny
 https://www.goshenacupuncture.com/en/moxibustion-goshen-ny
 https://www.goshenacupuncture.com/en/tui-na-massage-goshen-ny
 https://www.goshenacupuncture.com/en/acupuncture-for-back-pain-goshen-ny
+https://www.goshenacupuncture.com/en/acupuncture-for-back-pain-hudson-valley-ny
 https://www.goshenacupuncture.com/en/acupuncture-for-insomnia-goshen-ny
 https://www.goshenacupuncture.com/en/acupuncture-for-anxiety-goshen-ny
+https://www.goshenacupuncture.com/en/acupuncture-for-anxiety-hudson-valley-ny
 https://www.goshenacupuncture.com/en/acupuncture-cost-goshen-ny
+https://www.goshenacupuncture.com/en/acupuncture-cost-hudson-valley-ny
 ```
 
 ### Request indexing (ZH mirror set)
 ```text
 https://www.goshenacupuncture.com/zh/acupuncture-goshen-ny
+https://www.goshenacupuncture.com/zh/acupuncture-hudson-valley-ny
 https://www.goshenacupuncture.com/zh/chinese-herbal-medicine-goshen-ny
 https://www.goshenacupuncture.com/zh/cupping-therapy-goshen-ny
 https://www.goshenacupuncture.com/zh/moxibustion-goshen-ny
 https://www.goshenacupuncture.com/zh/tui-na-massage-goshen-ny
 https://www.goshenacupuncture.com/zh/acupuncture-for-back-pain-goshen-ny
+https://www.goshenacupuncture.com/zh/acupuncture-for-back-pain-hudson-valley-ny
 https://www.goshenacupuncture.com/zh/acupuncture-for-insomnia-goshen-ny
 https://www.goshenacupuncture.com/zh/acupuncture-for-anxiety-goshen-ny
+https://www.goshenacupuncture.com/zh/acupuncture-for-anxiety-hudson-valley-ny
 https://www.goshenacupuncture.com/zh/acupuncture-cost-goshen-ny
+https://www.goshenacupuncture.com/zh/acupuncture-cost-hudson-valley-ny
 ```
 
 ---
@@ -137,12 +149,12 @@ https://www.goshenacupuncture.com/zh/acupuncture-cost-goshen-ny
 ## Done-Gate Checklist
 
 - [x] Intake exists and matches Goshen business truth
-- [x] 9 SEO slugs registered in `site_seo_pages`
+- [x] 13 SEO slugs registered in `site_seo_pages`
 - [x] EN + ZH SEO content entries generated
 - [x] Core + 3 condition + 1 resource + 4 service page types present
 - [x] Homepage SEO hub and footer resource links added
 - [x] Header nav includes core landing shortcut
 - [ ] GBP profile links to core landing page
-- [ ] Sitemap submitted and all 9 EN + 9 ZH URLs requested in GSC
+- [ ] Sitemap submitted and all 13 EN + 13 ZH URLs requested in GSC
 - [ ] 2-4 week coverage/CTR monitoring started
 

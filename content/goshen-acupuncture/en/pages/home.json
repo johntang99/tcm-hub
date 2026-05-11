@@ -207,10 +207,26 @@
       {
         "url": "/en/tui-na-massage-goshen-ny",
         "text": "Tui Na Massage in Goshen"
+      },
+      {
+        "url": "/en/acupuncture-hudson-valley-ny",
+        "text": "Acupuncture in Hudson Valley, NY"
+      },
+      {
+        "url": "/en/acupuncture-for-back-pain-hudson-valley-ny",
+        "text": "Acupuncture for Back Pain in Hudson Valley"
+      },
+      {
+        "url": "/en/acupuncture-for-anxiety-hudson-valley-ny",
+        "text": "Acupuncture for Anxiety in Hudson Valley"
+      },
+      {
+        "url": "/en/acupuncture-cost-hudson-valley-ny",
+        "text": "Acupuncture Cost in Hudson Valley, NY"
       }
     ],
-    "title": "Goshen Acupuncture Resources",
-    "subtitle": "Browse our core landing page plus condition, cost, and service-area pages built for Goshen search intent."
+    "title": "Goshen + Hudson Valley Acupuncture Resources",
+    "subtitle": "Browse core landing pages, condition pages, and cost guides for both Goshen and Hudson Valley search intent."
   },
   "topBar": {
     "badge": {
