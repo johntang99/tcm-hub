@@ -36,12 +36,6 @@
   },
   "form": {
     "title": "Send Us a Message",
-    "notificationEmail": "jenniferliang@gmail.com",
-    "notificationEmails": [],
-    "senderName": "Kingsfoil Acupuncture",
-    "senderEmail": "no-reply@baamplatform.com",
-    "notificationMessage": "⚡ Action Required: New customer inquiry",
-    "autoReplyMessage": "Thank you for contacting <strong>{businessName}</strong>. We've received your message and will respond shortly.",
     "fields": {
       "name": {
         "label": "Full Name",
@@ -79,11 +73,17 @@
     },
     "variant": "single-column",
     "subtitle": "Fill out the form below and we'll get back to you as soon as possible",
+    "senderName": "Kingsfoil Acupuncture",
+    "senderEmail": "no-reply@baamplatform.com",
     "errorMessage": "Sorry, there was an error sending your message. Please call us directly at 8456820809.",
     "submitButton": {
       "text": "Send Message"
     },
-    "successMessage": "Thank you for contacting us! We'll get back to you within 24 hours."
+    "successMessage": "Thank you for contacting us! We'll get back to you within 24 hours.",
+    "autoReplyMessage": "Thank you for contacting <strong>{businessName}</strong>. We've received your message and will respond shortly.",
+    "notificationEmail": "jenniferliang@gmail.com",
+    "notificationEmails": [],
+    "notificationMessage": "⚡ Action Required: New customer inquiry"
   },
   "hero": {
     "title": "Get in Touch",

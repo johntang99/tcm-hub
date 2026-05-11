@@ -389,7 +389,9 @@ export interface FooterSection {
     name: string;
     description: string;
   };
+  quickLinksTitle?: string;
   quickLinks: NavigationLink[];
+  servicesTitle?: string;
   services: NavigationLink[];
   contact: {
     addressLines: string[];

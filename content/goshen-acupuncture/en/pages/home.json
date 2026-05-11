@@ -169,6 +169,49 @@
     ],
     "variant": "transparent"
   },
+  "seoHub": {
+    "badge": "LOCAL SEO HUB",
+    "links": [
+      {
+        "url": "/en/acupuncture-goshen-ny",
+        "text": "Acupuncture in Goshen, NY"
+      },
+      {
+        "url": "/en/acupuncture-for-back-pain-goshen-ny",
+        "text": "Acupuncture for Back Pain in Goshen"
+      },
+      {
+        "url": "/en/acupuncture-for-insomnia-goshen-ny",
+        "text": "Acupuncture for Insomnia in Goshen"
+      },
+      {
+        "url": "/en/acupuncture-for-anxiety-goshen-ny",
+        "text": "Acupuncture for Anxiety in Goshen"
+      },
+      {
+        "url": "/en/acupuncture-cost-goshen-ny",
+        "text": "Acupuncture Cost in Goshen, NY"
+      },
+      {
+        "url": "/en/chinese-herbal-medicine-goshen-ny",
+        "text": "Chinese Herbal Medicine in Goshen"
+      },
+      {
+        "url": "/en/cupping-therapy-goshen-ny",
+        "text": "Cupping Therapy in Goshen"
+      },
+      {
+        "url": "/en/moxibustion-goshen-ny",
+        "text": "Moxibustion in Goshen"
+      },
+      {
+        "url": "/en/tui-na-massage-goshen-ny",
+        "text": "Tui Na Massage in Goshen"
+      }
+    ],
+    "title": "Goshen Acupuncture Resources",
+    "subtitle": "Browse our core landing page plus condition, cost, and service-area pages built for Goshen search intent."
+  },
   "topBar": {
     "badge": {
       "text": "Accepting New Patients",
@@ -218,7 +261,7 @@
     "featured": {
       "id": "acupuncture",
       "icon": "Syringe",
-      "link": "/en/services#acupuncture",
+      "link": "/en/acupuncture-goshen-ny",
       "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/Acupuncture-15.webp",
       "title": "Acupuncture",
       "subtitle": "Restore balance and stimulate healing",
@@ -233,7 +276,7 @@
       {
         "id": "herbal-medicine",
         "icon": "Leaf",
-        "link": "/en/services#herbs",
+        "link": "/en/chinese-herbal-medicine-goshen-ny",
         "title": "Chinese Herbal Medicine",
         "subtitle": "Nature's pharmacy for holistic healing",
         "fullDescription": "Utilizes syndrome differentiation to select specific herbs or formulas that regulate the Yin, Yang, Qi, and blood of the internal organs, effectively adjusting the body's overall functional balance.",
@@ -242,7 +285,7 @@
       {
         "id": "cupping",
         "icon": "Circle",
-        "link": "/en/services#cupping",
+        "link": "/en/cupping-therapy-goshen-ny",
         "title": "Cupping Therapy",
         "subtitle": "Release tension and promote circulation",
         "fullDescription": "Uses fire or vacuum suction to create negative pressure on the skin. This expands the capillaries to promote blood circulation, remove blood stasis, and expel wind and cold pathogens from the body.",
@@ -251,7 +294,7 @@
       {
         "id": "moxibustion",
         "icon": "Flame",
-        "link": "/en/services#moxibustion",
+        "link": "/en/moxibustion-goshen-ny",
         "title": "Moxibustion",
         "subtitle": "Warming therapy to invigorate Qi",
         "fullDescription": "Uses the gentle, penetrating heat from burning moxa (mugwort) to stimulate specific acupuncture points. This therapy warms the meridians, expels cold, activates blood circulation, and relieves pain.",
@@ -260,7 +303,7 @@
       {
         "id": "tuina",
         "icon": "Hand",
-        "link": "/en/services#tuina",
+        "link": "/en/tui-na-massage-goshen-ny",
         "title": "Tui Na Massage",
         "subtitle": "Therapeutic massage along meridians",
         "fullDescription": "Applies manual techniques to the meridians, muscles, and joints to harmonize Qi and blood, relax the tendons, clear the meridians, and improve local circulation.",
@@ -281,7 +324,7 @@
       {
         "id": "back-pain",
         "icon": "Activity",
-        "link": "/en/conditions#back-pain",
+        "link": "/en/acupuncture-for-back-pain-goshen-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/gallery/acupuncture-needles.jpg",
         "title": "Back Pain",
         "category": "Pain Management",
@@ -311,7 +354,7 @@
       {
         "id": "anxiety",
         "icon": "Brain",
-        "link": "/en/conditions#anxiety",
+        "link": "/en/acupuncture-for-anxiety-goshen-ny",
         "image": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/dr-huang-clinic/general/anxiate-3.jpeg",
         "title": "Anxiety & Panic Disorders",
         "category": "Mental & Emotional Health",

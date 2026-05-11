@@ -15,6 +15,7 @@ import GalleryPreviewSection from '@/components/sections/GalleryPreviewSection';
 import FirstVisitSection from '@/components/sections/FirstVisitSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import CTASection from '@/components/sections/CTASection';
+import SeoHubLinksSection from '@/components/sections/SeoHubLinksSection';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { getSiteDisplayName } from '@/lib/siteInfo';
 
@@ -79,6 +80,12 @@ interface HomePageContent {
   gallery?: any;
   firstVisit?: any;
   whyChooseUs?: any;
+  seoHub?: {
+    badge?: string;
+    title: string;
+    subtitle?: string;
+    links: Array<{ text: string; url: string }>;
+  };
   cta?: any;
 }
 
@@ -96,6 +103,7 @@ const sectionRevealConfig: Record<
   howItWorks: { distance: 38, duration: 840 },
   conditions: { distance: 42, duration: 880 },
   services: { distance: 44, duration: 900 },
+  seoHub: { distance: 42, duration: 880 },
   blog: { distance: 42, duration: 880 },
   gallery: { distance: 40, duration: 860 },
   firstVisit: { distance: 38, duration: 840 },
@@ -194,6 +202,7 @@ export default async function HomePage({ params }: PageProps) {
     'howItWorks',
     'conditions',
     'services',
+    'seoHub',
     'blog',
     'gallery',
     'firstVisit',
@@ -202,6 +211,14 @@ export default async function HomePage({ params }: PageProps) {
   ];
   const layoutSections =
     layout?.sections?.map((section) => section.id).filter(Boolean) || defaultSections;
+  if (content.seoHub && !layoutSections.includes('seoHub')) {
+    const servicesIndex = layoutSections.indexOf('services');
+    if (servicesIndex >= 0) {
+      layoutSections.splice(servicesIndex + 1, 0, 'seoHub');
+    } else {
+      layoutSections.push('seoHub');
+    }
+  }
 
   const renderSection = (sectionId: string) => {
     switch (sectionId) {
@@ -254,6 +271,8 @@ export default async function HomePage({ params }: PageProps) {
         return content.conditions ? <ConditionsSection {...content.conditions} /> : null;
       case 'services':
         return content.services ? <ServicesSection {...content.services} /> : null;
+      case 'seoHub':
+        return content.seoHub ? <SeoHubLinksSection {...content.seoHub} /> : null;
       case 'blog':
         return content.blog ? <BlogPreviewSection locale={locale} {...content.blog} /> : null;
       case 'gallery':

@@ -39,7 +39,7 @@ export default function Footer({ locale, siteId, footer }: FooterProps) {
           {/* Quick Links */}
           <div>
             <h3 className="text-white font-semibold mb-4">
-              {locale === 'en' ? 'Quick Links' : '快速链接'}
+              {resolvedFooter.quickLinksTitle || (locale === 'en' ? 'Quick Links' : '快速链接')}
             </h3>
             <ul className="space-y-2">
               {resolvedFooter.quickLinks.map((link) => (
@@ -58,7 +58,7 @@ export default function Footer({ locale, siteId, footer }: FooterProps) {
           {/* Services */}
           <div>
             <h3 className="text-white font-semibold mb-4">
-              {locale === 'en' ? 'Services' : '服务'}
+              {resolvedFooter.servicesTitle || (locale === 'en' ? 'Services' : '服务')}
             </h3>
             <ul className="space-y-2">
               {resolvedFooter.services.map((service) => (
