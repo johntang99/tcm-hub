@@ -141,6 +141,11 @@ export default function Footer({ locale, siteId, footer }: FooterProps) {
               </div>
             )}
           </div>
+          {resolvedFooter.disclaimer?.trim() && (
+            <p className="mt-4 text-xs text-gray-500 leading-relaxed">
+              {resolvedFooter.disclaimer}
+            </p>
+          )}
         </div>
       </div>
     </footer>

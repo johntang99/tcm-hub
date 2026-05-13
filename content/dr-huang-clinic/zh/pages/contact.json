@@ -32,12 +32,6 @@
   },
   "form": {
     "title": "給我們留言",
-    "notificationEmail": "sancai.acu@gmail.com",
-    "notificationEmails": [],
-    "senderName": "黃醫師診所",
-    "senderEmail": "no-reply@baamplatform.com",
-    "notificationMessage": "⚡ 需要處理：收到新的客戶諮詢",
-    "autoReplyMessage": "感謝您聯絡 <strong>{businessName}</strong>。我們已收到您的留言，會盡快回覆。",
     "fields": {
       "name": {
         "label": "全名",
@@ -60,7 +54,7 @@
           "安排新患者預約",
           "安排覆診預約",
           "關於療程的問題",
-          "關於收費／保險的問題",
+          "關於收費的問題",
           "索取資料",
           "其他"
         ],
@@ -75,11 +69,17 @@
     },
     "variant": "single-column",
     "subtitle": "請填寫以下表格，我們會盡快回覆您",
+    "senderName": "黃醫師診所",
+    "senderEmail": "no-reply@baamplatform.com",
     "errorMessage": "抱歉，發送訊息時出現錯誤。請直接致電我們 (845) 381-1106。",
     "submitButton": {
       "text": "發送訊息"
     },
-    "successMessage": "感謝您聯絡我們！我們將於24小時內回覆您。"
+    "successMessage": "感謝您聯絡我們！我們將於24小時內回覆您。",
+    "autoReplyMessage": "感謝您聯絡 <strong>{businessName}</strong>。我們已收到您的留言，會盡快回覆。",
+    "notificationEmail": "sancai.acu@gmail.com",
+    "notificationEmails": [],
+    "notificationMessage": "⚡ 需要處理：收到新的客戶諮詢"
   },
   "hero": {
     "title": "聯絡我們",
@@ -94,18 +94,18 @@
     "schedule": [
       {
         "day": "週一",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "週二",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "週三",
         "note": "社區針灸日",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       },
       {
@@ -115,17 +115,17 @@
       },
       {
         "day": "週五",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "週六",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "週日",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       }
     ]
@@ -150,7 +150,7 @@
       },
       "primary": "(845) 381-1106",
       "secondary": null,
-      "description": "週一至週三、週五至週日：上午9時至下午5時"
+      "description": "週一至週三、週五至週日：上午10時30分至下午5時"
     },
     {
       "icon": "Mail",

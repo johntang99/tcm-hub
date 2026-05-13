@@ -67,7 +67,7 @@
           "Schedule New Patient Appointment",
           "Schedule Follow-up Appointment",
           "Question About Treatment",
-          "Question About Pricing/Insurance",
+          "Question About Pricing",
           "Request Information",
           "Other"
         ],
@@ -107,18 +107,18 @@
     "schedule": [
       {
         "day": "Monday",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "Tuesday",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "Wednesday",
         "note": "Community Acupuncture Day",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       },
       {
@@ -128,17 +128,17 @@
       },
       {
         "day": "Friday",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "Saturday",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       },
       {
         "day": "Sunday",
-        "time": "9:00 AM - 5:00 PM",
+        "time": "10:30 AM - 5:00 PM",
         "isOpen": true
       }
     ]
@@ -163,7 +163,7 @@
       },
       "primary": "(845) 381-1106",
       "secondary": null,
-      "description": "Mon–Wed, Fri–Sun: 9am–5pm | Thu: Closed"
+      "description": "Mon–Wed, Fri–Sun: 10:30am–5pm | Thu: Closed"
     },
     {
       "icon": "Mail",

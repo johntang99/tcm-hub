@@ -36,7 +36,7 @@
       },
       {
         "url": "/en/case-studies",
-        "text": ""
+        "text": "Case Studies"
       },
       {
         "url": "/en/pricing",
@@ -60,7 +60,7 @@
   },
   "topbar": {
     "badge": "Accepting New Patients",
-    "hours": "Mon-Fri 9:00-18:00",
+    "hours": "Closed Thu · Other days 10:30am–5:00pm",
     "phone": "(845) 381-1106",
     "address": "71 East Main Street, Middletown, NY 10940",
     "phoneHref": "tel:+18453811106",

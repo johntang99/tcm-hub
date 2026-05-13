@@ -393,6 +393,7 @@ export interface FooterSection {
   quickLinks: NavigationLink[];
   servicesTitle?: string;
   services: NavigationLink[];
+  disclaimer?: string;
   contact: {
     addressLines: string[];
     phone: string;

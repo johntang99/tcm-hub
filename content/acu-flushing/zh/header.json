@@ -5,10 +5,10 @@
   },
   "menu": {
     "logo": {
-      "text": "Flushing Acupuncture",
+      "text": "Natural Life Acupuncture",
       "emoji": "",
       "image": {
-        "alt": "Flushing Acupuncture",
+        "alt": "Natural Life Acupuncture",
         "src": "https://oakahkxpbmmodpcpocio.supabase.co/storage/v1/object/public/chinesemedicine-media/acu-flushing/onboarding-overrides/1773047192512-1771994833240-logo-acu-flushing-4.svg"
       },
       "subtext": "传统中医与针灸"
@@ -50,12 +50,12 @@
     "variant": "transparent"
   },
   "topbar": {
-    "badge": "Welcoming New Patients",
-    "hours": "周一至周五 9:00-18:00",
+    "badge": "接受新患者",
+    "hours": "周一至周五 9:00-19:00",
     "phone": "(718) 888-9512",
     "address": "143-26 41st Ave, Flushing, NY 11355",
     "phoneHref": "tel:+17188889512",
-    "addressHref": "https://maps.google.com/?q=71+East+Main+Street+New York+NY+10001"
+    "addressHref": "https://maps.google.com/?q=143-26+41st+Ave,+Flushing,+NY+11355"
   },
   "languages": [
     "en",

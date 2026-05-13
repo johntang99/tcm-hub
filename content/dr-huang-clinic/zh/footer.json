@@ -5,8 +5,8 @@
     "description": "以傳統中醫和針灸為社區提供整體治療。"
   },
   "hours": [
-    "週一至週五: 9:00 AM - 6:00 PM",
-    "週六: 10:00 AM - 2:00 PM"
+    "星期一至三、五至日：10:30 AM - 5:00 PM",
+    "星期四：休息"
   ],
   "contact": {
     "email": "info@clinic.com",
@@ -66,10 +66,6 @@
     {
       "url": "/zh/new-patients",
       "text": "首次就診"
-    },
-    {
-      "url": "/zh/new-patients",
-      "text": "新患者"
     },
     {
       "url": "/zh/blog",
