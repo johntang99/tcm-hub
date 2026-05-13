@@ -16,6 +16,7 @@ import FirstVisitSection from '@/components/sections/FirstVisitSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import CTASection from '@/components/sections/CTASection';
 import SeoHubLinksSection from '@/components/sections/SeoHubLinksSection';
+import ReviewsWidgetSection from '@/components/sections/ReviewsWidgetSection';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { getSiteDisplayName } from '@/lib/siteInfo';
 
@@ -73,6 +74,21 @@ interface HomePageContent {
     }>;
   };
   testimonials?: any;
+  reviewsWidget?: {
+    slug?: string;
+    baamUrl?: string;
+    badge?: string;
+    title?: string;
+    subtitle?: string;
+    layout?: 'cards' | 'carousel' | 'single' | 'compact';
+    minRating?: 4 | 5;
+    maxCount?: number;
+    accentColor?: string;
+    showAggregate?: boolean;
+    showLeaveOwn?: boolean;
+    showReply?: boolean;
+    maxWidth?: number;
+  };
   howItWorks?: any;
   conditions?: any;
   services?: any;
@@ -100,6 +116,7 @@ const sectionRevealConfig: Record<
   hero: { distance: 30, duration: 760 },
   credentials: { distance: 28, duration: 740 },
   testimonials: { distance: 40, duration: 860 },
+  reviewsWidget: { distance: 40, duration: 860 },
   howItWorks: { distance: 38, duration: 840 },
   conditions: { distance: 42, duration: 880 },
   services: { distance: 44, duration: 900 },
@@ -264,6 +281,10 @@ export default async function HomePage({ params }: PageProps) {
       case 'testimonials':
         return content.testimonials ? (
           <TestimonialsSection {...content.testimonials} />
+        ) : null;
+      case 'reviewsWidget':
+        return content.reviewsWidget ? (
+          <ReviewsWidgetSection {...content.reviewsWidget} locale={locale} />
         ) : null;
       case 'howItWorks':
         return content.howItWorks ? <HowItWorksSection {...content.howItWorks} /> : null;

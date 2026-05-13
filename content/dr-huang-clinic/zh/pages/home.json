@@ -505,6 +505,20 @@
     ],
     "subtitle": "我們的與眾不同之處"
   },
+  "reviewsWidget": {
+    "slug": "dr-huang-acupuncture-and-green-eastern-b-xn4w",
+    "badge": "Google 真實評價",
+    "title": "Google 上患者的真實評價",
+    "layout": "carousel",
+    "maxCount": 20,
+    "maxWidth": 1280,
+    "subtitle": "評價即時同步，直接來自我們的 Google 商家頁面。",
+    "minRating": 4,
+    "showReply": false,
+    "accentColor": "#ccaa00",
+    "showLeaveOwn": true,
+    "showAggregate": true
+  },
   "testimonials": {
     "badge": "患者成功案例",
     "title": "真實患者的真實效果",

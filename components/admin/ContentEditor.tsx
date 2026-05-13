@@ -23,6 +23,7 @@ import { AboutAffiliationsPanel } from '@/components/admin/panels/AboutAffiliati
 import { normalizeAboutFormData, finalizeAboutFormForSave } from '@/lib/admin/about-form-normalize';
 import { GalleryPhotosPanel } from '@/components/admin/panels/GalleryPhotosPanel';
 import { CtaPanel } from '@/components/admin/panels/CtaPanel';
+import { ReviewsWidgetPanel } from '@/components/admin/panels/ReviewsWidgetPanel';
 import { ServicesPanel } from '@/components/admin/panels/ServicesPanel';
 import { ServicesItemPanel } from '@/components/admin/panels/ServicesItemPanel';
 import { ServicesModuleList } from '@/components/admin/panels/ServicesModuleList';
@@ -2930,6 +2931,13 @@ export function ContentEditor({
 
               {showSharedPanels && formData?.cta && (
                 <CtaPanel cta={formData.cta} updateFormValue={updateFormValue} />
+              )}
+
+              {showSharedPanels && formData?.reviewsWidget && (
+                <ReviewsWidgetPanel
+                  reviewsWidget={formData.reviewsWidget}
+                  updateFormValue={updateFormValue}
+                />
               )}
 
               {isPricingPageFile &&

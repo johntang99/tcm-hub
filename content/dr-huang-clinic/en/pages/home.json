@@ -556,5 +556,19 @@
         "condition": "Fertility Support"
       }
     ]
+  },
+  "reviewsWidget": {
+    "slug": "dr-huang-acupuncture-and-green-eastern-b-xn4w",
+    "badge": "VERIFIED GOOGLE REVIEWS",
+    "title": "What patients say on Google",
+    "layout": "carousel",
+    "maxCount": 20,
+    "maxWidth": 1280,
+    "subtitle": "Reviews live, fetched directly from our Google Business Profile.",
+    "minRating": 4,
+    "showReply": false,
+    "accentColor": "#ccaa00",
+    "showLeaveOwn": true,
+    "showAggregate": true
   }
 }

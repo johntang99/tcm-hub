@@ -29,3 +29,9 @@ export type { WhyChooseUsSectionProps } from './WhyChooseUsSection';
 
 export { default as CTASection } from './CTASection';
 export type { CTASectionProps } from './CTASection';
+
+export { default as ReviewsWidgetSection } from './ReviewsWidgetSection';
+export type {
+  ReviewsWidgetSectionProps,
+  ReviewsWidgetLayout,
+} from './ReviewsWidgetSection';
