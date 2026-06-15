@@ -84,6 +84,14 @@ export function AutomationsManager({ sites, selectedSiteId }: Props) {
     }
   }, [siteId]);
 
+  // Refresh only the delivery log — never touches the (possibly unsaved)
+  // automations being edited.
+  const loadDeliveries = useCallback(async () => {
+    if (!siteId) return;
+    const d = await fetch(`/api/admin/automations/deliveries?siteId=${siteId}`).then((r) => r.json());
+    setDeliveries(d.deliveries || []);
+  }, [siteId]);
+
   useEffect(() => {
     load();
   }, [load]);
@@ -161,7 +169,7 @@ export function AutomationsManager({ sites, selectedSiteId }: Props) {
           ? { ok: true, msg: `Sent ✓ (HTTP ${r.statusCode})` }
           : { ok: false, msg: `Failed: ${r?.error || 'unknown'}` },
       }));
-      load();
+      loadDeliveries();
     } catch {
       setTests((t) => ({ ...t, [a.id]: { ok: false, msg: 'Request error' } }));
     }
