@@ -663,6 +663,10 @@ export function BookingSettingsManager({
               Auto-queue confirmed bookings for review requests. Get the API key from BAAM
               Review → Location Setup → Integrations · API keys.
             </p>
+            <p className="text-[11px] text-amber-700 bg-amber-50 border border-amber-200 rounded-md px-2 py-1.5">
+              Use this <strong>or</strong> an Automation for BAAM Review — not both.
+              Sending reviews via the Automations page instead? Leave this <strong>disabled</strong>.
+            </p>
             <div>
               <label className="block text-xs text-gray-500">API key</label>
               <input

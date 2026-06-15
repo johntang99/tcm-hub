@@ -2,16 +2,27 @@ import type { BookingRecord, BookingService, BookingSettings } from '@/lib/types
 
 type BaamReviewConfig = NonNullable<BookingSettings['baamReview']>;
 
-// Resolve config: prefer admin settings (no deploy), fall back to env so
-// existing env-based setups keep working.
+// Resolve config. Once the admin card has been configured (cfg present), it is
+// the SINGLE source of truth — the "Enabled" toggle fully controls this path,
+// with no env override. This lets a site turn the built-in connector OFF and
+// route reviews through the generic Automations engine instead (one way only).
+// The env vars are a legacy fallback used ONLY when the card was never set up.
 function resolveConfig(cfg?: BaamReviewConfig) {
-  const apiKey = cfg?.apiKey?.trim() || process.env.BAAM_REVIEW_API_KEY || '';
-  const enabled = cfg ? cfg.enabled !== false && !!apiKey : !!apiKey;
+  if (cfg) {
+    const apiKey = cfg.apiKey?.trim() || '';
+    return {
+      enabled: cfg.enabled === true && !!apiKey,
+      apiKey,
+      apiUrl: cfg.apiUrl?.trim() || 'https://baamreview.com',
+      language: cfg.language?.trim() || 'zh',
+    };
+  }
+  const apiKey = process.env.BAAM_REVIEW_API_KEY || '';
   return {
-    enabled,
+    enabled: !!apiKey,
     apiKey,
-    apiUrl: cfg?.apiUrl?.trim() || process.env.BAAM_REVIEW_API_URL || 'https://baamreview.com',
-    language: cfg?.language?.trim() || process.env.BAAM_REVIEW_LANGUAGE || 'zh',
+    apiUrl: process.env.BAAM_REVIEW_API_URL || 'https://baamreview.com',
+    language: process.env.BAAM_REVIEW_LANGUAGE || 'zh',
   };
 }
 
