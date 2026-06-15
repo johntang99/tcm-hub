@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { forwardToBaamReview } from '@/lib/baam-review-forward';
 import { v4 as uuid } from 'uuid';
 import { getRequestSiteId } from '@/lib/content';
 import { generateAvailableSlots, isDateWithinRange } from '@/lib/booking/availability';
@@ -152,6 +153,11 @@ export async function POST(request: NextRequest) {
   };
 
   await addBooking(siteId, booking);
+
+  // Fire-and-forget: queue this patient in BAAM Review for a post-visit review
+  // request. void = never block or fail the booking on this.
+  void forwardToBaamReview(booking, service);
+
   await sendBookingEmails({
     booking,
     service,
