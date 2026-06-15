@@ -50,6 +50,10 @@ export function BookingSettingsManager({
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [importing, setImporting] = useState(false);
+  const [baamTest, setBaamTest] = useState<{
+    status: 'idle' | 'testing' | 'ok' | 'fail';
+    msg?: string;
+  }>({ status: 'idle' });
   const selectedSite = sites.find((site) => site.id === siteId);
 
   useEffect(() => {
@@ -110,6 +114,37 @@ export function BookingSettingsManager({
 
   const updateSettings = (updates: Partial<BookingSettings>) => {
     setSettings((current) => ({ ...current, ...updates }));
+  };
+
+  const updateBaamReview = (updates: Partial<NonNullable<BookingSettings['baamReview']>>) => {
+    setBaamTest({ status: 'idle' });
+    setSettings((current) => ({
+      ...current,
+      baamReview: { ...(current.baamReview || {}), ...updates },
+    }));
+  };
+
+  const testBaamReview = async () => {
+    setBaamTest({ status: 'testing' });
+    try {
+      const res = await fetch('/api/admin/booking/test-baam-review', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          siteId,
+          apiKey: settings.baamReview?.apiKey,
+          apiUrl: settings.baamReview?.apiUrl,
+        }),
+      });
+      const data = await res.json();
+      setBaamTest(
+        data.ok
+          ? { status: 'ok', msg: `Connected to “${data.location}”` }
+          : { status: 'fail', msg: data.error || 'Connection failed' },
+      );
+    } catch {
+      setBaamTest({ status: 'fail', msg: 'Could not reach the server.' });
+    }
   };
 
   const updateBusinessHour = (index: number, updates: Partial<BookingSettings['businessHours'][0]>) => {
@@ -610,6 +645,77 @@ export function BookingSettingsManager({
                 />
               </div>
             </div>
+          </div>
+
+          <div className="bg-white border border-gray-200 rounded-xl p-4 space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="text-sm font-semibold text-gray-900">BAAM Review</div>
+              <label className="flex items-center gap-2 text-xs text-gray-600">
+                <input
+                  type="checkbox"
+                  checked={settings.baamReview?.enabled === true}
+                  onChange={(event) => updateBaamReview({ enabled: event.target.checked })}
+                />
+                Enabled
+              </label>
+            </div>
+            <p className="text-xs text-gray-500 -mt-2">
+              Auto-queue confirmed bookings for review requests. Get the API key from BAAM
+              Review → Location Setup → Integrations · API keys.
+            </p>
+            <div>
+              <label className="block text-xs text-gray-500">API key</label>
+              <input
+                type="password"
+                placeholder="brk_…"
+                autoComplete="off"
+                className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm font-mono"
+                value={settings.baamReview?.apiKey || ''}
+                onChange={(event) => updateBaamReview({ apiKey: event.target.value })}
+              />
+            </div>
+            <div>
+              <label className="block text-xs text-gray-500">Review request language</label>
+              <select
+                className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
+                value={settings.baamReview?.language || 'zh'}
+                onChange={(event) => updateBaamReview({ language: event.target.value })}
+              >
+                <option value="zh">中文 (Chinese)</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs text-gray-500">
+                API URL <span className="text-gray-400">(optional)</span>
+              </label>
+              <input
+                placeholder="https://baamreview.com"
+                className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
+                value={settings.baamReview?.apiUrl || ''}
+                onChange={(event) => updateBaamReview({ apiUrl: event.target.value })}
+              />
+            </div>
+            <div className="flex items-center gap-3">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={testBaamReview}
+                disabled={baamTest.status === 'testing' || !settings.baamReview?.apiKey}
+              >
+                {baamTest.status === 'testing' ? 'Testing…' : 'Test connection'}
+              </Button>
+              {baamTest.status === 'ok' && (
+                <span className="text-xs font-medium text-green-700">✓ {baamTest.msg}</span>
+              )}
+              {baamTest.status === 'fail' && (
+                <span className="text-xs font-medium text-red-600">✕ {baamTest.msg}</span>
+              )}
+            </div>
+            <p className="text-[11px] text-gray-400">
+              Remember to Save Settings after testing.
+            </p>
           </div>
 
           <Button type="button" onClick={saveAll} disabled={loading}>

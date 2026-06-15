@@ -481,6 +481,14 @@ export interface BookingSettings {
   blockedDates: string[];
   notificationEmails?: string[];
   notificationPhones?: string[];
+  /** BAAM Review connector — set up in site admin (no code/deploy). When
+   *  enabled, each confirmed booking is queued for a review request. */
+  baamReview?: {
+    enabled?: boolean;
+    apiKey?: string;
+    apiUrl?: string; // default https://baamreview.com
+    language?: string; // en | zh | es
+  };
 }
 
 export interface BookingRecord {

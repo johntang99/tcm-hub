@@ -155,8 +155,9 @@ export async function POST(request: NextRequest) {
   await addBooking(siteId, booking);
 
   // Fire-and-forget: queue this patient in BAAM Review for a post-visit review
-  // request. void = never block or fail the booking on this.
-  void forwardToBaamReview(booking, service);
+  // request. Config comes from site admin (settings.baamReview), env as
+  // fallback. void = never block or fail the booking on this.
+  void forwardToBaamReview(booking, service, settings.baamReview);
 
   await sendBookingEmails({
     booking,
