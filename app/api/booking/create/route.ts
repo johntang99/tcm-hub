@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { forwardToBaamReview } from '@/lib/baam-review-forward';
+import { dispatchEvent } from '@/lib/automations/dispatch';
 import { v4 as uuid } from 'uuid';
 import { getRequestSiteId } from '@/lib/content';
 import { generateAvailableSlots, isDateWithinRange } from '@/lib/booking/availability';
@@ -158,6 +159,9 @@ export async function POST(request: NextRequest) {
   // request. Config comes from site admin (settings.baamReview), env as
   // fallback. void = never block or fail the booking on this.
   void forwardToBaamReview(booking, service, settings.baamReview);
+
+  // Fire-and-forget: run any site automations listening for confirmed bookings.
+  void dispatchEvent(siteId, 'booking.confirmed', { booking, service });
 
   await sendBookingEmails({
     booking,

@@ -5,6 +5,7 @@ import { getDefaultSite, getSiteByHost, getSiteById, normalizeHost } from '@/lib
 import type { Locale, SiteInfo } from '@/lib/types';
 import { getSiteDisplayName } from '@/lib/siteInfo';
 import { forwardToLeadHub } from '@/lib/lead-hub-forward';
+import { dispatchEvent } from '@/lib/automations/dispatch';
 import fs from 'fs';
 import path from 'path';
 
@@ -478,9 +479,16 @@ export async function POST(request: NextRequest) {
       /* forwarder already never throws; defensive no-op */
     }
 
+    // Fire-and-forget: run any site automations listening for new leads.
+    if (resolvedSite?.id) {
+      void dispatchEvent(resolvedSite.id, 'lead.created', {
+        lead: { name, email, phone, reason, reasonLabel, message },
+      });
+    }
+
     return NextResponse.json(
-      { 
-        success: true, 
+      {
+        success: true,
         message: locale === 'zh'
           ? '您的消息已发送成功。我们的团队将尽快与您联系，并请留意邮箱确认邮件。'
           : 'Your message has been sent successfully. Our team will contact you soon. Please check your email for confirmation.',

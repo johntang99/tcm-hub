@@ -21,6 +21,7 @@ const navigation: Array<{
   { name: 'Shop', href: '/admin/shop', iconKey: 'shoppingBag', group: 'site' },
   { name: 'Bookings', href: '/admin/bookings', iconKey: 'calendar', group: 'site' },
   { name: 'Booking Settings', href: '/admin/booking-settings', iconKey: 'slidersHorizontal', group: 'site' },
+  { name: 'Automations', href: '/admin/automations', iconKey: 'activity', group: 'site' },
   { name: 'Media', href: '/admin/media', iconKey: 'image', group: 'site' },
 
   { name: 'Sites', href: '/admin/sites', iconKey: 'building2', group: 'system', preserveContext: false },

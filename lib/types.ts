@@ -524,6 +524,53 @@ export interface BookingRecord {
 }
 
 // ============================================
+// AUTOMATIONS ("mini-Zapier")
+// ============================================
+
+export type AutomationTrigger =
+  | 'booking.confirmed'
+  | 'booking.created'
+  | 'lead.created';
+
+export interface AutomationKV {
+  key: string;
+  value: string; // supports {{placeholders}} for fields; literal for headers
+}
+
+export interface AutomationAction {
+  method?: 'POST';
+  url: string;
+  contentType?: 'json' | 'form';
+  headers?: AutomationKV[];
+  /** Field map — each value may contain {{path}} placeholders resolved from
+   *  the trigger payload (e.g. {{booking.email}}, {{lead.name}}). */
+  fields?: AutomationKV[];
+}
+
+export interface Automation {
+  id: string;
+  name: string;
+  enabled: boolean;
+  trigger: AutomationTrigger;
+  action: AutomationAction;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface AutomationDelivery {
+  id: string;
+  automationId: string | null;
+  automationName: string;
+  trigger: string;
+  targetUrl: string;
+  status: 'ok' | 'failed';
+  statusCode: number | null;
+  error: string | null;
+  isTest: boolean;
+  createdAt: string;
+}
+
+// ============================================
 // PAGE CONTENT TYPES
 // ============================================
 
