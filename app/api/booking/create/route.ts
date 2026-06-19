@@ -160,8 +160,10 @@ export async function POST(request: NextRequest) {
   // fallback. void = never block or fail the booking on this.
   void forwardToBaamReview(booking, service, settings.baamReview);
 
-  // Fire-and-forget: run any site automations listening for confirmed bookings.
-  void dispatchEvent(siteId, 'booking.confirmed', { booking, service });
+  // Fire-and-forget: run site automations. A booking here is created AND
+  // confirmed in the same step, so fire both event names — whichever trigger an
+  // automation listens for will match (each automation still runs at most once).
+  void dispatchEvent(siteId, ['booking.created', 'booking.confirmed'], { booking, service });
 
   await sendBookingEmails({
     booking,

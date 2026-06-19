@@ -537,13 +537,25 @@ export interface AutomationKV {
   value: string; // supports {{placeholders}} for fields; literal for headers
 }
 
+/** Where an automation delivers. A preset (baam-review / n8n / zapier) fills in
+ *  the URL, auth header and field map for you; 'custom' is the raw editor. */
+export type ConnectorType = 'baam-review' | 'n8n' | 'zapier' | 'custom';
+
 export interface AutomationAction {
   method?: 'POST';
-  url: string;
+  /** Connector preset. Missing = 'custom' (back-compat with pre-connector rows). */
+  connector?: ConnectorType;
+  /** baam-review: this location's BAAM Review key (sent as `Authorization: Bearer`). */
+  apiKey?: string;
+  /** n8n / zapier / custom: the destination webhook URL. */
+  webhookUrl?: string;
+  /** Legacy/custom destination URL (still honored for 'custom'). */
+  url?: string;
   contentType?: 'json' | 'form';
   headers?: AutomationKV[];
   /** Field map — each value may contain {{path}} placeholders resolved from
-   *  the trigger payload (e.g. {{booking.email}}, {{lead.name}}). */
+   *  the trigger payload (e.g. {{booking.email}}, {{lead.name}}). For presets,
+   *  left empty means "use the default BAAM field map". */
   fields?: AutomationKV[];
 }
 

@@ -7,8 +7,10 @@ import type {
   AutomationDelivery,
   AutomationKV,
   AutomationTrigger,
+  ConnectorType,
   SiteConfig,
 } from '@/lib/types';
+import { CONNECTORS } from '@/lib/automations/connectors';
 import { Button } from '@/components/ui';
 
 interface Props {
@@ -36,28 +38,33 @@ const VARIABLES: Record<AutomationTrigger, string[]> = {
   ],
 };
 
+// New automations default to the BAAM Review (direct) connector — the cheapest,
+// one-hop path. Fields are left empty so the preset's default map is used.
 function newAutomation(trigger: AutomationTrigger): Automation {
-  const isLead = trigger === 'lead.created';
-  const fields: AutomationKV[] = isLead
-    ? [
-        { key: 'name', value: '{{lead.name}}' },
-        { key: 'email', value: '{{lead.email}}' },
-        { key: 'phone', value: '{{lead.phone}}' },
-      ]
-    : [
-        { key: 'name', value: '{{booking.name}}' },
-        { key: 'email', value: '{{booking.email}}' },
-        { key: 'phone', value: '{{booking.phone}}' },
-        { key: 'service', value: '{{service.name}}' },
-        { key: 'external_id', value: '{{booking.id}}' },
-      ];
   return {
     id: crypto.randomUUID(),
     name: 'New automation',
     enabled: true,
     trigger,
-    action: { method: 'POST', url: '', contentType: 'json', headers: [], fields },
+    action: {
+      method: 'POST',
+      connector: 'baam-review',
+      apiKey: '',
+      webhookUrl: '',
+      url: '',
+      contentType: 'json',
+      headers: [],
+      fields: [],
+    },
   };
+}
+
+// Is this automation configured enough to test/run? (depends on its connector)
+function actionReady(a: Automation): boolean {
+  const c = a.action.connector ?? 'custom';
+  if (c === 'baam-review') return !!a.action.apiKey?.trim();
+  if (c === 'n8n' || c === 'zapier') return !!a.action.webhookUrl?.trim();
+  return !!a.action.url?.trim();
 }
 
 export function AutomationsManager({ sites, selectedSiteId }: Props) {
@@ -163,12 +170,18 @@ export function AutomationsManager({ sites, selectedSiteId }: Props) {
       });
       const data = await res.json();
       const r = data.result;
-      setTests((t) => ({
-        ...t,
-        [a.id]: r?.status === 'ok'
-          ? { ok: true, msg: `Sent ✓ (HTTP ${r.statusCode})` }
-          : { ok: false, msg: `Failed: ${r?.error || 'unknown'}` },
-      }));
+      const body: string = r?.responseBody || '';
+      const skipped = /"?status"?\s*:\s*"?skipped/i.test(body);
+      let msg: string;
+      if (r?.status !== 'ok') {
+        msg = `Failed: ${r?.error || 'unknown'}`;
+      } else if (skipped) {
+        // Target accepted it but didn't act (e.g. BAAM Review 60-day dedupe).
+        msg = `Sent ✓ (HTTP ${r.statusCode}) — target skipped it: ${body}. The sample contact is reused each test, so this is expected. A real booking with a new contact will be added.`;
+      } else {
+        msg = `Sent ✓ (HTTP ${r.statusCode})${body ? ` — ${body}` : ''}`;
+      }
+      setTests((t) => ({ ...t, [a.id]: { ok: r?.status === 'ok', msg } }));
       loadDeliveries();
     } catch {
       setTests((t) => ({ ...t, [a.id]: { ok: false, msg: 'Request error' } }));
@@ -223,7 +236,10 @@ export function AutomationsManager({ sites, selectedSiteId }: Props) {
           </div>
         )}
 
-        {automations.map((a) => (
+        {automations.map((a) => {
+          const conn = a.action.connector ?? 'custom';
+          const meta = CONNECTORS.find((c) => c.value === conn);
+          return (
           <div key={a.id} className="bg-white border border-gray-200 rounded-xl p-4 space-y-4">
             <div className="flex items-center gap-3">
               <input
@@ -248,7 +264,7 @@ export function AutomationsManager({ sites, selectedSiteId }: Props) {
               </button>
             </div>
 
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="grid gap-3 md:grid-cols-2">
               <div>
                 <label className="block text-xs text-gray-500">When (trigger)</label>
                 <select
@@ -261,61 +277,116 @@ export function AutomationsManager({ sites, selectedSiteId }: Props) {
                   ))}
                 </select>
               </div>
-              <div className="md:col-span-2">
-                <label className="block text-xs text-gray-500">POST to URL</label>
-                <input
-                  placeholder="https://example.com/webhook"
-                  className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm font-mono"
-                  value={a.action.url}
-                  onChange={(e) => updateAction(a.id, { url: e.target.value })}
-                />
+              <div>
+                <label className="block text-xs text-gray-500">Send to (connector)</label>
+                <select
+                  className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
+                  value={conn}
+                  onChange={(e) => updateAction(a.id, { connector: e.target.value as ConnectorType })}
+                >
+                  {CONNECTORS.map((c) => (
+                    <option key={c.value} value={c.value}>{c.label}</option>
+                  ))}
+                </select>
               </div>
             </div>
 
-            <div>
-              <label className="block text-xs text-gray-500">Body format</label>
-              <select
-                className="mt-1 rounded-md border border-gray-200 px-3 py-2 text-sm"
-                value={a.action.contentType || 'json'}
-                onChange={(e) => updateAction(a.id, { contentType: e.target.value as 'json' | 'form' })}
-              >
-                <option value="json">JSON</option>
-                <option value="form">Form-encoded</option>
-              </select>
-            </div>
+            {meta && <p className="text-[11px] text-gray-400 -mt-1">{meta.description}</p>}
 
-            {/* Headers */}
-            <KVEditor
-              title="Headers (e.g. Authorization: Bearer brk_…)"
-              rows={a.action.headers || []}
-              onAdd={() => addKV(a.id, 'headers')}
-              onRemove={(i) => removeKV(a.id, 'headers', i)}
-              onChange={(i, patch) => updateKV(a.id, 'headers', i, patch)}
-              keyPlaceholder="Header name"
-              valuePlaceholder="Value"
-            />
+            {/* Connector-specific config */}
+            {conn === 'baam-review' && (
+              <div>
+                <label className="block text-xs text-gray-500">BAAM Review API key (this location)</label>
+                <input
+                  placeholder="brk_…"
+                  className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm font-mono"
+                  value={a.action.apiKey || ''}
+                  onChange={(e) => updateAction(a.id, { apiKey: e.target.value })}
+                />
+                <p className="mt-1 text-[11px] text-gray-400">
+                  Generate it in BAAM Review → Location Setup → Integrations · API keys. Name, email,
+                  phone &amp; service are sent automatically.
+                </p>
+              </div>
+            )}
 
-            {/* Fields */}
-            <KVEditor
-              title="Fields (value supports {{placeholders}})"
-              rows={a.action.fields || []}
-              onAdd={() => addKV(a.id, 'fields')}
-              onRemove={(i) => removeKV(a.id, 'fields', i)}
-              onChange={(i, patch) => updateKV(a.id, 'fields', i, patch)}
-              keyPlaceholder="field"
-              valuePlaceholder="{{booking.email}}"
-            />
+            {(conn === 'n8n' || conn === 'zapier') && (
+              <div>
+                <label className="block text-xs text-gray-500">
+                  {conn === 'n8n' ? 'n8n' : 'Zapier'} webhook URL
+                </label>
+                <input
+                  placeholder={conn === 'n8n'
+                    ? 'https://n8n.baamplatform.com/webhook/…'
+                    : 'https://hooks.zapier.com/hooks/catch/…'}
+                  className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm font-mono"
+                  value={a.action.webhookUrl || ''}
+                  onChange={(e) => updateAction(a.id, { webhookUrl: e.target.value })}
+                />
+                <p className="mt-1 text-[11px] text-gray-400">
+                  Name, email, phone &amp; service are sent automatically — map them inside {conn === 'n8n' ? 'n8n' : 'Zapier'}.
+                </p>
+              </div>
+            )}
 
-            <div className="text-[11px] text-gray-400">
-              Available variables: {VARIABLES[a.trigger].map((v) => `{{${v}}}`).join('  ')}
-            </div>
+            {conn === 'custom' && (
+              <>
+                <div>
+                  <label className="block text-xs text-gray-500">POST to URL</label>
+                  <input
+                    placeholder="https://example.com/webhook"
+                    className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm font-mono"
+                    value={a.action.url || ''}
+                    onChange={(e) => updateAction(a.id, { url: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs text-gray-500">Body format</label>
+                  <select
+                    className="mt-1 rounded-md border border-gray-200 px-3 py-2 text-sm"
+                    value={a.action.contentType || 'json'}
+                    onChange={(e) => updateAction(a.id, { contentType: e.target.value as 'json' | 'form' })}
+                  >
+                    <option value="json">JSON</option>
+                    <option value="form">Form-encoded</option>
+                  </select>
+                </div>
+
+                {/* Headers */}
+                <KVEditor
+                  title="Headers (e.g. Authorization: Bearer brk_…)"
+                  rows={a.action.headers || []}
+                  onAdd={() => addKV(a.id, 'headers')}
+                  onRemove={(i) => removeKV(a.id, 'headers', i)}
+                  onChange={(i, patch) => updateKV(a.id, 'headers', i, patch)}
+                  keyPlaceholder="Header name"
+                  valuePlaceholder="Value"
+                />
+
+                {/* Fields */}
+                <KVEditor
+                  title="Fields (value supports {{placeholders}})"
+                  rows={a.action.fields || []}
+                  onAdd={() => addKV(a.id, 'fields')}
+                  onRemove={(i) => removeKV(a.id, 'fields', i)}
+                  onChange={(i, patch) => updateKV(a.id, 'fields', i, patch)}
+                  keyPlaceholder="field"
+                  valuePlaceholder="{{booking.email}}"
+                />
+
+                <div className="text-[11px] text-gray-400">
+                  Available variables: {VARIABLES[a.trigger].map((v) => `{{${v}}}`).join('  ')}
+                </div>
+              </>
+            )}
 
             <div className="flex items-center gap-3">
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => runTest(a)}
-                disabled={tests[a.id]?.busy || !a.action.url}
+                disabled={tests[a.id]?.busy || !actionReady(a)}
               >
                 {tests[a.id]?.busy ? 'Testing…' : 'Run test'}
               </Button>
@@ -326,7 +397,8 @@ export function AutomationsManager({ sites, selectedSiteId }: Props) {
               )}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       <Button type="button" onClick={save} disabled={loading}>

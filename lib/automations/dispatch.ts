@@ -1,5 +1,6 @@
 import type { Automation, AutomationAction, AutomationTrigger } from '@/lib/types';
 import { listAutomations, recordDelivery } from './store';
+import { resolveConnector, resolvedUrl } from './connectors';
 
 export type EventPayload = Record<string, unknown>;
 
@@ -22,19 +23,25 @@ export function renderTemplate(tpl: string, payload: EventPayload): string {
 }
 
 /** Build the HTTP request (url, headers, body) for an automation + payload.
- *  Pure — no network. Exposed for testing. */
-export function buildRequest(action: AutomationAction, payload: EventPayload) {
-  const url = action.url;
-  const contentType = action.contentType ?? 'json';
+ *  Resolves the connector preset first (BAAM Review / n8n / Zapier / custom),
+ *  then renders {{placeholders}}. Pure — no network. Exposed for testing. */
+export function buildRequest(
+  action: AutomationAction,
+  payload: EventPayload,
+  trigger: AutomationTrigger,
+) {
+  const resolved = resolveConnector(action, trigger);
+  const url = resolved.url;
+  const contentType = resolved.contentType;
 
   const fields: Record<string, string> = {};
-  for (const f of action.fields ?? []) {
+  for (const f of resolved.fields) {
     if (!f.key) continue;
     fields[f.key] = renderTemplate(f.value ?? '', payload);
   }
 
   const headers: Record<string, string> = {};
-  for (const h of action.headers ?? []) {
+  for (const h of resolved.headers) {
     if (h.key) headers[h.key] = renderTemplate(h.value ?? '', payload);
   }
 
@@ -53,6 +60,8 @@ export interface ExecuteResult {
   status: 'ok' | 'failed';
   statusCode: number | null;
   error: string | null;
+  /** First ~300 chars of the destination's response body (for the test view). */
+  responseBody?: string;
 }
 
 /** Fire one automation's HTTP request. Never throws. */
@@ -60,21 +69,21 @@ export async function executeAutomation(
   automation: Automation,
   payload: EventPayload,
 ): Promise<ExecuteResult> {
-  if (!automation.action?.url) {
-    return { status: 'failed', statusCode: null, error: 'No target URL configured' };
-  }
   try {
-    const req = buildRequest(automation.action, payload);
+    const req = buildRequest(automation.action, payload, automation.trigger);
+    if (!req.url) {
+      return { status: 'failed', statusCode: null, error: 'No target URL configured' };
+    }
     const res = await fetch(req.url, {
       method: req.method,
       headers: req.headers,
       body: req.body,
     });
+    const responseBody = (await res.text().catch(() => '')).slice(0, 300);
     if (!res.ok) {
-      const detail = (await res.text().catch(() => '')).slice(0, 300);
-      return { status: 'failed', statusCode: res.status, error: detail || `HTTP ${res.status}` };
+      return { status: 'failed', statusCode: res.status, error: responseBody || `HTTP ${res.status}`, responseBody };
     }
-    return { status: 'ok', statusCode: res.status, error: null };
+    return { status: 'ok', statusCode: res.status, error: null, responseBody };
   } catch (e) {
     return {
       status: 'failed',
@@ -91,12 +100,15 @@ export async function executeAutomation(
  */
 export async function dispatchEvent(
   siteId: string,
-  trigger: AutomationTrigger,
+  trigger: AutomationTrigger | AutomationTrigger[],
   payload: EventPayload,
 ): Promise<void> {
+  const triggers = Array.isArray(trigger) ? trigger : [trigger];
   try {
     const all = await listAutomations(siteId);
-    const matching = all.filter((a) => a.enabled && a.trigger === trigger);
+    // An automation has ONE trigger; if several event names are passed it still
+    // runs at most once (its own trigger must be in the set).
+    const matching = all.filter((a) => a.enabled && triggers.includes(a.trigger));
     await Promise.all(
       matching.map(async (a) => {
         const result = await executeAutomation(a, payload);
@@ -104,8 +116,8 @@ export async function dispatchEvent(
           siteId,
           automationId: a.id,
           automationName: a.name,
-          trigger,
-          targetUrl: a.action.url,
+          trigger: a.trigger,
+          targetUrl: resolvedUrl(a.action, a.trigger),
           status: result.status,
           statusCode: result.statusCode,
           error: result.error,

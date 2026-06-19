@@ -2,7 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSessionFromRequest } from '@/lib/admin/auth';
 import { canManageBookings, requireSiteAccess } from '@/lib/admin/permissions';
 import { listAutomations, saveAutomations } from '@/lib/automations/store';
-import type { Automation } from '@/lib/types';
+import type { Automation, ConnectorType } from '@/lib/types';
+
+const CONNECTORS: ConnectorType[] = ['baam-review', 'n8n', 'zapier', 'custom'];
 
 async function authorize(request: NextRequest, siteId: string) {
   const session = await getSessionFromRequest(request);
@@ -35,20 +37,28 @@ export async function PUT(request: NextRequest) {
 
   const incoming = Array.isArray(payload?.automations) ? payload.automations : [];
   // Coerce to a safe shape.
-  const automations: Automation[] = incoming.map((a: Record<string, unknown>) => ({
-    id: String(a.id),
-    name: String(a.name || 'Untitled automation'),
-    enabled: a.enabled !== false,
-    trigger: a.trigger as Automation['trigger'],
-    action: {
-      method: 'POST',
-      url: String((a.action as Record<string, unknown>)?.url || ''),
-      contentType:
-        (a.action as Record<string, unknown>)?.contentType === 'form' ? 'form' : 'json',
-      headers: ((a.action as Record<string, unknown>)?.headers as Automation['action']['headers']) || [],
-      fields: ((a.action as Record<string, unknown>)?.fields as Automation['action']['fields']) || [],
-    },
-  }));
+  const automations: Automation[] = incoming.map((a: Record<string, unknown>) => {
+    const act = (a.action as Record<string, unknown>) || {};
+    const connector = CONNECTORS.includes(act.connector as ConnectorType)
+      ? (act.connector as ConnectorType)
+      : 'custom';
+    return {
+      id: String(a.id),
+      name: String(a.name || 'Untitled automation'),
+      enabled: a.enabled !== false,
+      trigger: a.trigger as Automation['trigger'],
+      action: {
+        method: 'POST',
+        connector,
+        apiKey: String(act.apiKey || '') || undefined,
+        webhookUrl: String(act.webhookUrl || '') || undefined,
+        url: String(act.url || ''),
+        contentType: act.contentType === 'form' ? 'form' : 'json',
+        headers: (act.headers as Automation['action']['headers']) || [],
+        fields: (act.fields as Automation['action']['fields']) || [],
+      },
+    };
+  });
 
   try {
     await saveAutomations(siteId, automations);

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSessionFromRequest } from '@/lib/admin/auth';
 import { canManageBookings, requireSiteAccess } from '@/lib/admin/permissions';
 import { executeAutomation, sampledPayload } from '@/lib/automations/dispatch';
+import { resolvedUrl } from '@/lib/automations/connectors';
 import { recordDelivery } from '@/lib/automations/store';
 import type { Automation } from '@/lib/types';
 
@@ -34,7 +35,7 @@ export async function POST(request: NextRequest) {
     automationId: automation.id || null,
     automationName: automation.name || 'Test',
     trigger: automation.trigger,
-    targetUrl: automation.action?.url || '',
+    targetUrl: resolvedUrl(automation.action, automation.trigger),
     status: result.status,
     statusCode: result.statusCode,
     error: result.error,
