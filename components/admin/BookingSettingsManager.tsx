@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Locale } from '@/lib/i18n';
 import type { BookingService, BookingSettings, SiteConfig } from '@/lib/types';
+import { normalizeBookingSettings } from '@/lib/booking/special-closures';
 import { Button } from '@/components/ui';
 
 interface BookingSettingsManagerProps {
@@ -33,6 +34,7 @@ const DEFAULT_SETTINGS: BookingSettings = {
     { day: 'Sun', open: '00:00', close: '00:00', closed: true },
   ],
   blockedDates: [],
+  specialClosures: [],
   notificationEmails: [],
   notificationPhones: [],
 };
@@ -80,7 +82,7 @@ export function BookingSettingsManager({
         throw new Error(payload.message || 'Failed to load settings');
       }
       const payload = await response.json();
-      setSettings(payload.settings || DEFAULT_SETTINGS);
+      setSettings(normalizeBookingSettings(payload.settings || DEFAULT_SETTINGS));
     } catch (error: any) {
       setStatus(error.message);
     } finally {
@@ -153,6 +155,37 @@ export function BookingSettingsManager({
     updateSettings({ businessHours: next });
   };
 
+  const updateSpecialClosure = (
+    index: number,
+    updates: Partial<NonNullable<BookingSettings['specialClosures']>[number]>
+  ) => {
+    const current = [...(settings.specialClosures || [])];
+    current[index] = { ...(current[index] || { date: '' }), ...updates };
+    updateSettings({ specialClosures: current });
+  };
+
+  const addSpecialClosure = () => {
+    updateSettings({
+      specialClosures: [
+        ...(settings.specialClosures || []),
+        {
+          date: '',
+          reason: '',
+          noteEn: '',
+          noteZh: '',
+          blocksBooking: true,
+          showOnContact: true,
+        },
+      ],
+    });
+  };
+
+  const removeSpecialClosure = (index: number) => {
+    const next = [...(settings.specialClosures || [])];
+    next.splice(index, 1);
+    updateSettings({ specialClosures: next });
+  };
+
   const addService = () => {
     setServices((current) => [
       ...current,
@@ -189,10 +222,12 @@ export function BookingSettingsManager({
 
   const saveAll = async () => {
     setStatus(null);
+    const normalizedSettings = normalizeBookingSettings(settings);
+    setSettings(normalizedSettings);
     const settingsResponse = await fetch('/api/admin/booking/settings', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ siteId, settings }),
+      body: JSON.stringify({ siteId, settings: normalizedSettings }),
     });
     if (!settingsResponse.ok) {
       const payload = await settingsResponse.json();
@@ -596,7 +631,9 @@ export function BookingSettingsManager({
                 />
               </div>
               <div>
-                <label className="block text-xs text-gray-500">Blocked Dates (comma separated)</label>
+                <label className="block text-xs text-gray-500">
+                  Blocked Dates (legacy, comma separated)
+                </label>
                 <input
                   className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
                   value={settings.blockedDates.join(', ')}
@@ -609,6 +646,108 @@ export function BookingSettingsManager({
                     })
                   }
                 />
+                <p className="mt-1 text-[11px] text-gray-400">
+                  Special closure dates below are auto-included when saved.
+                </p>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs text-gray-500">Special Closures</label>
+                  <Button type="button" variant="outline" onClick={addSpecialClosure}>
+                    Add Closure
+                  </Button>
+                </div>
+                {(settings.specialClosures || []).length === 0 ? (
+                  <div className="rounded-md border border-dashed border-gray-200 px-3 py-3 text-xs text-gray-500">
+                    No special closures yet.
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {(settings.specialClosures || []).map((closure, index) => (
+                      <div key={`closure-${index}`} className="rounded-md border border-gray-200 p-3 space-y-3">
+                        <div className="grid gap-3 md:grid-cols-2">
+                          <div>
+                            <label className="block text-xs text-gray-500">Date</label>
+                            <input
+                              type="date"
+                              className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
+                              value={closure.date || ''}
+                              onChange={(event) =>
+                                updateSpecialClosure(index, { date: event.target.value })
+                              }
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs text-gray-500">Reason (optional)</label>
+                            <input
+                              className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
+                              value={closure.reason || ''}
+                              onChange={(event) =>
+                                updateSpecialClosure(index, { reason: event.target.value })
+                              }
+                              placeholder="Holiday, conference, etc."
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs text-gray-500">Contact note (EN)</label>
+                            <input
+                              className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
+                              value={closure.noteEn || ''}
+                              onChange={(event) =>
+                                updateSpecialClosure(index, { noteEn: event.target.value })
+                              }
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs text-gray-500">Contact note (ZH)</label>
+                            <input
+                              className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
+                              value={closure.noteZh || ''}
+                              onChange={(event) =>
+                                updateSpecialClosure(index, { noteZh: event.target.value })
+                              }
+                            />
+                          </div>
+                        </div>
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                          <div className="flex items-center gap-5">
+                            <label className="flex items-center gap-2 text-xs text-gray-600">
+                              <input
+                                type="checkbox"
+                                checked={closure.blocksBooking !== false}
+                                onChange={(event) =>
+                                  updateSpecialClosure(index, {
+                                    blocksBooking: event.target.checked,
+                                  })
+                                }
+                              />
+                              Block booking
+                            </label>
+                            <label className="flex items-center gap-2 text-xs text-gray-600">
+                              <input
+                                type="checkbox"
+                                checked={closure.showOnContact !== false}
+                                onChange={(event) =>
+                                  updateSpecialClosure(index, {
+                                    showOnContact: event.target.checked,
+                                  })
+                                }
+                              />
+                              Show on contact page
+                            </label>
+                          </div>
+                          <button
+                            type="button"
+                            className="text-xs text-red-600 hover:text-red-700"
+                            onClick={() => removeSpecialClosure(index)}
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
               <div>
                 <label className="block text-xs text-gray-500">

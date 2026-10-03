@@ -1,4 +1,10 @@
-import type { BookingRecord, BookingService, BookingSettings } from '@/lib/types';
+import { findSpecialClosureForDate } from '@/lib/booking/special-closures';
+import type {
+  BookingRecord,
+  BookingService,
+  BookingSettings,
+  BookingSpecialClosure,
+} from '@/lib/types';
 
 const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -77,19 +83,88 @@ export function getBusinessHoursForDate(
   date: string,
   settings: BookingSettings
 ) {
-  if (
-    Array.isArray(settings.blackoutWindows) &&
-    settings.blackoutWindows.some((window) => date >= window.start && date <= window.end)
-  ) {
-    return null;
-  }
-  if (settings.blockedDates.includes(date)) {
-    return null;
-  }
+  const blocked = getDateBlockContext(date, settings);
+  if (blocked) return null;
   const dayName = getDayName(date);
   const hours = settings.businessHours.find((entry) => entry.day === dayName);
   if (!hours || hours.closed) return null;
   return hours;
+}
+
+export type DateBlockReason =
+  | 'blackout_window'
+  | 'special_closure'
+  | 'blocked_date'
+  | 'weekly_closed';
+
+export interface DateBlockContext {
+  reason: DateBlockReason;
+  blackoutReason?: string;
+  specialClosure?: BookingSpecialClosure;
+}
+
+export function getDateBlockContext(
+  date: string,
+  settings: BookingSettings
+): DateBlockContext | null {
+  const blackout = Array.isArray(settings.blackoutWindows)
+    ? settings.blackoutWindows.find((window) => date >= window.start && date <= window.end)
+    : null;
+  if (blackout) {
+    return { reason: 'blackout_window', blackoutReason: blackout.reason };
+  }
+  const specialClosure = findSpecialClosureForDate(settings, date);
+  if (specialClosure) {
+    return { reason: 'special_closure', specialClosure };
+  }
+  if (settings.blockedDates.includes(date)) {
+    return { reason: 'blocked_date' };
+  }
+  const dayName = getDayName(date);
+  const hours = settings.businessHours.find((entry) => entry.day === dayName);
+  if (!hours || hours.closed) {
+    return { reason: 'weekly_closed' };
+  }
+  return null;
+}
+
+export function getDateBlockMessage(
+  blocked: DateBlockContext,
+  locale: 'en' | 'zh' = 'en'
+) {
+  if (blocked.reason === 'special_closure' && blocked.specialClosure) {
+    const closure = blocked.specialClosure;
+    if (locale === 'zh') {
+      const note = closure.noteZh || closure.reason || closure.noteEn;
+      return note
+        ? `该日期暂停预约：${note}`
+        : '该日期为休诊日，暂不提供预约。';
+    }
+    const note = closure.noteEn || closure.reason || closure.noteZh;
+    return note
+      ? `This date is unavailable: ${note}`
+      : 'This date is closed and unavailable for booking.';
+  }
+  if (locale === 'zh') {
+    if (blocked.reason === 'blackout_window') {
+      return blocked.blackoutReason
+        ? `该日期暂停预约：${blocked.blackoutReason}`
+        : '该日期暂不接受预约。';
+    }
+    if (blocked.reason === 'weekly_closed') {
+      return '该日期为固定休息日，暂不提供预约。';
+    }
+    return '该日期暂不提供预约。';
+  }
+  if (blocked.reason === 'blackout_window') {
+    return blocked.blackoutReason
+      ? `This date is unavailable: ${blocked.blackoutReason}`
+      : 'This date is temporarily unavailable for booking.';
+  }
+  if (blocked.reason === 'weekly_closed') {
+    return 'This date falls on a regular closed day.';
+  }
+  return 'This date is unavailable for booking.';
 }
 
 export function generateAvailableSlots({

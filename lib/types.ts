@@ -462,6 +462,15 @@ export interface BookingBusinessHour {
   closed?: boolean;
 }
 
+export interface BookingSpecialClosure {
+  date: string;
+  reason?: string;
+  noteEn?: string;
+  noteZh?: string;
+  blocksBooking?: boolean;
+  showOnContact?: boolean;
+}
+
 export interface BookingSettings {
   timezone: string;
   bufferMinutes: number;
@@ -479,6 +488,7 @@ export interface BookingSettings {
   recurringEnabled?: boolean;
   businessHours: BookingBusinessHour[];
   blockedDates: string[];
+  specialClosures?: BookingSpecialClosure[];
   notificationEmails?: string[];
   notificationPhones?: string[];
   /** BAAM Review connector — set up in site admin (no code/deploy). When

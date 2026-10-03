@@ -3,7 +3,12 @@ import { forwardToBaamReview } from '@/lib/baam-review-forward';
 import { dispatchEvent } from '@/lib/automations/dispatch';
 import { v4 as uuid } from 'uuid';
 import { getRequestSiteId } from '@/lib/content';
-import { generateAvailableSlots, isDateWithinRange } from '@/lib/booking/availability';
+import {
+  generateAvailableSlots,
+  getDateBlockContext,
+  getDateBlockMessage,
+  isDateWithinRange,
+} from '@/lib/booking/availability';
 import {
   addBooking,
   listBookings,
@@ -101,6 +106,10 @@ export async function POST(request: NextRequest) {
 
   if (!isDateWithinRange({ date, settings })) {
     return NextResponse.json({ message: 'Date is outside booking window' }, { status: 400 });
+  }
+  const blocked = getDateBlockContext(date, settings);
+  if (blocked) {
+    return NextResponse.json({ message: getDateBlockMessage(blocked, 'en') }, { status: 400 });
   }
 
   const bookings = await listBookings(siteId, date, date);

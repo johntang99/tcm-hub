@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getRequestSiteId } from '@/lib/content';
-import { generateAvailableSlots, isDateWithinRange } from '@/lib/booking/availability';
+import {
+  generateAvailableSlots,
+  getDateBlockContext,
+  getDateBlockMessage,
+  isDateWithinRange,
+} from '@/lib/booking/availability';
 import {
   listBookings,
   loadBookingServices,
@@ -37,6 +42,10 @@ export async function POST(request: NextRequest) {
 
   if (!isDateWithinRange({ date, settings })) {
     return NextResponse.json({ message: 'Date is outside booking window' }, { status: 400 });
+  }
+  const blocked = getDateBlockContext(date, settings);
+  if (blocked) {
+    return NextResponse.json({ message: getDateBlockMessage(blocked, 'en') }, { status: 400 });
   }
 
   const today = new Date().toISOString().slice(0, 10);

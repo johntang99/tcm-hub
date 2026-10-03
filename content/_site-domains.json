@@ -29,6 +29,18 @@
       "domain": "gangshi.local",
       "environment": "dev",
       "enabled": true
+    },
+    {
+      "siteId": "o5b-qa-37082159",
+      "domain": "o5b-qa-37082159.example.com",
+      "environment": "prod",
+      "enabled": true
+    },
+    {
+      "siteId": "o5b-qa-37082159",
+      "domain": "o5b-qa-37082159.local",
+      "environment": "dev",
+      "enabled": true
     }
   ]
 }

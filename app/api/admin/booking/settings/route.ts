@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSessionFromRequest } from '@/lib/admin/auth';
 import { loadBookingSettings, saveBookingSettings } from '@/lib/booking/storage';
 import { canManageBookings, requireSiteAccess } from '@/lib/admin/permissions';
+import { normalizeBookingSettings } from '@/lib/booking/special-closures';
 
 export async function GET(request: NextRequest) {
   const session = await getSessionFromRequest(request);
@@ -22,7 +23,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: 'Forbidden' }, { status: 403 });
   }
   const settings = await loadBookingSettings(siteId);
-  return NextResponse.json({ settings });
+  return NextResponse.json({
+    settings: settings ? normalizeBookingSettings(settings) : settings,
+  });
 }
 
 export async function PUT(request: NextRequest) {
@@ -44,6 +47,6 @@ export async function PUT(request: NextRequest) {
   if (!canManageBookings(session.user)) {
     return NextResponse.json({ message: 'Forbidden' }, { status: 403 });
   }
-  await saveBookingSettings(siteId, settings);
+  await saveBookingSettings(siteId, normalizeBookingSettings(settings));
   return NextResponse.json({ status: 'ok' });
 }

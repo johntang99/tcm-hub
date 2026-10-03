@@ -1,5 +1,9 @@
 # Chinese Medicine Template
 
+kill -9 $(lsof -tiTCP:3003 -sTCP:LISTEN)
+npm run dev
+
+
 
 lsof -ti:3003 | xargs kill -9
 rm -rf .next

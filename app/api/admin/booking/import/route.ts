@@ -4,6 +4,7 @@ import path from 'path';
 import { getSessionFromRequest } from '@/lib/admin/auth';
 import { canManageBookings, requireSiteAccess } from '@/lib/admin/permissions';
 import { saveBookingServicesDb, saveBookingSettingsDb, upsertBookingDb } from '@/lib/booking/db';
+import { normalizeBookingSettings } from '@/lib/booking/special-closures';
 import type { BookingRecord, BookingService, BookingSettings } from '@/lib/types';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
@@ -50,7 +51,7 @@ export async function POST(request: NextRequest) {
     await saveBookingServicesDb(siteId, services);
   }
   if (settings) {
-    await saveBookingSettingsDb(siteId, settings);
+    await saveBookingSettingsDb(siteId, normalizeBookingSettings(settings));
   }
 
   let importedBookings = 0;

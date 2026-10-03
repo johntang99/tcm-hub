@@ -11,6 +11,7 @@ import {
   upsertBookingDb,
 } from '@/lib/booking/db';
 import { canUseContentDb, fetchContentEntry } from '@/lib/contentDb';
+import { normalizeBookingSettings } from '@/lib/booking/special-closures';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
@@ -74,6 +75,7 @@ function buildDefaultBookingSettings(): BookingSettings {
       { day: 'Sun', open: '00:00', close: '00:00', closed: true },
     ],
     blockedDates: [],
+    specialClosures: [],
     notificationEmails: [],
     notificationPhones: [],
   };
@@ -188,19 +190,20 @@ export async function saveBookingServices(siteId: string, services: BookingServi
 export async function loadBookingSettings(siteId: string): Promise<BookingSettings | null> {
   if (canUseBookingDb()) {
     const settings = await loadBookingSettingsDb(siteId);
-    if (settings) return settings;
+    if (settings) return normalizeBookingSettings(settings);
   }
   const localSettings = await readJsonFile<BookingSettings | null>(getSettingsPath(siteId), null);
-  if (localSettings) return localSettings;
-  return buildDefaultBookingSettings();
+  if (localSettings) return normalizeBookingSettings(localSettings);
+  return normalizeBookingSettings(buildDefaultBookingSettings());
 }
 
 export async function saveBookingSettings(siteId: string, settings: BookingSettings) {
+  const normalized = normalizeBookingSettings(settings);
   if (canUseBookingDb()) {
-    await saveBookingSettingsDb(siteId, settings);
+    await saveBookingSettingsDb(siteId, normalized);
     return;
   }
-  await writeJsonFile(getSettingsPath(siteId), settings);
+  await writeJsonFile(getSettingsPath(siteId), normalized);
 }
 
 export async function loadBookingsForMonth(

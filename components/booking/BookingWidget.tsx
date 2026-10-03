@@ -43,6 +43,7 @@ export function BookingWidget({ locale }: BookingWidgetProps) {
   const [selectedService, setSelectedService] = useState<BookingService | null>(null);
   const [selectedDate, setSelectedDate] = useState('');
   const [slots, setSlots] = useState<string[]>([]);
+  const [slotMessage, setSlotMessage] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState('');
   const [form, setForm] = useState<BookingForm>({
     name: '',
@@ -76,16 +77,43 @@ export function BookingWidget({ locale }: BookingWidgetProps) {
       if (!selectedService || !selectedDate) return;
       setLoading(true);
       setStatus(null);
+      setSlotMessage(null);
       try {
         const response = await fetch(
           `/api/booking/slots?serviceId=${selectedService.id}&date=${selectedDate}`
         );
+        const payload = await response.json();
         if (!response.ok) {
-          const payload = await response.json();
           throw new Error(payload.message || 'Failed to load time slots');
         }
-        const payload = await response.json();
         setSlots(payload.slots || []);
+        if (Array.isArray(payload.slots) && payload.slots.length === 0) {
+          if (payload.unavailableReason === 'special_closure') {
+            const zhReason =
+              payload?.specialClosure?.noteZh ||
+              payload?.specialClosure?.reason ||
+              payload?.specialClosure?.noteEn;
+            const enReason =
+              payload?.specialClosure?.noteEn ||
+              payload?.specialClosure?.reason ||
+              payload?.specialClosure?.noteZh;
+            setSlotMessage(
+              locale === 'zh'
+                ? zhReason
+                  ? `该日期暂停预约：${zhReason}`
+                  : '该日期为休诊日，暂不提供预约。'
+                : enReason
+                  ? `This date is unavailable: ${enReason}`
+                  : 'This date is closed and unavailable for booking.'
+            );
+          } else if (payload.message) {
+            setSlotMessage(
+              locale === 'zh' && payload.unavailableReason === 'weekly_closed'
+                ? '该日期为固定休息日，暂不提供预约。'
+                : payload.message
+            );
+          }
+        }
       } catch (error: any) {
         setStatus(error.message);
       } finally {
@@ -256,7 +284,7 @@ export function BookingWidget({ locale }: BookingWidgetProps) {
               >
                 {slots.length === 0 && selectedDate && (
                   <div className="col-span-2 rounded-xl border border-dashed border-gray-200 px-3 py-4 text-xs text-gray-500 text-center">
-                    {locale === 'en' ? 'No slots available.' : '暂无可用时段。'}
+                    {slotMessage || (locale === 'en' ? 'No slots available.' : '暂无可用时段。')}
                   </div>
                 )}
                 {slots.map((slot) => (

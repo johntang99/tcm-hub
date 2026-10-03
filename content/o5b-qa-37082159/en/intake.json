@@ -1,0 +1,68 @@
+{
+  "skipAi": false,
+  "domains": {
+    "dev": "o5b-qa-37082159.local",
+    "production": "o5b-qa-37082159.example.com"
+  },
+  "locales": {
+    "default": "en",
+    "supported": [
+      "en"
+    ]
+  },
+  "business": {
+    "name": "O5B QA Clinic 2159",
+    "tagline": "Whole-person healing care",
+    "ownerName": "Dr. Quinn Park",
+    "ownerTitle": "Licensed Acupuncturist",
+    "description": "Holistic TCM care focused on root-cause healing.",
+    "foundedYear": 2017,
+    "ownerLanguages": [
+      "English",
+      "Mandarin"
+    ],
+    "yearsExperience": "10+",
+    "ownerCredentials": [
+      "NCCAOM Diplomate"
+    ],
+    "ownerCertifications": [
+      "NCCAOM"
+    ],
+    "ownerSpecializations": [
+      "Pain relief",
+      "Women's health"
+    ],
+    "ownerNameWithCredentials": "Dr. Quinn Park, L.Ac."
+  },
+  "clientId": "o5b-qa-37082159",
+  "location": {
+    "zip": "11354",
+    "city": "Flushing",
+    "email": "hello@o5bqa.example.com",
+    "phone": "(917) 555-0110",
+    "state": "NY",
+    "address": "88 Northern Blvd",
+    "addressMapUrl": "https://maps.google.com/?q=88+Northern+Blvd+Flushing+NY+11354"
+  },
+  "services": {
+    "enabled": [
+      "acupuncture",
+      "chinese-herbal-medicine",
+      "cupping-therapy",
+      "moxibustion",
+      "tuina-massage"
+    ]
+  },
+  "contentTone": {
+    "voice": "warm-professional",
+    "targetDemographic": "Adults and families",
+    "uniqueSellingPoints": [
+      "Whole-person treatment",
+      "Modern clean clinic"
+    ]
+  },
+  "rewriteMode": "aggressive",
+  "templateSiteId": "acupuncture-flushing",
+  "rewriteAutoApply": true,
+  "rewriteStrictness": "strict-medical"
+}

@@ -242,6 +242,7 @@ export async function POST(request: NextRequest) {
           { day: 'Sun', open: '09:00', close: '16:00', closed: false },
         ],
         blockedDates: [],
+        specialClosures: [],
         notificationEmails: [],
         notificationPhones: [],
       };

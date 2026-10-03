@@ -64,6 +64,18 @@
       ],
       "createdAt": "2026-05-11T00:00:00.000Z",
       "updatedAt": "2026-05-11T00:00:00.000Z"
+    },
+    {
+      "id": "o5b-qa-37082159",
+      "name": "O5B QA Clinic 2159",
+      "domain": "o5b-qa-37082159.example.com",
+      "enabled": true,
+      "defaultLocale": "en",
+      "supportedLocales": [
+        "en"
+      ],
+      "createdAt": "2026-09-01T04:31:24.151Z",
+      "updatedAt": "2026-09-01T04:31:24.151Z"
     }
   ]
 }

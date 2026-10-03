@@ -277,6 +277,7 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith('/apple-icon/') ||
     pathname === '/robots.txt' ||
     pathname === '/sitemap.xml' ||
+    pathname === '/llms.txt' ||
     pathname.match(/\.(ico|png|jpg|jpeg|svg|css|js)$/)
   ) {
     return NextResponse.next({ request: { headers: requestHeaders } });

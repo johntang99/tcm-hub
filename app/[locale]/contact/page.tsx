@@ -2,6 +2,11 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getRequestSiteId, loadContent, loadPageContent } from '@/lib/content';
+import { loadBookingSettings } from '@/lib/booking/storage';
+import {
+  getTodayInTimezone,
+  listUpcomingContactClosures,
+} from '@/lib/booking/special-closures';
 import { buildPageMetadata } from '@/lib/seo';
 import { Locale } from '@/lib/types';
 import { Button, Badge, Icon, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
@@ -119,6 +124,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const content = await loadPageContent<ContactPageContent>('contact', locale, siteId);
   const layout = await loadPageContent<PageLayoutConfig>('contact.layout', locale, siteId);
   const headerConfig = await loadContent<HeaderMenuConfig>(siteId, locale, 'header.json');
+  const bookingSettings = await loadBookingSettings(siteId);
   
   if (!content) {
     notFound();
@@ -137,6 +143,13 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const sectionStyle = (sectionId: string) =>
     useLayout ? { order: layoutOrder.get(sectionId) ?? 0 } : undefined;
   const isTransparentMenu = headerConfig?.menu?.variant === 'transparent';
+  const upcomingClosures = bookingSettings
+    ? listUpcomingContactClosures(
+        bookingSettings,
+        getTodayInTimezone(bookingSettings.timezone || 'America/New_York'),
+        5
+      )
+    : [];
   const renderEmailWithPreferredBreaks = (value: string) => {
     const atIndex = value.indexOf('@');
     if (atIndex === -1) return value;
@@ -295,6 +308,30 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     </div>
                   ))}
                 </div>
+                {upcomingClosures.length > 0 && (
+                  <div className="mt-6 border-t border-gray-100 pt-4">
+                    <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                      {locale === 'en' ? 'Upcoming Special Closures' : '即将到来的临时休诊'}
+                    </h4>
+                    <div className="space-y-2">
+                      {upcomingClosures.map((closure) => {
+                        const note =
+                          locale === 'zh'
+                            ? closure.noteZh || closure.reason || closure.noteEn
+                            : closure.noteEn || closure.reason || closure.noteZh;
+                        return (
+                          <div
+                            key={closure.date}
+                            className="rounded-lg bg-amber-50 border border-amber-100 px-3 py-2 text-sm text-amber-900"
+                          >
+                            <span className="font-semibold">{closure.date}</span>
+                            {note ? <span> - {note}</span> : null}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>

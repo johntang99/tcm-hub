@@ -1,0 +1,61 @@
+{
+  "showRatings": true,
+  "displayCount": 6,
+  "testimonials": [
+    {
+      "id": "t001",
+      "date": "2026-07-25",
+      "text": "I came in for chronic shoulder and neck tension, and Dr. Park took the time to understand my stress, sleep, and daily habits before starting treatment. After several acupuncture sessions, I felt looser, calmer, and much more like myself again.",
+      "rating": 5,
+      "source": "google",
+      "featured": true,
+      "language": "en",
+      "patientName": "Emily Chen",
+      "serviceCategory": "pain-management"
+    },
+    {
+      "id": "t002",
+      "date": "2026-06-15",
+      "text": "The herbal medicine recommendations were thoughtful and easy to follow, and I appreciated how clearly everything was explained. I felt supported the whole time, and my energy and digestion gradually became much more balanced.",
+      "rating": 5,
+      "source": "google",
+      "featured": true,
+      "language": "en",
+      "patientName": "David Morales",
+      "serviceCategory": "herbal-medicine"
+    },
+    {
+      "id": "t003",
+      "date": "2026-06-05",
+      "text": "As a Mandarin-speaking patient, I felt immediately comfortable here. Dr. Park’s acupuncture treatments helped with my menstrual discomfort, and the care always felt gentle, respectful, and deeply attentive.",
+      "rating": 5,
+      "source": "google",
+      "featured": true,
+      "language": "en",
+      "patientName": "Mei Lin",
+      "serviceCategory": "acupuncture"
+    },
+    {
+      "id": "t004",
+      "date": "2026-04-15",
+      "text": "I tried cupping therapy for persistent upper back tightness and was surprised by how much relief I felt afterward. The clinic is spotless, calming, and very professional, which made the whole experience even better.",
+      "rating": 5,
+      "source": "google",
+      "featured": false,
+      "language": "en",
+      "patientName": "Sofia Ramirez",
+      "serviceCategory": "cupping"
+    },
+    {
+      "id": "t005",
+      "date": "2026-04-03",
+      "text": "The tuina massage sessions were incredibly helpful for stiffness and overall tension from long workdays. I left each visit feeling more open, grounded, and relaxed, and the results built steadily over time.",
+      "rating": 5,
+      "source": "google",
+      "featured": false,
+      "language": "en",
+      "patientName": "Michael Thompson",
+      "serviceCategory": "massage"
+    }
+  ]
+}

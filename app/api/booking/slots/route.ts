@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getRequestSiteId } from '@/lib/content';
-import { generateAvailableSlots, isDateWithinRange } from '@/lib/booking/availability';
+import {
+  generateAvailableSlots,
+  getDateBlockContext,
+  getDateBlockMessage,
+  isDateWithinRange,
+} from '@/lib/booking/availability';
 import {
   loadBookingServices,
   loadBookingSettings,
@@ -32,6 +37,16 @@ export async function GET(request: NextRequest) {
 
   if (!isDateWithinRange({ date, settings })) {
     return NextResponse.json({ slots: [], timezone: settings.timezone });
+  }
+  const blocked = getDateBlockContext(date, settings);
+  if (blocked) {
+    return NextResponse.json({
+      slots: [],
+      timezone: settings.timezone,
+      unavailableReason: blocked.reason,
+      message: getDateBlockMessage(blocked, 'en'),
+      specialClosure: blocked.specialClosure || null,
+    });
   }
 
   const bookings = await listBookings(siteId, date, date);

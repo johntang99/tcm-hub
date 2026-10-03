@@ -40,7 +40,7 @@
         "question": "How much do herbs cost?"
       },
       {
-        "answer": "We offer sliding scale community acupuncture on Wednesdays ($35-$55) which is accessible to all. For regular appointments, insurance coverage or package discounts are the best way to reduce costs.",
+        "answer": "We offer community acupuncture on Wednesdays ($60), designed to keep care accessible. For regular appointments, insurance coverage or package discounts are the best way to reduce costs.",
         "question": "Is there a senior or student discount?"
       }
     ],
@@ -273,7 +273,7 @@
       {
         "name": "Community Acupuncture",
         "notes": "Sliding scale based on ability to pay. Wednesdays only.",
-        "price": "$35-$55",
+        "price": "$60",
         "duration": "45 minutes",
         "description": "Affordable acupuncture in a shared, peaceful space"
       }
