@@ -12,7 +12,7 @@ import {
   loadBookingSettings,
   moveBooking,
 } from '@/lib/booking/storage';
-import { sendBookingEmails } from '@/lib/booking/email';
+import { resolveBookingFrom, sendBookingEmails } from '@/lib/booking/email';
 import { sendBookingSms } from '@/lib/booking/sms';
 import type { BookingRecord } from '@/lib/types';
 
@@ -95,6 +95,7 @@ export async function POST(request: NextRequest) {
     subject: 'Your booking has been rescheduled',
     message: 'Your appointment has been rescheduled. Updated details are below:',
     adminRecipients: settings?.notificationEmails || [],
+    from: await resolveBookingFrom(siteId, settings?.senderLocalPart),
   });
   await sendBookingSms({
     booking: updated,

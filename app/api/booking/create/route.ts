@@ -15,7 +15,7 @@ import {
   loadBookingServices,
   loadBookingSettings,
 } from '@/lib/booking/storage';
-import { sendBookingEmails } from '@/lib/booking/email';
+import { resolveBookingFrom, sendBookingEmails } from '@/lib/booking/email';
 import { sendBookingSms } from '@/lib/booking/sms';
 import { forwardToLeadHub } from '@/lib/lead-hub-forward';
 import type { BookingRecord, BookingServiceType } from '@/lib/types';
@@ -180,6 +180,7 @@ export async function POST(request: NextRequest) {
     subject: 'Your booking is confirmed',
     message: 'Thank you for booking with us. Here are your appointment details:',
     adminRecipients: settings.notificationEmails || [],
+    from: await resolveBookingFrom(siteId, settings.senderLocalPart),
   });
   await sendBookingSms({
     booking,

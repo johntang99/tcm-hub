@@ -751,6 +751,26 @@ export function BookingSettingsManager({
               </div>
               <div>
                 <label className="block text-xs text-gray-500">
+                  No-reply sender (part before @)
+                </label>
+                <input
+                  className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
+                  placeholder={`no-reply-${siteId || 'clinic'}`}
+                  value={settings.senderLocalPart || ''}
+                  onChange={(event) =>
+                    updateSettings({
+                      senderLocalPart: event.target.value.trim(),
+                    })
+                  }
+                />
+                <p className="mt-1 text-xs text-gray-500">
+                  Every clinic uses the same verified domain. Leave this blank to send as{' '}
+                  {`no-reply-${siteId || 'clinic'}`}
+                  . The name patients see is the clinic name. Do not use another domain.
+                </p>
+              </div>
+              <div>
+                <label className="block text-xs text-gray-500">
                   Notification Emails (comma separated)
                 </label>
                 <input

@@ -491,6 +491,12 @@ export interface BookingSettings {
   specialClosures?: BookingSpecialClosure[];
   notificationEmails?: string[];
   notificationPhones?: string[];
+  /**
+   * Local part on the shared Resend domain. Blank sends as
+   * `no-reply-{siteId}@domain`. `no-reply-drhuang` sends as that address.
+   * The domain always comes from RESEND_FROM.
+   */
+  senderLocalPart?: string;
   /** BAAM Review connector — set up in site admin (no code/deploy). When
    *  enabled, each confirmed booking is queued for a review request. */
   baamReview?: {

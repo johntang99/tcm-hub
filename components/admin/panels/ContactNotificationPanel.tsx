@@ -60,12 +60,15 @@ export function ContactNotificationPanel({
           <label className="block text-xs text-gray-500">Sender Email (optional)</label>
           <input
             className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 text-sm"
-            placeholder="no-reply@yourdomain.com"
+            placeholder="no-reply-clinic@baamplatform.com"
             value={form?.senderEmail || ''}
             onChange={(event) =>
               updateFormValue(['form', 'senderEmail'], event.target.value)
             }
           />
+          <p className="mt-1 text-xs text-gray-500">
+            Must use the shared domain, baamplatform.com. Another domain is ignored.
+          </p>
         </div>
       </div>
 

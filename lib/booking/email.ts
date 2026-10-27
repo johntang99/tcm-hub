@@ -1,8 +1,10 @@
 import { Resend } from 'resend';
-import type { BookingRecord, BookingService } from '@/lib/types';
+import { loadSiteInfo } from '@/lib/content';
+import { clinicSenderFrom } from '@/lib/email/from-address';
+import { getSiteDisplayName } from '@/lib/siteInfo';
+import type { BookingRecord, BookingService, SiteInfo } from '@/lib/types';
 
 const resendApiKey = process.env.RESEND_API_KEY;
-const resendFrom = process.env.RESEND_FROM;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 const fallbackAdminRecipients = (process.env.CONTACT_FALLBACK_TO || '')
   .split(',')
@@ -33,21 +35,34 @@ function formatBookingDetails(booking: BookingRecord, service?: BookingService) 
     .join('\n');
 }
 
+/** Clinic name plus that clinic's no-reply address on the shared domain. */
+export async function resolveBookingFrom(siteId: string, localPart?: string | null) {
+  const siteInfo = (await loadSiteInfo(siteId, 'en')) as Partial<SiteInfo> | null;
+  return clinicSenderFrom({
+    siteId,
+    displayName: getSiteDisplayName(siteInfo, 'No-Reply'),
+    localPart,
+  });
+}
+
 export async function sendBookingEmails({
   booking,
   service,
   subject,
   message,
   adminRecipients,
+  from,
 }: {
   booking: BookingRecord;
   service?: BookingService;
   subject: string;
   message: string;
   adminRecipients?: string[];
+  from?: string;
 }) {
-  if (!resend || !resendFrom) {
-    console.warn('Resend not configured. Missing RESEND_API_KEY or RESEND_FROM.');
+  const sender = from?.trim();
+  if (!resend || !sender) {
+    console.warn('Resend not configured. Missing RESEND_API_KEY or a From address.');
     return;
   }
 
@@ -58,7 +73,7 @@ export async function sendBookingEmails({
 
   try {
     await resend.emails.send({
-      from: resendFrom,
+      from: sender,
       to: booking.email,
       subject,
       text: body,
@@ -70,7 +85,7 @@ export async function sendBookingEmails({
   if (resolvedAdminRecipients.length > 0) {
     try {
       await resend.emails.send({
-        from: resendFrom,
+        from: sender,
         to: resolvedAdminRecipients,
         subject: `[Admin] ${subject}`,
         text: body,

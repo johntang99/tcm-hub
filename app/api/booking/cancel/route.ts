@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getRequestSiteId } from '@/lib/content';
 import { listBookings, loadBookingSettings, updateBooking } from '@/lib/booking/storage';
-import { sendBookingEmails } from '@/lib/booking/email';
+import { resolveBookingFrom, sendBookingEmails } from '@/lib/booking/email';
 import { sendBookingSms } from '@/lib/booking/sms';
 import type { BookingRecord } from '@/lib/types';
 
@@ -43,6 +43,7 @@ export async function POST(request: NextRequest) {
     subject: 'Your booking has been cancelled',
     message: 'Your appointment has been cancelled. If this is a mistake, please contact us.',
     adminRecipients: settings?.notificationEmails || [],
+    from: await resolveBookingFrom(siteId, settings?.senderLocalPart),
   });
   await sendBookingSms({
     booking: updated,

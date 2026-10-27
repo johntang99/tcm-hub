@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { loadPageContent, loadSiteInfo } from '@/lib/content';
+import { loadBookingSettings } from '@/lib/booking/storage';
+import { clinicSenderFrom } from '@/lib/email/from-address';
 import { getDefaultSite, getSiteByHost, getSiteById, normalizeHost } from '@/lib/sites';
 import type { Locale, SiteInfo } from '@/lib/types';
 import { getSiteDisplayName } from '@/lib/siteInfo';
@@ -109,23 +111,25 @@ function resolveNotificationRecipients(
 
 function resolveSenderFrom(
   emailConfig: ContactPageEmailConfig | null,
-  businessName: string
+  businessName: string,
+  siteId: string,
+  localPart?: string | null
 ): string {
   const explicitFrom =
     typeof emailConfig?.form?.senderFrom === 'string' ? emailConfig.form.senderFrom.trim() : '';
-  if (explicitFrom) return explicitFrom;
-
   const senderEmail = normalizeEmailList(emailConfig?.form?.senderEmail)[0];
-  if (!senderEmail) {
-    return process.env.RESEND_FROM || 'No-Reply<no-reply@baamplatform.com>';
-  }
-
   const senderNameRaw =
     typeof emailConfig?.form?.senderName === 'string' && emailConfig.form.senderName.trim()
       ? emailConfig.form.senderName.trim()
       : businessName || 'No-Reply';
-  const senderName = senderNameRaw.replace(/[<>]/g, '').trim() || 'No-Reply';
-  return `${senderName}<${senderEmail}>`;
+
+  // A contact-page override wins when it stays on the verified domain.
+  // Otherwise every clinic gets its own no-reply address on that domain.
+  return clinicSenderFrom({
+    siteId,
+    displayName: senderNameRaw,
+    localPart: explicitFrom || senderEmail || localPart,
+  });
 }
 
 async function getLocalDefaultSiteId(): Promise<string | null> {
@@ -379,7 +383,13 @@ export async function POST(request: NextRequest) {
     const businessName = getSiteDisplayName(siteInfo, 'Business');
     const businessPhone = siteInfo?.phone || process.env.CONTACT_PHONE_FALLBACK || '(845) 381-1106';
     const notificationRecipients = resolveNotificationRecipients(emailConfig, siteInfo);
-    const senderFrom = resolveSenderFrom(emailConfig, businessName);
+    const bookingSettings = resolvedSite?.id ? await loadBookingSettings(resolvedSite.id) : null;
+    const senderFrom = resolveSenderFrom(
+      emailConfig,
+      businessName,
+      resolvedSite?.id || 'clinic',
+      bookingSettings?.senderLocalPart
+    );
     const alertRecipients = normalizeEmailList(process.env.ALERT_TO);
     const ccRecipients = uniqueEmails(
       alertRecipients.filter((item) => !notificationRecipients.includes(item))
